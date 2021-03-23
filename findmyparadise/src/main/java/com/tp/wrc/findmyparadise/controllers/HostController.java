@@ -1,8 +1,10 @@
 package com.tp.wrc.findmyparadise.controllers;
 
 
+
 import com.tp.wrc.findmyparadise.exceptions.InvalidHostIDException;
 import com.tp.wrc.findmyparadise.exceptions.NullHostIDException;
+
 import com.tp.wrc.findmyparadise.models.Host;
 import com.tp.wrc.findmyparadise.services.HostService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,7 @@ public class HostController {
 
     @Autowired
     HostService service;
+
 
     @PostMapping("/host/")
     public ResponseEntity createHost(@RequestBody Host newHost)
@@ -85,6 +88,12 @@ public class HostController {
         return toReturn;
     }
 
+
+//    @PostMapping("/host/")
+//    public ResponseEntity createHost(@RequestBody Host newHost)
+//    {
+//
+//    }
 
 
 

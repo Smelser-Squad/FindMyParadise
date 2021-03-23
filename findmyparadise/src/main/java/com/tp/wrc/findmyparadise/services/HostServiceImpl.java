@@ -1,5 +1,6 @@
 package com.tp.wrc.findmyparadise.services;
 
+
 import com.tp.wrc.findmyparadise.exceptions.InvalidHostIDException;
 import com.tp.wrc.findmyparadise.exceptions.NullHostIDException;
 import com.tp.wrc.findmyparadise.models.Event;
@@ -71,4 +72,7 @@ public class HostServiceImpl implements HostService {
 
         return false;
     }
+  
+public class HostServiceImpl {
+
 }
