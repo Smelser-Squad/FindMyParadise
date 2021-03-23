@@ -13,10 +13,10 @@ public class Amenity implements Serializable {
     @Column(name = "amenity_id")
     private Integer amenity_id;
 
-    @Column(name = "amenity_name")
+    @Column(name = "amenity_name", nullable = false)
     private String amenity_name;
 
-    @Column(name = "amenity_category")
+    @Column(name = "amenity_category", nullable = false)
     private String amenity_category;
 
     //GETTERS & SETTERS
