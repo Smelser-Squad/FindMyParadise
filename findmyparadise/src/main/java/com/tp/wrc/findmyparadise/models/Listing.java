@@ -3,6 +3,7 @@ package com.tp.wrc.findmyparadise.models;
 import javax.persistence.*;
 
 @Entity
+@Table
 public class Listing {
     @Id
     @Column(name = "listing_id")
