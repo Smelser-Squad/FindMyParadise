@@ -1,13 +1,23 @@
 package com.tp.wrc.findmyparadise.models;
 
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 
+@Entity
 public class Event {
 
     // V A R I A B L E S
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id; //Primary Key, Cannot be null
+
     private String title;
     private String summary;
     private String category;
@@ -80,5 +90,21 @@ public class Event {
 
     public void setCost(double cost) {
         this.cost = cost;
+    }
+
+    // HASH & EQUALS
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Event event = (Event) o;
+        return Double.compare(event.cost, cost) == 0 && Double.compare(event.latitude, latitude) == 0 && Double.compare(event.longitude, longitude) == 0 && id.equals(event.id) && Objects.equals(title, event.title) && Objects.equals(summary, event.summary) && Objects.equals(category, event.category);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, title, summary, category, cost, latitude, longitude);
     }
 }
