@@ -3,7 +3,6 @@ package com.tp.wrc.findmyparadise.models;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Listing")
 public class Listing {
     @Id
     @Column(name = "listing_id")
@@ -15,6 +14,8 @@ public class Listing {
     private Double latitude;
     @Column(name = "longitude")
     private Double longitude;
+
+    // TODO: Properly connect to Host class once created
     @Column(name = "host_id")
     private Integer hostID;
     @Column(name = "address")

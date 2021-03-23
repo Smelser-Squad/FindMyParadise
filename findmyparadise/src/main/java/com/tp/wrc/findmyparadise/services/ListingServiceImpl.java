@@ -1,5 +1,6 @@
 package com.tp.wrc.findmyparadise.services;
 
+import com.tp.wrc.findmyparadise.exceptions.NoListingFoundException;
 import com.tp.wrc.findmyparadise.models.Listing;
 import com.tp.wrc.findmyparadise.repositories.ListingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,13 +21,9 @@ public class ListingServiceImpl implements ListingService {
     }
 
     @Override
-    public Listing show(int id) {
-        Optional<Listing> listing = repo.findById(id);
-        if (listing.isPresent()) {
-            return listing.get();
-        } else {
-            return null;
-        }
+    public Listing show(int id) throws NoListingFoundException {
+        Listing listing = repo.findById(id).orElseThrow(() -> new NoListingFoundException("No listing found"));
+        return listing;
     }
 
     @Override
