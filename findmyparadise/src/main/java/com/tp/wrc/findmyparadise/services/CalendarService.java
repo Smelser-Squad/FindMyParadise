@@ -6,10 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CalendarService {
+public interface CalendarService {
 
-    @Autowired
-    CalendarMySQLDao dao;
 
-    
 }
