@@ -1,17 +1,35 @@
 package com.tp.wrc.findmyparadise.models;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "Listing")
 public class Listing {
+    @Id
+    @Column(name = "listing_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer listingID;
+    @Column(name = "name")
     private String name;
+    @Column(name = "latitude")
     private Double latitude;
+    @Column(name = "longitude")
     private Double longitude;
+    @Column(name = "host_id")
     private Integer hostID;
+    @Column(name = "address")
     private String address;
+    @Column(name = "description")
     private String description;
+    @Column(name = "price")
     private Double price;
+    @Column(name = "max_guests")
     private Integer maxGuests;
+    @Column(name = "service_fee")
     private Double serviceFee;
+    @Column(name = "occupancy_fee")
     private Double occupancyFee;
+    @Column(name = "cleaning_fee")
     private Double cleaningFee;
 
     public Listing() {
