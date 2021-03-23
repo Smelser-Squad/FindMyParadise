@@ -70,7 +70,6 @@ public class Listing {
     public void setLongitude(Double longitude) {
         this.longitude = longitude;
     }
-
     public Host getHost() {
         return host;
     }
