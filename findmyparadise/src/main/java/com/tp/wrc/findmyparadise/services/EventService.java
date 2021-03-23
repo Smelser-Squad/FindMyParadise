@@ -4,7 +4,7 @@ package com.tp.wrc.findmyparadise.services;
 import com.tp.wrc.findmyparadise.exceptions.InvalidEventIdException;
 import com.tp.wrc.findmyparadise.exceptions.NullEventIdException;
 import com.tp.wrc.findmyparadise.models.Event;
-import com.tp.wrc.findmyparadise.persistence.EventPostgresDao;
+import com.tp.wrc.findmyparadise.persistence.EventMySQLDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +14,7 @@ import java.util.List;
 public class EventService {
 
     @Autowired
-    EventPostgresDao dao;
+    EventMySQLDao dao;
 
     public Integer addEvent(Event event) {
         return dao.addEvent(event);

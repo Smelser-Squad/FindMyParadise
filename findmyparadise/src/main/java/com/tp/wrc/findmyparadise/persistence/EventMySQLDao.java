@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class EventPostgresDao implements EventDAO {
+public class EventMySQLDao implements EventDAO {
 
 
     @Autowired

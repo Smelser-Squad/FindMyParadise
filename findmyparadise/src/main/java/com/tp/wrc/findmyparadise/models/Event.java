@@ -10,6 +10,8 @@ public class Event {
     private Integer id; //Primary Key, Cannot be null
     private String title;
     private String summary;
+    private String category;
+    private double cost;
     private double latitude;
     private double longitude;
 
@@ -62,5 +64,21 @@ public class Event {
 
     public void setLongitude(double longitude) {
         this.longitude = longitude;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public double getCost() {
+        return cost;
+    }
+
+    public void setCost(double cost) {
+        this.cost = cost;
     }
 }
