@@ -32,7 +32,7 @@ public class Reservation implements Serializable {
     private Integer infants;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "fk_listing")
+    @JoinColumn(name = "fk_listing", referencedColumnName = "listing_id")
     private Listing listing;
 
     public Reservation() {}
