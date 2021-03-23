@@ -17,8 +17,9 @@ public class Listing {
     private Double longitude;
 
     // TODO: Properly connect to Host class once created
-    @Column(name = "host_id")
-    private Integer hostID;
+    @ManyToOne
+    @JoinColumn(name = "host_id", nullable = false)
+    private Host host;
     @Column(name = "address")
     private String address;
     @Column(name = "description")
@@ -70,12 +71,12 @@ public class Listing {
         this.longitude = longitude;
     }
 
-    public Integer getHostID() {
-        return hostID;
+    public Host getHost() {
+        return host;
     }
 
-    public void setHostID(Integer hostID) {
-        this.hostID = hostID;
+    public void setHost(Host host) {
+        this.host = host;
     }
 
     public String getAddress() {
