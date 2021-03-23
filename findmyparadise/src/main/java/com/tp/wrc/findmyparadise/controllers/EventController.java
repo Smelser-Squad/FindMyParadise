@@ -19,38 +19,33 @@ public class EventController {
 
     //Adds a new event to the database by the given event model.
     @PostMapping("/events/")
-    public Integer addEvent(@RequestBody Event event) {
-        return service.addEvent(event);
+    public Event createEvent(@RequestBody Event event) {
+        return service.create(event);
     }
 
     //Retrieves an event from the database by the given id.
     @GetMapping("/events/{id}")
     public Event getEventById(@PathVariable Integer id) throws InvalidEventIdException, NullEventIdException {
-        return service.getEventById(id);
+        return service.show(id);
     }
 
     //Retrieves a list of all Events in the database.
     @GetMapping("/events/")
     public List<Event> getEvents() {
-        return service.getEvents();
+        return service.index();
     }
 
     //Edits an existing Event in the database by replacing its attributes with the
     //attributes of the given Event model.
     @PutMapping("/events/{id}")
-    public String editEvent(@PathVariable Integer id, @RequestBody Event event) throws InvalidEventIdException {
-        if (service.editEvent(id, event)) {
-            return "Event " + id + " updated";
-        } else {
-            return "Event " + id + " not found";
-        }
-
+    public Event editEvent(@PathVariable Integer id, @RequestBody Event event) throws InvalidEventIdException {
+        return service.update(event, id);
     }
 
     //Deletes an existing Event from the database.
     @DeleteMapping("/events/{id}")
     public String deleteEvent(@PathVariable Integer id) throws NullEventIdException, InvalidEventIdException {
-        if (service.deleteEvent(id)) {
+        if (service.destroy(id)) {
             return "Event " + id + " deleted";
         } else {
             return "Event " + id + " not found";
