@@ -17,6 +17,9 @@ public class Amenity implements Serializable {
     private String amenity_name;
 
     @Column(name = "amenity_category", nullable = false)
+
+    private String amenity_name;
+
     private String amenity_category;
 
     //GETTERS & SETTERS
