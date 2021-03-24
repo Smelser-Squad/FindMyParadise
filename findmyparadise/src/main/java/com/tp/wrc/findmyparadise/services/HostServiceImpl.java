@@ -72,7 +72,5 @@ public class HostServiceImpl implements HostService {
 
         return false;
     }
-  
-public class HostServiceImpl {
-
 }
+
