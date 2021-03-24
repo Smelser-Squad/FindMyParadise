@@ -8,14 +8,16 @@ import java.util.List;
 
 public interface HostService {
 
-    public List<Host> getAll() throws InvalidHostIDException, NullHostIDException;
+    List<Host> getAll() throws InvalidHostIDException, NullHostIDException;
 
-    public Host show(Integer hostID) throws InvalidHostIDException, NullHostIDException;
+    Host show(Integer hostID) throws InvalidHostIDException, NullHostIDException;
 
-    public Host create(Host newHost) throws InvalidHostIDException, NullHostIDException;
+    Host create(Host newHost) throws InvalidHostIDException, NullHostIDException;
 
     public Host update(Integer hostID, Host newHost) throws InvalidHostIDException, NullHostIDException;
 
     public boolean destroy(Integer hostID) throws InvalidHostIDException, NullHostIDException;
 
+
 }
+

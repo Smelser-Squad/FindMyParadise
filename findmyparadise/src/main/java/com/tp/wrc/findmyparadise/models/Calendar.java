@@ -1,11 +1,25 @@
 package com.tp.wrc.findmyparadise.models;
 
+<<<<<<< HEAD
+import javax.persistence.Entity;
+=======
+import javax.persistence.*;
+>>>>>>> 8ddd09673c0c32e96326f656b7952ba91bfb9149
 import java.time.LocalDate;
 import java.util.Date;
 
+@Entity
+<<<<<<< HEAD
+=======
+@Table(name = "calendar")
+>>>>>>> 8ddd09673c0c32e96326f656b7952ba91bfb9149
 public class Calendar {
 
     // Variables
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id; //Primary Key, Cannot be null
+
     private LocalDate startDate;
     private LocalDate endDate;
     private Integer numDays;
