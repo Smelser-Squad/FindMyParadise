@@ -16,16 +16,16 @@ public class Amenity implements Serializable {
     @Column(name = "amenity_name", nullable = false)
     private String amenityName;
 
-    @Column(name = "amenity_category", nullable = false)
-    private String amenityCategory;
+    @Column(name = "category", nullable = false)
+    private String category;
 
     //CONSTRUCTORS
-    public Amenity(){};
+    public Amenity(){}
 
     public Amenity(Integer amenityId, String amenityName, String amenityCategory) {
         this.amenityId = amenityId;
         this.amenityName = amenityName;
-        this.amenityCategory = amenityCategory;
+        this.category = amenityCategory;
     }
 
     //GETTERS & SETTERS
@@ -46,11 +46,11 @@ public class Amenity implements Serializable {
     }
 
     public String getAmenityCategory() {
-        return amenityCategory;
+        return category;
     }
 
     public void setAmenityCategory(String amenityCategory) {
-        this.amenityCategory = amenityCategory;
+        this.category = amenityCategory;
     }
 
 }

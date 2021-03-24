@@ -24,14 +24,18 @@ public class HostServiceImpl implements HostService {
 
     @Override
     public Host show(Integer hostID) throws InvalidHostIDException, NullHostIDException {
+        if(hostID==null){
+            throw new NullHostIDException("Null host id entered");
+        }
         Host newHost = null;
         Optional<Host> opt = hRepo.findById(hostID);
         if (opt.isPresent()) {
             newHost = opt.get();
 
             return newHost;
+        } else {
+            throw new InvalidHostIDException("a host with that ID doesn't exist");
         }
-        return null;
     }
 
     @Override
@@ -42,6 +46,10 @@ public class HostServiceImpl implements HostService {
     @Override
     public Host update(Integer hostID, Host newHost) throws InvalidHostIDException, NullHostIDException {
         Host hostToUpdate = hRepo.findById(hostID).get();
+
+        if(hostID==null){
+            throw new NullHostIDException("Null host id entered");
+        }
 
         if (hostToUpdate != null) {
 
@@ -57,21 +65,25 @@ public class HostServiceImpl implements HostService {
             hostToUpdate.setImageSrc(newHost.getImageSrc());
 
             return hRepo.saveAndFlush(hostToUpdate);
+        } else {
+            throw new InvalidHostIDException("a host with that ID doesn't exist");
         }
-
-        return null;
     }
 
     @Override
     public boolean destroy(Integer hostID) throws InvalidHostIDException, NullHostIDException {
+        if(hostID==null){
+            throw new NullHostIDException("Null host id entered");
+        }
         Host newHost = hRepo.findById(hostID).get();
 
         if (newHost != null) {
             hRepo.delete(newHost);
             return true;
+        } else {
+            throw new InvalidHostIDException("a host with that ID doesn't exist");
         }
-
-        return false;
     }
-
+    
 }
+
