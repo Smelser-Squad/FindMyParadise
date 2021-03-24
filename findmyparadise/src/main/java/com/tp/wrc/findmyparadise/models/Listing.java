@@ -1,6 +1,7 @@
 package com.tp.wrc.findmyparadise.models;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Tabgle
@@ -9,30 +10,48 @@ public class Listing {
     @Column(name = "listing_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer listingID;
+
     @Column(name = "name")
     private String name;
+
     @Column(name = "latitude")
     private Double latitude;
+
     @Column(name = "longitude")
     private Double longitude;
 
-    // TODO: Properly connect to Host class once created
-    @Column(name = "host_id")
-    private Integer hostID;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "host_id", nullable = false)
+    private Host host;
+
     @Column(name = "address")
     private String address;
+
     @Column(name = "description")
     private String description;
+
     @Column(name = "price")
     private Double price;
+
     @Column(name = "max_guests")
     private Integer maxGuests;
+
     @Column(name = "service_fee")
     private Double serviceFee;
+
     @Column(name = "occupancy_fee")
     private Double occupancyFee;
+
     @Column(name = "cleaning_fee")
     private Double cleaningFee;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "listing_id")
+    private Set<Review> reviews;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "listing_id")
+    private Set<Reservation> reservations;
 
     public Listing() {
 
@@ -69,13 +88,12 @@ public class Listing {
     public void setLongitude(Double longitude) {
         this.longitude = longitude;
     }
-
-    public Integer getHostID() {
-        return hostID;
+    public Host getHost() {
+        return host;
     }
 
-    public void setHostID(Integer hostID) {
-        this.hostID = hostID;
+    public void setHost(Host host) {
+        this.host = host;
     }
 
     public String getAddress() {
@@ -132,5 +150,21 @@ public class Listing {
 
     public void setCleaningFee(Double cleaningFee) {
         this.cleaningFee = cleaningFee;
+    }
+
+    public Set<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(Set<Review> reviews) {
+        this.reviews = reviews;
+    }
+
+    public Set<Reservation> getReservations() {
+        return reservations;
+    }
+
+    public void setReservations(Set<Reservation> reservations) {
+        this.reservations = reservations;
     }
 }
