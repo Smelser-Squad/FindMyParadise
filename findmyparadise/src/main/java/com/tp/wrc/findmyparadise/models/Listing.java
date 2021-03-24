@@ -4,11 +4,7 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-<<<<<<< HEAD
-@Table
-=======
 @Table(name = "listing")
->>>>>>> 0193baf6f55f8f124e387f34b8e1dfdd013fc3ee
 public class Listing {
     @Id
     @Column(name = "listing_id")
