@@ -1,15 +1,11 @@
 package com.tp.wrc.findmyparadise.models;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import java.time.LocalDate;
-import java.util.List;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
+@Table(name = "event")
 public class Event {
 
     // V A R I A B L E S
@@ -30,8 +26,6 @@ public class Event {
     public Event() {
 
     }
-
-
 
     // M E T H O D S
 

@@ -1,5 +1,8 @@
 package com.tp.wrc.findmyparadise.services;
 
-public class PhotoGalleryService{
+import org.springframework.stereotype.Service;
+
+@Service
+public class PhotoGalleryService {
 
 }
