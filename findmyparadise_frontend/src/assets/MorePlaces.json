@@ -1,0 +1,136 @@
+{
+    "places": [
+        {
+            "name": "York's River Private Escape",
+            "type": "house",
+            "beds": 4,
+            "pricePerNight": 131,
+            "averageRating": 4.95,
+            "totalReviews": 37,
+            "superhost": true,
+            "imageSrc": "https://a0.muscache.com/im/pictures/889a8eca-aa26-496f-b55d-6b2f98deb05a.jpg?im_w=960",
+            "favorited": false
+        },
+        {
+            "name": "Best of Both World's ( Nature & Beaches)",
+            "type": "apartment",
+            "beds": 4,
+            "pricePerNight": 59,
+            "averageRating": 4.57,
+            "totalReviews": 76,
+            "superhost": false,
+            "imageSrc": "https://a0.muscache.com/im/pictures/a5fbb07d-3909-44da-8825-137ce275901c.jpg?im_w=960",
+            "favorited": false
+        },
+        {
+            "name": "Updated Home Near Downtown, 10-Minute Walk to Beach",
+            "type": "house",
+            "beds": 5,
+            "pricePerNight": 104,
+            "averageRating": 4.29,
+            "totalReviews": 17,
+            "superhost": false,
+            "imageSrc": "https://a0.muscache.com/im/pictures/0a22fd02-8c9d-4400-b5ad-0800b3a79510.jpg?im_w=960",
+            "favorited": false
+        },
+        {
+            "name": "Barn-Board Abode (private studio) powered by solar",
+            "type": "studio",
+            "beds": 1,
+            "pricePerNight": 94,
+            "averageRating": 4.94,
+            "totalReviews": 207,
+            "superhost": true,
+            "imageSrc": "https://a0.muscache.com/im/pictures/91159d31-9e2a-4c15-b1cd-34280c207f9a.jpg?im_w=960",
+            "favorited": false
+        },
+        {
+            "name": "\"The Roost\" Bright & Quiet - Close to Town.",
+            "type": "apartment",
+            "beds": 3,
+            "pricePerNight": 116,
+            "averageRating": 4.93,
+            "totalReviews": 130,
+            "superhost": true,
+            "imageSrc": "https://a0.muscache.com/im/pictures/d9968355-f30f-441d-ab16-3f11af3459b5.jpg?im_w=960",
+            "favorited": false
+        },
+        {
+            "name": "Private suite , new construction",
+            "type": "guest suite",
+            "beds": 1,
+            "pricePerNight": 131,
+            "averageRating": 4.93,
+            "totalReviews": 57,
+            "superhost": true,
+            "imageSrc": "https://a0.muscache.com/im/pictures/2166f386-11b3-4d79-bb30-c65ef458cf16.jpg?im_w=720",
+            "favorited": false
+        },
+        {
+            "name": "Our Cozy Stay",
+            "type": "apartment",
+            "beds": 5,
+            "pricePerNight": 100,
+            "averageRating": 4.89,
+            "totalReviews": 70,
+            "superhost": true,
+            "imageSrc": "https://a0.muscache.com/im/pictures/e394274d-a75e-457e-af8f-32f89c134367.jpg?im_w=720",
+            "favorited": false
+        },
+        {
+            "name": "Pine Point Beach Studio Apartment",
+            "type": "condominium",
+            "beds": 1,
+            "pricePerNight": 90,
+            "averageRating": 4.78,
+            "totalReviews": 72,
+            "superhost": true,
+            "imageSrc": "https://a0.muscache.com/im/pictures/85becc9c-ad43-4429-ac0d-7bedf31e51bd.jpg?im_w=720",
+            "favorited": false
+        },
+        {
+            "name": "Beach Retreat, steps from Ocean",
+            "type": "cottage",
+            "beds": 2,
+            "pricePerNight": 115,
+            "averageRating": 4.73,
+            "totalReviews": 49,
+            "superhost": false,
+            "imageSrc": "https://a0.muscache.com/im/pictures/374e1b8d-2677-47ac-bdfb-d4b4d9a7d0ca.jpg?im_w=720",
+            "favorited": false
+        },
+        {
+            "name": "Private Modern Loft featured in Maine Home+Design",
+            "type": "loft",
+            "beds": 0,
+            "pricePerNight": 130,
+            "averageRating": 4.97,
+            "totalReviews": 65,
+            "superhost": true,
+            "imageSrc": "https://a0.muscache.com/im/pictures/aca207a6-01f9-4c86-8cc7-a7df66cb0625.jpg?im_w=720",
+            "favorited": false
+        },
+        {
+            "name": "Cozy Beach Cottage",
+            "type": "house",
+            "beds": 3,
+            "pricePerNight": 87,
+            "averageRating": 4.33,
+            "totalReviews": 52,
+            "superhost": false,
+            "imageSrc": "https://a0.muscache.com/im/pictures/8d3af1ad-bd6d-431d-80ee-fa1c9e3bf44e.jpg?im_w=720",
+            "favorited": false
+        },
+        {
+            "name": "Escape to the Beach! Cozy Condo in downtown OOB.",
+            "type": "house",
+            "beds": 2,
+            "pricePerNight": 119,
+            "averageRating": 4.72,
+            "totalReviews": 81,
+            "superhost": false,
+            "imageSrc": "https://a0.muscache.com/im/pictures/2e9b65af-78b1-4474-baff-ac6193c0195c.jpg?im_w=720",
+            "favorited": false
+        }
+    ]
+}
