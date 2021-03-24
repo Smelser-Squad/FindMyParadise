@@ -1,13 +1,14 @@
 package com.tp.wrc.findmyparadise.services;
 
 import com.tp.wrc.findmyparadise.models.Amenity;
-import com.tp.wrc.findmyparadise.models.Event;
 import com.tp.wrc.findmyparadise.repositories.AmenityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class AmenityServiceImpl implements AmenityService {
 
     @Autowired
