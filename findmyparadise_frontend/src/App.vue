@@ -3,6 +3,7 @@
   <img alt="Vue logo" src="./assets/logo.png" />
   <HelloWorld msg="Welcome to Your Vue.js App" />
   <Calendar msg="calendar" />
+  <Map />
    <div class="container">
    <reservation></reservation>
  </div>
@@ -14,6 +15,7 @@
 import HelloWorld from "./components/HelloWorld.vue";
 import Calendar from "./components/Calendar.vue";
 import Reservation from './components/Reservation';
+import Map from './components/Map'
 
 
 export default {
@@ -21,7 +23,8 @@ export default {
   components: {
     HelloWorld,
     Calendar,
-    Reservation
+    Reservation,
+    Map
   },
   
 };
