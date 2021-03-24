@@ -2,7 +2,6 @@ package com.tp.wrc.findmyparadise.services;
 
 import com.tp.wrc.findmyparadise.exceptions.InvalidHostIDException;
 import com.tp.wrc.findmyparadise.exceptions.NullHostIDException;
-import com.tp.wrc.findmyparadise.models.Event;
 import com.tp.wrc.findmyparadise.models.Host;
 
 import java.util.List;
