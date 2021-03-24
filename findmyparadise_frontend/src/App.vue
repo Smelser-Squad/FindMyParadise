@@ -1,9 +1,18 @@
 <template>
 
+
+  <img alt="Vue logo" src="./assets/logo.png" />
+  <HelloWorld msg="Welcome to Your Vue.js App" />
+  <Calendar msg="calendar" />
+  <Map />
+   <div class="container">
+   <reservation></reservation>
+   
   <more-places></more-places>
 
  <div class="container">
    <Reservation></Reservation>
+
  </div>
 
 
@@ -15,6 +24,7 @@
 import MorePlaces from "./components/MorePlaces.vue";
 
 import Reservation from './components/Reservation';
+import Map from './components/Map'
 
 
 
@@ -22,11 +32,18 @@ export default {
   name: "App",
   components: {
 
+    HelloWorld,
+    Calendar,
+    Reservation,
+    Map
+
+
     MorePlaces,
 
     Reservation,
    
     
+
 
   },
   
