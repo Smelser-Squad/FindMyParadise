@@ -15,4 +15,5 @@ public interface ListingService {
      List<Listing> findByHostID(Integer hostID);
      List<Listing> findByPrice(Double price);
 
+
 }
