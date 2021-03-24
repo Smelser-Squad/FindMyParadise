@@ -1,21 +1,33 @@
 <template>
+
+  <more-places></more-places>
+
  <div class="container">
    <Reservation></Reservation>
  </div>
+
 
 </template>
  
 
 <script>
+
+import MorePlaces from "./components/MorePlaces.vue";
+
 import Reservation from './components/Reservation';
+
 
 
 export default {
   name: "App",
   components: {
+
+    MorePlaces,
+
     Reservation,
    
     
+
   },
   
 };
