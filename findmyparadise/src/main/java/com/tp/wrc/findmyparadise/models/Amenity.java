@@ -9,7 +9,7 @@ public class Amenity implements Serializable {
 
     //VARIABLES
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "amenity_id")
     private Integer amenityId;
 
