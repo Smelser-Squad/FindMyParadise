@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 import java.io.Serializable;
+import java.util.Set;
 
 @Entity
 @Table(name = "host")
@@ -44,6 +45,9 @@ public class Host implements Serializable {
 
     @Column(name = "image_src", nullable = false)
     private String imageSrc;
+
+    @OneToMany(mappedBy = "host")
+    private Set<Listing> listings;
 
     // EMPTY CONSTRUCTOR
 
