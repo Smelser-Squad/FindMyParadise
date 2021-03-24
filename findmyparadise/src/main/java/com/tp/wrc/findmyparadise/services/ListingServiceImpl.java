@@ -41,4 +41,22 @@ public class ListingServiceImpl implements ListingService {
             return false;
         }
     }
+
+    //TODO: implement these methods
+    @Override
+    public Listing findByName(String name) {
+        return null;
+    }
+
+    @Override
+    public List<Listing> findByHostID(Integer hostID) {
+        return null;
+    }
+
+    @Override
+    public List<Listing> findByPrice(Double price) {
+        return null;
+    }
+
+
 }
