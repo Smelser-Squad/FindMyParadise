@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table
+@Tabgle
 public class Listing {
     @Id
     @Column(name = "listing_id")
