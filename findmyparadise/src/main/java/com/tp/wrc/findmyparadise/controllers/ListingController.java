@@ -1,6 +1,7 @@
 package com.tp.wrc.findmyparadise.controllers;
 
 import com.tp.wrc.findmyparadise.exceptions.InvalidListingIDException;
+import com.tp.wrc.findmyparadise.exceptions.NoListingFoundException;
 import com.tp.wrc.findmyparadise.exceptions.NullListingIDException;
 import com.tp.wrc.findmyparadise.models.Listing;
 import com.tp.wrc.findmyparadise.services.ListingService;
@@ -29,7 +30,11 @@ public class ListingController {
     @GetMapping("/listing/{listingID}")
     public ResponseEntity getListingByID(@PathVariable Integer listingID) {
         Listing toReturn = null;
-
-        return null;
+        try {
+            toReturn = service.show(listingID);
+        } catch (NoListingFoundException | NullListingIDException ex) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
+        }
+        return ResponseEntity.ok(toReturn);
     }
 }

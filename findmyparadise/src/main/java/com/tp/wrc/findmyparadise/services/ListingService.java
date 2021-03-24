@@ -10,7 +10,7 @@ import java.util.List;
 public interface ListingService {
     public List<Listing> index();
 
-    public Listing show(Integer id) throws NoListingFoundException, NullListingIDException, InvalidListingIDException;
+    public Listing show(Integer id) throws NoListingFoundException, NullListingIDException;
 
     public Listing create(Listing Listing) throws NullListingIDException;
 

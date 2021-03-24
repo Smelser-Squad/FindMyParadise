@@ -1,3 +1,4 @@
+/*
 package com.tp.wrc.findmyparadise.models;
 
 import javax.persistence.*;
@@ -52,3 +53,4 @@ public class Calendar {
 
 
 }
+*/

@@ -11,14 +11,26 @@ public class Event {
     // V A R I A B L E S
 
     @Id
+    @Column(name = "event_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id; //Primary Key, Cannot be null
 
+    @Column(name = "title")
     private String title;
+
+    @Column(name = "summary")
     private String summary;
+
+    @Column(name = "category")
     private String category;
+
+    @Column(name = "cost")
     private double cost;
+
+    @Column(name = "latitude")
     private double latitude;
+
+    @Column(name = "longitude")
     private double longitude;
 
 

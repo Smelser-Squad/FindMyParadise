@@ -20,7 +20,7 @@ public class Reviewer {
     private String imageSrc;
 
 
-    List<Review> review = new ArrayList<>();
+    //List<Review> review = new ArrayList<>();
 
     public Integer getReviewerId() {
         return reviewerId;
@@ -46,11 +46,11 @@ public class Reviewer {
         this.imageSrc = imageSrc;
     }
 
-    public List<Review> getReview() {
+    /*public List<Review> getReview() {
         return review;
     }
 
     public void setReview(List<Review> review) {
         this.review = review;
-    }
+    }*/
 }
