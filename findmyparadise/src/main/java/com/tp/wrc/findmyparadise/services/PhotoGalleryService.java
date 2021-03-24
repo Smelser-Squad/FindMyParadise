@@ -1,5 +1,5 @@
 package com.tp.wrc.findmyparadise.services;
 
-public class PhotoGalleryService {
+public class PhotoGalleryService{
 
 }
