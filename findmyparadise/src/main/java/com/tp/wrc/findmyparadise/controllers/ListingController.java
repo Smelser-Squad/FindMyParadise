@@ -21,7 +21,7 @@ public class ListingController {
     public ResponseEntity createListing(@RequestBody Listing newListing) {
         try {
             return ResponseEntity.ok(service.create(newListing));
-        } catch (NullListingIDException | InvalidListingIDException ex) {
+        } catch (NullListingIDException ex) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
         }
     }
@@ -29,9 +29,7 @@ public class ListingController {
     @GetMapping("/listing/{listingID}")
     public ResponseEntity getListingByID(@PathVariable Integer listingID) {
         Listing toReturn = null;
-        try {
 
-        }
         return null;
     }
 }
