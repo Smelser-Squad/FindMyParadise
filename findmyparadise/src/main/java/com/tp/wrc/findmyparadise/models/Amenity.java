@@ -20,7 +20,7 @@ public class Amenity implements Serializable {
     private String amenityCategory;
 
     //CONSTRUCTORS
-    public Amenity(){};
+    public Amenity(){}
 
     public Amenity(Integer amenityId, String amenityName, String amenityCategory) {
         this.amenityId = amenityId;

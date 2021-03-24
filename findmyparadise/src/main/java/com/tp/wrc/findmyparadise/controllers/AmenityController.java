@@ -17,9 +17,29 @@ public class AmenityController {
     @Autowired
     AmenityServiceImpl service;
 
+    @PostMapping("/new/amenity")
+    public ResponseEntity createAmenity(@RequestBody Amenity amenity) {
+        Amenity toReturn;
+        try {
+            toReturn = service.create(amenity);
+        }
+        catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+
+        return ResponseEntity.ok(toReturn);
+    }
+
     @GetMapping("/amenities")
     public ResponseEntity getAllAmenities() {
-        List<Amenity> toReturn = service.getAllAmenities();
+        List<Amenity> toReturn;
+
+        try {
+            toReturn = service.getAllAmenities();
+        }
+        catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
 
         return ResponseEntity.ok(toReturn);
     }
@@ -36,4 +56,30 @@ public class AmenityController {
 
         return ResponseEntity.ok(toReturn);
     }
+
+    @PutMapping("/update/amenity")
+    public ResponseEntity updateAmenity(@RequestBody Amenity amenity) {
+        try {
+            service.update(amenity);
+        }
+        catch (Exception e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+
+        return ResponseEntity.ok(amenity);
+    }
+
+    @DeleteMapping("/delete/amenity/{id}")
+    public String deleteAmenity(@PathVariable Integer id) {
+        try {
+            if(service.destroy(id))
+                return "Amenity " + id + " successfully deleted.";
+            else
+                return "Amenity " + id + " does not exist.";
+        }
+        catch (Exception e) {
+            return e.getMessage();
+        }
+    }
+
 }

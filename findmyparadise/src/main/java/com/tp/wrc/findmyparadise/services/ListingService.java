@@ -11,4 +11,8 @@ public interface ListingService {
      Listing show(int id) throws NoListingFoundException;
      Listing create(Listing listing);
      boolean destroy(int id);
+     Listing findByName(String name);
+     List<Listing> findByHostID(Integer hostID);
+     List<Listing> findByPrice(Double price);
+
 }

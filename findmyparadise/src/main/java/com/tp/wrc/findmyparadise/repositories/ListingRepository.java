@@ -15,5 +15,7 @@ public interface ListingRepository extends JpaRepository<Listing, Integer> {
     List<Listing> findByHostID(Integer hostID);
     //find listing by price?
     List<Listing> findByPrice(Double price);
-    
+
+
+
 }
