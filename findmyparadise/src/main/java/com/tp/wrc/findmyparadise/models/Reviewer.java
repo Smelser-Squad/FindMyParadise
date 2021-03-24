@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "reviewers")
+@Table(name = "reviewer")
 public class Reviewer {
 
     @Id
@@ -19,8 +19,8 @@ public class Reviewer {
     @Column(name = "image_src")
     private String imageSrc;
 
-
-    List<Review> review = new ArrayList<>();
+//    @Column(name = "review")
+//    private List<Review> review = new ArrayList<>();
 
     public Integer getReviewerId() {
         return reviewerId;
@@ -46,11 +46,11 @@ public class Reviewer {
         this.imageSrc = imageSrc;
     }
 
-    public List<Review> getReview() {
-        return review;
-    }
-
-    public void setReview(List<Review> review) {
-        this.review = review;
-    }
+//    public List<Review> getReview() {
+//        return review;
+//    }
+//
+//    public void setReview(List<Review> review) {
+//        this.review = review;
+//    }
 }
