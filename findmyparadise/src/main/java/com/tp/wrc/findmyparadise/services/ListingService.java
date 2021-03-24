@@ -15,8 +15,4 @@ public interface ListingService {
     public Listing create(Listing Listing) throws NullListingIDException;
 
     public boolean destroy(int id);
-
-
-
-
 }
