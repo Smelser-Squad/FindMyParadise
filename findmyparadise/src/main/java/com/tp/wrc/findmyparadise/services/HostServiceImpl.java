@@ -3,14 +3,15 @@ package com.tp.wrc.findmyparadise.services;
 
 import com.tp.wrc.findmyparadise.exceptions.InvalidHostIDException;
 import com.tp.wrc.findmyparadise.exceptions.NullHostIDException;
-import com.tp.wrc.findmyparadise.models.Event;
 import com.tp.wrc.findmyparadise.models.Host;
 import com.tp.wrc.findmyparadise.repositories.HostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class HostServiceImpl implements HostService {
 
     @Autowired
