@@ -16,5 +16,4 @@ public interface ListingService {
      List<Listing> findByPrice(Double price);
 
 
-
 }
