@@ -1,16 +1,19 @@
 <template>
+
   <img alt="Vue logo" src="./assets/logo.png" />
   <HelloWorld msg="Welcome to Your Vue.js App" />
   <Calendar msg="calendar" />
-  
- 
-  
+   <div class="container">
+   <reservation></reservation>
+ </div>
+
 </template>
+ 
 
 <script>
 import HelloWorld from "./components/HelloWorld.vue";
 import Calendar from "./components/Calendar.vue";
-
+import Reservation from './components/Reservation';
 
 
 export default {
@@ -18,7 +21,7 @@ export default {
   components: {
     HelloWorld,
     Calendar,
-
+    Reservation
   },
   
 };
