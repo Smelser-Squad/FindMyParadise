@@ -18,7 +18,6 @@ public class EventServiceImpl implements EventService {
     @Override
     public List<Event> index() {
         return eRepo.findAll();
-
     }
 
     @Override
@@ -31,6 +30,13 @@ public class EventServiceImpl implements EventService {
             return event;
         }
         return null;
+    }
+
+    @Override
+    public Event findByCategory(String category) {
+        Event event = eRepo.findByCategory(category);
+
+       return event;
     }
 
     @Override
