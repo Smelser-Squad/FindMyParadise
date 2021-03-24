@@ -14,7 +14,9 @@ public interface HostService {
 
     Host create(Host newHost) throws InvalidHostIDException, NullHostIDException;
 
-    Host update(Integer hostID, Host newHost) throws InvalidHostIDException, NullHostIDException;
+    public Host update(Integer hostID, Host newHost) throws InvalidHostIDException, NullHostIDException;
 
-    boolean destroy(Integer hostID) throws InvalidHostIDException, NullHostIDException;
+    public boolean destroy(Integer hostID) throws InvalidHostIDException, NullHostIDException;
+
 }
+

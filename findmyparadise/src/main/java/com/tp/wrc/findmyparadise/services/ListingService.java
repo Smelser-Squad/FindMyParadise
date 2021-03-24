@@ -11,4 +11,5 @@ public interface ListingService {
      Listing show(int id) throws NoListingFoundException;
      Listing create(Listing listing);
      boolean destroy(int id);
+
 }
