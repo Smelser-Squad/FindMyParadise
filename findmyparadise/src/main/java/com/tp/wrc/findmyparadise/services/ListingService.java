@@ -10,11 +10,7 @@ public interface ListingService {
 
     public Listing show(int id) throws NoListingFoundException;
 
-    public Listing create(Listing Listing);
+    public Listing create(Listing listing);
 
     public boolean destroy(int id);
-
-
-
-
 }
