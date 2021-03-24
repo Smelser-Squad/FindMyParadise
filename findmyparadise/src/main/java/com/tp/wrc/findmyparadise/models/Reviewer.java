@@ -20,12 +20,16 @@ public class Reviewer {
     private String imageSrc;
 
 
+
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name="rr_fId", referencedColumnName = "reviewer_id")
     List<Review> reviews = new ArrayList<>();
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "reviewer")
     private Review review;
+
+    List<Review> review = new ArrayList<>();
+
 
     public Integer getReviewerId() {
         return reviewerId;
@@ -64,6 +68,13 @@ public class Reviewer {
     }
 
     public void setReview(Review review) {
+
+    public List<Review> getReview() {
+        return review;
+    }
+
+    public void setReview(List<Review> review) {
+
         this.review = review;
     }
 }
