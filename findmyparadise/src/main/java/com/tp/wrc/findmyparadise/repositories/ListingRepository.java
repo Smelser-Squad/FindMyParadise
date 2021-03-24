@@ -4,15 +4,16 @@ import com.tp.wrc.findmyparadise.models.Listing;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface ListingRepository extends JpaRepository<Listing, Integer> {
 
-    //get all listings
-    //find listing by ID
-    //find listing by the name
+
+    Listing findByName(String name);
     //find listing by host ID
+    List<Listing> findByHostID(Integer hostID);
     //find listing by price?
-    //delete a listing by the ID
-    //edit a listing by ID
+    List<Listing> findByPrice(Double price);
     
 }
