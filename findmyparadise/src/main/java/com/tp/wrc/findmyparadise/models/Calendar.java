@@ -1,8 +1,10 @@
 package com.tp.wrc.findmyparadise.models;
 
+import javax.persistence.Entity;
 import java.time.LocalDate;
 import java.util.Date;
 
+@Entity
 public class Calendar {
 
     // Variables
