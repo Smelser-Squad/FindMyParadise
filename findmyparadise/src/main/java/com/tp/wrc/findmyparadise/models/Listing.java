@@ -15,8 +15,6 @@ public class Listing {
     private Double latitude;
     @Column(name = "longitude")
     private Double longitude;
-
-    // TODO: Properly connect to Host class once created
     @ManyToOne
     @JoinColumn(name = "host_id", nullable = false)
     private Host host;
