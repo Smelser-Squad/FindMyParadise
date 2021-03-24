@@ -24,7 +24,7 @@ public class HostServiceImpl implements HostService {
     @Override
     public Host show(Integer hostID) throws InvalidHostIDException, NullHostIDException {
         Host newHost = null;
-        Optional<Host> opt = hRepo.findById(hostID);
+        Optional<Host> opt = hRepo.findById(hostID).orElse(throw new InvalidHostIDException());
         if (opt.isPresent()) {
             newHost = opt.get();
 
