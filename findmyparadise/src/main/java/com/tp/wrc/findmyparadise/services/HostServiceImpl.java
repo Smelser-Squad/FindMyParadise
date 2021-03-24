@@ -3,7 +3,6 @@ package com.tp.wrc.findmyparadise.services;
 
 import com.tp.wrc.findmyparadise.exceptions.InvalidHostIDException;
 import com.tp.wrc.findmyparadise.exceptions.NullHostIDException;
-import com.tp.wrc.findmyparadise.models.Event;
 import com.tp.wrc.findmyparadise.models.Host;
 import com.tp.wrc.findmyparadise.repositories.HostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,7 +71,5 @@ public class HostServiceImpl implements HostService {
 
         return false;
     }
-  
-public class HostServiceImpl {
 
 }
