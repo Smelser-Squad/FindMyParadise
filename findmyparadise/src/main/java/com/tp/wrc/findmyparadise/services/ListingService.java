@@ -8,11 +8,8 @@ import com.tp.wrc.findmyparadise.models.Listing;
 import java.util.List;
 
 public interface ListingService {
-    public List<Listing> index();
-
-    public Listing show(Integer id) throws NoListingFoundException, NullListingIDException;
-
-    public Listing create(Listing Listing) throws NullListingIDException;
-
-    public boolean destroy(int id);
+     List<Listing> index();
+     Listing show(int id) throws NoListingFoundException;
+     Listing create(Listing listing);
+     boolean destroy(int id);
 }

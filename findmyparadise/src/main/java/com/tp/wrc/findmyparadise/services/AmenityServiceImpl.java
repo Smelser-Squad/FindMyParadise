@@ -40,7 +40,7 @@ public class AmenityServiceImpl implements AmenityService {
 
     @Override
     public Amenity getAmenityByCategory(String category) {
-        Amenity amenity = amenityRepository.getByCategory(category);
+        Amenity amenity = amenityRepository.findByCategory(category);
 
         return amenity;
     }
