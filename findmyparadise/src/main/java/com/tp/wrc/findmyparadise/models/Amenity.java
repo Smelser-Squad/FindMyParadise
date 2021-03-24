@@ -11,37 +11,46 @@ public class Amenity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "amenity_id")
-    private Integer amenity_id;
+    private Integer amenityId;
 
     @Column(name = "amenity_name", nullable = false)
-    private String amenity_name;
+    private String amenityName;
 
     @Column(name = "amenity_category", nullable = false)
-    private String amenity_category;
+    private String amenityCategory;
+
+    //CONSTRUCTORS
+    public Amenity(){};
+
+    public Amenity(Integer amenityId, String amenityName, String amenityCategory) {
+        this.amenityId = amenityId;
+        this.amenityName = amenityName;
+        this.amenityCategory = amenityCategory;
+    }
 
     //GETTERS & SETTERS
-    public Integer getAmenity_id() {
-        return amenity_id;
+    public Integer getAmenityId() {
+        return amenityId;
     }
 
-    public void setAmenity_id(Integer amenity_id) {
-        this.amenity_id = amenity_id;
+    public void setAmenityId(Integer amenityId) {
+        this.amenityId = amenityId;
     }
 
-    public String getAmenity_name() {
-        return amenity_name;
+    public String getAmenityName() {
+        return amenityName;
     }
 
-    public void setAmenity_name(String amenity_name) {
-        this.amenity_name = amenity_name;
+    public void setAmenityName(String amenityName) {
+        this.amenityName = amenityName;
     }
 
-    public String getAmenity_category() {
-        return amenity_category;
+    public String getAmenityCategory() {
+        return amenityCategory;
     }
 
-    public void setAmenity_category(String amenity_category) {
-        this.amenity_category = amenity_category;
+    public void setAmenityCategory(String amenityCategory) {
+        this.amenityCategory = amenityCategory;
     }
 
 }
