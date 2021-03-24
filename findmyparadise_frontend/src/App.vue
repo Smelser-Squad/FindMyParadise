@@ -1,27 +1,43 @@
 <template>
+
+  <more-places></more-places>
+
  <div class="container">
    <Reservation></Reservation>
  </div>
+
 
 </template>
  
 
 <script>
+
+import MorePlaces from "./components/MorePlaces.vue";
+
 import Reservation from './components/Reservation';
+
 
 
 export default {
   name: "App",
   components: {
+
+    MorePlaces,
+
     Reservation,
    
     
+
   },
   
 };
 </script>
 
 <style>
+
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
 * {
   box-sizing: border-box;
@@ -62,5 +78,6 @@ body {
 .btn-block {
   display: block;
   width: 100%;
+
 }
 </style>
