@@ -1,32 +1,51 @@
 package com.tp.wrc.findmyparadise.models;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
+@Table(name = "event")
 public class Event {
 
     // V A R I A B L E S
 
     @Id
+    @Column(name = "event_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id; //Primary Key, Cannot be null
 
+    @Column(name = "title")
     private String title;
+
+    @Column(name = "summary")
     private String summary;
+
+    @Column(name = "category")
     private String category;
+
+    @Column(name = "cost")
     private double cost;
+
+    @Column(name = "latitude")
     private double latitude;
+
+    @Column(name = "longitude")
     private double longitude;
 
 
     // C O N S T R U C T O R S
     public Event() {
 
+    }
+
+    public Event(String title, String summary, String category, double cost, double latitude, double longitude) {
+        this.title = title;
+        this.summary = summary;
+        this.category = category;
+        this.cost = cost;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
     // M E T H O D S

@@ -1,11 +1,20 @@
+/*
 package com.tp.wrc.findmyparadise.models;
 
-import java.time.LocalDate;
-import java.util.Date;
+import javax.persistence.Entity;
 
+import javax.persistence.*;
+import java.time.LocalDate;
+
+@Entity
+@Table(name = "calendar")
 public class Calendar {
 
     // Variables
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id; //Primary Key, Cannot be null
+
     private LocalDate startDate;
     private LocalDate endDate;
     private Integer numDays;
@@ -45,3 +54,4 @@ public class Calendar {
 
 
 }
+*/

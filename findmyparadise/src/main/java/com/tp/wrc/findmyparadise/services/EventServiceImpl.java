@@ -33,10 +33,10 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public Event findByCategory(String category) {
-        Event event = eRepo.findByCategory(category);
+    public List<Event> findAllByCategory(String category) {
+        List<Event> events = eRepo.findAllByCategory(category);
 
-       return event;
+        return events;
     }
 
     @Override
@@ -45,22 +45,24 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public Event update(Event event, int id) {
+    public Event update(Event updatedEvent) {
 
-        Event eventToUpdate = eRepo.findById(id).get();
+        if (updatedEvent != null) {
+            Event event = null;
+            Optional<Event> opt = eRepo.findById(updatedEvent.getId());
+            if (opt.isPresent()) {
+                event = opt.get();
 
-        if (eventToUpdate != null) {
+                event.setTitle(updatedEvent.getTitle());
+                event.setSummary(updatedEvent.getSummary());
+                event.setCategory(updatedEvent.getCategory());
+                event.setCost(updatedEvent.getCost());
+                event.setLatitude(updatedEvent.getLatitude());
+                event.setLongitude(updatedEvent.getLongitude());
 
-            eventToUpdate.setTitle(event.getTitle());
-            eventToUpdate.setSummary(event.getSummary());
-            eventToUpdate.setCategory(event.getCategory());
-            eventToUpdate.setCost(event.getCost());
-            eventToUpdate.setLatitude(event.getLatitude());
-            eventToUpdate.setLongitude(event.getLongitude());
-
-            return eRepo.saveAndFlush(eventToUpdate);
+                return eRepo.saveAndFlush(event);
+            }
         }
-
         return null;
     }
 

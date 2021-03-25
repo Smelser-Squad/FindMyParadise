@@ -1,6 +1,6 @@
 package com.tp.wrc.findmyparadise.services;
 
-import com.tp.wrc.findmyparadise.exceptions.NoListingFoundException;
+import com.tp.wrc.findmyparadise.exceptions.*;
 import com.tp.wrc.findmyparadise.models.Listing;
 import com.tp.wrc.findmyparadise.repositories.ListingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ public class ListingServiceImpl implements ListingService {
     }
 
     @Override
-    public Listing show(int id) throws NoListingFoundException {
+    public Listing show(Integer id) throws NoListingFoundException {
         Listing listing = repo.findById(id).orElseThrow(() -> new NoListingFoundException("No listing found"));
         return listing;
     }
@@ -32,7 +32,7 @@ public class ListingServiceImpl implements ListingService {
     }
 
     @Override
-    public boolean destroy(int id) {
+    public boolean destroy(Integer id) {
         Listing listing = repo.findById(id).get();
         if (listing != null) {
             repo.delete(listing);
@@ -41,4 +41,22 @@ public class ListingServiceImpl implements ListingService {
             return false;
         }
     }
+
+
+    @Override
+    public List<Listing> findByNameIgnoreCase(String listingName)  throws NoListingFoundException, InvalidListingNameException {
+        return repo.findByNameIgnoreCase(listingName);
+    }
+
+    @Override
+    public List<Listing> findByHost(Integer hostID) throws NullHostIDException, InvalidHostIDException{
+        return repo.findByHost(hostID);
+    }
+
+    @Override
+    public List<Listing> findByPrice(Double price) {
+        return repo.findByPrice(price);
+    }
+
+    
 }
