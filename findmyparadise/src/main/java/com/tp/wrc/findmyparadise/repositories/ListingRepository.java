@@ -12,7 +12,7 @@ public interface ListingRepository extends JpaRepository<Listing, Integer> {
 
     Listing findByName(String name);
     //find listing by host ID
-    List<Listing> findByHostID(Integer hostID);
+    List<Listing> findByHostHostID(Integer hostID);
     //find listing by price?
     List<Listing> findByPrice(Double price);
 

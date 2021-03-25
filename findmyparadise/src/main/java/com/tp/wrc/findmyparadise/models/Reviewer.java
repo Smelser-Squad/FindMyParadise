@@ -20,7 +20,7 @@ public class Reviewer {
     private String imageSrc;
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name="fk_review", referencedColumnName = "review_id")
+    @JoinColumn(name = "reviewer_id")
     List<Review> reviews = new ArrayList<>();
 
     public Integer getReviewerId() {
