@@ -5,11 +5,12 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+
 @Table(name = "listing")
 public class Listing {
     @Id
     @Column(name = "listing_id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer listingID;
 
     @Column(name = "name")
@@ -21,7 +22,7 @@ public class Listing {
     @Column(name = "longitude")
     private Double longitude;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "host_id", nullable = false)
     private Host host;
 
@@ -54,13 +55,17 @@ public class Listing {
     @JoinColumn(name = "listing_id")
     private Set<Reservation> reservations;
 
-
     @Column(name= "bedroom_quantity")
     private Integer bedrooms;
+
+    @Column(name= "beds_quantity")
+    private Integer beds;
 
     @Column(name= "bathroom_quantity")
     private Integer bathrooms;
 
+    @Column (name ="listing_type")
+    private String type;
 
     @ManyToMany(cascade = CascadeType.ALL, mappedBy = "listings")
     private Set<Amenity> amenities;
@@ -188,6 +193,14 @@ public class Listing {
         this.bedrooms = bedrooms;
     }
 
+    public Integer getBeds() {
+        return beds;
+    }
+
+    public void setBeds(Integer beds) {
+        this.beds = beds;
+    }
+
     public Integer getBathrooms() {
         return bathrooms;
     }
@@ -195,4 +208,22 @@ public class Listing {
     public void setBathrooms(Integer bathrooms) {
         this.bathrooms = bathrooms;
     }
+
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+    
+    public Set<Amenity> getAmenities() {
+        return amenities;
+    }
+
+    public void setAmenities(Set<Amenity> amenities) {
+        this.amenities = amenities;
+    }
+
 }
