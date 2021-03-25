@@ -1,12 +1,7 @@
 package com.tp.wrc.findmyparadise.controllers;
-
-import com.tp.wrc.findmyparadise.exceptions.InvalidHostIDException;
 import com.tp.wrc.findmyparadise.exceptions.InvalidReviewIdException;
-import com.tp.wrc.findmyparadise.exceptions.NullHostIDException;
 import com.tp.wrc.findmyparadise.exceptions.NullReviewIdException;
-import com.tp.wrc.findmyparadise.models.Host;
 import com.tp.wrc.findmyparadise.models.Review;
-import com.tp.wrc.findmyparadise.services.HostService;
 import com.tp.wrc.findmyparadise.services.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin
 public class ReviewController {
 
     @Autowired
@@ -57,8 +52,10 @@ public class ReviewController {
         }
     }
 
-    @PutMapping("/update/review")
-    public ResponseEntity editReviewById(@RequestBody Review newReview)
+
+    @PutMapping("/updateReview/{reviewId}")
+    public ResponseEntity editReviewById(@PathVariable Integer reviewId, @RequestBody Review newReview)
+
     {
         try {
             return ResponseEntity.ok(service.update(newReview));
@@ -69,7 +66,9 @@ public class ReviewController {
         }
     }
 
-    @DeleteMapping("/delete/review/{reviewId}")
+
+    @DeleteMapping("/deleteReview/{reviewId}")
+
     public String deleteReviewById(@PathVariable Integer reviewId)
     {
         String toReturn = "";
