@@ -16,7 +16,6 @@ export default {
   components: {
     Reservation,
     Map,
-
     MorePlaces,
   },
 };
