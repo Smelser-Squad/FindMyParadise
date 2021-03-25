@@ -18,32 +18,32 @@ public class EventController {
     EventService service;
 
     //Adds a new event to the database by the given event model.
-    @PostMapping("/events")
+    @PostMapping("/events/")
     public Event createEvent(@RequestBody Event event) {
         return service.create(event);
     }
 
     //Retrieves an event from the database by the given id.
-    @GetMapping("/event/{id}")
+    @GetMapping("/events/{id}")
     public Event getEventById(@PathVariable Integer id) throws InvalidEventIdException, NullEventIdException {
         return service.show(id);
     }
 
     //Retrieves a list of all Events in the database.
-    @GetMapping("/events")
+    @GetMapping("/events/")
     public List<Event> getEvents() {
         return service.index();
     }
 
     //Edits an existing Event in the database by replacing its attributes with the
     //attributes of the given Event model.
-    @PutMapping("/event/{id}")
+    @PutMapping("/events/{id}")
     public Event editEvent(@PathVariable Integer id, @RequestBody Event event) throws InvalidEventIdException {
         return service.update(event, id);
     }
 
     //Deletes an existing Event from the database.
-    @DeleteMapping("/event/{id}")
+    @DeleteMapping("/events/{id}")
     public String deleteEvent(@PathVariable Integer id) throws NullEventIdException, InvalidEventIdException {
         if (service.destroy(id)) {
             return "Event " + id + " deleted";
