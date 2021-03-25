@@ -40,7 +40,7 @@ public class ReviewController {
         }
     }
 
-    @GetMapping("/review")
+    @GetMapping("/reviews")
     public ResponseEntity getReviews()
     {
         try {
