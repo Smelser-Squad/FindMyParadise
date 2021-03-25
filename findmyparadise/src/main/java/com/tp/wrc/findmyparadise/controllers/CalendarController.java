@@ -1,3 +1,4 @@
+/*
 package com.tp.wrc.findmyparadise.controllers;
 
 
@@ -14,3 +15,4 @@ public class CalendarController {
     @Autowired
     CalendarService service;
 }
+*/

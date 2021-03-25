@@ -14,6 +14,12 @@ public class Review implements Serializable {
     @Column(name = "review_id")
     private Integer reviewId;
 
+    @Column(name = "listing_id")
+    private Integer listingID;
+
+    @Column(name = "reviewer_id")
+    private Integer reviewerId;
+
     @Column(name = "rating")
     private Integer rating;
 
@@ -73,6 +79,14 @@ public class Review implements Serializable {
 
     public void setReviewId(Integer reviewId) {
         this.reviewId = reviewId;
+    }
+
+    public Integer getReviewerId() {
+        return reviewerId;
+    }
+
+    public void setReviewerId(Integer reviewerId) {
+        this.reviewerId = reviewerId;
     }
 
     public Integer getRating() {
