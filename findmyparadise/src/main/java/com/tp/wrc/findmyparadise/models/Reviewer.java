@@ -21,7 +21,11 @@ public class Reviewer {
 
 
     @OneToMany(cascade = CascadeType.ALL)
+<<<<<<< HEAD
     @JoinColumn(name="fk_review")
+=======
+    @JoinColumn(name="fk_review", referencedColumnName = "review_id")
+>>>>>>> 908c58f07bbace5067fd098751cfa9928363c05f
     List<Review> reviews = new ArrayList<>();
 
     public Integer getReviewerId() {
