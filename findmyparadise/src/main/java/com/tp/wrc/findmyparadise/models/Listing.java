@@ -57,16 +57,29 @@ public class Listing {
 
     @Column(name= "bedroom_quantity")
     private Integer bedrooms;
-
-    @Column(name= "beds_quantity")
-    private Integer beds;
+<<<<<<< HEAD
+=======
 
     @Column(name= "bathroom_quantity")
     private Integer bathrooms;
 
+>>>>>>> cb5a463d74d65259675a62b885931199ef9581b5
+
+    @Column(name= "beds_quantity")
+    private Integer beds;
+
     @Column (name ="listing_type")
     private String type;
 
+<<<<<<< HEAD
+=======
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+
+>>>>>>> cb5a463d74d65259675a62b885931199ef9581b5
     @ManyToMany(cascade = CascadeType.ALL, mappedBy = "listings")
     private Set<Amenity> amenities;
 
@@ -193,6 +206,10 @@ public class Listing {
         this.bedrooms = bedrooms;
     }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> cb5a463d74d65259675a62b885931199ef9581b5
     public Integer getBeds() {
         return beds;
     }
@@ -225,5 +242,8 @@ public class Listing {
     public void setAmenities(Set<Amenity> amenities) {
         this.amenities = amenities;
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> cb5a463d74d65259675a62b885931199ef9581b5
 }
