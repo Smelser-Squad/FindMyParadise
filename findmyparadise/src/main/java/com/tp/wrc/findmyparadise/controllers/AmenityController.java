@@ -44,11 +44,24 @@ public class AmenityController {
         return ResponseEntity.ok(toReturn);
     }
 
-    @GetMapping("/amenities/id/{amenityId}")
+    @GetMapping("/amenity/{amenityId}")
     public ResponseEntity findAmenityById(@PathVariable Integer amenityId) {
         Amenity toReturn;
         try {
             toReturn = service.findAmenityById(amenityId);
+        }
+        catch(Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+
+        return ResponseEntity.ok(toReturn);
+    }
+
+    @GetMapping("/amenities/{amenityCategory}")
+    public ResponseEntity findAmenitiesByCategory(@PathVariable String amenityCategory) {
+        List<Amenity> toReturn;
+        try {
+            toReturn = service.findAmenityByCategory(amenityCategory);
         }
         catch(Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());

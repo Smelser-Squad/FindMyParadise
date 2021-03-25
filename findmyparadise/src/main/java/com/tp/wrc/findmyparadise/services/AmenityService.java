@@ -2,6 +2,7 @@ package com.tp.wrc.findmyparadise.services;
 
 import com.tp.wrc.findmyparadise.exceptions.InvalidAmenityIdException;
 import com.tp.wrc.findmyparadise.exceptions.NullAmenityIdException;
+import com.tp.wrc.findmyparadise.exceptions.NullCategoryException;
 import com.tp.wrc.findmyparadise.models.Amenity;
 import com.tp.wrc.findmyparadise.models.Event;
 
@@ -15,7 +16,7 @@ public interface AmenityService {
 
     public Amenity findAmenityById(Integer id) throws NullAmenityIdException, InvalidAmenityIdException;
 
-    public List<Amenity> findAmenityByCategory(String category);
+    public List<Amenity> findAmenityByCategory(String category) throws NullCategoryException;
 
     public Amenity update(Amenity event) throws NullAmenityIdException, InvalidAmenityIdException;
 

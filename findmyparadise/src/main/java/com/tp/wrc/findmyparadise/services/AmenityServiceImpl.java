@@ -2,6 +2,7 @@ package com.tp.wrc.findmyparadise.services;
 
 import com.tp.wrc.findmyparadise.exceptions.InvalidAmenityIdException;
 import com.tp.wrc.findmyparadise.exceptions.NullAmenityIdException;
+import com.tp.wrc.findmyparadise.exceptions.NullCategoryException;
 import com.tp.wrc.findmyparadise.models.Amenity;
 import com.tp.wrc.findmyparadise.models.Event;
 import com.tp.wrc.findmyparadise.repositories.AmenityRepository;
@@ -47,7 +48,10 @@ public class AmenityServiceImpl implements AmenityService {
     }
 
     @Override
-    public List<Amenity> findAmenityByCategory(String category) {
+    public List<Amenity> findAmenityByCategory(String category) throws NullCategoryException{
+        if(category == null)
+            throw new NullCategoryException("Category is null.");
+
         List<Amenity> amenities = amenityRepository.findByCategory(category);
 
         return amenities;
