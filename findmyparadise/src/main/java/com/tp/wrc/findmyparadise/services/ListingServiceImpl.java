@@ -41,7 +41,7 @@ public class ListingServiceImpl implements ListingService {
             return false;
         }
     }
-  
+
 //    TODO: implement these methods
 //    @Override
 //    public List<Listing> findByListingNameIgnoreCase(String listingName)  throws NoListingFoundException, InvalidListingNameException {
@@ -56,6 +56,7 @@ public class ListingServiceImpl implements ListingService {
 //        return null;
 //    }
 
+}
 
 
 
