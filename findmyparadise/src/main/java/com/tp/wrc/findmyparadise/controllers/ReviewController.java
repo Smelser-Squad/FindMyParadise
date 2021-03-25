@@ -21,7 +21,7 @@ public class ReviewController {
     ReviewService service;
 
 
-    @PostMapping("/review/")
+    @PostMapping("/review")
     public ResponseEntity createReview(@RequestBody Review newReview)
     {
         try {
