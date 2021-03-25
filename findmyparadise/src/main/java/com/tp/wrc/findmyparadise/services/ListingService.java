@@ -14,6 +14,6 @@ public interface ListingService {
      List<Listing> findByNameIgnoreCase(String listingName) throws NoListingFoundException, InvalidListingNameException;
      List<Listing> findByHost(Integer hostID) throws NullHostIDException, InvalidHostIDException;
      List<Listing> findByPrice(Double price) throws NoListingFoundException;
-
+     List<Listing> findByType(String type) throws NoListingFoundException;
 
 }
