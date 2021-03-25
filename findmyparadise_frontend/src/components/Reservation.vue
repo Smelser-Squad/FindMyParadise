@@ -17,24 +17,31 @@
             </div>
   </header>
   <body>
-    <h3>Check-In</h3>
+    <h5>Check-In</h5>
 
     <Calendar />
-    <h3>Check-Out</h3>
+    <h5>Check-Out</h5>
     <Calendar />
-    <h3>Guests</h3>
+    <h5>Guests</h5>
     <select>
       <option> 1 guest</option>
      
     </select>
     <Guests/>
-
+<span class="_19di23v" style="background-position: calc((100 - var(--mouse-x, 0)) * 1%) calc((100 - var(--mouse-y, 0)) * 1%); --mouse-x:25.2363; --mouse-y:83.3333;"></span>
     <button class="btn" @click="OnClick()">Reserve</button>
     <p>  You won't be charged yet</p>
 
-    <a href=""> Cleaning Fee</a>
+    <div class="popup" @click="CleaningFeepopup()"> <u>Cleaning Fee</u>
+    <span class="popuptext" id="CleaningFeepopup">The service fee, which the host has decided to pay, helps us run our platform and offer services like 24/7 support on your trip.</span>
+    </div>
     <br/>
-     <a href=""> Service Fee</a>
+     <div class="popup" @click="ServiceFeepopup()"> <u>Service Fee</u>
+     <span class="popuptext" id="ServiceFeepopup">One-time fee charged by host to cover the cost of cleaning their space.</span>
+     </div>
+     <br/>
+       <div> <u>Occupancy taxes and fees</u></div>
+    
      <hr/>
      <p> <b> Total: </b> </p>
   </body>
@@ -59,6 +66,14 @@ export default {
     OnClick() {
       console.log("Reserve");
     },
+    CleaningFeepopup(){
+      let popup=document.getElementById("CleaningFeepopup");
+      popup.classList.toggle("show")
+    },
+    ServiceFeepopup(){
+       let popup=document.getElementById("ServiceFeepopup");
+      popup.classList.toggle("show")
+    }
   },
 };
 </script>
@@ -68,5 +83,40 @@ header {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
+}
+.popup{
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+.popup .popuptext{
+  visibility: hidden;
+  width: 160px;
+  background-color: whitesmoke;
+  color: black;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -80px;
+}
+.popup .show{
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+
+}
+@-webkit-keyframes fadeIn{
+  from{opacity: 0;}
+  to{opacity: 1;}
+}
+@keyframes fadein{
+  from{opacity: 0;}
+  to{opacity: 1;}
 }
 </style>
