@@ -18,6 +18,7 @@ public class EventController {
     EventService service;
 
     //Adds a new event to the database by the given event model.
+
     @PostMapping("/event")
     public Event createEvent(@RequestBody Event event) {
         return service.create(event);
@@ -42,7 +43,7 @@ public class EventController {
 
     @PutMapping("/updateEvent/{eventId}")
     public Event editEvent(@PathVariable Integer eventId, @RequestBody Event event) throws InvalidEventIdException {
-        return service.update(event, eventId);
+        return service.update(event);
     }
 
     //Deletes an existing Event from the database.
