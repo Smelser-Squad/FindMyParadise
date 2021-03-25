@@ -10,7 +10,7 @@ import java.util.Set;
 public class Reviewer {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "reviewer_id")
     private Integer reviewerId;
 
