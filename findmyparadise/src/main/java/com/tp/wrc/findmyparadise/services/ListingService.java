@@ -15,5 +15,4 @@ public interface ListingService {
 //     List<Listing> findByHostID(Integer hostID) throws NullHostIDException, InvalidHostException;
 //     List<Listing> findByPrice(Double price) throws NoListingFoundException;
 
-
 }
