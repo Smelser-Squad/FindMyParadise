@@ -15,7 +15,7 @@ public interface EventService {
 
     public Event create(Event event);
 
-    public Event update(Event event, int id);
+    public Event update(Event event, Integer id);
 
     public boolean destroy(int id);
 }

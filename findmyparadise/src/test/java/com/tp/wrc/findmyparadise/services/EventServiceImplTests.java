@@ -1,10 +1,13 @@
 package com.tp.wrc.findmyparadise.services;
 
 import com.tp.wrc.findmyparadise.models.Event;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 
 import java.util.List;
 
@@ -21,7 +24,8 @@ class EventServiceImplTests {
 
     //this will run before each @Test method
     @BeforeEach
-    public void setup() {
+    public void setUp() {
+
         Event event = new Event();
         event.setTitle("Event Title");
         event.setCategory("Event Category");
@@ -31,6 +35,11 @@ class EventServiceImplTests {
         event.setLongitude(0);
         toTest.create(event);
 
+    }
+
+    @AfterEach
+    public void tearDown() {
+        
     }
 
     @Test //Testing retrieving an event by ID.
@@ -81,9 +90,12 @@ class EventServiceImplTests {
 
     @Test //Testing updating an event.
     public void updateEventTest() {
+        assertNotNull(toTest.show(1));
         Event updatedEvent = new Event("Updated Event Title", "Updated Event Summary", "Updated Event Category", 1, 1, 1);
+
         toTest.update(updatedEvent, 1);
         Event event = toTest.show(1);
+        assertNotNull(event);
         assertEquals("Updated Event Title", event.getTitle());
     }
 

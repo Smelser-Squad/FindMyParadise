@@ -1,22 +1,32 @@
 <template>
-  <div class="container">
-    <reservation title="Reservation"></reservation>
+  <div id="AppBody">
+    <div class="container">
+      <reservation title="Reservation"></reservation>
+    </div>
+    <div class="container">
+      <calendar title="Calendar"></calendar>
+    </div>
+    <div class="container">
+      <Map />
+    </div>
+    <div class="scrollContainer">
+      <more-places></more-places>
+    </div>
   </div>
-  <Map />
-  <more-places></more-places>
 </template>
 
 <script>
 import MorePlaces from "./components/MorePlaces";
 import Reservation from "./components/Reservation";
 import Map from "./components/Map";
+import Calendar from "./components/Calendar.vue";
 
 export default {
   name: "App",
   components: {
     Reservation,
     Map,
-
+    Calendar,
     MorePlaces,
   },
 };
@@ -24,12 +34,9 @@ export default {
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap");
 
-
-
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
 }
-
 
 * {
   box-sizing: border-box;
@@ -48,7 +55,6 @@ body {
   padding: 30px;
   border-radius: 5px;
   box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
-
 }
 .btn {
   display: inline-block;
@@ -72,5 +78,18 @@ body {
 .btn-block {
   display: block;
   width: 100%;
+}
+.scrollContainer {
+  max-width: 1200px;
+  margin: 30px auto;
+  overflow: auto;
+  min-height: 300px;
+  border: 1px solid gray;
+  padding: 30px;
+  border-radius: 5px;
+  box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
+}
+.datePicker {
+  display: inline;
 }
 </style>

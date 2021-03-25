@@ -1,10 +1,19 @@
 <template>
   <div id="Calendar">
+    <h1>Pick a Date Range</h1>
     <date-picker
-      v-model="date"
+      class="datePicker"
+      v-model="date1"
       lang="en"
       type="date"
-      format="YYYY-MM-dd"
+      format="MM-dd-YYYY"
+    ></date-picker>
+    <date-picker
+      class="datePicker"
+      v-model="date2"
+      lang="en"
+      type="date"
+      format="MM-dd-YYYY"
     ></date-picker>
   </div>
 </template>
@@ -19,7 +28,8 @@ export default {
   },
   data() {
     return {
-      date: "",
+      date1: "",
+      date2: "",
     };
   },
 };
