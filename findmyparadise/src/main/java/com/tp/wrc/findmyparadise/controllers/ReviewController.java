@@ -52,11 +52,13 @@ public class ReviewController {
         }
     }
 
+
     @PutMapping("/updateReview/{reviewId}")
     public ResponseEntity editReviewById(@PathVariable Integer reviewId, @RequestBody Review newReview)
+
     {
         try {
-            return ResponseEntity.ok(service.update(reviewId, newReview));
+            return ResponseEntity.ok(service.update(newReview));
         }
         catch (NullReviewIdException | InvalidReviewIdException ex)
         {
@@ -64,7 +66,9 @@ public class ReviewController {
         }
     }
 
+
     @DeleteMapping("/deleteReview/{reviewId}")
+
     public String deleteReviewById(@PathVariable Integer reviewId)
     {
         String toReturn = "";

@@ -44,7 +44,9 @@ public class AmenityController {
         return ResponseEntity.ok(toReturn);
     }
 
+
     @GetMapping("/amenity/{amenityId}")
+
     public ResponseEntity getAmenityById(@PathVariable Integer amenityId) {
         Amenity toReturn;
         try {

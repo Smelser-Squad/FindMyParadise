@@ -19,6 +19,7 @@ public class ListingController {
     ListingService service;
 
     @PostMapping("/listing")
+
     public ResponseEntity createListing(@RequestBody Listing newListing) {
         return ResponseEntity.ok(service.create(newListing));
     }

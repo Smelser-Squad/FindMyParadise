@@ -24,9 +24,11 @@ public class EventController {
     }
 
     //Retrieves an event from the database by the given id.
+
     @GetMapping("/event/{eventId}")
     public Event getEventById(@PathVariable Integer eventId) throws InvalidEventIdException, NullEventIdException {
         return service.show(eventId);
+
     }
 
     //Retrieves a list of all Events in the database.
@@ -37,6 +39,7 @@ public class EventController {
 
     //Edits an existing Event in the database by replacing its attributes with the
     //attributes of the given Event model.
+
     @PutMapping("/updateEvent/{eventId}")
     public Event editEvent(@PathVariable Integer eventId, @RequestBody Event event) throws InvalidEventIdException {
         return service.update(event, eventId);
@@ -47,6 +50,7 @@ public class EventController {
     public String deleteEvent(@PathVariable Integer eventId) throws NullEventIdException, InvalidEventIdException {
         if (service.destroy(eventId)) {
             return "Event " + eventId + " deleted";
+
         } else {
             return "Event " + eventId + " not found";
         }

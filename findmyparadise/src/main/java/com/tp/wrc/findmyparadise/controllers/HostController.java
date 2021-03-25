@@ -56,11 +56,13 @@ public class HostController {
         }
     }
 
-    @PutMapping("/host/{hostId}")
+
+    @PutMapping("/updateHost/{hostId}")
     public ResponseEntity editHostByID(@PathVariable Integer hostId, @RequestBody Host newHost)
     {
         try {
             return ResponseEntity.ok(service.update(hostId, newHost));
+
         }
         catch (NullHostIDException | InvalidHostIDException ex)
         {
@@ -68,8 +70,10 @@ public class HostController {
         }
     }
 
+
     @DeleteMapping("/deleteHost/{hostId}")
     public String deleteHostByID(@PathVariable Integer hostId)
+
     {
         String toReturn = "";
 
@@ -89,7 +93,7 @@ public class HostController {
     }
 
 
-//    @PostMapping("/host/")
+//    @PostMapping("/host")
 //    public ResponseEntity createHost(@RequestBody Host newHost)
 //    {
 //
