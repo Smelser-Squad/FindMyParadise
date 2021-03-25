@@ -18,4 +18,3 @@ public interface HostService {
 
     boolean destroy(Integer hostID) throws InvalidHostIDException, NullHostIDException;
 }
-
