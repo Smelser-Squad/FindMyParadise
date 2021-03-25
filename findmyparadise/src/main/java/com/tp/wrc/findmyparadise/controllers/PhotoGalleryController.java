@@ -1,8 +1,6 @@
 package com.tp.wrc.findmyparadise.controllers;
-import com.tp.wrc.findmyparadise.exceptions.InvalidHostIDException;
-import com.tp.wrc.findmyparadise.exceptions.NullHostIDException;
 import com.tp.wrc.findmyparadise.models.Photo;
-import com.tp.wrc.findmyparadise.services.PhotoGalleryService;
+import com.tp.wrc.findmyparadise.services.PhotoGalleryServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 public class PhotoGalleryController {
 
     @Autowired
-    PhotoGalleryService service;
+    PhotoGalleryServiceImpl service;
 
     @GetMapping("/gallery/{id}")
     public ResponseEntity getById(@PathVariable Integer id)

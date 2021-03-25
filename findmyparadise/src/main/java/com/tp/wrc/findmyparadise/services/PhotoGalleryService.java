@@ -1,29 +1,17 @@
 package com.tp.wrc.findmyparadise.services;
 
 import com.tp.wrc.findmyparadise.models.Photo;
-import org.springframework.stereotype.Service;
 
-@Service
-public class PhotoGalleryService {
+public interface PhotoGalleryService {
 
-    //TODO: implement logic here
-    public String getById(Integer id) {
-        return "Placeholder";
-    }
+    String getById(Integer id);
 
-    public Photo[] getByListing(Integer listingId) {
-        return null;
-    }
+    Photo[] getByListing(Integer listingId);
 
-    public Photo[] getByListingAndCategory(Integer listingId, Integer categoryId) {
-        return null;
-    }
+    Photo[] getByListingAndCategory(Integer listingId, Integer categoryId);
 
-    public Integer addImage(Photo toAdd) {
-        return null;
-    }
+    Integer addImage(Photo toAdd);
 
-    public boolean delete(Integer imageId) {
-        return false;
-    }
+    boolean delete(Integer imageId);
+
 }
