@@ -47,7 +47,7 @@ public class ListingServiceImpl implements ListingService {
     public List<Listing> findByNameIgnoreCase(String listingName)  throws NoListingFoundException, InvalidListingNameException {
         return repo.findByNameIgnoreCase(listingName);
     }
-
+    
     @Override
     public List<Listing> findByHost(Integer hostID) throws NullHostIDException, InvalidHostIDException{
         return repo.findByHost(hostID);
@@ -59,4 +59,5 @@ public class ListingServiceImpl implements ListingService {
     }
 
 
+    
 }
