@@ -16,7 +16,6 @@ import java.util.Optional;
 public class ListingServiceImpl implements ListingService {
 
 
-
     @Autowired
     private ListingRepository repo;
 
