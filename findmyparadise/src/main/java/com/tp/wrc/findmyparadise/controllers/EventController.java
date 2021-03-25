@@ -11,44 +11,49 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api")
-@CrossOrigin(origins = "http://localhost:4200")
+@RequestMapping("/api")
+@CrossOrigin
 public class EventController {
     @Autowired
     EventService service;
 
     //Adds a new event to the database by the given event model.
-    @PostMapping("/events/")
+
+    @PostMapping("/event")
     public Event createEvent(@RequestBody Event event) {
         return service.create(event);
     }
 
     //Retrieves an event from the database by the given id.
-    @GetMapping("/events/{id}")
-    public Event getEventById(@PathVariable Integer id) throws InvalidEventIdException, NullEventIdException {
-        return service.show(id);
+
+    @GetMapping("/event/{eventId}")
+    public Event getEventById(@PathVariable Integer eventId) throws InvalidEventIdException, NullEventIdException {
+        return service.show(eventId);
+
     }
 
     //Retrieves a list of all Events in the database.
-    @GetMapping("/events/")
+    @GetMapping("/events")
     public List<Event> getEvents() {
         return service.index();
     }
 
     //Edits an existing Event in the database by replacing its attributes with the
     //attributes of the given Event model.
-    @PutMapping("/events/{id}")
-    public Event editEvent(@PathVariable Integer id, @RequestBody Event event) throws InvalidEventIdException {
-        return service.update(event, id);
+
+    @PutMapping("/updateEvent/{eventId}")
+    public Event editEvent(@PathVariable Integer eventId, @RequestBody Event event) throws InvalidEventIdException {
+        return service.update(event);
     }
 
     //Deletes an existing Event from the database.
-    @DeleteMapping("/events/{id}")
-    public String deleteEvent(@PathVariable Integer id) throws NullEventIdException, InvalidEventIdException {
-        if (service.destroy(id)) {
-            return "Event " + id + " deleted";
+    @DeleteMapping("/deleteEvent/{eventId}")
+    public String deleteEvent(@PathVariable Integer eventId) throws NullEventIdException, InvalidEventIdException {
+        if (service.destroy(eventId)) {
+            return "Event " + eventId + " deleted";
+
         } else {
-            return "Event " + id + " not found";
+            return "Event " + eventId + " not found";
         }
     }
 

@@ -1,4 +1,4 @@
-package com.tp.wrc.findmyparadise.services;
+/*package com.tp.wrc.findmyparadise.services;
 
 
 
@@ -9,4 +9,4 @@ import org.springframework.stereotype.Service;
 public interface CalendarService {
 
 
-}
+}*/

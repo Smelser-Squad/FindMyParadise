@@ -17,7 +17,7 @@ public class AmenityController {
     @Autowired
     AmenityServiceImpl service;
 
-    @PostMapping("/new/amenity")
+    @PostMapping("/amenity")
     public ResponseEntity createAmenity(@RequestBody Amenity amenity) {
         Amenity toReturn;
         try {
@@ -44,11 +44,11 @@ public class AmenityController {
         return ResponseEntity.ok(toReturn);
     }
 
-    @GetMapping("/amenities/id/{amenityId}")
-    public ResponseEntity getAmenityById(@PathVariable Integer amenityId) {
+    @GetMapping("/amenity/{amenityId}")
+    public ResponseEntity findAmenityById(@PathVariable Integer amenityId) {
         Amenity toReturn;
         try {
-            toReturn = service.getAmenityById(amenityId);
+            toReturn = service.findAmenityById(amenityId);
         }
         catch(Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
@@ -57,7 +57,20 @@ public class AmenityController {
         return ResponseEntity.ok(toReturn);
     }
 
-    @PutMapping("/update/amenity")
+    @GetMapping("/amenities/{amenityCategory}")
+    public ResponseEntity findAmenitiesByCategory(@PathVariable String amenityCategory) {
+        List<Amenity> toReturn;
+        try {
+            toReturn = service.findAmenityByCategory(amenityCategory);
+        }
+        catch(Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+
+        return ResponseEntity.ok(toReturn);
+    }
+
+    @PutMapping("/updateAmenity")
     public ResponseEntity updateAmenity(@RequestBody Amenity amenity) {
         try {
             service.update(amenity);
@@ -69,13 +82,13 @@ public class AmenityController {
         return ResponseEntity.ok(amenity);
     }
 
-    @DeleteMapping("/delete/amenity/{id}")
-    public String deleteAmenity(@PathVariable Integer id) {
+    @DeleteMapping("/deleteAmenity/{amenityId}")
+    public String deleteAmenity(@PathVariable Integer amenityId) {
         try {
-            if(service.destroy(id))
-                return "Amenity " + id + " successfully deleted.";
+            if(service.destroy(amenityId))
+                return "Amenity " + amenityId + " successfully deleted.";
             else
-                return "Amenity " + id + " does not exist.";
+                return "Amenity " + amenityId + " does not exist.";
         }
         catch (Exception e) {
             return e.getMessage();
