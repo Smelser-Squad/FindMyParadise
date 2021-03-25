@@ -5,6 +5,8 @@ services:
     restart: always
     environment:
       MYSQL_HOST: db
+      MYSQL_USER: user
+      MYSQL_PASSWORD: test
     networks:
       - server
       - client
@@ -15,8 +17,10 @@ services:
         condition: service_healthy
   db:
     environment:
-      MYSQL_DATABASE: findmyparadisedb
       MYSQL_ROOT_PASSWORD: Password123
+      MYSQL_USER: user
+      MYSQL_PASSWORD: test
+      MYSQL_DATABASE: findmyparadisedb
     image: mysql:8.0.23
     restart: always
     healthcheck:
