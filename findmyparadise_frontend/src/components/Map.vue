@@ -1,6 +1,6 @@
 <template>
-  <h1>Map</h1>
   <div class="map">
+    <h1>Map</h1>
     <iframe
       width="300"
       height="200"
