@@ -217,7 +217,7 @@ public class Listing {
     public void setType(String type) {
         this.type = type;
     }
-    
+
     public Set<Amenity> getAmenities() {
         return amenities;
     }
