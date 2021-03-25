@@ -18,6 +18,7 @@ public class EventController {
     EventService service;
 
     //Adds a new event to the database by the given event model.
+
     @PostMapping("/event")
     public Event createEvent(@RequestBody Event event) {
         return service.create(event);

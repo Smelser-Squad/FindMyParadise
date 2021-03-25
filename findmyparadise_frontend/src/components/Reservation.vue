@@ -18,10 +18,6 @@
       </div>
     </header>
     <body>
-      <h5>Check-In</h5>
-
-      <Calendar />
-      <h5>Check-Out</h5>
       <Calendar />
       <h5>Guests</h5>
       <select>
