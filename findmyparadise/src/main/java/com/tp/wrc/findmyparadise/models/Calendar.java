@@ -1,10 +1,6 @@
 /*
 package com.tp.wrc.findmyparadise.models;
-
-<<<<<<< HEAD
-=======
 import javax.persistence.Entity;
->>>>>>> 9eeaf7e66884792eae6cbbae88ca0f7ed1a81a2e
 import javax.persistence.*;
 import java.time.LocalDate;
 
