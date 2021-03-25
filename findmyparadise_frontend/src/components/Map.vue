@@ -15,21 +15,29 @@
 </template>
 
 <script>
-// let id = 1;
 
-// let baseURL = "http://localhost:8080/api";
+let listingID = 1;
 
-// import $ from "jquery";
+import axios from "axios";
 
-// $.get(
+let thisLocation = axios.get(`https://localhost:8080/api/listing/${listingID}`)
+  .then(function (response) {
+    // handle success
+    console.log(response);
+  })
+  .catch(function (error) {
+    // handle error
+    console.log(error);
+  })
+  .then(function () {
+    // always executed
+  });
 
-//   `${baseURL}/getListingAddress/${id}`,
-//   function(data, textStatus, jqXHR)
-//   {
-//     let thisAddress = data[0].address;
-//   }
+thisLocation;
 
-// )
+// let locLatitude = thisLocation[0].latitude;
+
+// let locLongitude = thisLocation[0].longitude;
 
 export default {
   name: "Map",

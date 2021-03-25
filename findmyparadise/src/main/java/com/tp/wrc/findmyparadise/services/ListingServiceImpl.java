@@ -42,6 +42,7 @@ public class ListingServiceImpl implements ListingService {
         }
     }
 
+
     @Override
     public List<Listing> findByNameIgnoreCase(String listingName)  throws NoListingFoundException, InvalidListingNameException {
         return repo.findByNameIgnoreCase(listingName);
@@ -57,5 +58,5 @@ public class ListingServiceImpl implements ListingService {
         return repo.findByPrice(price);
     }
 
-
+    
 }
