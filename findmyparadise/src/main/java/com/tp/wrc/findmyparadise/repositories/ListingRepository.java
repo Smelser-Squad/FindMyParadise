@@ -16,4 +16,5 @@ public interface ListingRepository extends JpaRepository<Listing, Integer> {
 //    //find listing by price?
 //    List<Listing> findByPrice(Double price);
 
+
 }

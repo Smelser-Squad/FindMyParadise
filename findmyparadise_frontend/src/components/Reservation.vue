@@ -1,4 +1,5 @@
 <template>
+<div id="Resrevation body">
   <header>
     <h2> <b>$ 199</b> / night</h2>
     <div>
@@ -45,6 +46,7 @@
      <hr/>
      <p> <b> Total: </b> </p>
   </body>
+  </div>
 </template>
 <script>
 import Calendar from "./Calendar";

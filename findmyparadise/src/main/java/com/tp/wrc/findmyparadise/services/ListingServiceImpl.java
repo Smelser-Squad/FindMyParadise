@@ -1,6 +1,9 @@
 package com.tp.wrc.findmyparadise.services;
 
+import com.tp.wrc.findmyparadise.exceptions.InvalidListingIDException;
+import com.tp.wrc.findmyparadise.exceptions.InvalidListingNameException;
 import com.tp.wrc.findmyparadise.exceptions.NoListingFoundException;
+import com.tp.wrc.findmyparadise.exceptions.NullListingIDException;
 import com.tp.wrc.findmyparadise.models.Listing;
 import com.tp.wrc.findmyparadise.repositories.ListingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +14,7 @@ import java.util.Optional;
 
 @Service
 public class ListingServiceImpl implements ListingService {
+
 
     @Autowired
     private ListingRepository repo;
@@ -41,4 +45,6 @@ public class ListingServiceImpl implements ListingService {
             return false;
         }
     }
+
 }
+
