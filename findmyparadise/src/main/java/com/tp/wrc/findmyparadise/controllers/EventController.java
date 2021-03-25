@@ -42,7 +42,7 @@ public class EventController {
 
     @PutMapping("/updateEvent/{eventId}")
     public Event editEvent(@PathVariable Integer eventId, @RequestBody Event event) throws InvalidEventIdException {
-        return service.update(event, eventId);
+        return service.update(event);
     }
 
     //Deletes an existing Event from the database.

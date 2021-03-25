@@ -82,7 +82,7 @@ class EventServiceImplTests {
     @Test //Testing updating an event.
     public void updateEventTest() {
         Event updatedEvent = new Event("Updated Event Title", "Updated Event Summary", "Updated Event Category", 1, 1, 1);
-        toTest.update(updatedEvent, 1);
+        toTest.update(updatedEvent);
         Event event = toTest.show(1);
         assertEquals("Updated Event Title", event.getTitle());
     }
