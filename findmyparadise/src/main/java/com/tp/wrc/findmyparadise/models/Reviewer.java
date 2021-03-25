@@ -18,10 +18,10 @@ public class Reviewer {
 
     @Column(name = "image_src")
     private String imageSrc;
-
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name="fk_review", referencedColumnName = "review_id")
-    List<Review> reviews = new ArrayList<>();
+//
+//    @OneToMany(cascade = CascadeType.ALL)
+//    @JoinColumn(name="fk_review", referencedColumnName = "review_id")
+//    List<Review> reviews = new ArrayList<>();
 
     public Integer getReviewerId() {
         return reviewerId;
@@ -46,12 +46,12 @@ public class Reviewer {
     public void setImageSrc(String imageSrc) {
         this.imageSrc = imageSrc;
     }
-
-    public List<Review> getReviews() {
-        return reviews;
-    }
-
-    public void setReviews(List<Review> reviews) {
-        this.reviews = reviews;
-    }
+//
+//    public List<Review> getReviews() {
+//        return reviews;
+//    }
+//
+//    public void setReviews(List<Review> reviews) {
+//        this.reviews = reviews;
+//    }
 }
