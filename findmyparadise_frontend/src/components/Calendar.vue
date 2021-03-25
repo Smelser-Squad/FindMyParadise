@@ -3,10 +3,13 @@
     <h1>Pick a Date Range</h1>
     <date-picker
       class="datePicker"
+
       v-model="date1"
       lang="en"
+      
       type="date"
       format="MM-dd-YYYY"
+
     ></date-picker>
     <date-picker
       class="datePicker"
@@ -14,6 +17,7 @@
       lang="en"
       type="date"
       format="MM-dd-YYYY"
+
     ></date-picker>
   </div>
 </template>
@@ -28,8 +32,8 @@ export default {
   },
   data() {
     return {
-      date1: "",
-      date2: "",
+        date1: '', 
+        date2: ''
     };
   },
 };
