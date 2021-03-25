@@ -33,10 +33,10 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public Event findByCategory(String category) {
-        Event event = eRepo.findByCategory(category);
+    public List<Event> findAllByCategory(String category) {
+        List<Event> events = eRepo.findAllByCategory(category);
 
-       return event;
+       return events;
     }
 
     @Override
