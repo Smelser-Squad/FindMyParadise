@@ -16,55 +16,6 @@ import java.util.Optional;
 public class ListingServiceImpl implements ListingService {
 
 
-//    @Autowired
-//    private ListingRepository repo;
-//
-//    @Override
-//    public List<Listing> index() {
-//        return repo.findAll();
-//    }
-//
-//    @Override
-//    public Listing show(int id) throws NoListingFoundException {
-//        Listing listing = repo.findById(id).orElseThrow(() -> new NoListingFoundException("No listing found"));
-//        return listing;
-//    }
-//
-//    @Override
-//    public Listing create(Listing listing) {
-//        return repo.saveAndFlush(listing);
-//    }
-//
-//    @Override
-//    public boolean destroy(int id) {
-//        Listing listing = repo.findById(id).get();
-//        if (listing != null) {
-//            repo.delete(listing);
-//            return true;
-//        } else {
-//            return false;
-//        }
-    
-
-//    TODO: implement these methods
-//    @Override
-//    public Listing findByName(String name) {
-//        return null;
-//    }
-//
-//    @Override
-//    public List<Listing> findByHostID(Integer hostID) {
-//        return null;
-//    }
-//
-//    @Override
-//    public List<Listing> findByPrice(Double price) {
-//        return null;
-//    }
-//
-
-
-
     @Autowired
     private ListingRepository repo;
 
@@ -96,21 +47,18 @@ public class ListingServiceImpl implements ListingService {
     }
 
 //    TODO: implement these methods
-    @Override
-    public Listing findByNameIgnoreCase(String listingName) throws NoListingFoundException, InvalidListingNameException {
-        return null;
-    }
+//    @Override
+//    public List<Listing> findByListingNameIgnoreCase(String listingName)  throws NoListingFoundException, InvalidListingNameException {
+//        return null;
+//    }
 
+//    @Override
+//    public List<Listing> findByHostID(Integer hostID){
 
-    @Override
-    public List<Listing> findByHostID(Integer hostID) {
-        return null;
-    }
+//    @Override
+//    public List<Listing> findByPrice(Double price) {
+//        return null;
+//    }
 
-
-    @Override
-    public List<Listing> findByPrice(Double price) {
-        return null;
-    }
 
 }

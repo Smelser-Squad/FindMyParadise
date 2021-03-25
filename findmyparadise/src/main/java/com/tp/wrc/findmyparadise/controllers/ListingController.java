@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin(origins = "http://localhost:4200")
 public class ListingController {
 
     @Autowired
     ListingService service;
 
     @PostMapping("/listing")
+
     public ResponseEntity createListing(@RequestBody Listing newListing) {
         return ResponseEntity.ok(service.create(newListing));
     }
