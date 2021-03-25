@@ -17,7 +17,7 @@ public class AmenityController {
     @Autowired
     AmenityServiceImpl service;
 
-    @PostMapping("/new/amenity")
+    @PostMapping("/amenity")
     public ResponseEntity createAmenity(@RequestBody Amenity amenity) {
         Amenity toReturn;
         try {
