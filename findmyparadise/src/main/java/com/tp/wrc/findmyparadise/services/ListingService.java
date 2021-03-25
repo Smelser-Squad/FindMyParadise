@@ -12,7 +12,7 @@ public interface ListingService {
      Listing create(Listing listing);
      boolean destroy(Integer id) throws NullListingIDException;
      Listing update(Integer id, Listing newListing) throws NullListingIDException, NoListingFoundException;
-     Listing findByNameIgnoreCase(String listingName) throws NoListingFoundException, InvalidListingNameException;
+     List<Listing> findByNameIgnoreCase(String listingName) throws NoListingFoundException, InvalidListingNameException;
      List<Listing> findByHostID(Integer hostID) throws NullHostIDException, InvalidHostIDException;
      List<Listing> findByPrice(Double price) throws NoListingFoundException;
 

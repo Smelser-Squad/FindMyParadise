@@ -1,9 +1,6 @@
 package com.tp.wrc.findmyparadise.services;
 
-import com.tp.wrc.findmyparadise.exceptions.InvalidListingIDException;
-import com.tp.wrc.findmyparadise.exceptions.InvalidListingNameException;
-import com.tp.wrc.findmyparadise.exceptions.NoListingFoundException;
-import com.tp.wrc.findmyparadise.exceptions.NullListingIDException;
+import com.tp.wrc.findmyparadise.exceptions.*;
 import com.tp.wrc.findmyparadise.models.Listing;
 import com.tp.wrc.findmyparadise.repositories.ListingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +44,6 @@ public class ListingServiceImpl implements ListingService {
             return false;
         }
     }
-
     @Override
     public Listing update(Integer id, Listing newListing) throws NullListingIDException, NoListingFoundException {
         if (id == null) {
@@ -73,21 +69,20 @@ public class ListingServiceImpl implements ListingService {
         return toUpdate;
     }
 
-    //    TODO: implement these methods
-      @Override
-      public Listing findByNameIgnoreCase(String listingName) throws NoListingFoundException, InvalidListingNameException {
-          return null;
-      }
+    @Override
+    public List<Listing> findByNameIgnoreCase(String listingName)  throws NoListingFoundException, InvalidListingNameException {
+        return repo.findByNameIgnoreCase(listingName);
+    }
 
-      @Override
-      public List<Listing> findByHostID(Integer hostID){
-        return null;
-      }
-      
-      @Override
-      public List<Listing> findByPrice(Double price) {
-          return null;
-      }
+    @Override
+    public List<Listing> findByHostID(Integer hostID) throws NullHostIDException, InvalidHostIDException {
+        return repo.findByHost(hostID);
+    }
 
+    @Override
+    public List<Listing> findByPrice(Double price) {
+        return repo.findByPrice(price);
+    }
 
+    
 }

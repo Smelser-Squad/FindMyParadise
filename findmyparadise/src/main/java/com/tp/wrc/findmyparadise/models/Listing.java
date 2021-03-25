@@ -1,6 +1,7 @@
 package com.tp.wrc.findmyparadise.models;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -52,6 +53,9 @@ public class Listing {
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "listing_id")
     private Set<Reservation> reservations;
+
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "listings")
+    private Set<Amenity> amenities;
 
     public Listing() {
 
