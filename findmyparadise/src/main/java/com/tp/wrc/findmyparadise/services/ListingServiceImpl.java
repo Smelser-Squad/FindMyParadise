@@ -1,6 +1,9 @@
 package com.tp.wrc.findmyparadise.services;
 
+import com.tp.wrc.findmyparadise.exceptions.InvalidListingIDException;
+import com.tp.wrc.findmyparadise.exceptions.InvalidListingNameException;
 import com.tp.wrc.findmyparadise.exceptions.NoListingFoundException;
+import com.tp.wrc.findmyparadise.exceptions.NullListingIDException;
 import com.tp.wrc.findmyparadise.models.Listing;
 import com.tp.wrc.findmyparadise.repositories.ListingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +47,7 @@ public class ListingServiceImpl implements ListingService {
     }
 
 
+
 //    TODO: implement these methods
 //    @Override
 //    public List<Listing> findByListingNameIgnoreCase(String listingName)  throws NoListingFoundException, InvalidListingNameException {
@@ -57,6 +61,7 @@ public class ListingServiceImpl implements ListingService {
 //    public List<Listing> findByPrice(Double price) {
 //        return null;
 //    }
+
 
 }
 
