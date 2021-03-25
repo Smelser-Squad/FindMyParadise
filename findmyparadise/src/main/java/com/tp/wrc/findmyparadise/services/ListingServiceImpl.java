@@ -15,8 +15,6 @@ import java.util.Optional;
 @Service
 public class ListingServiceImpl implements ListingService {
 
-
-
     @Autowired
     private ListingRepository repo;
 
@@ -47,5 +45,22 @@ public class ListingServiceImpl implements ListingService {
         }
     }
 
-}
 
+//    TODO: implement these methods
+      @Override
+      public Listing findByNameIgnoreCase(String listingName) throws NoListingFoundException, InvalidListingNameException {
+          return null;
+      }
+
+      @Override
+      public List<Listing> findByHostID(Integer hostID){
+        return null;
+      }
+      
+      @Override
+      public List<Listing> findByPrice(Double price) {
+          return null;
+      }
+
+
+}

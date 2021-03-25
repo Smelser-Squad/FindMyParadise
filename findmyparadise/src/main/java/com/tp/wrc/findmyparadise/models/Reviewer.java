@@ -23,6 +23,7 @@ public class Reviewer {
     @JoinColumn(name="fk_review")
     List<Review> reviews = new ArrayList<>();
 
+
     public Integer getReviewerId() {
         return reviewerId;
     }
@@ -46,7 +47,6 @@ public class Reviewer {
     public void setImageSrc(String imageSrc) {
         this.imageSrc = imageSrc;
     }
-
     public List<Review> getReviews() {
         return reviews;
     }
