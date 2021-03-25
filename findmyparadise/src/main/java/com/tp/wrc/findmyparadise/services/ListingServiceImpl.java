@@ -32,7 +32,10 @@ public class ListingServiceImpl implements ListingService {
     }
 
     @Override
-    public boolean destroy(Integer id) {
+    public boolean destroy(Integer id) throws NullListingIDException {
+        if (id == null) {
+            throw new NullListingIDException("Listing ID cannot be null");
+        }
         Listing listing = repo.findById(id).get();
         if (listing != null) {
             repo.delete(listing);
@@ -41,7 +44,30 @@ public class ListingServiceImpl implements ListingService {
             return false;
         }
     }
+    @Override
+    public Listing update(Integer id, Listing newListing) throws NullListingIDException, NoListingFoundException {
+        if (id == null) {
+            throw new NullListingIDException("Listing ID cannot be null");
+        }
 
+        Listing toUpdate = show(id);
+
+        toUpdate.setName(newListing.getName());
+        toUpdate.setLatitude(newListing.getLatitude());
+        toUpdate.setLongitude(newListing.getLongitude());
+        toUpdate.setHost(newListing.getHost());
+        toUpdate.setAddress(newListing.getAddress());
+        toUpdate.setDescription(newListing.getDescription());
+        toUpdate.setPrice(newListing.getPrice());
+        toUpdate.setMaxGuests(newListing.getMaxGuests());
+        toUpdate.setServiceFee(newListing.getServiceFee());
+        toUpdate.setOccupancyFee(newListing.getOccupancyFee());
+        toUpdate.setCleaningFee(newListing.getCleaningFee());
+        toUpdate.setReviews(newListing.getReviews());
+        toUpdate.setReservations(newListing.getReservations());
+
+        return toUpdate;
+    }
 
     @Override
     public List<Listing> findByNameIgnoreCase(String listingName)  throws NoListingFoundException, InvalidListingNameException {
@@ -49,7 +75,7 @@ public class ListingServiceImpl implements ListingService {
     }
 
     @Override
-    public List<Listing> findByHost(Integer hostID) throws NullHostIDException, InvalidHostIDException{
+    public List<Listing> findByHostID(Integer hostID) throws NullHostIDException, InvalidHostIDException {
         return repo.findByHost(hostID);
     }
 
@@ -58,5 +84,10 @@ public class ListingServiceImpl implements ListingService {
         return repo.findByPrice(price);
     }
 
-    
+    @Override
+    public List<Listing> findByType(String type) throws NoListingFoundException {
+        return repo.findByType(type);
+    }
+
+
 }
