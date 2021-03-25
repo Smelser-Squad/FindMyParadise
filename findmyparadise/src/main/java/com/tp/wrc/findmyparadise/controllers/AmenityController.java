@@ -45,10 +45,10 @@ public class AmenityController {
     }
 
     @GetMapping("/amenities/id/{amenityId}")
-    public ResponseEntity getAmenityById(@PathVariable Integer amenityId) {
+    public ResponseEntity findAmenityById(@PathVariable Integer amenityId) {
         Amenity toReturn;
         try {
-            toReturn = service.getAmenityById(amenityId);
+            toReturn = service.findAmenityById(amenityId);
         }
         catch(Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
