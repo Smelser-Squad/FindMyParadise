@@ -33,4 +33,35 @@ public class ListingController {
         }
         return ResponseEntity.ok(toReturn);
     }
+
+    @GetMapping("/listings")
+    public ResponseEntity getAllListings() {
+        return ResponseEntity.ok(service.index());
+    }
+
+    @PutMapping("/updateListing/{listingID}")
+    public ResponseEntity updateListing(@PathVariable Integer listingID, @RequestBody Listing updatedListing) {
+        Listing toReturn = null;
+        try {
+            toReturn = service.update(listingID, updatedListing);
+        } catch (NoListingFoundException | NullListingIDException ex) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
+        }
+        return ResponseEntity.ok(toReturn);
+    }
+
+    @DeleteMapping("/deleteListing/{listingID}")
+    public ResponseEntity deleteListing(@PathVariable Integer listingID) {
+        boolean status = false;
+        try {
+            status = service.destroy(listingID);
+        } catch (NullListingIDException ex) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
+        }
+        if (status) {
+            return ResponseEntity.ok("Listing successfully deleted");
+        } else {
+            return ResponseEntity.ok("Listing not deleted");
+        }
+    }
 }
