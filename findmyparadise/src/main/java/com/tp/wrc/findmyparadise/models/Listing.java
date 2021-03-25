@@ -55,6 +55,23 @@ public class Listing {
     @JoinColumn(name = "listing_id")
     private Set<Reservation> reservations;
 
+    @Column(name= "bedroom_quantity")
+    private Integer bedrooms;
+
+    @Column(name= "beds_quantity")
+    private Integer beds;
+
+    @Column(name= "bathroom_quantity")
+    private Integer bathrooms;
+
+    @Column (name ="listing_type")
+    private String type;
+
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
     @ManyToMany(cascade = CascadeType.ALL, mappedBy = "listings")
     private Set<Amenity> amenities;
 
@@ -171,5 +188,42 @@ public class Listing {
 
     public void setReservations(Set<Reservation> reservations) {
         this.reservations = reservations;
+    }
+
+    public Integer getBedrooms() {
+        return bedrooms;
+    }
+
+    public void setBedrooms(Integer bedrooms) {
+        this.bedrooms = bedrooms;
+    }
+
+    public Integer getBeds() {
+        return beds;
+    }
+
+    public void setBeds(Integer beds) {
+        this.beds = beds;
+    }
+
+
+    public Integer getBathrooms() {
+        return bathrooms;
+    }
+
+    public void setBathrooms(Integer bathrooms) {
+        this.bathrooms = bathrooms;
+    }
+
+    public String getType() {
+        return type;
+    }
+    
+    public Set<Amenity> getAmenities() {
+        return amenities;
+    }
+
+    public void setAmenities(Set<Amenity> amenities) {
+        this.amenities = amenities;
     }
 }
