@@ -45,14 +45,13 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public Event update(Event updatedEvent, Integer id) {
+    public Event update(Event updatedEvent) {
 
-        Event event = null;
-        Optional<Event> opt = eRepo.findById(id);
-        if (opt.isPresent()) {
-            event = opt.get();
-
-            if (updatedEvent != null) {
+        if (updatedEvent != null) {
+            Event event = null;
+            Optional<Event> opt = eRepo.findById(updatedEvent.getId());
+            if (opt.isPresent()) {
+                event = opt.get();
 
                 event.setTitle(updatedEvent.getTitle());
                 event.setSummary(updatedEvent.getSummary());

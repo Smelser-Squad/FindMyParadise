@@ -41,9 +41,9 @@ public class EventController {
     //Edits an existing Event in the database by replacing its attributes with the
     //attributes of the given Event model.
 
-    @PutMapping("/updateEvent/{eventId}")
-    public Event editEvent(@PathVariable Integer eventId, @RequestBody Event event) throws InvalidEventIdException {
-        return service.update(event, eventId);
+    @PutMapping("/event")
+    public Event editEvent(@RequestBody Event event) throws InvalidEventIdException {
+        return service.update(event);
     }
 
     //Deletes an existing Event from the database.

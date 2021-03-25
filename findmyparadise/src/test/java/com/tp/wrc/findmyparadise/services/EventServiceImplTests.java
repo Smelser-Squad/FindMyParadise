@@ -39,7 +39,7 @@ class EventServiceImplTests {
 
     @AfterEach
     public void tearDown() {
-        
+
     }
 
     @Test //Testing retrieving an event by ID.
@@ -90,10 +90,9 @@ class EventServiceImplTests {
 
     @Test //Testing updating an event.
     public void updateEventTest() {
-        assertNotNull(toTest.show(1));
         Event updatedEvent = new Event("Updated Event Title", "Updated Event Summary", "Updated Event Category", 1, 1, 1);
-
-        toTest.update(updatedEvent, 1);
+        updatedEvent.setId(1);
+        toTest.update(updatedEvent);
         Event event = toTest.show(1);
         assertNotNull(event);
         assertEquals("Updated Event Title", event.getTitle());
