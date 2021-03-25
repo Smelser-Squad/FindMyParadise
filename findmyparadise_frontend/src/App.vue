@@ -1,9 +1,11 @@
 <template>
-  <div class="container">
-    <reservation title="Reservation"></reservation>
+  <div>
+    <div class="container">
+      <reservation title="Reservation"></reservation>
+    </div>
+    <Map />
+    <more-places></more-places>
   </div>
-  <Map />
-  <more-places></more-places>
 </template>
 
 <script>
@@ -24,12 +26,9 @@ export default {
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap");
 
-
-
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
 }
-
 
 * {
   box-sizing: border-box;
@@ -48,7 +47,6 @@ body {
   padding: 30px;
   border-radius: 5px;
   box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
-
 }
 .btn {
   display: inline-block;
