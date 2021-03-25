@@ -44,16 +44,11 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     @Override
-    public Review update(Integer reviewId, Review newReview) throws InvalidReviewIdException, NullReviewIdException {
-        Review toAdd = reviewRepo.findById(reviewId).get();
-
-        if(reviewId==null){
-            throw new NullReviewIdException("Null review id entered");
-        }
+    public Review update(Review newReview) throws InvalidReviewIdException, NullReviewIdException {
+        Review toAdd = reviewRepo.findById(newReview.getReviewId()).get();
 
         if (toAdd != null) {
 
-            toAdd.setReviewId(reviewId);
             toAdd.setRating(newReview.getRating());
             toAdd.setCleanlinessRating(newReview.getCleanlinessRating());
             toAdd.setLocationRating(newReview.getLocationRating());

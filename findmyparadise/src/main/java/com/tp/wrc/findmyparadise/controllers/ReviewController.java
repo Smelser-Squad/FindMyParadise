@@ -21,7 +21,7 @@ public class ReviewController {
     ReviewService service;
 
 
-    @PostMapping("/review/")
+    @PostMapping("/review")
     public ResponseEntity createReview(@RequestBody Review newReview)
     {
         try {
@@ -45,7 +45,7 @@ public class ReviewController {
         }
     }
 
-    @GetMapping("/reviews/")
+    @GetMapping("/reviews")
     public ResponseEntity getReviews()
     {
         try {
@@ -57,11 +57,11 @@ public class ReviewController {
         }
     }
 
-    @PutMapping("/review/{reviewId}")
-    public ResponseEntity editReviewById(@PathVariable Integer reviewId, @RequestBody Review newReview)
+    @PutMapping("/update/review")
+    public ResponseEntity editReviewById(@RequestBody Review newReview)
     {
         try {
-            return ResponseEntity.ok(service.update(reviewId, newReview));
+            return ResponseEntity.ok(service.update(newReview));
         }
         catch (NullReviewIdException | InvalidReviewIdException ex)
         {
@@ -69,7 +69,7 @@ public class ReviewController {
         }
     }
 
-    @DeleteMapping("/review/{reviewId}")
+    @DeleteMapping("/delete/review/{reviewId}")
     public String deleteReviewById(@PathVariable Integer reviewId)
     {
         String toReturn = "";

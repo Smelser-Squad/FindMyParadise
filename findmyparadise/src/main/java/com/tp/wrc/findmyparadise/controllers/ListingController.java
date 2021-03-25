@@ -17,7 +17,8 @@ public class ListingController {
     @Autowired
     ListingService service;
 
-    @PostMapping("/listing/")
+    @PostMapping("/listing")
+
     public ResponseEntity createListing(@RequestBody Listing newListing) {
         return ResponseEntity.ok(service.create(newListing));
     }
