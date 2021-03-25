@@ -1,0 +1,46 @@
+{
+    "listings" : [
+        {
+            "address": "2 College Hill",
+            "city": "Westminster",
+            "state": "MD",
+            "zipcode": "21157",
+            "latitude": "51.086472",
+            "longitude": "-0.710430"
+        },
+        {
+            "streetName": "1803 Rockville Pike",
+            "city": "Rockville",
+            "state": "MD",
+            "zipcode": "20852",
+            "latitude": "39.05955020413234",
+            "longitude": "-77.12255100240601"
+        },
+        {
+            "streetName": "18810 Woodfield Road",
+            "city": "Gaithersburg",
+            "state": "MD",
+            "zipcode": "20879",
+            "latitude": "39.164688",
+            "longitude": "-77.157204"
+        },
+        {
+            "streetName": "900 E Fort Ave Suite 101",
+            "city": "Baltimore",
+            "state": "MD",
+            "zipcode": "21230",
+            "latitude": "39.27217264803787",
+            "longitude": "-76.60095282938708"
+        },
+        {
+            "streetName": "3570 S Las Vegas Blvd",
+            "city": "Las Vegas",
+            "state": "NV",
+            "zipcode": "89109",
+            "latitude": "36.11637648798344",
+            "longitude": "-115.17450973132054"
+        }
+
+    ]
+
+}
