@@ -58,5 +58,5 @@ public class ListingServiceImpl implements ListingService {
         return repo.findByPrice(price);
     }
 
-    
+
 }

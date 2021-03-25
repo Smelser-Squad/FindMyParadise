@@ -53,6 +53,13 @@ public class Listing {
     @JoinColumn(name = "listing_id")
     private Set<Reservation> reservations;
 
+    @Column(name= "bedroom_quantity")
+    private Integer bedrooms;
+
+    @Column(name= "bathroom_quantity")
+    private Integer bathrooms;
+
+
     public Listing() {
 
     }
@@ -166,5 +173,21 @@ public class Listing {
 
     public void setReservations(Set<Reservation> reservations) {
         this.reservations = reservations;
+    }
+
+    public Integer getBedrooms() {
+        return bedrooms;
+    }
+
+    public void setBedrooms(Integer bedrooms) {
+        this.bedrooms = bedrooms;
+    }
+
+    public Integer getBathrooms() {
+        return bathrooms;
+    }
+
+    public void setBathrooms(Integer bathrooms) {
+        this.bathrooms = bathrooms;
     }
 }
