@@ -1,34 +1,41 @@
 <template>
-    <header>
-        <h1> Reservation</h1>
-    </header>
-    <body> 
-        <h3> Check-In</h3>
-        <Calendar/>
-         <h3> Check-Out</h3>
-        <Calendar/>     
-         <button> Reserve </button>
-        
-    </body>
+  <header>
+    <h1>{{ title }}</h1>
+  </header>
+  <body>
+    <h3>Check-In</h3>
+
+    <Calendar />
+    <h3>Check-Out</h3>
+    <Calendar />
+    <h3>Guests</h3>
+    <button class="btn" @click="OnClick()">Reserve</button>
+  </body>
 </template>
 <script>
-  import Calender from './Calendar';
+import Calendar from "./Calendar";
 
 export default {
-    name:'Reservation',
+  name: "Reservation",
+  props: {
+    title: String,
+  },
 
-    components:{
-       Calender
-    
+  components: {
+    Calendar,
+  },
+  methods: {
+    OnClick() {
+      console.log("Reserve");
     },
-}
+  },
+};
 </script>
 <style scoped>
 header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-
-    }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
 </style>

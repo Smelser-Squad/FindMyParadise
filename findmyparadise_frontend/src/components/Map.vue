@@ -15,7 +15,6 @@
 </template>
 
 <script>
-
 // let id = 1;
 
 // let baseURL = "http://localhost:8080/api";
