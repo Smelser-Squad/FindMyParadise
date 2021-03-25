@@ -15,4 +15,10 @@ public interface ListingService {
 ////     List<Listing> findByHostID(Integer hostID);
 ////     List<Listing> findByPrice(Double price);
 
+     List<Listing> index();
+     Listing show(Integer id) throws NoListingFoundException;
+     Listing create(Listing listing);
+     boolean destroy(Integer id);
+
+
 }
