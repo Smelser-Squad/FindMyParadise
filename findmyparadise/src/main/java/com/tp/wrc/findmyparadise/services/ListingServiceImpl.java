@@ -17,39 +17,21 @@ public class ListingServiceImpl implements ListingService {
     @Autowired
     private ListingRepository repo;
 
-    @Override
-    public List<Listing> index() {
-        return repo.findAll();
+    //TODO: implement these methods
+    /*@Override
+    public Listing findByName(String name) {
+        return null;
     }
 
     @Override
-    public Listing show(Integer id) throws NoListingFoundException, NullListingIDException {
-        if (id == null) {
-            throw new NullListingIDException("Listing ID cannot be null");
-        }
-        Listing listing = repo.findById(id).orElseThrow(() -> new NoListingFoundException("No listing found"));
-        return listing;
+    public List<Listing> findByHostID(Integer hostID) {
+        return null;
     }
 
     @Override
-    public Listing create(Listing listing) throws NullListingIDException {
-        if (listing.getListingID() == null) {
-            throw new NullListingIDException("Listing ID cannot be null");
-        }
-        return repo.saveAndFlush(listing);
-    }
-
-    @Override
-    public boolean destroy(int id) {
-        Listing listing = repo.findById(id).get();
-        if (listing != null) {
-            repo.delete(listing);
-            return true;
-        } else {
-            return false;
-        }
-    }
-
+    public List<Listing> findByPrice(Double price) {
+        return null;
+    }*/
 
 
 }
