@@ -1,6 +1,8 @@
 package com.tp.wrc.findmyparadise.models;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -10,7 +12,7 @@ import java.time.LocalDate;
 public class Review implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "review_id")
     private Integer reviewId;
 
@@ -41,12 +43,10 @@ public class Review implements Serializable {
     @Column(name = "joined_date")
     private LocalDate joinedDate;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "fk_reviewer", referencedColumnName = "reviewer_id")
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+
+    @JoinColumn(name = "reviewer_id", nullable = false)
     private Reviewer reviewer;
-
-
-
 
     public Review(){
 

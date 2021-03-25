@@ -3,13 +3,14 @@ package com.tp.wrc.findmyparadise.models;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "reviewer")
 public class Reviewer {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "reviewer_id")
     private Integer reviewerId;
 
@@ -22,10 +23,8 @@ public class Reviewer {
     @Column(name = "rating_description")
     private String description;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name="fk_review")
-    List<Review> reviews = new ArrayList<>();
-
+    @OneToMany(mappedBy = "reviewer")
+    private Set<Review> reviews;
     public Reviewer(){
 
     }
@@ -59,11 +58,12 @@ public class Reviewer {
     public void setImageSrc(String imageSrc) {
         this.imageSrc = imageSrc;
     }
-    public List<Review> getReviews() {
+
+    public Set<Review> getReviews() {
         return reviews;
     }
 
-    public void setReviews(List<Review> reviews) {
+    public void setReviews(Set<Review> reviews) {
         this.reviews = reviews;
     }
 
