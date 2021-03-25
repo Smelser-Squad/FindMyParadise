@@ -17,7 +17,7 @@ public class AmenityController {
     @Autowired
     AmenityServiceImpl service;
 
-    @PostMapping("/new/amenity")
+    @PostMapping("/amenity")
     public ResponseEntity createAmenity(@RequestBody Amenity amenity) {
         Amenity toReturn;
         try {
@@ -44,7 +44,9 @@ public class AmenityController {
         return ResponseEntity.ok(toReturn);
     }
 
-    @GetMapping("/amenities/id/{amenityId}")
+
+    @GetMapping("/amenity/{amenityId}")
+
     public ResponseEntity getAmenityById(@PathVariable Integer amenityId) {
         Amenity toReturn;
         try {
@@ -57,7 +59,7 @@ public class AmenityController {
         return ResponseEntity.ok(toReturn);
     }
 
-    @PutMapping("/update/amenity")
+    @PutMapping("/updateAmenity")
     public ResponseEntity updateAmenity(@RequestBody Amenity amenity) {
         try {
             service.update(amenity);
@@ -69,13 +71,13 @@ public class AmenityController {
         return ResponseEntity.ok(amenity);
     }
 
-    @DeleteMapping("/delete/amenity/{id}")
-    public String deleteAmenity(@PathVariable Integer id) {
+    @DeleteMapping("/deleteAmenity/{amenityId}")
+    public String deleteAmenity(@PathVariable Integer amenityId) {
         try {
-            if(service.destroy(id))
-                return "Amenity " + id + " successfully deleted.";
+            if(service.destroy(amenityId))
+                return "Amenity " + amenityId + " successfully deleted.";
             else
-                return "Amenity " + id + " does not exist.";
+                return "Amenity " + amenityId + " does not exist.";
         }
         catch (Exception e) {
             return e.getMessage();

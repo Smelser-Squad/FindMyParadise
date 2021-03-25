@@ -12,21 +12,23 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
+@CrossOrigin
 public class ListingController {
 
     @Autowired
     ListingService service;
 
-    @PostMapping("/listing/")
+    @PostMapping("/listing")
+
     public ResponseEntity createListing(@RequestBody Listing newListing) {
         return ResponseEntity.ok(service.create(newListing));
     }
 
-    @GetMapping("/listing/{listingID}")
-    public ResponseEntity getListingByID(@PathVariable Integer listingID) {
+    @GetMapping("/listing/{listingId}")
+    public ResponseEntity getListingByID(@PathVariable Integer listingId) {
         Listing toReturn = null;
         try {
-            toReturn = service.show(listingID);
+            toReturn = service.show(listingId);
         } catch (NoListingFoundException ex) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
         }
