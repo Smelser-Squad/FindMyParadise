@@ -11,14 +11,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api")
+@RequestMapping("/api")
 @CrossOrigin(origins = "http://localhost:4200")
 public class EventController {
     @Autowired
     EventService service;
 
     //Adds a new event to the database by the given event model.
-    @PostMapping("/events/")
+    @PostMapping("/events")
     public Event createEvent(@RequestBody Event event) {
         return service.create(event);
     }
