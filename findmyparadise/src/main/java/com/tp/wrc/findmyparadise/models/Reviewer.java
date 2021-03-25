@@ -23,9 +23,13 @@ public class Reviewer {
     @Column(name = "rating_description")
     private String description;
 
-    @OneToMany(mappedBy = "reviewer")
-    private Set<Review> reviews;
-    public Reviewer(){
+//    @OneToMany(mappedBy = "reviewer")
+//    private Set<Review> reviews;
+//    public Reviewer(){
+//
+//    }
+
+    public Reviewer() {
 
     }
     public Reviewer(String name, String imageSrc, String description){
@@ -59,13 +63,13 @@ public class Reviewer {
         this.imageSrc = imageSrc;
     }
 
-    public Set<Review> getReviews() {
-        return reviews;
-    }
-
-    public void setReviews(Set<Review> reviews) {
-        this.reviews = reviews;
-    }
+//    public Set<Review> getReviews() {
+//        return reviews;
+//    }
+//
+//    public void setReviews(Set<Review> reviews) {
+//        this.reviews = reviews;
+//    }
 
     public String getDescription() {
         return description;
