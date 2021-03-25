@@ -61,7 +61,7 @@ public class HostController {
     public ResponseEntity editHostByID(@PathVariable Integer hostId, @RequestBody Host newHost)
     {
         try {
-            return ResponseEntity.ok(service.update(hostId, newHost));
+            return ResponseEntity.ok(service.update(newHost));
 
         }
         catch (NullHostIDException | InvalidHostIDException ex)
