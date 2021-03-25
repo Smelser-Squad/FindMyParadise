@@ -8,13 +8,13 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin
 public class PhotoGalleryController {
 
     @Autowired
     PhotoGalleryService service;
 
-    @GetMapping("/getById/{id}")
+    @GetMapping("/gallery/{id}")
     public ResponseEntity getById(@PathVariable Integer id)
     {
         try {
@@ -26,7 +26,7 @@ public class PhotoGalleryController {
         }
     }
 
-    @GetMapping("/getByListing/{listingId}")
+    @GetMapping("/gallery/listing/{listingId}")
     public ResponseEntity getByListingId(@PathVariable Integer listingId)
     {
         try {
@@ -38,7 +38,7 @@ public class PhotoGalleryController {
         }
     }
 
-    @GetMapping("/getByListingAndCategory/{listingId}/{categoryId}")
+    @GetMapping("/gallery/listing/{listingId}/category/{categoryId}")
     public ResponseEntity getHostByID(@PathVariable Integer listingId, Integer categoryId)
     {
         try {

@@ -1,12 +1,7 @@
 package com.tp.wrc.findmyparadise.controllers;
-
-import com.tp.wrc.findmyparadise.exceptions.InvalidHostIDException;
 import com.tp.wrc.findmyparadise.exceptions.InvalidReviewIdException;
-import com.tp.wrc.findmyparadise.exceptions.NullHostIDException;
 import com.tp.wrc.findmyparadise.exceptions.NullReviewIdException;
-import com.tp.wrc.findmyparadise.models.Host;
 import com.tp.wrc.findmyparadise.models.Review;
-import com.tp.wrc.findmyparadise.services.HostService;
 import com.tp.wrc.findmyparadise.services.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,14 +9,14 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin
 public class ReviewController {
 
     @Autowired
     ReviewService service;
 
 
-    @PostMapping("/review/")
+    @PostMapping("/review")
     public ResponseEntity createReview(@RequestBody Review newReview)
     {
         try {
@@ -45,7 +40,7 @@ public class ReviewController {
         }
     }
 
-    @GetMapping("/reviews/")
+    @GetMapping("/reviews")
     public ResponseEntity getReviews()
     {
         try {
@@ -57,11 +52,13 @@ public class ReviewController {
         }
     }
 
-    @PutMapping("/review/{reviewId}")
+
+    @PutMapping("/updateReview/{reviewId}")
     public ResponseEntity editReviewById(@PathVariable Integer reviewId, @RequestBody Review newReview)
+
     {
         try {
-            return ResponseEntity.ok(service.update(reviewId, newReview));
+            return ResponseEntity.ok(service.update(newReview));
         }
         catch (NullReviewIdException | InvalidReviewIdException ex)
         {
@@ -69,7 +66,9 @@ public class ReviewController {
         }
     }
 
-    @DeleteMapping("/review/{reviewId}")
+
+    @DeleteMapping("/deleteReview/{reviewId}")
+
     public String deleteReviewById(@PathVariable Integer reviewId)
     {
         String toReturn = "";
