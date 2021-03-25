@@ -41,38 +41,4 @@ public class ListingServiceImpl implements ListingService {
             return false;
         }
     }
-  
-//    TODO: implement these methods
-//    @Override
-//    public List<Listing> findByListingNameIgnoreCase(String listingName)  throws NoListingFoundException, InvalidListingNameException {
-//        return null;
-//    }
-
-<<<<<<< HEAD
-//    //TODO: implement these methods
-//    @Override
-//    public Listing findByName(String name) {
-//        return null;
-//    }
-//
-//    @Override
-//    public List<Listing> findByHostID(Integer hostID) {
-//        return null;
-//    }
-//
-=======
-//    @Override
-//    public List<Listing> findByHostID(Integer hostID){
-
->>>>>>> 908c58f07bbace5067fd098751cfa9928363c05f
-//    @Override
-//    public List<Listing> findByPrice(Double price) {
-//        return null;
-//    }
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 908c58f07bbace5067fd098751cfa9928363c05f
-
-
+}
