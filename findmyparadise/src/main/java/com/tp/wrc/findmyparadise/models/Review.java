@@ -10,41 +10,35 @@ import java.time.LocalDate;
 public class Review implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "review_id")
     private Integer reviewId;
-
-    @Column(name = "listing_id")
-    private Integer listingID;
-
-    @Column(name = "reviewer_id")
-    private Integer reviewerId;
 
     @Column(name = "rating")
     private Integer rating;
 
-    @Column(name = "cleanlinessRating")
+    @Column(name = "cleanliness_rating")
     private Integer cleanlinessRating;
 
-    @Column(name = "locationRating")
+    @Column(name = "location_rating")
     private Integer locationRating;
 
-    @Column(name = "accuracyRating")
+    @Column(name = "accuracy_rating")
     private Integer accuracyRating;
 
-    @Column(name = "valueRating")
+    @Column(name = "value_rating")
     private Integer valueRating;
 
-    @Column(name = "checkInRating")
+    @Column(name = "check_in_rating")
     private Integer checkInRating;
 
-    @Column(name = "communicationRating")
+    @Column(name = "communication_rating")
     private Integer communicationRating;
 
-    @Column(name = "reviewText")
+    @Column(name = "review_text")
     private String reviewText;
 
-    @Column(name = "joinedDate")
+    @Column(name = "joined_date")
     private LocalDate joinedDate;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -81,13 +75,7 @@ public class Review implements Serializable {
         this.reviewId = reviewId;
     }
 
-    public Integer getReviewerId() {
-        return reviewerId;
-    }
 
-    public void setReviewerId(Integer reviewerId) {
-        this.reviewerId = reviewerId;
-    }
 
     public Integer getRating() {
         return rating;

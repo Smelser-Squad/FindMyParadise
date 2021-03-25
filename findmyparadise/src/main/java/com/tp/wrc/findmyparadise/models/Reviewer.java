@@ -9,7 +9,7 @@ import java.util.List;
 public class Reviewer {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "reviewer_id")
     private Integer reviewerId;
 
@@ -19,10 +19,22 @@ public class Reviewer {
     @Column(name = "image_src")
     private String imageSrc;
 
+    @Column(name = "rating_description")
+    private String description;
+
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name="fk_review")
     List<Review> reviews = new ArrayList<>();
 
+    public Reviewer(){
+
+    }
+    public Reviewer(String name, String imageSrc, String description){
+        this.name = name;
+        this.imageSrc = imageSrc;
+        this.description = description;
+
+    }
 
     public Integer getReviewerId() {
         return reviewerId;
@@ -53,5 +65,13 @@ public class Reviewer {
 
     public void setReviews(List<Review> reviews) {
         this.reviews = reviews;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
