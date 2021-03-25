@@ -18,23 +18,19 @@ public class ListingController {
     @Autowired
     ListingService service;
 
-    //@PostMapping("/listing/")
-    //public ResponseEntity createListing(@RequestBody Listing newListing) {
-    //    try {
-    //        return ResponseEntity.ok(service.create(newListing));
-    //    } catch (NullListingIDException ex) {
-    //        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
-    //    }
-    //}
-//
-    //@GetMapping("/listing/{listingID}")
-    //public ResponseEntity getListingByID(@PathVariable Integer listingID) {
-    //    Listing toReturn = null;
-    //    try {
-    //        toReturn = service.show(listingID);
-    //    } catch (NoListingFoundException | NullListingIDException ex) {
-    //        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
-    //    }
-    //    return ResponseEntity.ok(toReturn);
-    //}
+    @PostMapping("/listing/")
+    public ResponseEntity createListing(@RequestBody Listing newListing) {
+        return ResponseEntity.ok(service.create(newListing));
+    }
+
+    @GetMapping("/listing/{listingID}")
+    public ResponseEntity getListingByID(@PathVariable Integer listingID) {
+        Listing toReturn = null;
+        try {
+            toReturn = service.show(listingID);
+        } catch (NoListingFoundException ex) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
+        }
+        return ResponseEntity.ok(toReturn);
+    }
 }

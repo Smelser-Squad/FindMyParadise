@@ -1,6 +1,7 @@
 package com.tp.wrc.findmyparadise.services;
 
 import com.tp.wrc.findmyparadise.exceptions.InvalidListingIDException;
+import com.tp.wrc.findmyparadise.exceptions.InvalidListingNameException;
 import com.tp.wrc.findmyparadise.exceptions.NoListingFoundException;
 import com.tp.wrc.findmyparadise.exceptions.NullListingIDException;
 import com.tp.wrc.findmyparadise.models.Listing;
@@ -17,21 +18,49 @@ public class ListingServiceImpl implements ListingService {
     @Autowired
     private ListingRepository repo;
 
-    //TODO: implement these methods
-    /*@Override
-    public Listing findByName(String name) {
+    @Override
+    public List<Listing> index() {
+        return repo.findAll();
+    }
+
+    @Override
+    public Listing show(Integer id) throws NoListingFoundException {
+        Listing listing = repo.findById(id).orElseThrow(() -> new NoListingFoundException("No listing found"));
+        return listing;
+    }
+
+    @Override
+    public Listing create(Listing listing) {
+        return repo.saveAndFlush(listing);
+    }
+
+    @Override
+    public boolean destroy(Integer id) {
+        Listing listing = repo.findById(id).get();
+        if (listing != null) {
+            repo.delete(listing);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+//    TODO: implement these methods
+    @Override
+    public Listing findByNameIgnoreCase(String listingName) throws NoListingFoundException, InvalidListingNameException {
         return null;
     }
+
 
     @Override
     public List<Listing> findByHostID(Integer hostID) {
         return null;
     }
 
+
     @Override
     public List<Listing> findByPrice(Double price) {
         return null;
-    }*/
-
+    }
 
 }
