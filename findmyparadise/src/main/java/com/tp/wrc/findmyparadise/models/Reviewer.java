@@ -21,7 +21,7 @@ public class Reviewer {
 
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name="fk_review", referencedColumnName = "review_id")
+    @JoinColumn(name="fk_review")
     List<Review> reviews = new ArrayList<>();
 
     public Integer getReviewerId() {
