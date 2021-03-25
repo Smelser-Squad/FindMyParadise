@@ -55,7 +55,7 @@ public class Listing {
     private Set<Reservation> reservations;
 
     @ManyToMany(cascade = CascadeType.ALL, mappedBy = "listings")
-    private Set<Amenity> amenities = new HashSet<>();
+    private Set<Amenity> amenities;
 
     public Listing() {
 
