@@ -10,7 +10,7 @@ import java.time.LocalDate;
 public class Review implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "review_id")
     private Integer reviewId;
 
