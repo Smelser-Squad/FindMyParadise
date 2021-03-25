@@ -36,22 +36,11 @@ public class HostServiceImplTests {
         service.create(test);
     }
 
-//    {
-//        "hostName": "testName",
-//            "totalReviews": "100",
-//            "superHost": "true",
-//            "verified": "true",
-//            "responseTime": "test response time",
-//            "responseRate": "100.00",
-//            "joinDate": "may 2020",
-//            "email" : "test@email.com",
-//            "imageSrc": "test img src"
-//    }
-
     @Test //Testing retrieving an event by ID.
     public void findEventByIdTest() throws NullHostIDException, InvalidHostIDException {
         Host test = service.show(1);
         assertEquals("test name", test.getHostName());
+
         assertEquals("test@email.com", test.getEmail());
 
     }
