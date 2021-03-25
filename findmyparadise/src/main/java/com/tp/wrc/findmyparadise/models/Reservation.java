@@ -9,7 +9,7 @@ import java.time.LocalDate;
 public class Reservation implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "reservation_id")
     private Integer reservationId;
 

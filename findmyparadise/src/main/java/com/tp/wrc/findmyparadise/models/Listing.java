@@ -10,7 +10,7 @@ import java.util.Set;
 public class Listing {
     @Id
     @Column(name = "listing_id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer listingID;
 
     @Column(name = "name")
@@ -22,7 +22,7 @@ public class Listing {
     @Column(name = "longitude")
     private Double longitude;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "host_id", nullable = false)
     private Host host;
 
