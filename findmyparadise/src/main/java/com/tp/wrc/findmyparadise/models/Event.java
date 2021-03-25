@@ -27,6 +27,15 @@ public class Event {
 
     }
 
+    public Event(String title, String summary, String category, double cost, double latitude, double longitude) {
+        this.title = title;
+        this.summary = summary;
+        this.category = category;
+        this.cost = cost;
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
+
     // M E T H O D S
 
     // G E T T E R S && S E T T E R S

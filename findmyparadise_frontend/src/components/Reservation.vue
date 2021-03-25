@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="Resrevation body">
     <header>
       <h2><b>$ 199</b> / night</h2>
       <div>

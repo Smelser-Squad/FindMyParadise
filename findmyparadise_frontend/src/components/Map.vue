@@ -1,18 +1,16 @@
 <template>
-  <div>
+  <div class="map">
     <h1>Map</h1>
-    <div class="map">
-      <iframe
-        width="300"
-        height="200"
-        frameborder="0"
-        scrolling="no"
-        marginheight="0"
-        marginwidth="0"
-        id="gmap_canvas"
-        src="https://maps.google.com/maps?width=300&amp;height=200&amp;hl=en&amp;q=2%20College%20Hill%20Westminster+(Example%20Map)&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
-      ></iframe>
-    </div>
+    <iframe
+      width="300"
+      height="200"
+      frameborder="0"
+      scrolling="no"
+      marginheight="0"
+      marginwidth="0"
+      id="gmap_canvas"
+      src="https://maps.google.com/maps?width=300&amp;height=200&amp;hl=en&amp;q=2%20College%20Hill%20Westminster+(Example%20Map)&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
+    ></iframe>
   </div>
 </template>
 
