@@ -6,11 +6,13 @@ import com.tp.wrc.findmyparadise.models.Listing;
 import java.util.List;
 
 public interface ListingService {
-    public List<Listing> index();
 
-    public Listing show(int id) throws NoListingFoundException;
+     List<Listing> index();
+     Listing show(Integer id) throws NoListingFoundException;
+     Listing create(Listing listing);
+     boolean destroy(Integer id);
+//     Listing findByNameIgnoreCase(String listingName) throws NoListingFoundException, InvalidListingNameException;
+//     List<Listing> findByHostID(Integer hostID) throws NullHostIDException, InvalidHostException;
+//     List<Listing> findByPrice(Double price) throws NoListingFoundException;
 
-    public Listing create(Listing listing);
-
-    public boolean destroy(int id);
 }

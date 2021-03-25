@@ -21,7 +21,7 @@ public class ListingServiceImpl implements ListingService {
     }
 
     @Override
-    public Listing show(int id) throws NoListingFoundException {
+    public Listing show(Integer id) throws NoListingFoundException {
         Listing listing = repo.findById(id).orElseThrow(() -> new NoListingFoundException("No listing found"));
         return listing;
     }
@@ -32,7 +32,7 @@ public class ListingServiceImpl implements ListingService {
     }
 
     @Override
-    public boolean destroy(int id) {
+    public boolean destroy(Integer id) {
         Listing listing = repo.findById(id).get();
         if (listing != null) {
             repo.delete(listing);
@@ -41,7 +41,21 @@ public class ListingServiceImpl implements ListingService {
             return false;
         }
     }
+  
+//    TODO: implement these methods
+//    @Override
+//    public List<Listing> findByListingNameIgnoreCase(String listingName)  throws NoListingFoundException, InvalidListingNameException {
+//        return null;
+//    }
+
+//    @Override
+//    public List<Listing> findByHostID(Integer hostID){
+
+//    @Override
+//    public List<Listing> findByPrice(Double price) {
+//        return null;
+//    }
 
 
 
-}
+
