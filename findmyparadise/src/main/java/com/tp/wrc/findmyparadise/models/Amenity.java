@@ -16,7 +16,7 @@ public class Amenity implements Serializable {
     @Column(name = "amenity_name", nullable = false)
     private String amenityName;
 
-    @Column(name = "category", nullable = false)
+    @Column(name = "amenity_category", nullable = false)
     private String category;
 
     //CONSTRUCTORS

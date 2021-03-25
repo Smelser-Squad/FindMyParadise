@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin
 public class HostController {
 
     @Autowired
@@ -32,11 +32,11 @@ public class HostController {
         }
     }
 
-    @GetMapping("/host/{id}")
-    public ResponseEntity getHostByID(@PathVariable Integer hostID)
+    @GetMapping("/host/{hostId}")
+    public ResponseEntity getHostByID(@PathVariable Integer hostId)
     {
         try {
-            return ResponseEntity.ok(service.show(hostID));
+            return ResponseEntity.ok(service.show(hostId));
         }
         catch (NullHostIDException | InvalidHostIDException ex)
         {
@@ -56,11 +56,13 @@ public class HostController {
         }
     }
 
-    @PutMapping("/update/host")
-    public ResponseEntity editHostByID(@RequestBody Host newHost)
+
+    @PutMapping("/updateHost/{hostId}")
+    public ResponseEntity editHostByID(@PathVariable Integer hostId, @RequestBody Host newHost)
     {
         try {
-            return ResponseEntity.ok(service.update(newHost));
+            return ResponseEntity.ok(service.update(hostId, newHost));
+
         }
         catch (NullHostIDException | InvalidHostIDException ex)
         {
@@ -68,16 +70,18 @@ public class HostController {
         }
     }
 
-    @DeleteMapping("/delete/host/{id}")
-    public String deleteHostByID(@PathVariable Integer hostID)
+
+    @DeleteMapping("/deleteHost/{hostId}")
+    public String deleteHostByID(@PathVariable Integer hostId)
+
     {
         String toReturn = "";
 
         try {
-            if (service.destroy(hostID)) {
-                toReturn = "Event " + hostID + " deleted";
+            if (service.destroy(hostId)) {
+                toReturn = "Event " + hostId + " deleted";
             } else {
-                toReturn = "Event " + hostID + " not found";
+                toReturn = "Event " + hostId + " not found";
             }
         }
         catch (InvalidHostIDException | NullHostIDException ex)
