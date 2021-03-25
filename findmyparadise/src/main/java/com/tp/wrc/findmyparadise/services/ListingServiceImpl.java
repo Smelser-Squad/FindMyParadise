@@ -84,5 +84,10 @@ public class ListingServiceImpl implements ListingService {
         return repo.findByPrice(price);
     }
 
-    
+    @Override
+    public List<Listing> findByType(String type) throws NoListingFoundException {
+        return repo.findByType(type);
+    }
+
+
 }
