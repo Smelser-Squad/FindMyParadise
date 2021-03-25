@@ -29,6 +29,7 @@ class EventServiceImplTests {
         event.setCost(0);
         event.setLatitude(0);
         event.setLongitude(0);
+        toTest.create(event);
 
     }
 
@@ -58,16 +59,17 @@ class EventServiceImplTests {
 
     @Test //Testing creating an event.
     public void createEventTest() {
-        Event event = new Event();
-        event.setTitle("Event Title #2");
-        event.setCategory("Event Category #2");
-        event.setSummary("Event Summary #2");
-        event.setCost(0);
-        event.setLatitude(0);
-        event.setLongitude(0);
+        Event newEvent = new Event();
+        newEvent.setTitle("Event Title #2");
+        newEvent.setCategory("Event Category #2");
+        newEvent.setSummary("Event Summary #2");
+        newEvent.setCost(0);
+        newEvent.setLatitude(0);
+        newEvent.setLongitude(0);
 
-        event = toTest.create(event);
-        assertEquals(2, event.getId());
+        newEvent = toTest.create(newEvent);
+        Event event = toTest.show(newEvent.getId());
+
         assertEquals("Event Title #2", event.getTitle());
         assertEquals("Event Category #2", event.getCategory());
         assertEquals("Event Summary #2", event.getSummary());
@@ -75,10 +77,19 @@ class EventServiceImplTests {
         assertEquals(0, event.getLatitude());
         assertEquals(0, event.getLongitude());
 
-
     }
 
+    @Test //Testing updating an event.
+    public void updateEventTest() {
+        Event updatedEvent = new Event("Updated Event Title", "Updated Event Summary", "Updated Event Category", 1, 1, 1);
+        toTest.update(updatedEvent, 1);
+        Event event = toTest.show(1);
+        assertEquals("Updated Event Title", event.getTitle());
+    }
 
-
+    @Test //Testing deleting an event.
+    public void destroyEventTest() {
+        assertTrue(toTest.destroy(1));
+    }
 
 }
