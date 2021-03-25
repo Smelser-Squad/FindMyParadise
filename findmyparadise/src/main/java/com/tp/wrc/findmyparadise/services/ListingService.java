@@ -8,12 +8,12 @@ import java.util.List;
 public interface ListingService {
 
      List<Listing> index();
-     Listing show(int id) throws NoListingFoundException;
+     Listing show(Integer id) throws NoListingFoundException;
      Listing create(Listing listing);
-     boolean destroy(int id);
-     Listing findByName(String name);
-     List<Listing> findByHostID(Integer hostID);
-     List<Listing> findByPrice(Double price);
+     boolean destroy(Integer id);
+     Listing findByListingNameIgnoreCase(String listingName) throws NoListingFoundException;
+//     List<Listing> findByHostID(Integer hostID) throws NullHostIDException, InvalidHostException;
+//     List<Listing> findByPrice(Double price) throws NoListingFoundException;
 
 
 }
