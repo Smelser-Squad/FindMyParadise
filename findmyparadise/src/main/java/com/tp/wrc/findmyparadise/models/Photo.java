@@ -5,6 +5,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "photos")
 public class Photo {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "photo_id")
@@ -17,7 +18,7 @@ public class Photo {
     private String category;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "listing_id", referencedColumnName = "listing_id")
+    @JoinColumn(name = "fk_listing", referencedColumnName = "listing_id")
     private Listing listing;
 
     public Integer getPhotoID() {
