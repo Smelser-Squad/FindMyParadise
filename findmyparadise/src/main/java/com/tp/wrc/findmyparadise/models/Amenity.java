@@ -2,6 +2,8 @@ package com.tp.wrc.findmyparadise.models;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "amenity")
@@ -9,7 +11,7 @@ public class Amenity implements Serializable {
 
     //VARIABLES
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "amenity_id")
     private Integer amenityId;
 
@@ -18,6 +20,9 @@ public class Amenity implements Serializable {
 
     @Column(name = "amenity_category", nullable = false)
     private String category;
+
+    @ManyToMany
+    private Set<Listing> listings;
 
     //CONSTRUCTORS
     public Amenity(){}

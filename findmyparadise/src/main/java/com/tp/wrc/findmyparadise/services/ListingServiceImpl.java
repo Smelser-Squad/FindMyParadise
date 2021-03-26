@@ -1,9 +1,6 @@
 package com.tp.wrc.findmyparadise.services;
 
-import com.tp.wrc.findmyparadise.exceptions.InvalidListingIDException;
-import com.tp.wrc.findmyparadise.exceptions.InvalidListingNameException;
-import com.tp.wrc.findmyparadise.exceptions.NoListingFoundException;
-import com.tp.wrc.findmyparadise.exceptions.NullListingIDException;
+import com.tp.wrc.findmyparadise.exceptions.*;
 import com.tp.wrc.findmyparadise.models.Listing;
 import com.tp.wrc.findmyparadise.repositories.ListingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +32,10 @@ public class ListingServiceImpl implements ListingService {
     }
 
     @Override
-    public boolean destroy(Integer id) {
+    public boolean destroy(Integer id) throws NullListingIDException {
+        if (id == null) {
+            throw new NullListingIDException("Listing ID cannot be null");
+        }
         Listing listing = repo.findById(id).get();
         if (listing != null) {
             repo.delete(listing);
@@ -44,20 +44,49 @@ public class ListingServiceImpl implements ListingService {
             return false;
         }
     }
+    @Override
+    public Listing update(Integer id, Listing newListing) throws NullListingIDException, NoListingFoundException {
+        if (id == null) {
+            throw new NullListingIDException("Listing ID cannot be null");
+        }
 
-//    TODO: implement these methods
-//    @Override
-//    public List<Listing> findByListingNameIgnoreCase(String listingName)  throws NoListingFoundException, InvalidListingNameException {
-//        return null;
-//    }
-//
-//    @Override
-//    public List<Listing> findByHostID(Integer hostID){
-//
-//    @Override
-//    public List<Listing> findByPrice(Double price) {
-//        return null;
-//    }
+        Listing toUpdate = show(id);
 
+        toUpdate.setName(newListing.getName());
+        toUpdate.setLatitude(newListing.getLatitude());
+        toUpdate.setLongitude(newListing.getLongitude());
+        toUpdate.setHost(newListing.getHost());
+        toUpdate.setAddress(newListing.getAddress());
+        toUpdate.setDescription(newListing.getDescription());
+        toUpdate.setPrice(newListing.getPrice());
+        toUpdate.setMaxGuests(newListing.getMaxGuests());
+        toUpdate.setServiceFee(newListing.getServiceFee());
+        toUpdate.setOccupancyFee(newListing.getOccupancyFee());
+        toUpdate.setCleaningFee(newListing.getCleaningFee());
+        toUpdate.setReviews(newListing.getReviews());
+        toUpdate.setReservations(newListing.getReservations());
+
+        return toUpdate;
+    }
+
+    @Override
+    public List<Listing> findByNameIgnoreCase(String listingName)  throws NoListingFoundException, InvalidListingNameException {
+        return repo.findByNameIgnoreCase(listingName);
+    }
+    
+    @Override
+    public List<Listing> findByHostID(Integer hostID) throws NullHostIDException, InvalidHostIDException {
+        return repo.findByHost(hostID);
+    }
+
+    @Override
+    public List<Listing> findByPrice(Double price) {
+        return repo.findByPrice(price);
+    }
+
+    @Override
+    public List<Listing> findByType(String type) throws NoListingFoundException {
+        return repo.findByType(type);
+    }
 
 }
