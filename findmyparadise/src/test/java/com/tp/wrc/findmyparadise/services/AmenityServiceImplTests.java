@@ -19,6 +19,7 @@ public class AmenityServiceImplTests {
     @Autowired
     AmenityServiceImpl toTest;
 
+
     @Test
     public void createGoldenPath() {
 
