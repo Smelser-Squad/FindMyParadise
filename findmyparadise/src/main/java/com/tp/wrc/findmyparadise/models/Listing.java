@@ -67,7 +67,11 @@ public class Listing {
     @Column (name ="listing_type")
     private String type;
 
-    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "listings")
+    @ManyToMany
+    @JoinTable(
+            name = "listing_amenities",
+            joinColumns = @JoinColumn(name = "listing_id"),
+            inverseJoinColumns = @JoinColumn(name = "amenity_id"))
     private Set<Amenity> amenities;
 
     public Listing() {
