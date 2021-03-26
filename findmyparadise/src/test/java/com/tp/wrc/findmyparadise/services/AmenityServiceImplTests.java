@@ -170,7 +170,27 @@ public class AmenityServiceImplTests {
 
     @Test
     public void deleteGoldenPath() {
-        
+
+        Amenity amenity = new Amenity();
+        amenity.setAmenityName("To Delete");
+        amenity.setAmenityCategory("To Delete");
+
+        toTest.create(amenity);
+
+        assertEquals(4, toTest.getAllAmenities().size());
+
+        assertEquals(4, toTest.getAllAmenities().get(3).getAmenityId());
+        assertEquals("To Delete", toTest.getAllAmenities().get(3).getAmenityName());
+        assertEquals("To Delete", toTest.getAllAmenities().get(3).getAmenityCategory());
+
+        try {
+            toTest.destroy(4);
+        } catch (NullAmenityIdException | InvalidAmenityIdException e) {
+            fail();
+        }
+
+        assertEquals(3, toTest.getAllAmenities().size());
+
     }
 
 
