@@ -11,6 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -106,6 +107,10 @@ public class HostServiceImplTests {
             assertEquals("sample@gmail.com", allHosts.get(1).getEmail());
             assertEquals("different test img src", allHosts.get(1).getImageSrc());
             assertEquals("different test total reviews", allHosts.get(1).getTotalReviews());
+
+            //21 because this runs after all the other tests have added to the list
+            //need to manually change if tests are added or deleted
+            assertEquals(21,allHosts.size());
         } catch (NullHostIDException | InvalidHostIDException e){
             fail();
         }
@@ -172,7 +177,7 @@ public class HostServiceImplTests {
         assertEquals("create test total reviews", retrieved.getTotalReviews());
     }
 
-    @Test //testing create to ensure that data can be updated correctly to db
+    @Test //testing update to ensure that data can be updated correctly to db
     void updateGoldenPath() {
 
         Host original = new Host();
@@ -222,7 +227,7 @@ public class HostServiceImplTests {
 
     }
 
-    @Test //testing create to ensure that data can be deleted correctly from the db
+    @Test //testing destroy to ensure that data can be deleted correctly from the db
     void destroyGoldenPath() {
 
         Host test = new Host();
@@ -248,7 +253,74 @@ public class HostServiceImplTests {
 
     }
 
+    @Test
+    public void showInvalidHostId() {
+
+        assertThrows(InvalidHostIDException.class, ()-> service.show(Integer.MAX_VALUE));
+
+    }
+
+    @Test
+    public void showNullHostId() {
+
+        assertThrows(NullHostIDException.class, ()-> service.show(null));
+
+    }
+
+    @Test   //Throws NoSuchElementException instead of InvalidHostId exception because JPA already does some testing
+    public void updateInvalidHostId() {
+
+        Host invalid = new Host();
+        invalid.setHostName("test name");
+        invalid.setSuperHost(false);
+        invalid.setVerified(false);
+        invalid.setResponseTime("test response time");
+        invalid.setResponseRate(100.00);
+        invalid.setJoinDate("May 2020");
+        invalid.setEmail("test@email.com");
+        invalid.setImageSrc("test img src");
+        invalid.setTotalReviews("test total reviews");
+
+        invalid.setHostID(Integer.MAX_VALUE);
+
+        assertThrows(NoSuchElementException.class, ()-> service.update(invalid));
 
 
+    }
+
+    @Test
+    public void updateNullHostId() {
+
+        Host invalid = new Host();
+        invalid.setHostName("test name");
+        invalid.setSuperHost(false);
+        invalid.setVerified(false);
+        invalid.setResponseTime("test response time");
+        invalid.setResponseRate(100.00);
+        invalid.setJoinDate("May 2020");
+        invalid.setEmail("test@email.com");
+        invalid.setImageSrc("test img src");
+        invalid.setTotalReviews("test total reviews");
+
+        invalid.setHostID(null);
+
+        assertThrows(NullHostIDException.class, ()-> service.update(invalid));
+
+
+    }
+
+    @Test   //Throws NoSuchElementException instead of InvalidHostId exception because JPA already does some testing
+    public void destroyInvalidHostId() {
+
+        assertThrows(NoSuchElementException.class, ()-> service.destroy(Integer.MAX_VALUE));
+
+    }
+
+    @Test
+    public void destroyNullHostId() {
+
+        assertThrows(NullHostIDException.class, ()-> service.destroy(null));
+
+    }
 
 }
