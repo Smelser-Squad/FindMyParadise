@@ -193,5 +193,11 @@ public class AmenityServiceImplTests {
 
     }
 
+    @Test
+    public void deleteNullAmenityIdTest() {
+
+        assertThrows(NullAmenityIdException.class, () -> toTest.destroy(null));
+
+    }
 
 }
