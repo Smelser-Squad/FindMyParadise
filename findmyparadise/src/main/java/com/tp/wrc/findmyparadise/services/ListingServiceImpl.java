@@ -12,6 +12,7 @@ import java.util.Optional;
 @Service
 public class ListingServiceImpl implements ListingService {
 
+
     @Autowired
     private ListingRepository repo;
 
@@ -60,7 +61,11 @@ public class ListingServiceImpl implements ListingService {
     
     @Override
     public List<Listing> findByHostID(Integer hostID) throws NullHostIDException, InvalidHostIDException {
-        return repo.findByHost(hostID);
+        if(hostID == null)
+        {
+            throw new NullHostIDException("Host ID cannot be null!");
+        }
+        return repo.findByHostHostID(hostID);
     }
 
     @Override
@@ -74,3 +79,4 @@ public class ListingServiceImpl implements ListingService {
     }
 
 }
+
