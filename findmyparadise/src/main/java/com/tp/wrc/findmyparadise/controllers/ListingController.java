@@ -13,6 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api")
 @CrossOrigin(origins ="http://localhost:8081")
+
 public class ListingController {
 
     @Autowired
@@ -64,6 +65,22 @@ public class ListingController {
             return ResponseEntity.ok("Listing not deleted");
         }
     }
+
+    @GetMapping("/listings/name/{name}")
+    public ResponseEntity getListingByListingName(@PathVariable String name)
+    {
+        List<Listing> toReturn = null;
+        try
+        {
+            toReturn = service.findByNameIgnoreCase(name);
+        }
+        catch (NoListingFoundException | InvalidListingNameException e)
+        {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+        return ResponseEntity.ok(toReturn);
+    }
+
 
 
     @GetMapping("/listings/type/{type}")

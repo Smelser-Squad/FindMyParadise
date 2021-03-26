@@ -201,7 +201,6 @@ public class Listing {
         this.beds = beds;
     }
 
-
     public Integer getBathrooms() {
         return bathrooms;
     }
