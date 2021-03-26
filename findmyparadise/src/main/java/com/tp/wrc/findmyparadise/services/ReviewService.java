@@ -9,9 +9,9 @@ import java.util.List;
 
 @Service
 public interface ReviewService {
-    List<Review> getAll() throws InvalidReviewIdException, NullReviewIdException;
+    List<Review> getAllReviews();
 
-    Review show(Integer reviewId) throws InvalidReviewIdException, NullReviewIdException;
+    Review getReviewById(Integer reviewId) throws InvalidReviewIdException, NullReviewIdException;
 
     Review create(Review newReview) throws InvalidReviewIdException, NullReviewIdException;
 
