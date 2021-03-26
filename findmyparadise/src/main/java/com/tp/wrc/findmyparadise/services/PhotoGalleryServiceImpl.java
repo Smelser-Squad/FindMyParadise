@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PhotoGalleryServiceImpl implements PhotoGalleryService {
@@ -15,7 +16,13 @@ public class PhotoGalleryServiceImpl implements PhotoGalleryService {
 
 
     public Photo getById(Integer id) {
-        return PRepo.findById(id).get();
+        Photo photo = null;
+        Optional<Photo> opt = PRepo.findById(id);
+        if(opt.isPresent()){
+            photo = opt.get();
+            return photo;
+        }
+        return null;
     }
 
     public List<Photo> getByListing(Integer listingId) {
@@ -33,8 +40,10 @@ public class PhotoGalleryServiceImpl implements PhotoGalleryService {
     }
 
     public boolean delete(Integer imageId) {
-        Photo photo = PRepo.findById(imageId).get();
-        if(photo != null){
+        Photo photo = null;
+        Optional<Photo> opt = PRepo.findById(imageId);
+        if(opt.isPresent()){
+            photo = opt.get();
             PRepo.delete(photo);
             return true;
         }
