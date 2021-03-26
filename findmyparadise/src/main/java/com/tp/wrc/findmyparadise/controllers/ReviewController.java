@@ -16,7 +16,7 @@ public class ReviewController {
     ReviewService service;
 
 
-    @PostMapping("/review")
+    @PostMapping("/addReview")
     public ResponseEntity createReview(@RequestBody Review newReview)
     {
         try {
@@ -54,7 +54,7 @@ public class ReviewController {
 
 
     @PutMapping("/updateReview/{reviewId}")
-    public ResponseEntity editReviewById(@PathVariable Integer reviewId, @RequestBody Review newReview)
+    public ResponseEntity editReviewById(@RequestBody Review newReview)
 
     {
         try {

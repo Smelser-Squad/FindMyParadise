@@ -33,7 +33,10 @@ public class ListingServiceImpl implements ListingService {
     }
 
     @Override
-    public boolean destroy(Integer id) {
+    public boolean destroy(Integer id) throws NullListingIDException {
+        if (id == null) {
+            throw new NullListingIDException("Listing ID cannot be null");
+        }
         Listing listing = repo.findById(id).get();
         if (listing != null) {
             repo.delete(listing);
@@ -42,15 +45,22 @@ public class ListingServiceImpl implements ListingService {
             return false;
         }
     }
-
+    @Override
+    public Listing update(Integer id, Listing newListing) throws NullListingIDException, NoListingFoundException {
+        if (id == null) {
+            throw new NullListingIDException("Listing ID cannot be null");
+        }
+        newListing.setListingID(id);
+        return repo.save(newListing);
+    }
 
     @Override
     public List<Listing> findByNameIgnoreCase(String listingName)  throws NoListingFoundException, InvalidListingNameException {
         return repo.findByNameIgnoreCase(listingName);
     }
-
+    
     @Override
-    public List<Listing> findByHost(Integer hostID) throws NullHostIDException, InvalidHostIDException{
+    public List<Listing> findByHostID(Integer hostID) throws NullHostIDException, InvalidHostIDException {
         return repo.findByHost(hostID);
     }
 
@@ -59,6 +69,10 @@ public class ListingServiceImpl implements ListingService {
         return repo.findByPrice(price);
     }
 
-    
+    @Override
+    public List<Listing> findByType(String type) throws NoListingFoundException {
+        return repo.findByType(type);
+    }
+
 }
 

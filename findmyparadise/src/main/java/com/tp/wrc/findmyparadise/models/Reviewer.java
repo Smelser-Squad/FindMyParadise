@@ -3,13 +3,14 @@ package com.tp.wrc.findmyparadise.models;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "reviewer")
 public class Reviewer {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "reviewer_id")
     private Integer reviewerId;
 
@@ -19,10 +20,24 @@ public class Reviewer {
     @Column(name = "image_src")
     private String imageSrc;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name="fk_review")
-    List<Review> reviews = new ArrayList<>();
+    @Column(name = "rating_description")
+    private String description;
 
+//    @OneToMany(mappedBy = "reviewer")
+//    private Set<Review> reviews;
+//    public Reviewer(){
+//
+//    }
+
+    public Reviewer() {
+
+    }
+    public Reviewer(String name, String imageSrc, String description){
+        this.name = name;
+        this.imageSrc = imageSrc;
+        this.description = description;
+
+    }
 
     public Integer getReviewerId() {
         return reviewerId;
@@ -47,11 +62,20 @@ public class Reviewer {
     public void setImageSrc(String imageSrc) {
         this.imageSrc = imageSrc;
     }
-    public List<Review> getReviews() {
-        return reviews;
+
+//    public Set<Review> getReviews() {
+//        return reviews;
+//    }
+//
+//    public void setReviews(Set<Review> reviews) {
+//        this.reviews = reviews;
+//    }
+
+    public String getDescription() {
+        return description;
     }
 
-    public void setReviews(List<Review> reviews) {
-        this.reviews = reviews;
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

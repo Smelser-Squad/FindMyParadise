@@ -33,10 +33,10 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public List<Event> findAllByCategory(String category) {
-        List<Event> events = eRepo.findAllByCategory(category);
+    public List<Event> findByCategory(String category) {
+        List<Event> events = eRepo.findByCategory(category);
 
-       return events;
+        return events;
     }
 
     @Override
@@ -45,35 +45,36 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public Event update(Event event) {
+    public Event update(Event updatedEvent) {
 
-        Event eventToUpdate = eRepo.findById(event.getId()).get();
+        if (updatedEvent != null) {
+            Event event = null;
+            Optional<Event> opt = eRepo.findById(updatedEvent.getId());
+            if (opt.isPresent()) {
+                event = opt.get();
 
-        if (eventToUpdate != null) {
+                event.setTitle(updatedEvent.getTitle());
+                event.setSummary(updatedEvent.getSummary());
+                event.setCategory(updatedEvent.getCategory());
+                event.setCost(updatedEvent.getCost());
+                event.setLatitude(updatedEvent.getLatitude());
+                event.setLongitude(updatedEvent.getLongitude());
 
-            eventToUpdate.setTitle(event.getTitle());
-            eventToUpdate.setSummary(event.getSummary());
-            eventToUpdate.setCategory(event.getCategory());
-            eventToUpdate.setCost(event.getCost());
-            eventToUpdate.setLatitude(event.getLatitude());
-            eventToUpdate.setLongitude(event.getLongitude());
-
-            return eRepo.saveAndFlush(eventToUpdate);
+                return eRepo.saveAndFlush(event);
+            }
         }
-
         return null;
     }
 
     @Override
     public boolean destroy(int id) {
-
-        Event event = eRepo.findById(id).get();
-
-        if (event != null) {
+        Event event = null;
+        Optional<Event> opt = eRepo.findById(id);
+        if (opt.isPresent()) {
+            event = opt.get();
             eRepo.delete(event);
             return true;
         }
-
         return false;
     }
 }
