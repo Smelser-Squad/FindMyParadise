@@ -103,4 +103,9 @@ class EventServiceImplTests {
         assertTrue(toTest.destroy(1));
     }
 
+    @Test //Testing deleting an event that does not exist.
+    public void destroyEventWithNullIdTest() {
+        assertFalse(toTest.destroy(Integer.MAX_VALUE));
+    }
+
 }
