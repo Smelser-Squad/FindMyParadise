@@ -1,9 +1,6 @@
 package com.tp.wrc.findmyparadise.services;
 
-import com.tp.wrc.findmyparadise.exceptions.InvalidListingIDException;
-import com.tp.wrc.findmyparadise.exceptions.InvalidListingNameException;
-import com.tp.wrc.findmyparadise.exceptions.NoListingFoundException;
-import com.tp.wrc.findmyparadise.exceptions.NullListingIDException;
+import com.tp.wrc.findmyparadise.exceptions.*;
 import com.tp.wrc.findmyparadise.models.Listing;
 import com.tp.wrc.findmyparadise.repositories.ListingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +13,6 @@ import java.util.Optional;
 public class ListingServiceImpl implements ListingService {
 
 
-<<<<<<< HEAD
 //    @Autowired
 //    private ListingRepository repo;
 //
@@ -45,7 +41,7 @@ public class ListingServiceImpl implements ListingService {
 //        } else {
 //            return false;
 //        }
-    }
+
 
 //    TODO: implement these methods
 //    @Override
@@ -66,8 +62,7 @@ public class ListingServiceImpl implements ListingService {
 
 
 
-=======
->>>>>>> 8bffeb253180f7b61493a93dbce2fb909b7899f8
+
     @Autowired
     private ListingRepository repo;
 
@@ -97,25 +92,26 @@ public class ListingServiceImpl implements ListingService {
             return false;
         }
     }
-<<<<<<< HEAD
+
+
+
+
+
+    @Override
+    public List<Listing> findByNameIgnoreCase(String listingName)  throws NoListingFoundException, InvalidListingNameException {
+        return repo.findByNameIgnoreCase(listingName);
+    }
+
+    @Override
+    public List<Listing> findByHost(Integer hostID) throws NullHostIDException, InvalidHostIDException{
+        return repo.findByHost(hostID);
+    }
+
+    @Override
+    public List<Listing> findByPrice(Double price) {
+        return repo.findByPrice(price);
+    }
+
+    
 }
 
-=======
-
-//    TODO: implement these methods
-//    @Override
-//    public List<Listing> findByListingNameIgnoreCase(String listingName)  throws NoListingFoundException, InvalidListingNameException {
-//        return null;
-//    }
-
-//    @Override
-//    public List<Listing> findByHostID(Integer hostID){
-
-//    @Override
-//    public List<Listing> findByPrice(Double price) {
-//        return null;
-//    }
-
-
-}
->>>>>>> 8bffeb253180f7b61493a93dbce2fb909b7899f8

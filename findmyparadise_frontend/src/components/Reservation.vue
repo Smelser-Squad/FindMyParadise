@@ -1,3 +1,4 @@
+
 <template>
   <div id="Resrevation body">
     <header>
@@ -18,10 +19,6 @@
       </div>
     </header>
     <body>
-      <h5>Check-In</h5>
-
-      <Calendar />
-      <h5>Check-Out</h5>
       <Calendar />
       <h5>Guests</h5>
       <select>
@@ -67,8 +64,21 @@
 import Calendar from "./Calendar";
 import Guests from "./Guests";
 
+
+import axios from 'axios';
+
+
+
+
+let listingID=1;
+
 export default {
   name: "Reservation",
+  mounted(){
+    axios.get(`http://localhost:8080/api/listing/${listingID}`).then((res=>{
+      console.log(res);
+    }));
+  },
   props: {
     title: String,
   },
