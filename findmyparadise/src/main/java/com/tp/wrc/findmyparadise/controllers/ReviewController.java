@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin
+@CrossOrigin(origins="http://localhost:8081")
 public class ReviewController {
 
     @Autowired
@@ -32,7 +32,7 @@ public class ReviewController {
     public ResponseEntity getReviewById(@PathVariable Integer reviewId)
     {
         try {
-            return ResponseEntity.ok(service.show(reviewId));
+            return ResponseEntity.ok(service.getReviewById(reviewId));
         }
         catch (NullReviewIdException | InvalidReviewIdException ex)
         {
@@ -43,13 +43,10 @@ public class ReviewController {
     @GetMapping("/reviews")
     public ResponseEntity getReviews()
     {
-        try {
-            return ResponseEntity.ok(service.getAll());
-        }
-        catch (NullReviewIdException | InvalidReviewIdException ex)
-        {
-            return ResponseEntity.badRequest().body(ex.getMessage());
-        }
+
+            return ResponseEntity.ok(service.getAllReviews());
+
+
     }
 
 

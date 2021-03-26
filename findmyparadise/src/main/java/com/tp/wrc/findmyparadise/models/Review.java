@@ -40,8 +40,7 @@ public class Review implements Serializable {
     @Column(name = "review_text")
     private String reviewText;
 
-    @Column(name = "joined_date")
-    private LocalDate joinedDate;
+
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 
@@ -53,7 +52,7 @@ public class Review implements Serializable {
     }
 
     public Review(Integer reviewId, Integer rating, Integer cleanlinessRating, Integer locationRating, Integer accuracyRating,
-                  Integer valueRating, Integer checkInRating, Integer communicationRating, String reviewText, LocalDate joinedDate, Reviewer reviewer){
+                  Integer valueRating, Integer checkInRating, Integer communicationRating, String reviewText, Reviewer reviewer){
 
         this.reviewId = reviewId;
         this.rating = rating;
@@ -141,13 +140,7 @@ public class Review implements Serializable {
         this.reviewText = reviewText;
     }
 
-    public LocalDate getJoinedDate() {
-        return joinedDate;
-    }
 
-    public void setJoinedDate(LocalDate joinedDate) {
-        this.joinedDate = joinedDate;
-    }
 
     public Reviewer getReviewer() {
         return reviewer;
