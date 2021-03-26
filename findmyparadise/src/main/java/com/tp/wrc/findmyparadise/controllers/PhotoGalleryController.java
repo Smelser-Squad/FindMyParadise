@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin
+@CrossOrigin(origins ="http://localhost:8081")
 public class PhotoGalleryController {
 
     @Autowired
@@ -37,17 +37,19 @@ public class PhotoGalleryController {
         }
     }
 
-    @GetMapping("/gallery/listing/{listingId}/category/{categoryId}")
-    public ResponseEntity getByIds(@PathVariable Integer listingId, Integer categoryId)
-    {
-        try {
-            return ResponseEntity.ok(service.getByListingAndCategory(listingId, categoryId));
-        }
-        catch (Exception ex)
-        {
-            return ResponseEntity.badRequest().body(ex.getMessage());
-        }
-    }
+
+    //may not be necessary
+//    @GetMapping("/gallery/listing/{listingId}/category/{categoryId}")
+//    public ResponseEntity getByIds(@PathVariable Integer listingId, Integer categoryId)
+//    {
+//        try {
+//            return ResponseEntity.ok(service.getByListingAndCategory(listingId, categoryId));
+//        }
+//        catch (Exception ex)
+//        {
+//            return ResponseEntity.badRequest().body(ex.getMessage());
+//        }
+//    }
 
     @PostMapping("/gallery/addImage")
     public ResponseEntity AddImage(@RequestBody Photo toAdd)

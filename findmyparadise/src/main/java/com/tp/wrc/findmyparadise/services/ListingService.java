@@ -17,5 +17,4 @@ public interface ListingService {
      List<Listing> findByPrice(Double price) throws NoListingFoundException;
      List<Listing> findByType(String type) throws NoListingFoundException;
 
-
 }
