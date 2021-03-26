@@ -11,12 +11,11 @@ public interface ListingRepository extends JpaRepository<Listing, Integer> {
 
     //find listing by its name
     List<Listing> findByNameIgnoreCase(String name);
-    //find listing by host ID
-    List<Listing> findByHost(Integer hostID);
+    //find listings by host ID
+    List<Listing> findByHostHostID(Integer hostID);
     //find listing by price
     List<Listing> findByPrice(Double price);
     //find by type
     List<Listing> findByType(String type);
-
 
 }
