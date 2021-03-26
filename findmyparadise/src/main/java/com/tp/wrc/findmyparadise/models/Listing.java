@@ -10,11 +10,10 @@ import java.util.Set;
 public class Listing {
     @Id
     @Column(name = "listing_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer listingID;
 
-    @Column(name = "name")
-    @JoinColumn(name = "host_id", nullable = false)
+    @Column(name = "name", nullable = false)
     private String name;
 
     @Column(name = "latitude")
@@ -27,15 +26,13 @@ public class Listing {
     @JoinColumn(name = "host_id", nullable = false)
     private Host host;
 
-    @Column(name = "address")
-    @JoinColumn(name = "host_id", nullable = false)
+    @Column(name = "address", nullable = false)
     private String address;
 
     @Column(name = "description")
     private String description;
 
-    @Column(name = "price")
-    @JoinColumn(name = "host_id", nullable = false)
+    @Column(name = "price", nullable = false)
     private Double price;
 
     @Column(name = "max_guests")
@@ -61,15 +58,19 @@ public class Listing {
     @Column(name= "bedroom_quantity")
     private Integer bedrooms;
 
+    @Column(name= "beds_quantity")
+    private Integer beds;
 
     @Column(name= "bathroom_quantity")
     private Integer bathrooms;
 
-    @Column(name= "beds_quantity")
-    private Integer beds;
-
     @Column (name ="listing_type")
     private String type;
+
+
+    public void setType(String type) {
+        this.type = type;
+    }
 
     @ManyToMany(cascade = CascadeType.ALL, mappedBy = "listings")
     private Set<Amenity> amenities;
@@ -205,6 +206,7 @@ public class Listing {
         this.beds = beds;
     }
 
+
     public Integer getBathrooms() {
         return bathrooms;
     }
@@ -213,13 +215,8 @@ public class Listing {
         this.bathrooms = bathrooms;
     }
 
-
     public String getType() {
         return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 
     public Set<Amenity> getAmenities() {
@@ -229,5 +226,4 @@ public class Listing {
     public void setAmenities(Set<Amenity> amenities) {
         this.amenities = amenities;
     }
-
 }
