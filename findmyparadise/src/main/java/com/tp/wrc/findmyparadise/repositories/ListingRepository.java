@@ -17,7 +17,7 @@ public interface ListingRepository extends JpaRepository<Listing, Integer> {
 
 
 //    //find listing by host ID
-
+    List<Listing> findByHostHostID(Integer hostID);
 
     //find listing by host ID
 

@@ -12,11 +12,9 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api")
-<<<<<<< HEAD
+
 @CrossOrigin(origins ="http://localhost:8081")
-=======
-@CrossOrigin(origins = "http://localhost:8081")
->>>>>>> 35216658a5bd735500251e614c0e6384231ba708
+
 public class ListingController {
 
     @Autowired
