@@ -197,7 +197,6 @@ public class ReviewServiceImplTests {
     @Test
     public void updateReviewGoldenPath() {
         Review review = new Review();
-//        review.setReviewId(1);
         review.setRating(1);
         review.setReviewText("test review text");
         review.setCommunicationRating(1);
@@ -208,8 +207,6 @@ public class ReviewServiceImplTests {
         review.setAccuracyRating(1);
 
         Reviewer reviewer = new Reviewer();
-
-//        reviewer.setReviewerId(1);
         reviewer.setImageSrc("Test Image Source");
         reviewer.setDescription("Test Description data");
         reviewer.setName("Rahman");
