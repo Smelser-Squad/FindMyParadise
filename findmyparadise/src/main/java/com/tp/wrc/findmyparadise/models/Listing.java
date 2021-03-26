@@ -14,6 +14,7 @@ public class Listing {
     private Integer listingID;
 
     @Column(name = "name")
+    @JoinColumn(name = "host_id", nullable = false)
     private String name;
 
     @Column(name = "latitude")
@@ -27,12 +28,14 @@ public class Listing {
     private Host host;
 
     @Column(name = "address")
+    @JoinColumn(name = "host_id", nullable = false)
     private String address;
 
     @Column(name = "description")
     private String description;
 
     @Column(name = "price")
+    @JoinColumn(name = "host_id", nullable = false)
     private Double price;
 
     @Column(name = "max_guests")
