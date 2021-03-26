@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:8081")
 public class ListingController {
 
     @Autowired
@@ -80,7 +80,7 @@ public class ListingController {
         }
         return ResponseEntity.ok(toReturn);
     }
-    
+
     @GetMapping("/listings/host/{hostID}")
     public ResponseEntity getListingByListingType(@PathVariable Integer hostID)
     {
