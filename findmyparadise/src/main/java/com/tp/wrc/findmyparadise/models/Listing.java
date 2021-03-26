@@ -13,7 +13,7 @@ public class Listing {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer listingID;
 
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     private String name;
 
     @Column(name = "latitude")
@@ -26,13 +26,13 @@ public class Listing {
     @JoinColumn(name = "host_id", nullable = false)
     private Host host;
 
-    @Column(name = "address")
+    @Column(name = "address", nullable = false)
     private String address;
 
     @Column(name = "description")
     private String description;
 
-    @Column(name = "price")
+    @Column(name = "price", nullable = false)
     private Double price;
 
     @Column(name = "max_guests")
@@ -218,7 +218,7 @@ public class Listing {
     public String getType() {
         return type;
     }
-    
+
     public Set<Amenity> getAmenities() {
         return amenities;
     }
