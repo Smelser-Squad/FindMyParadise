@@ -67,11 +67,6 @@ public class Listing {
     @Column (name ="listing_type")
     private String type;
 
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
     @ManyToMany
     @JoinTable(
             name = "listing_amenities",
@@ -221,6 +216,10 @@ public class Listing {
 
     public String getType() {
         return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public Set<Amenity> getAmenities() {
