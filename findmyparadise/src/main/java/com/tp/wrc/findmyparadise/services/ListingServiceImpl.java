@@ -49,24 +49,8 @@ public class ListingServiceImpl implements ListingService {
         if (id == null) {
             throw new NullListingIDException("Listing ID cannot be null");
         }
-
-        Listing toUpdate = show(id);
-
-        toUpdate.setName(newListing.getName());
-        toUpdate.setLatitude(newListing.getLatitude());
-        toUpdate.setLongitude(newListing.getLongitude());
-        toUpdate.setHost(newListing.getHost());
-        toUpdate.setAddress(newListing.getAddress());
-        toUpdate.setDescription(newListing.getDescription());
-        toUpdate.setPrice(newListing.getPrice());
-        toUpdate.setMaxGuests(newListing.getMaxGuests());
-        toUpdate.setServiceFee(newListing.getServiceFee());
-        toUpdate.setOccupancyFee(newListing.getOccupancyFee());
-        toUpdate.setCleaningFee(newListing.getCleaningFee());
-        toUpdate.setReviews(newListing.getReviews());
-        toUpdate.setReservations(newListing.getReservations());
-
-        return toUpdate;
+        newListing.setListingID(id);
+        return repo.save(newListing);
     }
 
     @Override

@@ -10,6 +10,6 @@ import java.util.List;
 @Repository
 public interface EventRepository extends JpaRepository<Event, Integer> {
 
-    public List<Event> findAllByCategory(String category);
+    public List<Event> findByCategory(String category);
 
 }
