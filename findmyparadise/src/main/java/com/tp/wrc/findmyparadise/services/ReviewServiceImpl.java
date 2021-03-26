@@ -1,6 +1,7 @@
 package com.tp.wrc.findmyparadise.services;
 
 import com.tp.wrc.findmyparadise.exceptions.InvalidReviewIdException;
+import com.tp.wrc.findmyparadise.exceptions.NullAmenityIdException;
 import com.tp.wrc.findmyparadise.exceptions.NullReviewIdException;
 import com.tp.wrc.findmyparadise.models.Review;
 import com.tp.wrc.findmyparadise.repositories.ReviewRepository;
@@ -18,12 +19,12 @@ public class ReviewServiceImpl implements ReviewService {
     ReviewRepository reviewRepo;
 
     @Override
-    public List<Review> getAll()  {
+    public List<Review> getAllReviews()  {
         return reviewRepo.findAll();
     }
 
     @Override
-    public Review show(Integer reviewId) throws InvalidReviewIdException, NullReviewIdException {
+    public Review getReviewById(Integer reviewId) throws InvalidReviewIdException, NullReviewIdException {
         if(reviewId==null){
             throw new NullReviewIdException("Null review id entered");
         }
@@ -45,6 +46,9 @@ public class ReviewServiceImpl implements ReviewService {
 
     @Override
     public Review update(Review newReview) throws InvalidReviewIdException, NullReviewIdException {
+        if(newReview.getReviewId() == null)
+            throw new NullReviewIdException("Review id is null.");
+
         Review toAdd = reviewRepo.findById(newReview.getReviewId()).get();
 
         if (toAdd != null) {
