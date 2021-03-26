@@ -52,7 +52,7 @@ public class HostServiceImplTests {
     }
 
     @Test //Testing retrieving a host by ID. Two entries to ensure they get added correctly
-    public void findHostByIdTest() {
+    public void findHostByIdTestGoldenPath() {
         try {
             Host test = service.show(1);
             assertEquals("test name", test.getHostName());
@@ -82,7 +82,7 @@ public class HostServiceImplTests {
     }
 
     @Test //testing to make sure all hosts are retrieved from database and stored in list correctly
-    void getAll() throws NullHostIDException, InvalidHostIDException {
+    void getAllGoldenPath() throws NullHostIDException, InvalidHostIDException {
         try {
             List<Host> allHosts = service.getAll();
 
@@ -112,61 +112,125 @@ public class HostServiceImplTests {
     }
 
     @Test //testing show method to ensure that data can be retrieved correctly from db
-    void show() {
+    void showGoldenPath() {
+
+        Host test = new Host();
+
         try {
-            Host test = service.show(1);
-            assertEquals("test name", test.getHostName());
-            assertTrue(test.isSuperHost());
-            assertTrue(test.isVerified());
-            assertEquals("test response time", test.getResponseTime());
-            assertEquals(100.00, test.getResponseRate());
-            assertEquals("May 2020", test.getJoinDate());
-            assertEquals("test@email.com", test.getEmail());
-            assertEquals("test img src", test.getImageSrc());
-            assertEquals("test total reviews", test.getTotalReviews());
+            test = service.show(1);
         } catch (NullHostIDException | InvalidHostIDException e){
             fail();
         }
+
+        assertEquals("test name", test.getHostName());
+        assertTrue(test.isSuperHost());
+        assertTrue(test.isVerified());
+        assertEquals("test response time", test.getResponseTime());
+        assertEquals(100.00, test.getResponseRate());
+        assertEquals("May 2020", test.getJoinDate());
+        assertEquals("test@email.com", test.getEmail());
+        assertEquals("test img src", test.getImageSrc());
+        assertEquals("test total reviews", test.getTotalReviews());
+
     }
 
     @Test //testing create to ensure that data can be added correctly to db
-    void create() {
+    void createGoldenPath() {
+
+        Host test = new Host();
+        Host retrieved = new Host();
+
+        test.setHostName("create test name");
+        test.setSuperHost(true);
+        test.setVerified(false);
+        test.setResponseTime("create test response time");
+        test.setResponseRate(100.00);
+        test.setJoinDate("May 2020");
+        test.setEmail("create@email.com");
+        test.setImageSrc("create test img src");
+        test.setTotalReviews("create test total reviews");
 
         try {
-            Host test = new Host();
-            test.setHostName("create test name");
-            test.setSuperHost(true);
-            test.setVerified(false);
-            test.setResponseTime("create test response time");
-            test.setResponseRate(100.00);
-            test.setJoinDate("May 2020");
-            test.setEmail("create@email.com");
-            test.setImageSrc("create test img src");
-            test.setTotalReviews("create test total reviews");
 
+            retrieved = service.show(test.getHostID());
             service.create(test);
-            Host retrieved = service.show(test.getHostID());
-            assertEquals("create test name", retrieved.getHostName());
-            assertTrue(retrieved.isSuperHost());
-            assertFalse(retrieved.isVerified());
-            assertEquals("create test response time", retrieved.getResponseTime());
-            assertEquals(100.00, retrieved.getResponseRate());
-            assertEquals("May 2020", retrieved.getJoinDate());
-            assertEquals("create@email.com", retrieved.getEmail());
-            assertEquals("create test img src", retrieved.getImageSrc());
-            assertEquals("create test total reviews", retrieved.getTotalReviews());
+
         } catch (NullHostIDException | InvalidHostIDException e){
             fail();
         }
+
+        assertEquals("create test name", retrieved.getHostName());
+        assertTrue(retrieved.isSuperHost());
+        assertFalse(retrieved.isVerified());
+        assertEquals("create test response time", retrieved.getResponseTime());
+        assertEquals(100.00, retrieved.getResponseRate());
+        assertEquals("May 2020", retrieved.getJoinDate());
+        assertEquals("create@email.com", retrieved.getEmail());
+        assertEquals("create test img src", retrieved.getImageSrc());
+        assertEquals("create test total reviews", retrieved.getTotalReviews());
     }
 
     @Test //testing create to ensure that data can be updated correctly to db
-    void update() {
+    void updateGoldenPath() {
+
+        Host test = new Host();
+
+        test.setHostName("test name");
+        test.setSuperHost(true);
+        test.setVerified(true);
+        test.setResponseTime("test response time");
+        test.setResponseRate(100.00);
+        test.setJoinDate("May 2020");
+        test.setEmail("test@email.com");
+        test.setImageSrc("test img src");
+        test.setTotalReviews("test total reviews");
+
+
+        Host newHost = new Host();
+
+        newHost.setHostName("test name");
+        newHost.setSuperHost(true);
+        newHost.setVerified(true);
+        newHost.setResponseTime("test response time");
+        newHost.setResponseRate(100.00);
+        newHost.setJoinDate("May 2020");
+        newHost.setEmail("test@email.com");
+        newHost.setImageSrc("test img src");
+        newHost.setTotalReviews("test total reviews");
+
+        try {
+            service.create(test);
+            service.update(newHost);
+        } catch (InvalidHostIDException | NullHostIDException e) {
+            fail();
+        }
 
     }
 
     @Test //testing create to ensure that data can be deleted correctly from the db
-    void destroy() {
+    void destroyGoldenPath() {
+
+        Host test = new Host();
+
+
+        test.setHostName("test name");
+        test.setSuperHost(true);
+        test.setVerified(true);
+        test.setResponseTime("test response time");
+        test.setResponseRate(100.00);
+        test.setJoinDate("May 2020");
+        test.setEmail("test@email.com");
+        test.setImageSrc("test img src");
+        test.setTotalReviews("test total reviews");
+
+        try {
+            service.create(test);
+            assertTrue(service.destroy(test.getHostID()));
+        } catch (NullHostIDException | InvalidHostIDException e) {
+            fail();
+        }
+
+
     }
 
 
