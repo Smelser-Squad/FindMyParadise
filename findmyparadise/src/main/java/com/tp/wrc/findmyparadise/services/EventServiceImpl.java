@@ -33,8 +33,8 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public List<Event> findAllByCategory(String category) {
-        List<Event> events = eRepo.findAllByCategory(category);
+    public List<Event> findByCategory(String category) {
+        List<Event> events = eRepo.findByCategory(category);
 
         return events;
     }
@@ -68,14 +68,13 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public boolean destroy(int id) {
-
-        Event event = eRepo.findById(id).get();
-
-        if (event != null) {
+        Event event = null;
+        Optional<Event> opt = eRepo.findById(id);
+        if (opt.isPresent()) {
+            event = opt.get();
             eRepo.delete(event);
             return true;
         }
-
         return false;
     }
 }
