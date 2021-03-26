@@ -1,6 +1,9 @@
 package com.tp.wrc.findmyparadise.models;
 
+import org.apache.tomcat.jni.Local;
+
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -23,6 +26,9 @@ public class Reviewer {
     @Column(name = "rating_description")
     private String description;
 
+    @Column(name = "joined_date")
+    private LocalDate joinedDate;
+
 //    @OneToMany(mappedBy = "reviewer")
 //    private Set<Review> reviews;
 //    public Reviewer(){
@@ -32,10 +38,11 @@ public class Reviewer {
     public Reviewer() {
 
     }
-    public Reviewer(String name, String imageSrc, String description){
+    public Reviewer(String name, String imageSrc, String description, LocalDate joinedDate){
         this.name = name;
         this.imageSrc = imageSrc;
         this.description = description;
+        this.joinedDate = joinedDate;
 
     }
 
@@ -77,5 +84,13 @@ public class Reviewer {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public LocalDate getJoinedDate() {
+        return joinedDate;
+    }
+
+    public void setJoinedDate(LocalDate joinedDate) {
+        this.joinedDate = joinedDate;
     }
 }

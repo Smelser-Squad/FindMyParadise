@@ -52,6 +52,7 @@ public class ReviewerServiceImpl implements ReviewerService {
             toAdd.setName(newReviewer.getName());
             toAdd.setImageSrc(newReviewer.getImageSrc());
             toAdd.setDescription(newReviewer.getDescription());
+            toAdd.setJoinedDate(newReviewer.getJoinedDate());
 
             return reviewerRepo.saveAndFlush(toAdd);
         } else {
