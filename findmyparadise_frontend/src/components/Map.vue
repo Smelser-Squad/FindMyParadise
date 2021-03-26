@@ -17,8 +17,26 @@
 
 <script>
 import axios from "axios";
+let listingID=1;
 
-let listingID = 2;
+//  let thisLocation= axios.get(`http://localhost:8080/api/listing/${listingID}`)
+//   .then(function (response) {
+//     // handle success
+//     console.log(response);
+//   })
+  // .catch(function (error) {
+  //   // handle error
+  //   console.log(error);
+  // })
+  // .then(function () {
+  //   // always executed
+  // });
+
+//  thisLocation;
+
+// let locLatitude = thisLocation[0].latitude;
+
+// let locLongitude = thisLocation[0].longitude;
 
 export default {
   name: "Map",
@@ -29,8 +47,8 @@ export default {
   },
   mounted() {
     axios.get(`http://localhost:8080/api/listing/${listingID}`).then((res) => {
-      this.dataObject = res.data;
-      console.log(res);
+      this.dataObject = res.data
+      console.log(res.data);
     });
   },
 };
