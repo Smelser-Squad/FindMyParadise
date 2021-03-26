@@ -1,8 +1,6 @@
 package com.tp.wrc.findmyparadise.controllers;
 
-import com.tp.wrc.findmyparadise.exceptions.InvalidListingIDException;
-import com.tp.wrc.findmyparadise.exceptions.NoListingFoundException;
-import com.tp.wrc.findmyparadise.exceptions.NullListingIDException;
+import com.tp.wrc.findmyparadise.exceptions.*;
 import com.tp.wrc.findmyparadise.models.Listing;
 import com.tp.wrc.findmyparadise.services.ListingService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,9 +8,15 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api")
+<<<<<<< HEAD
 @CrossOrigin(origins ="http://localhost:8081")
+=======
+@CrossOrigin(origins = "http://localhost:8081")
+>>>>>>> 35216658a5bd735500251e614c0e6384231ba708
 public class ListingController {
 
     @Autowired
@@ -63,5 +67,36 @@ public class ListingController {
         } else {
             return ResponseEntity.ok("Listing not deleted");
         }
+    }
+
+
+    @GetMapping("/listings/type/{type}")
+    public ResponseEntity getListingByListingType(@PathVariable String type)
+    {
+        List<Listing> toReturn = null;
+        try
+        {
+            toReturn = service.findByType(type);
+        }
+        catch (NoListingFoundException e)
+        {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+        return ResponseEntity.ok(toReturn);
+    }
+
+    @GetMapping("/listings/host/{hostID}")
+    public ResponseEntity getListingByListingType(@PathVariable Integer hostID)
+    {
+        List<Listing> toReturn = null;
+        try
+        {
+            toReturn = service.findByHostID(hostID);
+        }
+        catch (InvalidHostIDException | NullHostIDException e)
+        {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+        return ResponseEntity.ok(toReturn);
     }
 }
