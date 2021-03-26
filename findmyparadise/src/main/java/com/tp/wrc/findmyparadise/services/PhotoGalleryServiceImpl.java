@@ -19,7 +19,7 @@ public class PhotoGalleryServiceImpl implements PhotoGalleryService {
     }
 
     public List<Photo> getByListing(Integer listingId) {
-        return PRepo.findByListing_Id(listingId);
+        return PRepo.findByListing(listingId);
     }
 
     //This method may not be necessary
