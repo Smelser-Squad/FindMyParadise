@@ -1,5 +1,9 @@
 package com.tp.wrc.findmyparadise.services;
 import com.tp.wrc.findmyparadise.exceptions.*;
+<<<<<<< HEAD
+=======
+import com.tp.wrc.findmyparadise.models.Amenity;
+>>>>>>> 9b39b3936dcc24c9f8df4681aabb6dcbac3cf625
 import com.tp.wrc.findmyparadise.models.Review;
 import com.tp.wrc.findmyparadise.models.Reviewer;
 import org.junit.jupiter.api.Assertions;
