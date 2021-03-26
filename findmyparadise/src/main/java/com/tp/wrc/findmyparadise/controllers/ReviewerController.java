@@ -1,8 +1,6 @@
 package com.tp.wrc.findmyparadise.controllers;
 
-import com.tp.wrc.findmyparadise.exceptions.InvalidReviewIdException;
 import com.tp.wrc.findmyparadise.exceptions.InvalidReviewerIdException;
-import com.tp.wrc.findmyparadise.exceptions.NullReviewIdException;
 import com.tp.wrc.findmyparadise.exceptions.NullReviewerIdException;
 import com.tp.wrc.findmyparadise.models.Reviewer;
 import com.tp.wrc.findmyparadise.services.ReviewerService;
@@ -12,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
+
 @CrossOrigin(origins ="http://localhost:8081")
 public class ReviewerController {
 
