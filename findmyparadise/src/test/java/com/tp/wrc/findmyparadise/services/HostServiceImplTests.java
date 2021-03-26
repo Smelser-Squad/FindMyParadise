@@ -140,22 +140,24 @@ public class HostServiceImplTests {
         Host test = new Host();
         Host retrieved = new Host();
 
-        test.setHostName("create test name");
-        test.setSuperHost(true);
-        test.setVerified(false);
-        test.setResponseTime("create test response time");
-        test.setResponseRate(100.00);
-        test.setJoinDate("May 2020");
-        test.setEmail("create@email.com");
-        test.setImageSrc("create test img src");
-        test.setTotalReviews("create test total reviews");
-
         try {
+            test.setHostName("create test name");
+            test.setSuperHost(true);
+            test.setVerified(false);
+            test.setResponseTime("create test response time");
+            test.setResponseRate(100.00);
+            test.setJoinDate("May 2020");
+            test.setEmail("create@email.com");
+            test.setImageSrc("create test img src");
+            test.setTotalReviews("create test total reviews");
 
-            retrieved = service.show(test.getHostID());
+
             service.create(test);
+            retrieved = service.show(test.getHostID());
+
 
         } catch (NullHostIDException | InvalidHostIDException e){
+            System.out.print(e.getMessage());
             fail();
         }
 
@@ -232,6 +234,8 @@ public class HostServiceImplTests {
 
 
     }
+
+    
 
 
 }
