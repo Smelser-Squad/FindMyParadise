@@ -3,7 +3,6 @@ package com.tp.wrc.findmyparadise.services;
 
 import com.tp.wrc.findmyparadise.exceptions.InvalidReviewerIdException;
 import com.tp.wrc.findmyparadise.exceptions.NullReviewerIdException;
-import com.tp.wrc.findmyparadise.models.Event;
 import com.tp.wrc.findmyparadise.models.Reviewer;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
@@ -36,12 +35,10 @@ public class ReviewerServiceImplTests {
     @Test
     public void findReviewerByIdTest() throws NullReviewerIdException, InvalidReviewerIdException {
         Reviewer reviewer = reviewerTest.show(1);
-        assertEquals("Event Title", event.getTitle());
-        assertEquals("Event Category", event.getCategory());
-        assertEquals("Event Summary", event.getSummary());
-        assertEquals(0, event.getCost());
-        assertEquals(0, event.getLatitude());
-        assertEquals(0, event.getLongitude());
+        assertEquals("Raha Rahman", reviewer.getName());
+        assertEquals("Good place to stay", reviewer.getDescription());
+        assertEquals("test image source", reviewer.getImageSrc());
+
 
     }
 }

@@ -1,5 +1,4 @@
 package com.tp.wrc.findmyparadise.models;
 
-public class ReviewerTest {
-
+public class ReviewTests {
 }
