@@ -1,6 +1,5 @@
 package com.tp.wrc.findmyparadise.services;
 
-import com.tp.wrc.findmyparadise.exceptions.InvalidHostIDException;
 import com.tp.wrc.findmyparadise.exceptions.InvalidReviewIdException;
 import com.tp.wrc.findmyparadise.exceptions.NullReviewIdException;
 import com.tp.wrc.findmyparadise.models.Review;
