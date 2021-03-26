@@ -2,15 +2,17 @@ package com.tp.wrc.findmyparadise.services;
 
 import com.tp.wrc.findmyparadise.models.Photo;
 
+import java.util.List;
+
 public interface PhotoGalleryService {
 
-    String getById(Integer id);
+    Photo getById(Integer id);
 
-    Photo[] getByListing(Integer listingId);
+    List<Photo> getByListing(Integer listingId);
 
-    Photo[] getByListingAndCategory(Integer listingId, Integer categoryId);
+    //List<Photo> getByListingAndCategory(Integer listingId, Integer categoryId);
 
-    Integer addImage(Photo toAdd);
+    Photo addImage(Photo toAdd);
 
     boolean delete(Integer imageId);
 
