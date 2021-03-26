@@ -66,6 +66,22 @@ public class ListingController {
         }
     }
 
+    @GetMapping("/listings/name/{name}")
+    public ResponseEntity getListingByListingName(@PathVariable String name)
+    {
+        List<Listing> toReturn = null;
+        try
+        {
+            toReturn = service.findByNameIgnoreCase(name);
+        }
+        catch (NoListingFoundException | InvalidListingNameException e)
+        {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+        return ResponseEntity.ok(toReturn);
+    }
+
+
 
     @GetMapping("/listings/type/{type}")
     public ResponseEntity getListingByListingType(@PathVariable String type)
