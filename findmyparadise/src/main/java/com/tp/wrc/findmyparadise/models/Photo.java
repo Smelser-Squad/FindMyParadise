@@ -16,6 +16,10 @@ public class Photo {
     @Column(name = "category")
     private String category;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "listing_id", referencedColumnName = "listing_id")
+    private Listing listing;
+
     public Integer getPhotoID() {
         return photoID;
     }

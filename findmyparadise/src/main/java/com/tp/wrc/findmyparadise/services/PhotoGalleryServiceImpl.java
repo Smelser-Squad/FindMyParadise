@@ -5,30 +5,39 @@ import com.tp.wrc.findmyparadise.repositories.PhotoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PhotoGalleryServiceImpl implements PhotoGalleryService {
 
     @Autowired
     PhotoRepository PRepo;
 
-    //TODO: implement logic here
-    public String getById(Integer id) {
-        return "Placeholder";
+
+    public Photo getById(Integer id) {
+        return PRepo.findById(id).get();
     }
 
-    public Photo[] getByListing(Integer listingId) {
-        return null;
+    public List<Photo> getByListing(Integer listingId) {
+        return PRepo.findByListing_Id(listingId);
     }
 
-    public Photo[] getByListingAndCategory(Integer listingId, Integer categoryId) {
-        return null;
-    }
+    //This method may not be necessary
+//    @Override
+//    public List<Photo> getByListingAndCategory(Integer listingId, Integer categoryId) {
+//        return null;
+//    }
 
-    public Integer addImage(Photo toAdd) {
-        return null;
+    public Photo addImage(Photo toAdd) {
+        return PRepo.saveAndFlush(toAdd);
     }
 
     public boolean delete(Integer imageId) {
+        Photo photo = PRepo.findById(imageId).get();
+        if(photo != null){
+            PRepo.delete(photo);
+            return true;
+        }
         return false;
     }
 }
