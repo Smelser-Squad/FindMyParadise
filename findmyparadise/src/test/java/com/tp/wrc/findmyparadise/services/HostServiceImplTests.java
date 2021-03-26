@@ -175,37 +175,50 @@ public class HostServiceImplTests {
     @Test //testing create to ensure that data can be updated correctly to db
     void updateGoldenPath() {
 
-        Host test = new Host();
+        Host original = new Host();
 
-        test.setHostName("test name");
-        test.setSuperHost(true);
-        test.setVerified(true);
-        test.setResponseTime("test response time");
-        test.setResponseRate(100.00);
-        test.setJoinDate("May 2020");
-        test.setEmail("test@email.com");
-        test.setImageSrc("test img src");
-        test.setTotalReviews("test total reviews");
+        original.setHostName("original name");
+        original.setSuperHost(false);
+        original.setVerified(false);
+        original.setResponseTime("original response time");
+        original.setResponseRate(200.00);
+        original.setJoinDate("May 2020");
+        original.setEmail("original@email.com");
+        original.setImageSrc("original img src");
+        original.setTotalReviews("original total reviews");
 
+        Host updateHost = new Host();
 
-        Host newHost = new Host();
+        updateHost.setHostName("new name");
+        updateHost.setSuperHost(true);
+        updateHost.setVerified(true);
+        updateHost.setResponseTime("new response time");
+        updateHost.setResponseRate(100.00);
+        updateHost.setJoinDate("May 2020");
+        updateHost.setEmail("new@email.com");
+        updateHost.setImageSrc("new img src");
+        updateHost.setTotalReviews("new total reviews");
 
-        newHost.setHostName("test name");
-        newHost.setSuperHost(true);
-        newHost.setVerified(true);
-        newHost.setResponseTime("test response time");
-        newHost.setResponseRate(100.00);
-        newHost.setJoinDate("May 2020");
-        newHost.setEmail("test@email.com");
-        newHost.setImageSrc("test img src");
-        newHost.setTotalReviews("test total reviews");
 
         try {
-            service.create(test);
-            service.update(newHost);
-        } catch (InvalidHostIDException | NullHostIDException e) {
+            service.create(original);
+            updateHost.setHostID(original.getHostID());
+            service.update(updateHost);
+            original = service.show(original.getHostID());
+        } catch (NullHostIDException | InvalidHostIDException e) {
             fail();
         }
+
+
+        assertEquals("new name", original.getHostName());
+        assertTrue(original.isSuperHost());
+        assertTrue(original.isVerified());
+        assertEquals("new response time", original.getResponseTime());
+        assertEquals(100.00, original.getResponseRate());
+        assertEquals("May 2020", original.getJoinDate());
+        assertEquals("new@email.com", original.getEmail());
+        assertEquals("new img src", original.getImageSrc());
+        assertEquals("new total reviews", original.getTotalReviews());
 
     }
 
@@ -235,7 +248,7 @@ public class HostServiceImplTests {
 
     }
 
-    
+
 
 
 }
