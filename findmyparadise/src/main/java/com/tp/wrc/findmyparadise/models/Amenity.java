@@ -21,7 +21,7 @@ public class Amenity implements Serializable {
     @Column(name = "amenity_category", nullable = false)
     private String category;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "amenities")
     private Set<Listing> listings;
 
     //CONSTRUCTORS
