@@ -1,11 +1,14 @@
 package com.tp.wrc.findmyparadise.controllers;
 
 
+import com.tp.wrc.findmyparadise.exceptions.InvalidListingIDException;
 import com.tp.wrc.findmyparadise.exceptions.InvalidReservationIdException;
 
 import com.tp.wrc.findmyparadise.exceptions.NullReservationIdException;
+import com.tp.wrc.findmyparadise.models.Listing;
 import com.tp.wrc.findmyparadise.models.Reservation;
 import com.tp.wrc.findmyparadise.services.ReservationService;
+import com.tp.wrc.findmyparadise.services.ReservationServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.http.ResponseEntity;
@@ -20,7 +23,7 @@ import org.springframework.web.bind.annotation.*;
 public class ReservationController {
 
     @Autowired
-    ReservationService service;
+    ReservationServiceImp service;
 
     @GetMapping("/reservations")
     public ResponseEntity getAllReservations() {
@@ -37,6 +40,15 @@ public class ReservationController {
         try {
             return ResponseEntity.ok(service.getReservationById(reservationId));
         } catch (NullReservationIdException | InvalidReservationIdException ex) {
+            return ResponseEntity.badRequest().body(ex.getMessage());
+        }
+    }
+
+    @GetMapping("/reservations/{listing}")
+    public ResponseEntity getReservationByListing(@PathVariable Listing listing) {
+        try {
+            return ResponseEntity.ok(service.getReservationsByListing(listing));
+        } catch (InvalidListingIDException ex){
             return ResponseEntity.badRequest().body(ex.getMessage());
         }
     }
@@ -67,9 +79,9 @@ public class ReservationController {
 
             try {
                 if (service.deleteReservation(reservationId)) {
-                    toReturn = "Event " + reservationId + " deleted";
+                    toReturn = "Reservation " + reservationId + " deleted";
                 } else {
-                    toReturn = "Event " + reservationId + " not found";
+                    toReturn = "Reservation " + reservationId + " not found";
                 }
             } catch (InvalidReservationIdException | NullReservationIdException ex) {
                 ex.getMessage();
