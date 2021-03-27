@@ -19,6 +19,7 @@
       </div>
     </header>
     <body>
+      
       <Calendar />
       <h5>Guests</h5>
       <select>
@@ -35,22 +36,23 @@
         "
       ></span>
       <button class="btn" @click="OnClick()">Reserve</button>
+      
       <p>You won't be charged yet</p>
 
       <div class="popup" @click="CleaningFeepopup()">
         <u>Cleaning Fee</u> <span> ${{dataObject.cleaningFee}}</span>
-        <span class="popuptext" id="CleaningFeepopup"
-          >The service fee, which the host has decided to pay, helps us run our
-          platform and offer services like 24/7 support on your trip.</span
-        >
+        <span class="popuptext" id="CleaningFeepopup">
+          One-time fee charged by host to cover the cost of cleaning their
+          space.</span>
+        
       </div>
       <br />
       <div class="popup" @click="ServiceFeepopup()">
         <u>Service Fee</u><span> ${{dataObject.serviceFee}}</span>
-        <span class="popuptext" id="ServiceFeepopup"
-          >One-time fee charged by host to cover the cost of cleaning their
-          space.</span
-        >
+           <span class="popuptext" id="ServiceFeepopup"
+          >The service fee, which the host has decided to pay, helps us run our
+          platform and offer services like 24/7 support on your trip.</span>
+      
       </div>
       <br />
       <div><u>Occupancy taxes and fees</u> <span> ${{dataObject.occupancyFee}} </span>

@@ -1,8 +1,8 @@
 package com.tp.wrc.findmyparadise.controllers;
 
-import com.tp.wrc.findmyparadise.exceptions.InvalidHostIDException;
+
 import com.tp.wrc.findmyparadise.exceptions.InvalidReservationIdException;
-import com.tp.wrc.findmyparadise.exceptions.NullHostIDException;
+
 import com.tp.wrc.findmyparadise.exceptions.NullReservationIdException;
 import com.tp.wrc.findmyparadise.models.Reservation;
 import com.tp.wrc.findmyparadise.services.ReservationService;
@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 
 
 
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
