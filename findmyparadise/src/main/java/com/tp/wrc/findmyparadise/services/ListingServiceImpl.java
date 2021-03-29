@@ -38,6 +38,8 @@ public class ListingServiceImpl implements ListingService {
         return repo.saveAndFlush(listing);
     }
 
+
+
     @Override
     public boolean destroy(Integer id) throws NullListingIDException {
         if (id == null) {

@@ -74,7 +74,7 @@ public class Listing {
     @Column (name ="listing_type")
     private String type;
 
-    @ManyToMany(cascade = {CascadeType.ALL})
+    @ManyToMany
     @JoinTable(
             name = "listing_amenities",
             joinColumns = @JoinColumn(name = "listing_id"),
