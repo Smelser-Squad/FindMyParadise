@@ -1,7 +1,9 @@
 package com.tp.wrc.findmyparadise.services;
 
 
+import com.tp.wrc.findmyparadise.exceptions.InvalidHostEmailException;
 import com.tp.wrc.findmyparadise.exceptions.InvalidHostIDException;
+import com.tp.wrc.findmyparadise.exceptions.InvalidHostNameException;
 import com.tp.wrc.findmyparadise.exceptions.NullHostIDException;
 import com.tp.wrc.findmyparadise.models.Host;
 import com.tp.wrc.findmyparadise.repositories.HostRepository;
@@ -39,7 +41,24 @@ public class HostServiceImpl implements HostService {
     }
 
     @Override
-    public Host create(Host newHost) throws InvalidHostIDException, NullHostIDException {
+    public Host create(Host newHost) throws InvalidHostIDException, NullHostIDException, InvalidHostEmailException, InvalidHostNameException {
+
+        if(
+                !(newHost.getEmail().contains("@")) ||
+                !(newHost.getEmail().contains(".com")) &&
+                !(newHost.getEmail().contains(".net")) &&
+                !(newHost.getEmail().contains(".gov")) &&
+                !(newHost.getEmail().contains(".biz")) &&
+                !(newHost.getEmail().contains(".org"))
+        ){
+            throw new InvalidHostEmailException("invalid email entered");
+        }
+            //using regular expression to make sure host's name doesn't contain numbers or symbols.
+            //this specific regex uses the unicode property for letters to allow for names with umlauts and
+            //other special characters
+        if(!newHost.getHostName().matches("^\\pL+[\\pL\\pZ\\pP]{0,}")){
+            throw new InvalidHostNameException("invalid name entered");
+        }
         return hRepo.saveAndFlush(newHost);
     }
 
