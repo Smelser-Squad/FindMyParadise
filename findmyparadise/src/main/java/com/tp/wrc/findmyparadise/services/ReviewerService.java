@@ -10,11 +10,11 @@ public interface ReviewerService {
 
     List<Reviewer> getAllReviewers() throws InvalidReviewerIdException, NullReviewerIdException;
 
-    Reviewer show(Integer reviewerId) throws InvalidReviewerIdException, NullReviewerIdException;
+    Reviewer getReviewerById(Integer reviewerId) throws InvalidReviewerIdException, NullReviewerIdException;
 
-    Reviewer create(Reviewer newReviewer) throws InvalidReviewerIdException, NullReviewerIdException;
+    Reviewer createReviewer(Reviewer newReviewer) throws InvalidReviewerIdException, NullReviewerIdException;
 
-    Reviewer update(Reviewer newReviewer) throws InvalidReviewerIdException, NullReviewerIdException;
+    Reviewer updateReviewer(Reviewer newReviewer) throws InvalidReviewerIdException, NullReviewerIdException;
 
     boolean destroy(Integer reviewerId) throws InvalidReviewerIdException, NullReviewerIdException;
 }
