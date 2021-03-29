@@ -51,10 +51,9 @@ public class Review implements Serializable {
 
     }
 
-    public Review(Integer reviewId, Integer rating, Integer cleanlinessRating, Integer locationRating, Integer accuracyRating,
+    public Review(Integer rating, Integer cleanlinessRating, Integer locationRating, Integer accuracyRating,
                   Integer valueRating, Integer checkInRating, Integer communicationRating, String reviewText, Reviewer reviewer){
 
-        this.reviewId = reviewId;
         this.rating = rating;
         this.cleanlinessRating = cleanlinessRating;
         this.locationRating = locationRating;
