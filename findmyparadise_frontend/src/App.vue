@@ -12,10 +12,10 @@
     <div class="scrollContainer">
       <more-places></more-places>
     </div>
-    <div class="container">
+    <!-- <div class="container">
       <description></description>
-    </div>
-    <div> 
+    </div> -->
+    <div class="reviewContainer">
       <review> </review>
     </div>
   </div>
@@ -26,8 +26,8 @@ import MorePlaces from "./components/MorePlaces";
 import Reservation from "./components/Reservation";
 import Map from "./components/Map";
 import Calendar from "./components/Calendar.vue";
-import Description from "./components/Description";
-import Review from "./components/Review"; 
+// import Description from "./components/Description";
+import Review from "./components/Review";
 
 export default {
   name: "App",
@@ -36,8 +36,8 @@ export default {
     Map,
     Calendar,
     MorePlaces,
-    Description,
-    Review
+    // Description,
+    Review,
   },
 };
 </script>
@@ -101,5 +101,15 @@ body {
 }
 .datePicker {
   display: inline;
+}
+.reviewContainer {
+  max-width: 700px;
+  margin: 30px auto;
+  overflow: auto;
+  min-height: 300px;
+  border: 1px solid gray;
+  padding: 30px;
+  border-radius: 5px;
+  box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
 }
 </style>
