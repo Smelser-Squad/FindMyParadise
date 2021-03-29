@@ -9,7 +9,6 @@ import java.util.Set;
 @Entity
 
 @Table(name = "listing")
-@JsonIgnoreProperties(value = {"amenities"}, allowSetters = true)
 public class Listing {
     @Id
     @Column(name = "listing_id")
