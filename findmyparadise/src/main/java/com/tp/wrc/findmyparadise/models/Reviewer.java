@@ -38,7 +38,7 @@ public class Reviewer {
     public Reviewer() {
 
     }
-    public Reviewer(String name, String imageSrc, String description, LocalDate joinedDate){
+    public Reviewer(String imageSrc, String description, LocalDate joinedDate, String name){
         this.name = name;
         this.imageSrc = imageSrc;
         this.description = description;
