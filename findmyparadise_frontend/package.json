@@ -13,6 +13,7 @@
     "jquery": "^3.6.0",
     "smoothscroll-polyfill": "^0.4.4",
     "vue": "^3.0.7",
+    "vue-axios": "^3.2.4",
     "vue3-datepicker": "^0.2.4"
   },
   "devDependencies": {
