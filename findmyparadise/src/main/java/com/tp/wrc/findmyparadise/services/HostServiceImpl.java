@@ -53,8 +53,10 @@ public class HostServiceImpl implements HostService {
         ){
             throw new InvalidHostEmailException("invalid email entered");
         }
-            //using regular expression to make sure host's name doesn't contain numbers or symbols
-        if(!newHost.getHostName().matches("[A-Za-z]")){
+            //using regular expression to make sure host's name doesn't contain numbers or symbols.
+            //this specific regex uses the unicode property for letters to allow for names with umlauts and
+            //other special characters
+        if(!newHost.getHostName().matches("^\\pL+[\\pL\\pZ\\pP]{0,}")){
             throw new InvalidHostNameException("invalid name entered");
         }
         return hRepo.saveAndFlush(newHost);
