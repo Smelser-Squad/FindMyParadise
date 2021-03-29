@@ -22,7 +22,7 @@ public class ReviewerController {
     public ResponseEntity createReviewer(@RequestBody Reviewer newReviewer)
     {
         try {
-            return ResponseEntity.ok(service.create(newReviewer));
+            return ResponseEntity.ok(service.createReviewer(newReviewer));
         }
         catch (NullReviewerIdException | InvalidReviewerIdException ex)
         {
@@ -34,7 +34,7 @@ public class ReviewerController {
     public ResponseEntity getReviewerById(@PathVariable Integer reviewerId)
     {
         try {
-            return ResponseEntity.ok(service.show(reviewerId));
+            return ResponseEntity.ok(service.getReviewerById(reviewerId));
         }
         catch (NullReviewerIdException | InvalidReviewerIdException ex)
         {
@@ -60,7 +60,7 @@ public class ReviewerController {
 
     {
         try {
-            return ResponseEntity.ok(service.update(newReviewer));
+            return ResponseEntity.ok(service.updateReviewer(newReviewer));
         }
         catch (NullReviewerIdException | InvalidReviewerIdException ex)
         {
