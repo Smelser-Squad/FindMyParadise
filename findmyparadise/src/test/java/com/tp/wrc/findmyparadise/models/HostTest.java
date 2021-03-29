@@ -4,18 +4,24 @@ import com.tp.wrc.findmyparadise.exceptions.InvalidHostEmailException;
 import com.tp.wrc.findmyparadise.exceptions.InvalidHostIDException;
 import com.tp.wrc.findmyparadise.exceptions.InvalidHostNameException;
 import com.tp.wrc.findmyparadise.exceptions.NullHostIDException;
-import com.tp.wrc.findmyparadise.services.EventServiceImpl;
+import com.tp.wrc.findmyparadise.models.Event;
+import com.tp.wrc.findmyparadise.models.Host;
 import com.tp.wrc.findmyparadise.services.HostServiceImpl;
+import org.aspectj.lang.annotation.After;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
+import javax.persistence.EntityManager;
 import java.util.List;
 import java.util.NoSuchElementException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class HostTest {
+@SpringBootTest
+public class HostTest {
 
     @Autowired
     HostServiceImpl service;
@@ -106,10 +112,6 @@ class HostTest {
             assertEquals("sample@gmail.com", allHosts.get(1).getEmail());
             assertEquals("different test img src", allHosts.get(1).getImageSrc());
             assertEquals("different test total reviews", allHosts.get(1).getTotalReviews());
-
-            //21 because this runs after all the other tests have added to the list
-            //need to manually change if tests are added or deleted
-            assertEquals(21,allHosts.size());
         } catch (NullHostIDException | InvalidHostIDException e){
             fail();
         }
@@ -321,4 +323,5 @@ class HostTest {
         assertThrows(NullHostIDException.class, ()-> service.destroy(null));
 
     }
+
 }
