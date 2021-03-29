@@ -17,20 +17,20 @@
 
 <script>
 import axios from "axios";
-let listingID=1;
+let listingID = 1;
 
 //  let thisLocation= axios.get(`http://localhost:8080/api/listing/${listingID}`)
 //   .then(function (response) {
 //     // handle success
 //     console.log(response);
 //   })
-  // .catch(function (error) {
-  //   // handle error
-  //   console.log(error);
-  // })
-  // .then(function () {
-  //   // always executed
-  // });
+// .catch(function (error) {
+//   // handle error
+//   console.log(error);
+// })
+// .then(function () {
+//   // always executed
+// });
 
 //  thisLocation;
 
@@ -47,7 +47,7 @@ export default {
   },
   mounted() {
     axios.get(`http://localhost:8080/api/listing/${listingID}`).then((res) => {
-      this.dataObject = res.data
+      this.dataObject = res.data;
       console.log(res.data);
     });
   },
