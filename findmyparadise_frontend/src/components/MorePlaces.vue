@@ -7,7 +7,7 @@
         <div>
           <a target="_blank" href="">
             <div class="image-container">
-              <img :src="item.host.imageSrc" />
+              <img :src="item.imageSrc" />
               <div class="image-overlay">
                 <div>
                   <div class="superhost-container" v-if="item.host.superhost">
@@ -42,7 +42,7 @@
             </div>
 
             <div class="subtitle">
-              <div v-if="item.reviews">
+              <div v-if="item.reviews && item.reviews.length > 0">
                 <svg
                   viewBox="0 0 1000 1000"
                   role="presentation"

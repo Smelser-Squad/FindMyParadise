@@ -1,9 +1,12 @@
 <template>
-    <div id="description">
+    <div id="description" v-if="dataObject != {}">
         <h4>{{dataObject.name}}</h4>
-        <span v-if="dataObject.reviews != undefined">{{dataObject.reviews.length}} reviews - <u>{{dataObject.address}}</u></span>
-        <h5 v-if="dataObject.host != undefined">{{dataObject.type}} hosted by {{dataObject.host.hostName}}</h5>
-        <span>{{dataObject.maxGuests}} guests - {{dataObject.bedrooms}} bedrooms - {{dataObject.bathrooms}} bathrooms</span>
+        <p v-if="dataObject.reviews != undefined">{{dataObject.reviews.length}} reviews - <u>{{dataObject.address}}</u></p>
+        <hr />
+        <h5 style="display: inline" v-if="dataObject.host != undefined">{{dataObject.type}} hosted by {{dataObject.host.hostName}}</h5>
+        <img class="host_img" v-if="dataObject.host != undefined" :src="dataObject.host.imageSrc">
+        <p>{{dataObject.maxGuests}} guests - {{dataObject.bedrooms}} bedrooms - {{dataObject.bathrooms}} bathrooms</p>
+        <hr />
         <p>{{dataObject.description}}</p>
         <span @click="showEmail()"><u>Contact Host</u></span>
     </div>
@@ -37,5 +40,11 @@
 </script>
 
 <style scoped>
-
+    img {
+        height: 50px;
+        width: 50px;
+        border-radius: 50%;
+        display: inline;
+        float: right;
+    }
 </style>
