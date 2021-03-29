@@ -28,11 +28,11 @@ import Calendar from "./components/Calendar.vue";
 export default {
   name: "App",
   components: {
-    //Reservation,
+    // Reservation,
     Map,
     Calendar,
     MorePlaces,
-    //Description
+    // Description
   },
 };
 </script>

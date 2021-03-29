@@ -1,3 +1,4 @@
+
 <template>
   <div id="Calendar">
     <h1>Pick a Date Range</h1>
@@ -19,7 +20,10 @@
     <br/>
     <span>End Date: {{updateDate(date2)}}</span>
     <br/>
-    <button>Submit</button>
+    <button @click="numOfDays">Submit</button>
+    <br/>
+    <span>Number of days: </span>
+    <span>{{numOfDays()}}</span>
   </div>
 </template>
 
@@ -33,15 +37,22 @@ export default {
   },
   data() {
     return {
-      date1: "",
-      date2: "",
+      date1: '',
+      date2: '',
     };
   },
   methods: {
     updateDate(date) {
-      let date1sub = date.toString().substring(4,15)
-      return date1sub
+      let dateSub = date.toString().substring(4,15)
+      return dateSub
     },
+    numOfDays() {
+      let difference = new Date(this.date2).getTime() - new Date(this.date1).getTime()
+      let days = Math.ceil(difference/ (1000 * 3600 * 24))
+      console.log(days)
+      return days
+    }
   }
 };
 </script>
+
