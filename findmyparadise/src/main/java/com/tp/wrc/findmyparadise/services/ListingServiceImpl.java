@@ -1,6 +1,7 @@
 package com.tp.wrc.findmyparadise.services;
 
 import com.tp.wrc.findmyparadise.exceptions.*;
+import com.tp.wrc.findmyparadise.models.Host;
 import com.tp.wrc.findmyparadise.models.Listing;
 import com.tp.wrc.findmyparadise.repositories.ListingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +13,12 @@ import java.util.Optional;
 @Service
 public class ListingServiceImpl implements ListingService {
 
+
     @Autowired
     private ListingRepository repo;
+
+    @Autowired
+    HostServiceImpl service;
 
     @Override
     public List<Listing> index() {
@@ -27,7 +32,9 @@ public class ListingServiceImpl implements ListingService {
     }
 
     @Override
-    public Listing create(Listing listing) {
+    public Listing create(Listing listing, Integer hostID) throws InvalidHostIDException, NullHostIDException{
+        Host listHost = service.show(hostID);
+        listing.setHost(listHost);
         return repo.saveAndFlush(listing);
     }
 
@@ -78,3 +85,4 @@ public class ListingServiceImpl implements ListingService {
     }
 
 }
+

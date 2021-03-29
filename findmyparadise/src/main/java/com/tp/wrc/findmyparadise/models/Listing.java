@@ -1,5 +1,7 @@
 package com.tp.wrc.findmyparadise.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -7,6 +9,7 @@ import java.util.Set;
 @Entity
 
 @Table(name = "listing")
+@JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler", "amenities","reservations"}, allowSetters = true)
 public class Listing {
     @Id
     @Column(name = "listing_id")
@@ -55,6 +58,10 @@ public class Listing {
     @JoinColumn(name = "listing_id")
     private Set<Reservation> reservations;
 
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "listing_id")
+    private Set<Photo> photos;
+
     @Column(name= "bedroom_quantity")
     private Integer bedrooms;
 
@@ -67,12 +74,11 @@ public class Listing {
     @Column (name ="listing_type")
     private String type;
 
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "listings")
+    @ManyToMany
+    @JoinTable(
+            name = "listing_amenities",
+            joinColumns = @JoinColumn(name = "listing_id"),
+            inverseJoinColumns = @JoinColumn(name = "amenity_id"))
     private Set<Amenity> amenities;
 
     public Listing() {
@@ -206,7 +212,6 @@ public class Listing {
         this.beds = beds;
     }
 
-
     public Integer getBathrooms() {
         return bathrooms;
     }
@@ -219,11 +224,23 @@ public class Listing {
         return type;
     }
 
+    public void setType(String type) {
+        this.type = type;
+    }
+
     public Set<Amenity> getAmenities() {
         return amenities;
     }
 
     public void setAmenities(Set<Amenity> amenities) {
         this.amenities = amenities;
+    }
+
+    public Set<Photo> getPhotos() {
+        return photos;
+    }
+
+    public void setPhotos(Set<Photo> photos) {
+        this.photos = photos;
     }
 }
