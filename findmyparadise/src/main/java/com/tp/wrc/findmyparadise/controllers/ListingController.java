@@ -12,16 +12,25 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin(origins ="http://localhost:8081")
+
+@CrossOrigin(origins = "http://localhost:8081")
 
 public class ListingController {
 
     @Autowired
     ListingService service;
 
-    @PostMapping("/listing")
-    public ResponseEntity createListing(@RequestBody Listing newListing) {
-        return ResponseEntity.ok(service.create(newListing));
+    @PostMapping("/listing/host/{hostID}")
+    public ResponseEntity createListing(@RequestBody Listing newListing, @PathVariable Integer hostID) {
+        Listing listing = null;
+        try {
+            listing =  service.create(newListing, hostID);
+        }
+        catch (InvalidHostIDException | NullHostIDException e)
+        {
+            ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+        return ResponseEntity.ok(listing);
     }
 
     @GetMapping("/listing/{listingId}")
@@ -65,6 +74,22 @@ public class ListingController {
             return ResponseEntity.ok("Listing not deleted");
         }
     }
+
+    @GetMapping("/listings/name/{name}")
+    public ResponseEntity getListingByListingName(@PathVariable String name)
+    {
+        List<Listing> toReturn = null;
+        try
+        {
+            toReturn = service.findByNameIgnoreCase(name);
+        }
+        catch (NoListingFoundException | InvalidListingNameException e)
+        {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+        return ResponseEntity.ok(toReturn);
+    }
+
 
 
     @GetMapping("/listings/type/{type}")
