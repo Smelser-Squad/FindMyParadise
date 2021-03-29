@@ -1,9 +1,10 @@
-
 <template>
   <div id="Resrevation body">
     
     <header>
-      <h2><b>${{dataObject.price}}</b> / night</h2>
+      <h2>
+        <b>${{ dataObject.price }}</b> / night
+      </h2>
       <div>
         <svg
           viewBox="0 0 1000 1000"
@@ -42,22 +43,24 @@
       <p>You won't be charged yet</p>
 
       <div class="popup" @click="CleaningFeepopup()">
-        <u>Cleaning Fee</u> <span> ${{dataObject.cleaningFee}}</span>
-        <span class="popuptext" id="CleaningFeepopup">
-          One-time fee charged by host to cover the cost of cleaning their
-          space.</span>
-        
+        <u>Cleaning Fee</u> <span> ${{ dataObject.cleaningFee }}</span>
+        <span class="popuptext" id="CleaningFeepopup"
+          >The service fee, which the host has decided to pay, helps us run our
+          platform and offer services like 24/7 support on your trip.</span
+        >
       </div>
       <br />
       <div class="popup" @click="ServiceFeepopup()">
-        <u>Service Fee</u><span> ${{dataObject.serviceFee}}</span>
-           <span class="popuptext" id="ServiceFeepopup"
-          >The service fee, which the host has decided to pay, helps us run our
-          platform and offer services like 24/7 support on your trip.</span>
-      
+        <u>Service Fee</u><span> ${{ dataObject.serviceFee }}</span>
+        <span class="popuptext" id="ServiceFeepopup"
+          >One-time fee charged by host to cover the cost of cleaning their
+          space.</span
+        >
       </div>
       <br />
-      <div><u>Occupancy taxes and fees</u> <span> ${{dataObject.occupancyFee}} </span>
+      <div>
+        <u>Occupancy taxes and fees</u>
+        <span> ${{ dataObject.occupancyFee }} </span>
       </div>
 
       <hr />
@@ -69,13 +72,9 @@
 import Calendar from "./Calendar";
 import Guests from "./Guests";
 
+import axios from "axios";
 
-import axios from 'axios';
-
-
-
-
-let listingID=1;
+let listingID = 1;
 
 export default {
   name: "Reservation",
@@ -89,7 +88,7 @@ export default {
   },
   mounted() {
     axios.get(`http://localhost:8080/api/listing/${listingID}`).then((res) => {
-      this.dataObject = res.data
+      this.dataObject = res.data;
       console.log(res.data);
     
     });
@@ -97,7 +96,6 @@ export default {
 
   props: {
     title: String,
-  
   },
 
   components: {
