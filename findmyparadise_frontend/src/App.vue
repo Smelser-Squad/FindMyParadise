@@ -16,7 +16,7 @@
       <more-places></more-places>
     </div>
     <div class="container">
-      <description></description>
+      <description title="Description"></description>
     </div>
   </div>
 </template>
