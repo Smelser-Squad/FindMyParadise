@@ -9,7 +9,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "amenity")
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@JsonIgnoreProperties(value = {"listings"}, allowSetters = true)
 public class Amenity implements Serializable {
 
     //VARIABLES
