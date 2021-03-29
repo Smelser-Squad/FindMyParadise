@@ -11,7 +11,8 @@
 import { onMounted, ref } from "vue";
 import axios from "axios";
 
-let listingID = 2;
+let listingID = 1;
+
 
 export default {
   name: "Map",
@@ -49,7 +50,9 @@ export default {
           map.addControl(new tt.FullscreenControl());
           map.addControl(new tt.NavigationControl());
           addMarker(map);
+
         });
+
     });
     function addMarker(map) {
       const tt = window.tt;
@@ -73,11 +76,12 @@ export default {
           );
           marker.setPopup(popup).togglePopup();
         });
-    }
-    return {
+  }
+  });
+  return {
       mapRef,
     };
-  },
+   },
 };
 </script>
 <style>
