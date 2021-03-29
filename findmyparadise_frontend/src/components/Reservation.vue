@@ -82,8 +82,7 @@ export default {
     return {
   
       dataObject: {},
-        date1: '', 
-        date2: ''
+     
     };
   },
   mounted() {
