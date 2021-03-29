@@ -4,6 +4,9 @@
       <reservation title="Reservation"></reservation>
     </div>
     <div class="container">
+      <amenities title="Amenities"></amenities>
+    </div>
+    <div class="container">
       <calendar title="Calendar"></calendar>
     </div>
     <div class="container">
@@ -19,11 +22,12 @@
 </template>
 
 <script>
-import MorePlaces from "./components/MorePlaces.vue";
-import Reservation from "./components/Reservation.vue";
-import Map from "./components/Map.vue";
+import MorePlaces from "./components/MorePlaces";
+import Reservation from "./components/Reservation";
+import Map from "./components/Map";
 import Calendar from "./components/Calendar.vue";
 import Description from "./components/Description";
+import Amenities from "./components/Amenities.vue";
 
 export default {
   name: "App",
@@ -32,7 +36,8 @@ export default {
     Map,
     Calendar,
     MorePlaces,
-    Description
+    Description,
+    Amenities
   },
 };
 </script>
