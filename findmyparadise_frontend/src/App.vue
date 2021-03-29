@@ -22,6 +22,7 @@
 </template>
 
 <script>
+
 import MorePlaces from "./components/MorePlaces";
 import Reservation from "./components/Reservation";
 import Map from "./components/Map";
@@ -29,15 +30,18 @@ import Calendar from "./components/Calendar.vue";
 import Description from "./components/Description";
 import Amenities from "./components/Amenities.vue";
 
+
 export default {
   name: "App",
   components: {
-    Reservation,
+   // Reservation,
     Map,
     Calendar,
     MorePlaces,
+    Reservation
     Description,
     Amenities
+
   },
 };
 </script>
