@@ -1,7 +1,10 @@
 <template>
   <div id="AppBody">
     <div class="container">
-      <reservation title="Reservation"></reservation>
+      <!-- <reservation title="Reservation"></reservation> -->
+    </div>
+    <div class="container">
+      
     </div>
     <div class="container">
       <calendar title="Calendar"></calendar>
@@ -13,26 +16,27 @@
       <more-places></more-places>
     </div>
     <div class="container">
-      <description></description>
+      <!-- <description></description> -->
     </div>
   </div>
 </template>
 
 <script>
 import MorePlaces from "./components/MorePlaces";
-import Reservation from "./components/Reservation";
+//TODO UNCOMMENT THIS CODE IN THE FILE
+// import Reservation from "./components/Reservation";
 import Map from "./components/Map";
 import Calendar from "./components/Calendar.vue";
-import Description from "./components/Description";
+// import Description from "./components/Description";
 
 export default {
   name: "App",
   components: {
-    Reservation,
+    // Reservation,
     Map,
     Calendar,
-    MorePlaces,
-    Description
+    MorePlaces
+    // Description
   },
 };
 </script>
