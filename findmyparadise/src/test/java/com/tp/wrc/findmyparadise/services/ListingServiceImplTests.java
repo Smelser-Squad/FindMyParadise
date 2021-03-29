@@ -1,5 +1,6 @@
 package com.tp.wrc.findmyparadise.services;
 
+import com.tp.wrc.findmyparadise.exceptions.*;
 import com.tp.wrc.findmyparadise.models.Host;
 import com.tp.wrc.findmyparadise.models.Listing;
 import org.junit.jupiter.api.BeforeEach;
@@ -16,8 +17,107 @@ public class ListingServiceImplTests {
     @Autowired
     ListingServiceImpl test;
 
+
     public void setup()
     {
 
     }
+
+    @Test
+    public void createListingTest() {
+        Listing listing = new Listing();
+        listing.setListingID(1);
+        listing.setName("Listing 1");
+        listing.setAddress("123 Fake Address");
+        listing.setPrice(60.00);
+
+        try {
+            test.create(listing, 1);
+        }
+        catch (NullHostIDException | InvalidHostIDException | NullListingNameException | InvalidListingNameException | NullAddressException | InvalidAddressException | NullListingPriceException e)
+        {
+            fail();
+        }
+        assertEquals(listing.getListingID(),1);
+        assertEquals(listing.getHost().getHostID(),1);
+        assertEquals(listing.getName(),"Listing 1");
+        assertEquals(listing.getAddress(),"123 Fake Address");
+        assertEquals(listing.getPrice(),60.00);
+    }
+
+    @Test
+    public void createListingTestNullHostID()
+    {
+        Listing listing = new Listing();
+        listing.setListingID(1);
+        listing.setName("Listing 1");
+        listing.setAddress("123 Fake Address");
+        listing.setPrice(60.00);
+        assertThrows(NullHostIDException.class, () -> test.create(listing,null));
+    }
+
+    @Test
+    public void createListingTestNullListingName()
+    {
+        Listing listing = new Listing();
+        listing.setListingID(1);
+        listing.setName(null);
+        listing.setAddress("123 Fake Address");
+        listing.setPrice(60.00);
+        assertThrows(NullListingNameException.class, () -> test.create(listing,1));
+    }
+
+    @Test
+    public void createListingTestNullAddress()
+    {
+        Listing listing = new Listing();
+        listing.setListingID(1);
+        listing.setName("Listing 1");
+        listing.setAddress(null);
+        listing.setPrice(60.00);
+        assertThrows(NullAddressException.class,() -> test.create(listing,1));
+
+    }
+
+    @Test
+    public void createListingTestNullPrice()
+    {
+        Listing listing = new Listing();
+        listing.setListingID(1);
+        listing.setName("Listing 1");
+        listing.setAddress("123 Fake Address");
+        listing.setPrice(null);
+        assertThrows(NullListingPriceException.class, () -> test.create(listing,1));
+    }
+
+    @Test
+    public void getAllListingsTest()
+    {
+
+    }
+
+    @Test
+    public void getListingTest()
+    {
+
+    }
+
+    @Test
+    public void getListingByNameTest()
+    {
+
+    }
+
+    @Test
+    public void getListingByTypeTest()
+    {
+
+    }
+
+    @Test
+    public void getListingsByHostIDTest()
+    {
+
+    }
+
 }

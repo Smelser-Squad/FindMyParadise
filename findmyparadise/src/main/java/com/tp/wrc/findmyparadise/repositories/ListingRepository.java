@@ -10,18 +10,9 @@ import java.util.List;
 public interface ListingRepository extends JpaRepository<Listing, Integer> {
 
 
-
-
-//    Listing findByName(String name);
     List<Listing> findByNameIgnoreCase(String name);
-
-//    //find listing by host ID
-
-
+    //find listings by host ID
     List<Listing> findByHostHostID(Integer hostID);
-
-
-
     //find listing by price
     List<Listing> findByPrice(Double price);
     //find by type
