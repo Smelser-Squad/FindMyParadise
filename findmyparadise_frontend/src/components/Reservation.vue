@@ -72,7 +72,11 @@ import Guests from "./Guests";
 
 import axios from "axios";
 
-let listingID = 1;
+
+import axios from 'axios';
+
+let listingID=2;
+
 
 export default {
   name: "Reservation",
