@@ -4,7 +4,7 @@
       <!-- <reservation title="Reservation"></reservation> -->
     </div>
     <div class="container">
-
+      <amenities title="Amenities"></amenities>
     </div>
     <div class="container">
       <calendar title="Calendar"></calendar>
@@ -28,6 +28,7 @@ import MorePlaces from "./components/MorePlaces";
 import Map from "./components/Map";
 import Calendar from "./components/Calendar.vue";
 // import Description from "./components/Description";
+import Amenities from "./components/Amenities.vue";
 
 export default {
   name: "App",
@@ -35,8 +36,9 @@ export default {
     // Reservation,
     Map,
     Calendar,
-    MorePlaces
-    // Description
+    MorePlaces,
+    // Description,
+    Amenities
   },
 };
 </script>
