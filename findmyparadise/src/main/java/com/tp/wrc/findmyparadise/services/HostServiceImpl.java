@@ -44,16 +44,14 @@ public class HostServiceImpl implements HostService {
     }
 
     @Override
-    public Host update(Integer hostID, Host newHost) throws InvalidHostIDException, NullHostIDException {
-        Host hostToUpdate = hRepo.findById(hostID).get();
+    public Host update(Host newHost) throws InvalidHostIDException, NullHostIDException {
+        if(newHost.getHostID()==null)
+            throw new NullHostIDException("Host ID was null");
 
-        if(hostID==null){
-            throw new NullHostIDException("Null host id entered");
-        }
+        Host hostToUpdate = hRepo.findById(newHost.getHostID()).get();
 
         if (hostToUpdate != null) {
 
-            hostToUpdate.setHostID(hostID);
             hostToUpdate.setHostName(newHost.getHostName());
             hostToUpdate.setTotalReviews(newHost.getTotalReviews());
             hostToUpdate.setSuperHost(newHost.isSuperHost());
@@ -66,7 +64,7 @@ public class HostServiceImpl implements HostService {
 
             return hRepo.saveAndFlush(hostToUpdate);
         } else {
-            throw new InvalidHostIDException("a host with that ID doesn't exist");
+            throw new NullHostIDException("a host with that ID doesn't exist");
         }
     }
 

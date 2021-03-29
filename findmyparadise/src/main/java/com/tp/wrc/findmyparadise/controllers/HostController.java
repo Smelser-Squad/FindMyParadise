@@ -13,14 +13,14 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins="http://localhost:8081")
 public class HostController {
 
     @Autowired
     HostService service;
 
 
-    @PostMapping("/host/")
+    @PostMapping("/host")
     public ResponseEntity createHost(@RequestBody Host newHost)
     {
         try {
@@ -32,11 +32,11 @@ public class HostController {
         }
     }
 
-    @GetMapping("/host/{id}")
-    public ResponseEntity getHostByID(@PathVariable Integer hostID)
+    @GetMapping("/host/{hostId}")
+    public ResponseEntity getHostByID(@PathVariable Integer hostId)
     {
         try {
-            return ResponseEntity.ok(service.show(hostID));
+            return ResponseEntity.ok(service.show(hostId));
         }
         catch (NullHostIDException | InvalidHostIDException ex)
         {
@@ -44,7 +44,7 @@ public class HostController {
         }
     }
 
-    @GetMapping("/hosts/")
+    @GetMapping("/hosts")
     public ResponseEntity getHosts()
     {
         try {
@@ -56,11 +56,13 @@ public class HostController {
         }
     }
 
-    @PutMapping("/hosts/{id}")
-    public ResponseEntity editHostByID(@PathVariable Integer hostID, @RequestBody Host newHost)
+
+    @PutMapping("/updateHost/{hostId}")
+    public ResponseEntity editHostByID(@PathVariable Integer hostId, @RequestBody Host newHost)
     {
         try {
-            return ResponseEntity.ok(service.update(hostID, newHost));
+            return ResponseEntity.ok(service.update(newHost));
+
         }
         catch (NullHostIDException | InvalidHostIDException ex)
         {
@@ -68,16 +70,18 @@ public class HostController {
         }
     }
 
-    @DeleteMapping("/hosts/{id}")
-    public String deleteHostByID(@PathVariable Integer hostID)
+
+    @DeleteMapping("/deleteHost/{hostId}")
+    public String deleteHostByID(@PathVariable Integer hostId)
+
     {
         String toReturn = "";
 
         try {
-            if (service.destroy(hostID)) {
-                toReturn = "Event " + hostID + " deleted";
+            if (service.destroy(hostId)) {
+                toReturn = "Event " + hostId + " deleted";
             } else {
-                toReturn = "Event " + hostID + " not found";
+                toReturn = "Event " + hostId + " not found";
             }
         }
         catch (InvalidHostIDException | NullHostIDException ex)
@@ -89,7 +93,7 @@ public class HostController {
     }
 
 
-//    @PostMapping("/host/")
+//    @PostMapping("/host")
 //    public ResponseEntity createHost(@RequestBody Host newHost)
 //    {
 //

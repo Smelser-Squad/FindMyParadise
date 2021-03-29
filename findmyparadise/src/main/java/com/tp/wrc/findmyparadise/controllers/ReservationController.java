@@ -13,6 +13,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
+@CrossOrigin(origins ="http://localhost:8081")
 public class ReservationController {
     @Autowired
     ReservationRepository service;
@@ -31,19 +32,19 @@ public class ReservationController {
         }
         return new Reservation();
     }
-    @PostMapping("/reserve")
-    public Reservation addResveration(@RequestBody Reservation newReservation) {
+    @PostMapping("/reservation")
+    public Reservation addReservation(@RequestBody Reservation newReservation) {
         Reservation added = service.save(newReservation);
         return added;
     }
     @PutMapping("/update/reservation")
-    public Reservation updateReservation(@RequestBody Reservation updatereservation) {
-        Optional<Reservation> found = service.findById(updatereservation.getReservationId());
+    public Reservation updateReservation(@RequestBody Reservation newReservation) {
+        Optional<Reservation> found = service.findById(newReservation.getReservationId());
 
         if (found.isPresent()) {
-            return service.save(updatereservation);
+            return service.save(newReservation);
         }
-        return updatereservation;
+        return newReservation;
     }
     @DeleteMapping("/delete/reservation/{reservationId}")
     public String deleteReservation(@PathVariable Integer reservationId){

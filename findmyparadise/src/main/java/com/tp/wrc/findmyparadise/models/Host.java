@@ -15,7 +15,7 @@ public class Host implements Serializable {
     // VARIABLES
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "host_id")
     private Integer hostID; // PK NOT NULL
 
@@ -38,7 +38,7 @@ public class Host implements Serializable {
     private Double responseRate;
 
     @Column(name = "join_date", nullable = false)
-    private LocalDate joinDate;
+    private String joinDate;
 
     @Column(name = "email", nullable = false)
     private String email;
@@ -60,7 +60,7 @@ public class Host implements Serializable {
 
 
     public Host(Integer hostID, String hostName, String totalReviews, boolean superHost, boolean verified,
-                String responseTime, Double responseRate, LocalDate joinDate, String email, String imageSrc) {
+                String responseTime, Double responseRate, String joinDate, String email, String imageSrc) {
         this.hostID = hostID;
         this.hostName = hostName;
         this.totalReviews = totalReviews;
@@ -132,11 +132,11 @@ public class Host implements Serializable {
         this.responseRate = responseRate;
     }
 
-    public LocalDate getJoinDate() {
+    public String getJoinDate() {
         return joinDate;
     }
 
-    public void setJoinDate(LocalDate joinDate) {
+    public void setJoinDate(String joinDate) {
         this.joinDate = joinDate;
     }
 
@@ -155,5 +155,9 @@ public class Host implements Serializable {
     public void setImageSrc(String imageSrc) {
         this.imageSrc = imageSrc;
     }
+
+
+
+
 }
 

@@ -3,53 +3,105 @@ package com.tp.wrc.findmyparadise.controllers;
 
 import com.tp.wrc.findmyparadise.exceptions.InvalidEventIdException;
 import com.tp.wrc.findmyparadise.exceptions.NullEventIdException;
+import com.tp.wrc.findmyparadise.models.Amenity;
 import com.tp.wrc.findmyparadise.models.Event;
 import com.tp.wrc.findmyparadise.services.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("api")
-@CrossOrigin(origins = "http://localhost:4200")
+@RequestMapping("/api")
+@CrossOrigin(origins ="http://localhost:8081")
 public class EventController {
     @Autowired
     EventService service;
 
     //Adds a new event to the database by the given event model.
-    @PostMapping("/events/")
-    public Event createEvent(@RequestBody Event event) {
-        return service.create(event);
+    @PostMapping("/event")
+    public ResponseEntity createEvent(@RequestBody Event event) {
+
+        Event toReturn;
+        try {
+            toReturn = service.create(event);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+
+        return ResponseEntity.ok(toReturn);
     }
 
     //Retrieves an event from the database by the given id.
-    @GetMapping("/events/{id}")
-    public Event getEventById(@PathVariable Integer id) throws InvalidEventIdException, NullEventIdException {
-        return service.show(id);
+    @GetMapping("/event/{eventId}")
+    public ResponseEntity getEventById(@PathVariable Integer eventId) throws InvalidEventIdException, NullEventIdException {
+        Event toReturn;
+        try {
+            toReturn = service.show(eventId);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+
+        return ResponseEntity.ok(toReturn);
+
     }
 
     //Retrieves a list of all Events in the database.
-    @GetMapping("/events/")
-    public List<Event> getEvents() {
-        return service.index();
+    @GetMapping("/events")
+    public ResponseEntity getEvents() {
+
+        List<Event> toReturn;
+        try {
+            toReturn = service.index();
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+
+        return ResponseEntity.ok(toReturn);
+    }
+
+    //Retrieves a list of events by the given category
+    @GetMapping("/events/{category}")
+    public ResponseEntity findEventsByCategory(@PathVariable String category) {
+        List<Event> toReturn;
+        try {
+            toReturn = service.findByCategory(category);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+
+        return ResponseEntity.ok(toReturn);
     }
 
     //Edits an existing Event in the database by replacing its attributes with the
     //attributes of the given Event model.
-    @PutMapping("/events/{id}")
-    public Event editEvent(@PathVariable Integer id, @RequestBody Event event) throws InvalidEventIdException {
-        return service.update(event, id);
+    @PutMapping("/event")
+    public ResponseEntity updateEvent(@RequestBody Event event) throws InvalidEventIdException {
+        try {
+            service.update(event);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+
+        return ResponseEntity.ok(event);
     }
 
     //Deletes an existing Event from the database.
-    @DeleteMapping("/events/{id}")
-    public String deleteEvent(@PathVariable Integer id) throws NullEventIdException, InvalidEventIdException {
-        if (service.destroy(id)) {
-            return "Event " + id + " deleted";
-        } else {
-            return "Event " + id + " not found";
+    @DeleteMapping("/deleteEvent/{eventId}")
+    public String deleteEvent(@PathVariable Integer eventId) throws NullEventIdException, InvalidEventIdException {
+        try {
+            if (eventId == null)
+                return "Event not deleted. Null passed for ID.";
+            if (service.destroy(eventId))
+                return "Event " + eventId + " successfully deleted.";
+            else
+                return "Event " + eventId + " does not exist.";
+        } catch (Exception e) {
+            return e.getMessage();
         }
+
     }
 
 }

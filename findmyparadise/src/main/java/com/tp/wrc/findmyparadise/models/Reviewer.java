@@ -1,15 +1,19 @@
 package com.tp.wrc.findmyparadise.models;
 
+import org.apache.tomcat.jni.Local;
+
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Entity
-@Table(name = "reviewers")
+@Table(name = "reviewer")
 public class Reviewer {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "reviewer_id")
     private Integer reviewerId;
 
@@ -19,8 +23,28 @@ public class Reviewer {
     @Column(name = "image_src")
     private String imageSrc;
 
+    @Column(name = "rating_description")
+    private String description;
 
-    List<Review> review = new ArrayList<>();
+    @Column(name = "joined_date")
+    private LocalDate joinedDate;
+
+//    @OneToMany(mappedBy = "reviewer")
+//    private Set<Review> reviews;
+//    public Reviewer(){
+//
+//    }
+
+    public Reviewer() {
+
+    }
+    public Reviewer(String name, String imageSrc, String description, LocalDate joinedDate){
+        this.name = name;
+        this.imageSrc = imageSrc;
+        this.description = description;
+        this.joinedDate = joinedDate;
+
+    }
 
     public Integer getReviewerId() {
         return reviewerId;
@@ -46,11 +70,27 @@ public class Reviewer {
         this.imageSrc = imageSrc;
     }
 
-    public List<Review> getReview() {
-        return review;
+//    public Set<Review> getReviews() {
+//        return reviews;
+//    }
+//
+//    public void setReviews(Set<Review> reviews) {
+//        this.reviews = reviews;
+//    }
+
+    public String getDescription() {
+        return description;
     }
 
-    public void setReview(List<Review> review) {
-        this.review = review;
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public LocalDate getJoinedDate() {
+        return joinedDate;
+    }
+
+    public void setJoinedDate(LocalDate joinedDate) {
+        this.joinedDate = joinedDate;
     }
 }

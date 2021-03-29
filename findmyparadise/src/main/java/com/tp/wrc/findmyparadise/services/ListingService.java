@@ -1,16 +1,20 @@
 package com.tp.wrc.findmyparadise.services;
 
-import com.tp.wrc.findmyparadise.exceptions.NoListingFoundException;
+import com.tp.wrc.findmyparadise.exceptions.*;
 import com.tp.wrc.findmyparadise.models.Listing;
 
 import java.util.List;
 
 public interface ListingService {
-    public List<Listing> index();
 
-    public Listing show(int id) throws NoListingFoundException;
+     List<Listing> index();
+     Listing show(Integer id) throws NoListingFoundException;
+     Listing create(Listing listing, Integer hostID) throws InvalidHostIDException, NullHostIDException;
+     boolean destroy(Integer id) throws NullListingIDException;
+     Listing update(Integer id, Listing newListing) throws NullListingIDException, NoListingFoundException;
+     List<Listing> findByNameIgnoreCase(String listingName) throws NoListingFoundException, InvalidListingNameException;
+     List<Listing> findByHostID(Integer hostID) throws NullHostIDException, InvalidHostIDException;
+     List<Listing> findByPrice(Double price) throws NoListingFoundException;
+     List<Listing> findByType(String type) throws NoListingFoundException;
 
-    public Listing create(Listing listing);
-
-    public boolean destroy(int id);
 }

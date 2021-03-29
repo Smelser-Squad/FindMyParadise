@@ -2,6 +2,8 @@ package com.tp.wrc.findmyparadise.models;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "amenity")
@@ -9,7 +11,7 @@ public class Amenity implements Serializable {
 
     //VARIABLES
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "amenity_id")
     private Integer amenityId;
 
@@ -17,15 +19,18 @@ public class Amenity implements Serializable {
     private String amenityName;
 
     @Column(name = "amenity_category", nullable = false)
-    private String amenityCategory;
+    private String category;
+
+    @ManyToMany(mappedBy = "amenities")
+    private Set<Listing> listings;
 
     //CONSTRUCTORS
-    public Amenity(){};
+    public Amenity(){}
 
     public Amenity(Integer amenityId, String amenityName, String amenityCategory) {
         this.amenityId = amenityId;
         this.amenityName = amenityName;
-        this.amenityCategory = amenityCategory;
+        this.category = amenityCategory;
     }
 
     //GETTERS & SETTERS
@@ -46,11 +51,11 @@ public class Amenity implements Serializable {
     }
 
     public String getAmenityCategory() {
-        return amenityCategory;
+        return category;
     }
 
     public void setAmenityCategory(String amenityCategory) {
-        this.amenityCategory = amenityCategory;
+        this.category = amenityCategory;
     }
 
 }

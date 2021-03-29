@@ -1,88 +1,20 @@
 package com.tp.wrc.findmyparadise.models;
 
+import com.tp.wrc.findmyparadise.services.EventServiceImpl;
+import com.tp.wrc.findmyparadise.services.HostServiceImpl;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class HostTest {
 
-    @Test
-    void getHostID() {
-    }
+    @Autowired
+    HostServiceImpl toTest;
 
-    @Test
-    void setHostID() {
-    }
+    @BeforeEach
+    public void setup(){
 
-    @Test
-    void getHostName() {
-    }
-
-    @Test
-    void setHostName() {
-    }
-
-    @Test
-    void getTotalReviews() {
-    }
-
-    @Test
-    void setTotalReviews() {
-    }
-
-    @Test
-    void isSuperHost() {
-    }
-
-    @Test
-    void setSuperHost() {
-    }
-
-    @Test
-    void isVerified() {
-    }
-
-    @Test
-    void setVerified() {
-    }
-
-    @Test
-    void getResponseTime() {
-    }
-
-    @Test
-    void setResponseTime() {
-    }
-
-    @Test
-    void getResponseRate() {
-    }
-
-    @Test
-    void setResponseRate() {
-    }
-
-    @Test
-    void getJoinDate() {
-    }
-
-    @Test
-    void setJoinDate() {
-    }
-
-    @Test
-    void getEmail() {
-    }
-
-    @Test
-    void setEmail() {
-    }
-
-    @Test
-    void getImageSrc() {
-    }
-
-    @Test
-    void setImageSrc() {
     }
 }

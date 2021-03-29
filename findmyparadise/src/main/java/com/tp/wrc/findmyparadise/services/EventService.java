@@ -11,11 +11,11 @@ public interface EventService {
 
     public Event show(int id);
 
-    public Event findByCategory(String category);
+    public List<Event> findByCategory(String category);
 
     public Event create(Event event);
 
-    public Event update(Event event, int id);
+    public Event update(Event event);
 
     public boolean destroy(int id);
 }
