@@ -1,19 +1,17 @@
 package com.tp.wrc.findmyparadise.controllers;
-import com.tp.wrc.findmyparadise.exceptions.InvalidHostIDException;
-import com.tp.wrc.findmyparadise.exceptions.NullHostIDException;
 import com.tp.wrc.findmyparadise.models.Photo;
-import com.tp.wrc.findmyparadise.services.PhotoGalleryService;
+import com.tp.wrc.findmyparadise.services.PhotoGalleryServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin
+@CrossOrigin(origins ="http://localhost:8081")
 public class PhotoGalleryController {
 
     @Autowired
-    PhotoGalleryService service;
+    PhotoGalleryServiceImpl service;
 
     @GetMapping("/gallery/{id}")
     public ResponseEntity getById(@PathVariable Integer id)
@@ -39,17 +37,19 @@ public class PhotoGalleryController {
         }
     }
 
-    @GetMapping("/gallery/listing/{listingId}/category/{categoryId}")
-    public ResponseEntity getByIds(@PathVariable Integer listingId, Integer categoryId)
-    {
-        try {
-            return ResponseEntity.ok(service.getByListingAndCategory(listingId, categoryId));
-        }
-        catch (Exception ex)
-        {
-            return ResponseEntity.badRequest().body(ex.getMessage());
-        }
-    }
+
+    //may not be necessary
+//    @GetMapping("/gallery/listing/{listingId}/category/{categoryId}")
+//    public ResponseEntity getByIds(@PathVariable Integer listingId, Integer categoryId)
+//    {
+//        try {
+//            return ResponseEntity.ok(service.getByListingAndCategory(listingId, categoryId));
+//        }
+//        catch (Exception ex)
+//        {
+//            return ResponseEntity.badRequest().body(ex.getMessage());
+//        }
+//    }
 
     @PostMapping("/gallery/addImage")
     public ResponseEntity AddImage(@RequestBody Photo toAdd)

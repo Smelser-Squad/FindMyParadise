@@ -1,17 +1,24 @@
 package com.tp.wrc.findmyparadise.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+
 @Table(name = "listing")
+
+@JsonIgnoreProperties(value = {"amenities","reservations"}, allowSetters = true)
+
 public class Listing {
     @Id
     @Column(name = "listing_id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer listingID;
 
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     private String name;
 
     @Column(name = "latitude")
@@ -20,17 +27,17 @@ public class Listing {
     @Column(name = "longitude")
     private Double longitude;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "host_id", nullable = false)
     private Host host;
 
-    @Column(name = "address")
+    @Column(name = "address", nullable = false)
     private String address;
 
     @Column(name = "description")
     private String description;
 
-    @Column(name = "price")
+    @Column(name = "price", nullable = false)
     private Double price;
 
     @Column(name = "max_guests")
@@ -52,6 +59,29 @@ public class Listing {
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "listing_id")
     private Set<Reservation> reservations;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "listing_id")
+    private Set<Photo> photos;
+
+    @Column(name= "bedroom_quantity")
+    private Integer bedrooms;
+
+    @Column(name= "beds_quantity")
+    private Integer beds;
+
+    @Column(name= "bathroom_quantity")
+    private Integer bathrooms;
+
+    @Column (name ="listing_type")
+    private String type;
+
+    @ManyToMany
+    @JoinTable(
+            name = "listing_amenities",
+            joinColumns = @JoinColumn(name = "listing_id"),
+            inverseJoinColumns = @JoinColumn(name = "amenity_id"))
+    private Set<Amenity> amenities;
 
     public Listing() {
 
@@ -166,5 +196,53 @@ public class Listing {
 
     public void setReservations(Set<Reservation> reservations) {
         this.reservations = reservations;
+    }
+
+    public Integer getBedrooms() {
+        return bedrooms;
+    }
+
+    public void setBedrooms(Integer bedrooms) {
+        this.bedrooms = bedrooms;
+    }
+
+    public Integer getBeds() {
+        return beds;
+    }
+
+    public void setBeds(Integer beds) {
+        this.beds = beds;
+    }
+
+    public Integer getBathrooms() {
+        return bathrooms;
+    }
+
+    public void setBathrooms(Integer bathrooms) {
+        this.bathrooms = bathrooms;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public Set<Amenity> getAmenities() {
+        return amenities;
+    }
+
+    public void setAmenities(Set<Amenity> amenities) {
+        this.amenities = amenities;
+    }
+
+    public Set<Photo> getPhotos() {
+        return photos;
+    }
+
+    public void setPhotos(Set<Photo> photos) {
+        this.photos = photos;
     }
 }

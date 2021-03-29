@@ -1,16 +1,13 @@
+# Find My Paradise
 
-change line 1
-change line 2
-
-change line 4
-
-thathathatahthat
-
-
-thsergkeaorgnaegkrnaklergnlake
+## Tech Stack
+  -Spring Boot API
+  -JPA
+  -Java
+  -MySQL
+  -Vue
 
 
-aerglkanelrgknaeklrgnale
 
 
 

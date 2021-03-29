@@ -1,6 +1,8 @@
 package com.tp.wrc.findmyparadise.models;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -10,58 +12,48 @@ import java.time.LocalDate;
 public class Review implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "review_id")
     private Integer reviewId;
-
-    @Column(name = "listing_id")
-    private Integer listingID;
-
-    @Column(name = "reviewer_id")
-    private Integer reviewerId;
 
     @Column(name = "rating")
     private Integer rating;
 
-    @Column(name = "cleanlinessRating")
+    @Column(name = "cleanliness_rating")
     private Integer cleanlinessRating;
 
-    @Column(name = "locationRating")
+    @Column(name = "location_rating")
     private Integer locationRating;
 
-    @Column(name = "accuracyRating")
+    @Column(name = "accuracy_rating")
     private Integer accuracyRating;
 
-    @Column(name = "valueRating")
+    @Column(name = "value_rating")
     private Integer valueRating;
 
-    @Column(name = "checkInRating")
+    @Column(name = "check_in_rating")
     private Integer checkInRating;
 
-    @Column(name = "communicationRating")
+    @Column(name = "communication_rating")
     private Integer communicationRating;
 
-    @Column(name = "reviewText")
+    @Column(name = "review_text")
     private String reviewText;
 
-    @Column(name = "joinedDate")
-    private LocalDate joinedDate;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "fk_reviewer", referencedColumnName = "reviewer_id")
+
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+
+    @JoinColumn(name = "reviewer_id", nullable = false)
     private Reviewer reviewer;
-
-
-
 
     public Review(){
 
     }
 
-    public Review(Integer reviewId, Integer rating, Integer cleanlinessRating, Integer locationRating, Integer accuracyRating,
-                  Integer valueRating, Integer checkInRating, Integer communicationRating, String reviewText, LocalDate joinedDate, Reviewer reviewer){
+    public Review(Integer rating, Integer cleanlinessRating, Integer locationRating, Integer accuracyRating,
+                  Integer valueRating, Integer checkInRating, Integer communicationRating, String reviewText, Reviewer reviewer){
 
-        this.reviewId = reviewId;
         this.rating = rating;
         this.cleanlinessRating = cleanlinessRating;
         this.locationRating = locationRating;
@@ -81,13 +73,7 @@ public class Review implements Serializable {
         this.reviewId = reviewId;
     }
 
-    public Integer getReviewerId() {
-        return reviewerId;
-    }
 
-    public void setReviewerId(Integer reviewerId) {
-        this.reviewerId = reviewerId;
-    }
 
     public Integer getRating() {
         return rating;
@@ -153,13 +139,7 @@ public class Review implements Serializable {
         this.reviewText = reviewText;
     }
 
-    public LocalDate getJoinedDate() {
-        return joinedDate;
-    }
 
-    public void setJoinedDate(LocalDate joinedDate) {
-        this.joinedDate = joinedDate;
-    }
 
     public Reviewer getReviewer() {
         return reviewer;
