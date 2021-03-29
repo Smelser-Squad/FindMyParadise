@@ -1,6 +1,6 @@
 <template>
     <div id="description">
-        <h4>{{dataObject.type}} hosted by {{dataObject.host.hostName}}</h4>
+        <!-- <h4>{{dataObject.type}} hosted by {{dataObject.host.hostName}}</h4> -->
     </div>
 </template>
 
