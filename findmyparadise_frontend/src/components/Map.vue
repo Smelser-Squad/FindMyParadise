@@ -7,7 +7,30 @@
 import { onMounted, ref } from "vue";
 import axios from "axios";
 
+
 let listingID = 2;
+
+
+
+//  let thisLocation= axios.get(`http://localhost:8080/api/listing/${listingID}`)
+//   .then(function (response) {
+//     // handle success
+//     console.log(response);
+//   })
+// .catch(function (error) {
+//   // handle error
+//   console.log(error);
+// })
+// .then(function () {
+//   // always executed
+// });
+
+//  thisLocation;
+
+// let locLatitude = thisLocation[0].latitude;
+
+// let locLongitude = thisLocation[0].longitude;
+
 
 export default {
   name: "Map",
@@ -16,6 +39,7 @@ export default {
       dataObject: {},
     };
   },
+
   setup() {
     const mapRef = ref(null);
     onMounted(() => {
@@ -35,6 +59,12 @@ export default {
           map.addControl(new tt.NavigationControl());
           addMarker(map);
         });
+
+  mounted() {
+    axios.get(`http://localhost:8080/api/listing/${listingID}`).then((res) => {
+      this.dataObject = res.data;
+      console.log(res.data);
+
     });
     function addMarker(map) {
       const tt = window.tt;

@@ -1,5 +1,7 @@
 package com.tp.wrc.findmyparadise.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -7,6 +9,7 @@ import java.util.Set;
 @Entity
 
 @Table(name = "listing")
+@JsonIgnoreProperties(value = {"amenities"}, allowSetters = true)
 public class Listing {
     @Id
     @Column(name = "listing_id")

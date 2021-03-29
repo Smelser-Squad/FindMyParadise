@@ -12,6 +12,9 @@
     <div class="scrollContainer">
       <more-places></more-places>
     </div>
+    <div class="container">
+      <description title="Description"></description>
+    </div>
   </div>
 </template>
 
@@ -20,6 +23,7 @@ import MorePlaces from "./components/MorePlaces.vue";
 import Reservation from "./components/Reservation.vue";
 import Map from "./components/Map.vue";
 import Calendar from "./components/Calendar.vue";
+import Description from "./components/Description";
 
 export default {
   name: "App",
@@ -28,13 +32,12 @@ export default {
     Map,
     Calendar,
     MorePlaces,
+    Description
   },
 };
 </script>
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap");
-
-
 
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
