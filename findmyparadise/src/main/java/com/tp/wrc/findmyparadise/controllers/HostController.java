@@ -2,7 +2,9 @@ package com.tp.wrc.findmyparadise.controllers;
 
 
 
+import com.tp.wrc.findmyparadise.exceptions.InvalidHostEmailException;
 import com.tp.wrc.findmyparadise.exceptions.InvalidHostIDException;
+import com.tp.wrc.findmyparadise.exceptions.InvalidHostNameException;
 import com.tp.wrc.findmyparadise.exceptions.NullHostIDException;
 
 import com.tp.wrc.findmyparadise.models.Host;
@@ -26,7 +28,7 @@ public class HostController {
         try {
             return ResponseEntity.ok(service.create(newHost));
         }
-        catch (NullHostIDException | InvalidHostIDException ex)
+        catch (NullHostIDException | InvalidHostIDException | InvalidHostEmailException | InvalidHostNameException ex)
         {
             return ResponseEntity.badRequest().body(ex.getMessage());
         }

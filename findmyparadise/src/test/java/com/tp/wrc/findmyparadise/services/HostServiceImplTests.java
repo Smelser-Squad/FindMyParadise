@@ -1,6 +1,8 @@
 package com.tp.wrc.findmyparadise.services;
 
+import com.tp.wrc.findmyparadise.exceptions.InvalidHostEmailException;
 import com.tp.wrc.findmyparadise.exceptions.InvalidHostIDException;
+import com.tp.wrc.findmyparadise.exceptions.InvalidHostNameException;
 import com.tp.wrc.findmyparadise.exceptions.NullHostIDException;
 import com.tp.wrc.findmyparadise.models.Event;
 import com.tp.wrc.findmyparadise.models.Host;
@@ -47,7 +49,7 @@ public class HostServiceImplTests {
             test2.setImageSrc("different test img src");
             test2.setTotalReviews("different test total reviews");
             service.create(test2);
-        } catch (NullHostIDException | InvalidHostIDException e){
+        } catch (NullHostIDException | InvalidHostIDException | InvalidHostEmailException | InvalidHostNameException e){
             fail();
         }
     }
@@ -161,7 +163,7 @@ public class HostServiceImplTests {
             retrieved = service.show(test.getHostID());
 
 
-        } catch (NullHostIDException | InvalidHostIDException e){
+        } catch (NullHostIDException | InvalidHostIDException | InvalidHostEmailException | InvalidHostNameException e){
             System.out.print(e.getMessage());
             fail();
         }
@@ -210,7 +212,7 @@ public class HostServiceImplTests {
             updateHost.setHostID(original.getHostID());
             service.update(updateHost);
             original = service.show(original.getHostID());
-        } catch (NullHostIDException | InvalidHostIDException e) {
+        } catch (NullHostIDException | InvalidHostIDException | InvalidHostEmailException | InvalidHostNameException e) {
             fail();
         }
 
@@ -246,7 +248,7 @@ public class HostServiceImplTests {
         try {
             service.create(test);
             assertTrue(service.destroy(test.getHostID()));
-        } catch (NullHostIDException | InvalidHostIDException e) {
+        } catch (NullHostIDException | InvalidHostIDException | InvalidHostEmailException | InvalidHostNameException e) {
             fail();
         }
 
