@@ -1,6 +1,5 @@
 package com.tp.wrc.findmyparadise.services;
 
-<<<<<<< HEAD
 import com.tp.wrc.findmyparadise.models.Host;
 import com.tp.wrc.findmyparadise.models.Listing;
 import org.junit.jupiter.api.BeforeEach;
