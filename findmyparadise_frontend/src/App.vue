@@ -12,23 +12,22 @@
     <div class="scrollContainer">
       <more-places></more-places>
     </div>
-    <!-- <div class="container">
-      <description></description>
-    </div> -->
+    <div class="container">
+      <description title="Description"></description>
+    </div>
     <div class="reviewContainer">
-      <review> </review>
+      <review title="Review"></review>
     </div>
   </div>
 </template>
 
 <script>
-import MorePlaces from "./components/MorePlaces";
-import Reservation from "./components/Reservation";
-import Map from "./components/Map";
+import MorePlaces from "./components/MorePlaces.vue";
+import Reservation from "./components/Reservation.vue";
+import Map from "./components/Map.vue";
 import Calendar from "./components/Calendar.vue";
-// import Description from "./components/Description";
-import Review from "./components/Review";
-
+import Description from "./components/Description";
+import Review from "./components/Review"
 export default {
   name: "App",
   components: {
@@ -36,18 +35,16 @@ export default {
     Map,
     Calendar,
     MorePlaces,
-    // Description,
-    Review,
+    Description,
+    Review
   },
 };
 </script>
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap");
-
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
 }
-
 * {
   box-sizing: border-box;
   margin: 0;
@@ -102,8 +99,9 @@ body {
 .datePicker {
   display: inline;
 }
+
 .reviewContainer {
-  max-width: 700px;
+  max-width: 500px;
   margin: 30px auto;
   overflow: auto;
   min-height: 300px;
