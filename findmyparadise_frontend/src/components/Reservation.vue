@@ -70,9 +70,6 @@
 import Calendar from "./Calendar";
 import Guests from "./Guests";
 
-import axios from "axios";
-
-
 import axios from 'axios';
 
 let listingID=2;

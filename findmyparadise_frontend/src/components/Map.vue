@@ -1,36 +1,17 @@
 <template>
-  <h1>Map</h1>
-  <div id="map" ref="mapRef"></div>
+    <h1>Map</h1>
+    <div id="map" ref="mapRef"></div>
+    <p></p> <!-- nearby attractions -->
+    <p></p>
+    <p></p>
+    <p></p>
 </template>
 
 <script>
 import { onMounted, ref } from "vue";
 import axios from "axios";
 
-
 let listingID = 2;
-
-
-
-//  let thisLocation= axios.get(`http://localhost:8080/api/listing/${listingID}`)
-//   .then(function (response) {
-//     // handle success
-//     console.log(response);
-//   })
-// .catch(function (error) {
-//   // handle error
-//   console.log(error);
-// })
-// .then(function () {
-//   // always executed
-// });
-
-//  thisLocation;
-
-// let locLatitude = thisLocation[0].latitude;
-
-// let locLongitude = thisLocation[0].longitude;
-
 
 export default {
   name: "Map",
@@ -39,32 +20,36 @@ export default {
       dataObject: {},
     };
   },
-
   setup() {
     const mapRef = ref(null);
     onMounted(() => {
       axios
         .get(`http://localhost:8080/api/listing/${listingID}`)
         .then((res) => {
-          let pointOfInterest = [res.data.longitude, res.data.latitude];
+          console.log(res);
+          let POI = [res.data.longitude, res.data.latitude];
+          let lat = res.data.latitude.toString();
+          let long = res.data.longitude.toString();
+          let latFloatNum = parseFloat(lat);
+          let longFloatNum = parseFloat(long);
+          axios.get(`https://api.tomtom.com/search/2/nearbySearch/.json?lat=${latFloatNum}&lon=${longFloatNum}&key=ziBCBRJyocQkRJJD2WlhVIOaMvQ1agyK`)
+          .then((nearbyObj) => {
+            console.log(nearbyObj);
+            console.log(nearbyObj.data.results[2].poi.name);
+            console.log((nearbyObj.data.results[9].dist * 0.00062137119224).toFixed(2) + " mi");
+          });
           const tt = window.tt;
           var map = tt.map({
             key: "ziBCBRJyocQkRJJD2WlhVIOaMvQ1agyK",
             container: mapRef.value,
             style: "tomtom://vector/1/basic-main",
+            center: POI,
             zoom: 14,
-            center: pointOfInterest
           });
           map.addControl(new tt.FullscreenControl());
           map.addControl(new tt.NavigationControl());
           addMarker(map);
         });
-
-  mounted() {
-    axios.get(`http://localhost:8080/api/listing/${listingID}`).then((res) => {
-      this.dataObject = res.data;
-      console.log(res.data);
-
     });
     function addMarker(map) {
       const tt = window.tt;

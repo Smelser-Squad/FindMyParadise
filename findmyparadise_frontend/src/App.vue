@@ -20,19 +20,19 @@
 
 <script>
 import MorePlaces from "./components/MorePlaces.vue";
-import Reservation from "./components/Reservation.vue";
+// import Reservation from "./components/Reservation.vue";
 import Map from "./components/Map.vue";
 import Calendar from "./components/Calendar.vue";
-import Description from "./components/Description";
+// import Description from "./components/Description";
 
 export default {
   name: "App",
   components: {
-    Reservation,
+   // Reservation,
     Map,
     Calendar,
     MorePlaces,
-    Description
+   // Description
   },
 };
 </script>
