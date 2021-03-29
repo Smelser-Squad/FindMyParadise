@@ -13,7 +13,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/api")
 
-@CrossOrigin(origins = "http://localhost:8081")
+
+
+@CrossOrigin(origins ="http://localhost:8081")
 
 public class ListingController {
 
@@ -26,7 +28,7 @@ public class ListingController {
         try {
             listing =  service.create(newListing, hostID);
         }
-        catch (InvalidHostIDException | NullHostIDException e)
+        catch (InvalidHostIDException | NullHostIDException | NullListingNameException | InvalidListingNameException | NullAddressException | InvalidAddressException | NullListingPriceException e)
         {
             ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }

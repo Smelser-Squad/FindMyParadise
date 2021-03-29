@@ -2,7 +2,9 @@ package com.tp.wrc.findmyparadise.controllers;
 
 
 
+import com.tp.wrc.findmyparadise.exceptions.InvalidHostEmailException;
 import com.tp.wrc.findmyparadise.exceptions.InvalidHostIDException;
+import com.tp.wrc.findmyparadise.exceptions.InvalidHostNameException;
 import com.tp.wrc.findmyparadise.exceptions.NullHostIDException;
 
 import com.tp.wrc.findmyparadise.models.Host;
@@ -13,7 +15,9 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin(origins="http://localhost:8081")
+
+@CrossOrigin(origins ="http://localhost:8081")
+
 public class HostController {
 
     @Autowired
@@ -26,7 +30,7 @@ public class HostController {
         try {
             return ResponseEntity.ok(service.create(newHost));
         }
-        catch (NullHostIDException | InvalidHostIDException ex)
+        catch (NullHostIDException | InvalidHostIDException | InvalidHostEmailException | InvalidHostNameException ex)
         {
             return ResponseEntity.badRequest().body(ex.getMessage());
         }

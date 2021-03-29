@@ -9,7 +9,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "amenity")
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@JsonIgnoreProperties(value = {"listings"}, allowSetters = true)
 public class Amenity implements Serializable {
 
     //VARIABLES
@@ -24,7 +24,7 @@ public class Amenity implements Serializable {
     @Column(name = "amenity_category", nullable = false)
     private String category;
 
-    @ManyToMany(mappedBy = "amenities")
+    @ManyToMany(mappedBy = "amenities", cascade = CascadeType.ALL)
     private Set<Listing> listings;
 
     //CONSTRUCTORS
