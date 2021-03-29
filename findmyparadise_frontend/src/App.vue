@@ -18,6 +18,9 @@
     <div class="reviewContainer">
       <review title="Review"></review>
     </div>
+    <div class="reviewerContainer"> 
+      <reviewer> </reviewer>
+    </div>
   </div>
 </template>
 
@@ -28,6 +31,7 @@ import Map from "./components/Map.vue";
 import Calendar from "./components/Calendar.vue";
 import Description from "./components/Description";
 import Review from "./components/Review"
+import Reviewer from "./components/Reviewer"
 export default {
   name: "App",
   components: {
@@ -36,7 +40,8 @@ export default {
     Calendar,
     MorePlaces,
     Description,
-    Review
+    Review,
+    Reviewer
   },
 };
 </script>
@@ -101,6 +106,17 @@ body {
 }
 
 .reviewContainer {
+  max-width: 500px;
+  margin: 30px auto;
+  overflow: auto;
+  min-height: 300px;
+  border: 1px solid gray;
+  padding: 30px;
+  border-radius: 5px;
+  box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
+}
+
+.reviewerContainer {
   max-width: 500px;
   margin: 30px auto;
   overflow: auto;
