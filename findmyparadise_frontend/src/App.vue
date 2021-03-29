@@ -15,6 +15,9 @@
     <div class="container">
       <description></description>
     </div>
+    <div> 
+      <review> </review>
+    </div>
   </div>
 </template>
 
@@ -24,6 +27,7 @@ import Reservation from "./components/Reservation";
 import Map from "./components/Map";
 import Calendar from "./components/Calendar.vue";
 import Description from "./components/Description";
+import Review from "./components/Review"; 
 
 export default {
   name: "App",
@@ -32,7 +36,8 @@ export default {
     Map,
     Calendar,
     MorePlaces,
-    Description
+    Description,
+    Review
   },
 };
 </script>
