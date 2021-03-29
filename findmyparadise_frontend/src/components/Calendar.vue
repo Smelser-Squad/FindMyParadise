@@ -15,6 +15,11 @@
       type="date"
       format="MM-dd-YYYY"
     ></date-picker>
+    <span>Start Date: {{updateDate(date1)}}</span>
+    <br/>
+    <span>End Date: {{updateDate(date2)}}</span>
+    <br/>
+    <button>Submit</button>
   </div>
 </template>
 
@@ -32,5 +37,11 @@ export default {
       date2: "",
     };
   },
+  methods: {
+    updateDate(date) {
+      let date1sub = date.toString().substring(4,15)
+      return date1sub
+    },
+  }
 };
 </script>
