@@ -18,6 +18,11 @@ public class ListingServiceImplTests {
     ListingServiceImpl test;
 
 
+    public void setup()
+    {
+
+    }
+
     @Test
     public void createListingTest() {
         Listing listing = new Listing();
@@ -29,7 +34,7 @@ public class ListingServiceImplTests {
         try {
             test.create(listing, 1);
         }
-        catch (NullHostIDException | InvalidHostIDException e)
+        catch (NullHostIDException | InvalidHostIDException | NullListingNameException | InvalidListingNameException | NullAddressException | InvalidAddressException | NullListingPriceException e)
         {
             fail();
         }
@@ -40,35 +45,49 @@ public class ListingServiceImplTests {
         assertEquals(listing.getPrice(),60.00);
     }
 
-//    @Test
-//    public void createListingTestNullListingID()
-//    {
-//        assertThrows(NullListingIDException.class,);
-//    }
-//
-//    @Test
-//    public void createListingTestNullHostID()
-//    {
-//        assertThrows(NullHostIDException.class, );
-//    }
-//
-//    @Test
-//    public void createListingTestNullListingName()
-//    {
-//        assertThrows(NoListingFoundException.class,);
-//    }
-//
-//    @Test
-//    public void createListingTestNullAddress()
-//    {
-//        assertThrows(NullAddressException.class,);
-//
-//    }
+    @Test
+    public void createListingTestNullHostID()
+    {
+        Listing listing = new Listing();
+        listing.setListingID(1);
+        listing.setName("Listing 1");
+        listing.setAddress("123 Fake Address");
+        listing.setPrice(60.00);
+        assertThrows(NullHostIDException.class, () -> test.create(listing,null));
+    }
+
+    @Test
+    public void createListingTestNullListingName()
+    {
+        Listing listing = new Listing();
+        listing.setListingID(1);
+        listing.setName(null);
+        listing.setAddress("123 Fake Address");
+        listing.setPrice(60.00);
+        assertThrows(NullListingNameException.class, () -> test.create(listing,1));
+    }
+
+    @Test
+    public void createListingTestNullAddress()
+    {
+        Listing listing = new Listing();
+        listing.setListingID(1);
+        listing.setName("Listing 1");
+        listing.setAddress(null);
+        listing.setPrice(60.00);
+        assertThrows(NullAddressException.class,() -> test.create(listing,1));
+
+    }
 
     @Test
     public void createListingTestNullPrice()
     {
-//        assertThrows(NullListingPriceException.class,);
+        Listing listing = new Listing();
+        listing.setListingID(1);
+        listing.setName("Listing 1");
+        listing.setAddress("123 Fake Address");
+        listing.setPrice(null);
+        assertThrows(NullListingPriceException.class, () -> test.create(listing,1));
     }
 
     @Test
