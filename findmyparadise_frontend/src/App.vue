@@ -18,6 +18,12 @@
     <div class="container">
       <description title="Description"></description>
     </div>
+    <div class="reviewContainer">
+      <review title="Review"></review>
+    </div>
+    <div class="reviewerContainer"> 
+      <reviewer> </reviewer>
+    </div>
   </div>
 </template>
 
@@ -28,30 +34,38 @@ import Reservation from "./components/Reservation";
 import Map from "./components/Map";
 import Calendar from "./components/Calendar.vue";
 import Description from "./components/Description";
+
+import Review from "./components/Review"
+import Reviewer from "./components/Reviewer"
+
 import Amenities from "./components/Amenities.vue";
 
 
 export default {
   name: "App",
   components: {
-   // Reservation,
+   Reservation,
     Map,
     Calendar,
     MorePlaces,
+
+    Description,
+    Review,
+    Reviewer
+
     Reservation
     Description,
     Amenities
+
 
   },
 };
 </script>
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap");
-
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
 }
-
 * {
   box-sizing: border-box;
   margin: 0;
@@ -105,5 +119,27 @@ body {
 }
 .datePicker {
   display: inline;
+}
+
+.reviewContainer {
+  max-width: 500px;
+  margin: 30px auto;
+  overflow: auto;
+  min-height: 300px;
+  border: 1px solid gray;
+  padding: 30px;
+  border-radius: 5px;
+  box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
+}
+
+.reviewerContainer {
+  max-width: 500px;
+  margin: 30px auto;
+  overflow: auto;
+  min-height: 300px;
+  border: 1px solid gray;
+  padding: 30px;
+  border-radius: 5px;
+  box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
 }
 </style>

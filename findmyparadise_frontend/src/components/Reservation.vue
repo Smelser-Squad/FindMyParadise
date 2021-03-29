@@ -75,12 +75,11 @@ import Calendar from "./Calendar";
 import Guests from "./Guests";
 
 
+
 import axios from 'axios';
 
 
 let listingID=1;
-
-
 export default {
   name: "Reservation",
   data() {
@@ -97,11 +96,9 @@ export default {
     
     });
   },
-
   props: {
     title: String,
   },
-
   components: {
     Calendar,
     Guests,
