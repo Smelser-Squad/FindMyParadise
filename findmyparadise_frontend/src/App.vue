@@ -12,6 +12,9 @@
     <div class="scrollContainer">
       <more-places></more-places>
     </div>
+    <div class="container">
+      <description></description>
+    </div>
   </div>
 </template>
 
@@ -20,6 +23,7 @@ import MorePlaces from "./components/MorePlaces";
 import Reservation from "./components/Reservation";
 import Map from "./components/Map";
 import Calendar from "./components/Calendar.vue";
+import Description from "./components/Description";
 
 export default {
   name: "App",
@@ -28,6 +32,7 @@ export default {
     Map,
     Calendar,
     MorePlaces,
+    Description
   },
 };
 </script>
