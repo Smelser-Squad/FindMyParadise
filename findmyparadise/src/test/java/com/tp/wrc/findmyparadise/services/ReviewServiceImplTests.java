@@ -1,12 +1,12 @@
 package com.tp.wrc.findmyparadise.services;
 import com.tp.wrc.findmyparadise.exceptions.*;
-import com.tp.wrc.findmyparadise.models.Amenity;
+
 import com.tp.wrc.findmyparadise.models.Review;
 import com.tp.wrc.findmyparadise.models.Reviewer;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,10 +18,12 @@ import static org.testng.Assert.fail;
 public class ReviewServiceImplTests {
 
     @Autowired
-    ReviewServiceImpl toTest;
+    ReviewService toTest;
+
 
     @Test
     public void createReviewGoldenPathTest(){
+
         Review review = new Review();
         review.setRating(1);
         review.setReviewText("test review text");
