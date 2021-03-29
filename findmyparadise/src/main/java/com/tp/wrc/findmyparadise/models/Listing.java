@@ -9,7 +9,7 @@ import java.util.Set;
 @Entity
 
 @Table(name = "listing")
-@JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler", "amenities"}, allowSetters = true)
+@JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler", "amenities","reservations"}, allowSetters = true)
 public class Listing {
     @Id
     @Column(name = "listing_id")
