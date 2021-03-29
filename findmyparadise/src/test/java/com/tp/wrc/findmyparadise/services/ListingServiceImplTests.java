@@ -17,16 +17,27 @@ public class ListingServiceImplTests {
     @Autowired
     ListingServiceImpl test;
 
+
     @Test
     public void createListingTest() {
         Listing listing = new Listing();
+        listing.setListingID(1);
+        listing.setName("Listing 1");
+        listing.setAddress("123 Fake Address");
+        listing.setPrice(60.00);
+
         try {
-            listing = test.create(listing, 1);
+            test.create(listing, 1);
         }
         catch (NullHostIDException | InvalidHostIDException e)
         {
             fail();
         }
+        assertEquals(listing.getListingID(),1);
+        assertEquals(listing.getHost().getHostID(),1);
+        assertEquals(listing.getName(),"Listing 1");
+        assertEquals(listing.getAddress(),"123 Fake Address");
+        assertEquals(listing.getPrice(),60.00);
     }
 
 //    @Test
@@ -60,26 +71,31 @@ public class ListingServiceImplTests {
 //        assertThrows(NullListingPriceException.class,);
     }
 
+    @Test
     public void getAllListingsTest()
     {
 
     }
 
+    @Test
     public void getListingTest()
     {
 
     }
 
+    @Test
     public void getListingByNameTest()
     {
 
     }
 
+    @Test
     public void getListingByTypeTest()
     {
 
     }
 
+    @Test
     public void getListingsByHostIDTest()
     {
 
