@@ -105,26 +105,26 @@ public class HostTest {
     void getAllGoldenPath() throws NullHostIDException, InvalidHostIDException {
         List<Host> allHosts = repo.findAll();
 
-        assertEquals("test name", allHosts.get(0).getHostName());
-        assertTrue(allHosts.get(0).isSuperHost());
-        assertTrue(allHosts.get(0).isVerified());
-        assertEquals("test response time", allHosts.get(0).getResponseTime());
-        assertEquals(100.00, allHosts.get(0).getResponseRate());
-        assertEquals("May 2020", allHosts.get(0).getJoinDate());
-        assertEquals("test@email.com", allHosts.get(0).getEmail());
-        assertEquals("test img src", allHosts.get(0).getImageSrc());
-        assertEquals("test total reviews", allHosts.get(0).getTotalReviews());
-        assertEquals("test@email.com", allHosts.get(0).getEmail());
+        assertEquals("test name", allHosts.get(2).getHostName());
+        assertTrue(allHosts.get(2).isSuperHost());
+        assertTrue(allHosts.get(2).isVerified());
+        assertEquals("test response time", allHosts.get(2).getResponseTime());
+        assertEquals(100.00, allHosts.get(2).getResponseRate());
+        assertEquals("May 2020", allHosts.get(2).getJoinDate());
+        assertEquals("test@email.com", allHosts.get(2).getEmail());
+        assertEquals("test img src", allHosts.get(2).getImageSrc());
+        assertEquals("test total reviews", allHosts.get(2).getTotalReviews());
+        assertEquals("test@email.com", allHosts.get(2).getEmail());
 
-        assertEquals("different test name", allHosts.get(1).getHostName());
-        assertFalse(allHosts.get(1).isSuperHost());
-        assertFalse(allHosts.get(1).isVerified());
-        assertEquals("different test response time", allHosts.get(1).getResponseTime());
-        assertEquals(500.2, allHosts.get(1).getResponseRate());
-        assertEquals("October 1990", allHosts.get(1).getJoinDate());
-        assertEquals("sample@gmail.com", allHosts.get(1).getEmail());
-        assertEquals("different test img src", allHosts.get(1).getImageSrc());
-        assertEquals("different test total reviews", allHosts.get(1).getTotalReviews());
+        assertEquals("different test name", allHosts.get(3).getHostName());
+        assertFalse(allHosts.get(3).isSuperHost());
+        assertFalse(allHosts.get(3).isVerified());
+        assertEquals("different test response time", allHosts.get(3).getResponseTime());
+        assertEquals(500.2, allHosts.get(3).getResponseRate());
+        assertEquals("October 1990", allHosts.get(3).getJoinDate());
+        assertEquals("sample@gmail.com", allHosts.get(3).getEmail());
+        assertEquals("different test img src", allHosts.get(3).getImageSrc());
+        assertEquals("different test total reviews", allHosts.get(3).getTotalReviews());
 
     }
 

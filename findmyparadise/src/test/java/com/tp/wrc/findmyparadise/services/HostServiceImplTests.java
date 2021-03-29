@@ -98,7 +98,7 @@ public class HostServiceImplTests {
         Host test = new Host();
 
         try {
-            test = service.show(1);
+            test = service.show(4);
         } catch (NullHostIDException | InvalidHostIDException e){
             fail();
         }
