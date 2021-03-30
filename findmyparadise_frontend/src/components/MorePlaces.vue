@@ -113,10 +113,12 @@ export default {
       alert(`You liked listing with id: ${listingId}!`);
     },
     calculateAverageRating(reviews) {
-      return (reviews.reduce((curr, next) => {
-        return curr += next.rating;
-      }, 0) / reviews.length).toFixed(2);
-    }
+      return (
+        reviews.reduce((curr, next) => {
+          return (curr += next.rating);
+        }, 0) / reviews.length
+      ).toFixed(2);
+    },
   },
 };
 </script>
