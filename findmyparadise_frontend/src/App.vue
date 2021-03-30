@@ -4,11 +4,14 @@
       <reservation title="Reservation"></reservation>
     </div>
     <div class="container">
-      <calendar title="Calendar"></calendar>
+      <amenities title="Amenities"></amenities>
     </div>
     <div class="container">
-      <Map />
+      <calendar title="Calendar"></calendar>
     </div>
+    <!-- <div class="container">
+      <Map />
+    </div> -->
     <div class="scrollContainer">
       <more-places></more-places>
     </div>
@@ -18,30 +21,36 @@
     <div class="reviewContainer">
       <review title="Review"></review>
     </div>
-    <div class="reviewerContainer"> 
+    <div class="reviewerContainer">
       <reviewer> </reviewer>
     </div>
   </div>
 </template>
 
 <script>
-import MorePlaces from "./components/MorePlaces.vue";
-import Reservation from "./components/Reservation.vue";
-import Map from "./components/Map.vue";
+import MorePlaces from "./components/MorePlaces";
+import Reservation from "./components/Reservation";
+// import Map from "./components/Map";
 import Calendar from "./components/Calendar.vue";
 import Description from "./components/Description";
-import Review from "./components/Review"
-import Reviewer from "./components/Reviewer"
+
+import Review from "./components/Review";
+import Reviewer from "./components/Reviewer";
+
+import Amenities from "./components/Amenities.vue";
+
 export default {
   name: "App",
   components: {
     Reservation,
-    Map,
+    // Map,
     Calendar,
     MorePlaces,
+
     Description,
     Review,
-    Reviewer
+    Reviewer,
+    Amenities,
   },
 };
 </script>
