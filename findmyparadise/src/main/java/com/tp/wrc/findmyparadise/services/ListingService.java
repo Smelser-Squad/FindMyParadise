@@ -9,7 +9,7 @@ public interface ListingService {
 
      List<Listing> index();
      Listing show(Integer id) throws NoListingFoundException;
-     Listing create(Listing listing, Integer hostID) throws InvalidHostIDException, NullHostIDException;
+     Listing create(Listing listing, Integer hostID) throws InvalidHostIDException, NullHostIDException, NullListingNameException, InvalidListingNameException, NullAddressException, InvalidAddressException, NullListingPriceException;
      boolean destroy(Integer id) throws NullListingIDException;
      Listing update(Integer id, Listing newListing) throws NullListingIDException, NoListingFoundException;
      List<Listing> findByNameIgnoreCase(String listingName) throws NoListingFoundException, InvalidListingNameException;
