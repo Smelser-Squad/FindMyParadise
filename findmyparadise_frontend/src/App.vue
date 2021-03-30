@@ -44,16 +44,12 @@ import Amenities from "./components/Amenities.vue";
 export default {
   name: "App",
   components: {
-   Reservation,
+    Reservation,
     Map,
     Calendar,
     MorePlaces,
-
-    Description,
     Review,
-    Reviewer
-
-    Reservation
+    Reviewer,
     Description,
     Amenities
 
