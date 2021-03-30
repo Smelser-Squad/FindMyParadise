@@ -4,7 +4,7 @@ COPY pom.xml /server/pom.xml
 RUN mvn dependency:go-offline
 
 COPY src /server/src
-RUN mvn install
+RUN mvn install -DskipTests
 ARG JAR_FILE=target/*.jar
 COPY ${JAR_FILE} target/application.jar
 WORKDIR /server/target

@@ -3,4 +3,6 @@ jobs:
     - language: java
       before_install: cd ./findmyparadise/
     - language: node_js
+      node_js:
+        - node
       before_install: cd ./findmyparadise_frontend/
