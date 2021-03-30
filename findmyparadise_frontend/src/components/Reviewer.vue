@@ -6,7 +6,7 @@
 
 
 <script>
-import axios from "axios";
+// import axios from "axios";
 
 export default {
   name: "Review",
@@ -16,14 +16,14 @@ data() {
       
     };
   },
-  mounted() {
-    axios
-      .post("http://localhost:8080/api/addReviewer")
-      .then((res) => {
-        console.log(res.data);
-      })
-      .catch((err) => Promise.reject(err));
-  },
+  // mounted() {
+  //   axios
+  //     .post("http://localhost:8080/api/addReviewer")
+  //     .then((res) => {
+  //       console.log(res.data);
+  //     })
+  //     .catch((err) => Promise.reject(err));
+  // },
   
 };
 </script>
