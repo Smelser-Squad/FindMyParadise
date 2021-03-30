@@ -16,7 +16,7 @@
       <more-places></more-places>
     </div>
     <div class="container">
-      <description title="Description"></description>
+      <description @email="emailOverlay" title="Description"></description>
     </div>
     <div class="reviewContainer">
       <review title="Review"></review>
@@ -55,6 +55,11 @@ export default {
 
 
   },
+  methods: {
+    emailOverlay(host) {
+      console.log(host);
+    }
+  }
 };
 </script>
 <style>

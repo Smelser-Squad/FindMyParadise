@@ -29,8 +29,7 @@ export default {
   name: "Description",
   data() {
     return {
-      dataObject: {},
-      overlay: false,
+      dataObject: {}
     };
   },
   mounted() {
@@ -41,8 +40,8 @@ export default {
   },
   methods: {
     showEmail() {
-      this.overlay = !this.overlay;
-      console.log(this.overlay);
+      console.log("Clicked");
+      this.$emit('email', this.dataObject.host);
     },
   },
 };
