@@ -43,14 +43,23 @@ export default {
   name: "App",
   components: {
     Reservation,
+<<<<<<< HEAD
     // Map,
+=======
+    Map,
+>>>>>>> 581530125de528bbba09204e4bcb68ab84461817
     Calendar,
     MorePlaces,
-
-    Description,
     Review,
     Reviewer,
+<<<<<<< HEAD
     Amenities,
+=======
+    Description,
+    Amenities
+
+
+>>>>>>> 581530125de528bbba09204e4bcb68ab84461817
   },
 };
 </script>
