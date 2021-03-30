@@ -15,12 +15,12 @@
       type="date"
       format="MM-dd-YYYY"
     ></date-picker>
-    <span>Start Date: {{ updateDate(date1) }}</span>
-    <br />
-    <span>End Date: {{ updateDate(date2) }}</span>
-    <br />
-    <button @click="numOfDays">Submit</button>
-    <br />
+    <span>Start Date: {{updateDate(date1)}}</span>
+    <br/>
+    <span>End Date: {{updateDate(date2)}}</span>
+    <br/>
+    <button class="btn" @click="numOfDays">Submit</button>
+    <br/>
     <span>Number of days: </span>
     <span>{{ numOfDays() }}</span>
   </div>

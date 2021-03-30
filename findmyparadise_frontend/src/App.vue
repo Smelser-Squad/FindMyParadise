@@ -20,7 +20,7 @@
       <description title="Description"></description>
     </div>
     <div class="reviewContainer">
-      <review title="Review"></review>
+      <review></review>
     </div>
     <div class="reviewerContainer"> 
       <reviewer> </reviewer>
@@ -33,10 +33,16 @@ import MorePlaces from "./components/MorePlaces.vue";
 import Reservation from "./components/Reservation.vue";
 import Map from "./components/Map.vue";
 import Description from "./components/Description";
+
 import Amenities from "./components/Amenities.vue";
+
 import Review from "./components/Review"
 import Reviewer from "./components/Reviewer"
+
 import DateRangePicker from "./components/DateRangePicker.vue";
+
+
+
 export default {
   name: "App",
   components: {
@@ -45,11 +51,15 @@ export default {
     // Calendar,
     MorePlaces,
     Description,
+
     Amenities,
     Review,
     Reviewer,
+
+
     DateRangePicker
   
+
   },
 };
 </script>

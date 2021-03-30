@@ -43,7 +43,7 @@
 
 
 <script>
-// import axios from "axios";
+import axios from "axios";
 import DatePicker from "vue3-datepicker";
 
 export default {
@@ -55,8 +55,8 @@ export default {
     return {
       posts: {
         name: null,
-        description: null,
         imageSrc: null, 
+        description: null,
         joinedDate: null
 
       },
@@ -64,13 +64,15 @@ export default {
   },
   methods: {
     postData(e) {
-      this.axios
+      axios
         .post("http://localhost:8080/api/addReviewer", this.posts)
         .then((result) => {
-          console.log(result);
+          // console.log(result);
           console.warn(result);
-        });
-      e.preventDefault();
+        })
+                e.preventDefault();
+
+        
     },
   },
 
