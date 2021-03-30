@@ -1,22 +1,18 @@
 <template>
-    <h1>Map</h1>
-    <div id="map" ref="mapRef"></div>
-    <h4>{{dataObject}}</h4>
-    <h4></h4>
-    <h4></h4>
-    <h4></h4>
+  <h1>Map</h1>
+  <div id="map" ref="mapRef"></div>
+  <h4>{{ dataObject }}</h4>
+  <h4></h4>
+  <h4></h4>
+  <h4></h4>
 </template>
 
 <script>
 import { ref, onMounted } from "vue";
 import axios from "axios";
-<<<<<<< HEAD
-let listingID = 1;
-=======
 
 let listingID = 2;
 
->>>>>>> 581530125de528bbba09204e4bcb68ab84461817
 export default {
   name: "Map",
   setup() {
@@ -31,12 +27,18 @@ export default {
           let long = res.data.longitude.toString();
           let latFloatNum = parseFloat(lat);
           let longFloatNum = parseFloat(long);
-          axios.get(`https://api.tomtom.com/search/2/nearbySearch/.json?lat=${latFloatNum}&lon=${longFloatNum}&key=ziBCBRJyocQkRJJD2WlhVIOaMvQ1agyK`)
-          .then((nearbyObj) => {
-            console.log(nearbyObj);
-            console.log(nearbyObj.data.results[3].poi.name);
-            console.log((nearbyObj.data.results[9].dist * 0.00062137119224).toFixed(2) + " mi");
-          });
+          axios
+            .get(
+              `https://api.tomtom.com/search/2/nearbySearch/.json?lat=${latFloatNum}&lon=${longFloatNum}&key=ziBCBRJyocQkRJJD2WlhVIOaMvQ1agyK`
+            )
+            .then((nearbyObj) => {
+              console.log(nearbyObj);
+              console.log(nearbyObj.data.results[3].poi.name);
+              console.log(
+                (nearbyObj.data.results[9].dist * 0.00062137119224).toFixed(2) +
+                  " mi"
+              );
+            });
           const tt = window.tt;
           var map = tt.map({
             key: "ziBCBRJyocQkRJJD2WlhVIOaMvQ1agyK",

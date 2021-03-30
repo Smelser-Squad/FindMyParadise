@@ -4,14 +4,15 @@
       <reservation title="Reservation"></reservation>
     </div>
     <div class="container">
+      >
       <amenities title="Amenities"></amenities>
     </div>
     <div class="container">
-      <calendar title="Calendar"></calendar>
+      <DateRangePicker />
     </div>
-    <!-- <div class="container">
+    <div class="container">
       <Map />
-    </div> -->
+    </div>
     <div class="scrollContainer">
       <more-places></more-places>
     </div>
@@ -21,50 +22,34 @@
     <div class="reviewContainer">
       <review title="Review"></review>
     </div>
-    <div class="reviewerContainer">
+    <div class="reviewerContainer"> 
       <reviewer> </reviewer>
     </div>
   </div>
 </template>
 
 <script>
-import MorePlaces from "./components/MorePlaces";
-import Reservation from "./components/Reservation";
-// import Map from "./components/Map";
-import Calendar from "./components/Calendar.vue";
+import MorePlaces from "./components/MorePlaces.vue";
+import Reservation from "./components/Reservation.vue";
+import Map from "./components/Map.vue";
 import Description from "./components/Description";
-
+import Amenities from "./components/Amenities.vue";
 import Review from "./components/Review"
 import Reviewer from "./components/Reviewer"
-
-import Amenities from "./components/Amenities.vue";
-
-import Review from "./components/Review";
-import Reviewer from "./components/Reviewer";
-
-import Amenities from "./components/Amenities.vue";
-
+import DateRangePicker from "./components/DateRangePicker.vue";
 export default {
   name: "App",
   components: {
     Reservation,
-
-   Reservation,
     Map,
-    Calendar,
+    // Calendar,
     MorePlaces,
-    Review,
-    Reviewer,
-
     Description,
+    Amenities,
     Review,
     Reviewer,
-
+    DateRangePicker
   
-    Amenities
-
-
-
   },
 };
 </script>
@@ -127,7 +112,6 @@ body {
 .datePicker {
   display: inline;
 }
-
 .reviewContainer {
   max-width: 500px;
   margin: 30px auto;
@@ -138,7 +122,6 @@ body {
   border-radius: 5px;
   box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
 }
-
 .reviewerContainer {
   max-width: 500px;
   margin: 30px auto;

@@ -31,6 +31,7 @@
     "prettier": "^2.2.1",
     "sass": "^1.26.11",
     "sass-loader": "^10.0.2",
-    "vue-cli-plugin-bootstrap-vue": "~0.7.0"
+    "vue-cli-plugin-bootstrap-vue": "~0.7.0",
+    "vue-cli-plugin-vuetify": "~2.3.1"
   }
 }
