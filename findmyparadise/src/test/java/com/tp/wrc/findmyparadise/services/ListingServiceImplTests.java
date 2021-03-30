@@ -142,5 +142,18 @@ public class ListingServiceImplTests {
         assertEquals("Listing 1",listings.get(0).getName());
         assertEquals(60.00,listings.get(0).getPrice());
     }
+
+
+//    TODO: implement so parent isn't deleted with child
+//    public void updateListingTest()
+//    {
+//
+//    }
+//
+//    public void deleteListingTest()
+//    {
+//
+//    }
+
 }
 

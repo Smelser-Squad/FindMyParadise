@@ -4,11 +4,11 @@
       <reservation title="Reservation"></reservation>
     </div>
     <div class="container">
-      >
+      
       <amenities title="Amenities"></amenities>
     </div>
     <div class="container">
-      <DateRangePicker />
+      <DateRangePicker @DatePick="Change" />
     </div>
     <div class="container">
       <Map />
@@ -20,7 +20,7 @@
       <description title="Description"></description>
     </div>
     <div class="reviewContainer">
-      <review title="Review"></review>
+      <review></review>
     </div>
     <div class="reviewerContainer"> 
       <reviewer> </reviewer>
@@ -29,15 +29,18 @@
 </template>
 
 <script>
-
 import MorePlaces from "./components/MorePlaces.vue";
 import Reservation from "./components/Reservation.vue";
 import Map from "./components/Map.vue";
 import Description from "./components/Description";
-import DateRangePicker from "./components/DateRangePicker.vue";
+
+import Amenities from "./components/Amenities.vue";
+
 import Review from "./components/Review"
 import Reviewer from "./components/Reviewer"
-import Amenities from "./components/Amenities.vue";
+
+import DateRangePicker from "./components/DateRangePicker.vue";
+
 
 
 export default {
@@ -47,11 +50,22 @@ export default {
     Map,
     MorePlaces,
     Description,
-    DateRangePicker,
+    Amenities,
     Review,
     Reviewer,
-    Amenities
+    DateRangePicker
+  
   },
+  
+  methods:
+  {
+    Change(event){
+         console.log(event);
+       
+
+    }
+  },
+  
 };
 </script>
 <style>
@@ -113,7 +127,6 @@ body {
 .datePicker {
   display: inline;
 }
-
 .reviewContainer {
   max-width: 500px;
   margin: 30px auto;
@@ -124,7 +137,6 @@ body {
   border-radius: 5px;
   box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
 }
-
 .reviewerContainer {
   max-width: 500px;
   margin: 30px auto;
