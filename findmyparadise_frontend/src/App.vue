@@ -4,11 +4,11 @@
       <reservation title="Reservation"></reservation>
     </div>
     <div class="container">
-      >
+      
       <amenities title="Amenities"></amenities>
     </div>
     <div class="container">
-      <DateRangePicker />
+      <DateRangePicker @DatePick="Change" />
     </div>
     <div class="container">
       <Map />
@@ -61,6 +61,16 @@ export default {
   
 
   },
+  
+  methods:
+  {
+    Change(event){
+         console.log(event);
+       
+
+    }
+  },
+  
 };
 </script>
 <style>

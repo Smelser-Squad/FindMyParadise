@@ -4,7 +4,8 @@
     class="datePicker"
     v-model="range" 
     is-range 
-    :attributes="attrs" 
+    v-on:change="ChangeDate()"
+    @click="OnClick()"
     :min-date='new Date()' 
     />
     <br/>
@@ -35,7 +36,11 @@ export default {
     updateDate(date) {
       let dateSub = date.toString().substring(0,15)
       return dateSub
-    }
     },
+    
+     OnClick(){
+      this.$emit('DatePick',this.range);
+     }
+    }
 }
 </script>

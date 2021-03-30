@@ -1,43 +1,39 @@
 <template>
   <div id="Calendar">
-    <h1>Pick a Date Range</h1>
-    <date-picker
-      class="datePicker"
-      v-model="date1"
-      lang="en"
-      type="date"
-      format="MM-dd-YYYY"
+
+  
+    <date-picker class="datePicker" :min-date="new Date()" v-on:change="ChangeDate()"
+      v-model="range"
+      @click="OnClick()" is-range
+  
+      
     ></date-picker>
-    <date-picker
-      class="datePicker"
-      v-model="date2"
-      lang="en"
-      type="date"
-      format="MM-dd-YYYY"
-    ></date-picker>
-    <span>Start Date: {{updateDate(date1)}}</span>
+    <span>CheckIn: {{updateDate(range.start)}}</span>
     <br/>
-    <span>End Date: {{updateDate(date2)}}</span>
+    <span>CheckOut {{updateDate(range.end)}}</span>
     <br/>
-    <button class="btn" @click="numOfDays">Submit</button>
+    
     <br/>
-    <span>Number of days: </span>
-    <span>{{ numOfDays() }}</span>
   </div>
 </template>
 
 <script>
-import DatePicker from "vue3-datepicker";
+import { DatePicker } from 'v-calendar';
 export default {
   name: "Calendar",
-  props: {},
+
+
   components: {
     DatePicker,
   },
   data() {
     return {
-      date1: "",
-      date2: "",
+      date1: '',
+      date2: '',
+      range: {
+      start: new Date(),
+      end: new Date()
+    }
     };
   },
   methods: {
@@ -45,13 +41,14 @@ export default {
       let dateSub = date.toString().substring(4, 15);
       return dateSub;
     },
-    numOfDays() {
-      let difference =
-        new Date(this.date2).getTime() - new Date(this.date1).getTime();
-      let days = Math.ceil(difference / (1000 * 3600 * 24));
-      console.log(days);
-      return days;
-    },
-  },
+    
+   OnClick(){
+      this.$emit('DatePick',this.range);
+    
+
+   }
+   
+    
+  }
 };
 </script>
