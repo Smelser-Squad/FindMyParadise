@@ -4,6 +4,7 @@
       <reservation title="Reservation"></reservation>
     </div>
     <div class="container">
+      >
       <amenities title="Amenities"></amenities>
     </div>
     <div class="container">
@@ -45,10 +46,10 @@ export default {
     Reservation,
     Map,
     MorePlaces,
+    Description,
     DateRangePicker,
     Review,
     Reviewer,
-    Description,
     Amenities
   },
 };
