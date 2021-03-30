@@ -20,7 +20,7 @@
       <description title="Description"></description>
     </div>
     <div class="reviewContainer">
-      <review title="Review"></review>
+      <review></review>
     </div>
     <div class="reviewerContainer"> 
       <reviewer> </reviewer>
@@ -29,7 +29,6 @@
 </template>
 
 <script>
-
 import MorePlaces from "./components/MorePlaces.vue";
 import Reservation from "./components/Reservation.vue";
 import Map from "./components/Map.vue";
@@ -129,7 +128,6 @@ body {
 .datePicker {
   display: inline;
 }
-
 .reviewContainer {
   max-width: 500px;
   margin: 30px auto;
@@ -140,7 +138,6 @@ body {
   border-radius: 5px;
   box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
 }
-
 .reviewerContainer {
   max-width: 500px;
   margin: 30px auto;
