@@ -7,14 +7,17 @@
         <div>
           <a target="_blank" href="">
             <div class="image-container">
-              <img :src="item.host.imageSrc" />
+              <img :src="item.photos[0].imageSrc" />
               <div class="image-overlay">
                 <div>
                   <div class="superhost-container" v-if="item.host.superhost">
                     <div class="superhost">SUPERHOST</div>
                   </div>
                 </div>
-                <div class="button-container" v-on:click.prevent="liked(event)">
+                <div
+                  class="button-container"
+                  v-on:click.prevent="liked(item.listingID)"
+                >
                   <button>
                     <svg
                       viewBox="0 0 32 32"
@@ -54,7 +57,7 @@
                     d="M972 380c9 28 2 50-20 67L725 619l87 280c11 39-18 75-54 75-12 0-23-4-33-12L499 790 273 962a58 58 0 0 1-78-12 50 50 0 0 1-8-51l86-278L46 447c-21-17-28-39-19-67 8-24 29-40 52-40h280l87-279c7-23 28-39 52-39 25 0 47 17 54 41l87 277h280c24 0 45 16 53 40z"
                   ></path>
                 </svg>
-                {{ item.reviews[0].rating.toFixed(2) }} ({{
+                {{ calculateAverageRating(item.reviews) }} ({{
                   item.reviews.length
                 }})
               </div>
@@ -106,9 +109,14 @@ export default {
       .catch((err) => Promise.reject(err));
   },
   methods: {
-    liked() {
-      alert("You liked this listing!");
+    liked(listingId) {
+      alert(`You liked listing with id: ${listingId}!`);
     },
+    calculateAverageRating(reviews) {
+      return (reviews.reduce((curr, next) => {
+        return curr += next.rating;
+      }, 0) / reviews.length).toFixed(2);
+    }
   },
 };
 </script>
