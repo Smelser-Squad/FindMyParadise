@@ -143,6 +143,7 @@ public class ListingServiceImplTests {
         assertEquals(60.00,listings.get(0).getPrice());
     }
 
+
 //    TODO: implement so parent isn't deleted with child
 //    public void updateListingTest()
 //    {
@@ -153,5 +154,6 @@ public class ListingServiceImplTests {
 //    {
 //
 //    }
+
 }
 
