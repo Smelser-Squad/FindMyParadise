@@ -51,15 +51,11 @@ export default {
     // Calendar,
     MorePlaces,
     Description,
-
     Amenities,
     Review,
     Reviewer,
-
-
     DateRangePicker
   
-
   },
   
   methods:
