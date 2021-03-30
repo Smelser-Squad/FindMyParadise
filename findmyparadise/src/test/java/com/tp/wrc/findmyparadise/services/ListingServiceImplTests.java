@@ -18,6 +18,8 @@ public class ListingServiceImplTests {
     @Autowired
     ListingServiceImpl test;
 
+
+    @BeforeEach()
     public void setup() throws InvalidHostIDException, NullListingPriceException, NullAddressException, NullHostIDException, NullListingNameException, InvalidListingNameException, InvalidAddressException {
         Listing listing = new Listing();
         listing.setListingID(1);
@@ -25,7 +27,6 @@ public class ListingServiceImplTests {
         listing.setAddress("123 Fake Address");
         listing.setPrice(60.00);
         test.create(listing, 1);
-
     }
 
     @Test
@@ -100,9 +101,8 @@ public class ListingServiceImplTests {
     public void getAllListingsTest()
     {
         List<Listing> allListings = test.index();
-        assertEquals(allListings.get(0).getName(),"Listing 1");
-        assertEquals(allListings.get(0).getAddress(),"123 Fake Address");
-
+        assertEquals("Listing 1",allListings.get(0).getName());
+        assertEquals("123 Fake Address",allListings.get(0).getAddress());
     }
 
     @Test
@@ -141,9 +141,6 @@ public class ListingServiceImplTests {
         List<Listing> listings = test.findByHostID(1);
         assertEquals("Listing 1",listings.get(0).getName());
         assertEquals(60.00,listings.get(0).getPrice());
-        assertEquals("Listing 2",listings.get(1).getName());
-        assertEquals(20.00,listings.get(1).getPrice());
-
     }
-
 }
+
