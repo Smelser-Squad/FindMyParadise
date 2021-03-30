@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @SpringBootTest
@@ -17,32 +18,37 @@ public class ListingServiceImplTests {
     @Autowired
     ListingServiceImpl test;
 
-
-    public void setup()
-    {
-
-    }
-
-    @Test
-    public void createListingTest() {
+    public void setup() throws InvalidHostIDException, NullListingPriceException, NullAddressException, NullHostIDException, NullListingNameException, InvalidListingNameException, InvalidAddressException {
         Listing listing = new Listing();
         listing.setListingID(1);
         listing.setName("Listing 1");
         listing.setAddress("123 Fake Address");
         listing.setPrice(60.00);
+        test.create(listing, 1);
+
+    }
+
+    @Test
+    public void createListingTest() {
+
+        Listing listing2 = new Listing();
+        listing2.setListingID(2);
+        listing2.setName("Listing 2");
+        listing2.setAddress("567 Test Address");
+        listing2.setPrice(20.00);
 
         try {
-            test.create(listing, 1);
+            test.create(listing2, 1);
         }
         catch (NullHostIDException | InvalidHostIDException | NullListingNameException | InvalidListingNameException | NullAddressException | InvalidAddressException | NullListingPriceException e)
         {
             fail();
         }
-        assertEquals(listing.getListingID(),1);
-        assertEquals(listing.getHost().getHostID(),1);
-        assertEquals(listing.getName(),"Listing 1");
-        assertEquals(listing.getAddress(),"123 Fake Address");
-        assertEquals(listing.getPrice(),60.00);
+        assertEquals(2,listing2.getListingID());
+        assertEquals(1, listing2.getHost().getHostID());
+        assertEquals("Listing 2",listing2.getName());
+        assertEquals("567 Test Address",listing2.getAddress());
+        assertEquals(20.00,listing2.getPrice());
     }
 
     @Test
@@ -93,30 +99,50 @@ public class ListingServiceImplTests {
     @Test
     public void getAllListingsTest()
     {
+        List<Listing> allListings = test.index();
+        assertEquals(allListings.get(0).getName(),"Listing 1");
+        assertEquals(allListings.get(0).getAddress(),"123 Fake Address");
 
     }
 
     @Test
-    public void getListingTest()
-    {
+    public void getListingTest() throws NoListingFoundException {
+        Listing listing = test.show(1);
+        assertEquals("Listing 1",listing.getName());
+        assertEquals("123 Fake Address",listing.getAddress());
 
     }
 
     @Test
-    public void getListingByNameTest()
-    {
+    public void getListingByNameTest() throws InvalidListingNameException, NoListingFoundException {
+        List<Listing> listings = test.findByNameIgnoreCase("listing 1");
+        assertEquals("Listing 1",listings.get(0).getName());
 
     }
 
     @Test
-    public void getListingByTypeTest()
-    {
-
+    public void getListingsByTypeTest() throws NoListingFoundException, InvalidHostIDException, NullListingPriceException, NullAddressException, NullHostIDException, NullListingNameException, InvalidListingNameException, InvalidAddressException {
+        Listing listing = new Listing();
+        listing.setListingID(3);
+        listing.setName("Listing 3");
+        listing.setAddress("12345 Street");
+        listing.setPrice(80.00);
+        listing.setType("House");
+        test.create(listing, 1);
+        List<Listing> allListings = test.findByType("House");
+        assertEquals(1, allListings.get(0).getHost().getHostID());
+        assertEquals("12345 Street",allListings.get(0).getAddress());
+        assertEquals(80.00, allListings.get(0).getPrice());
     }
 
     @Test
-    public void getListingsByHostIDTest()
-    {
+    public void getListingsByHostIDTest() throws InvalidHostIDException, NullHostIDException {
+
+        List<Listing> listings = test.findByHostID(1);
+        assertEquals("Listing 1",listings.get(0).getName());
+        assertEquals(60.00,listings.get(0).getPrice());
+        assertEquals("Listing 2",listings.get(1).getName());
+        assertEquals(20.00,listings.get(1).getPrice());
 
     }
 
