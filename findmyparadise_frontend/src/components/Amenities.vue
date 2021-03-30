@@ -56,7 +56,6 @@
                 amenities: [],
                 amenityName: "",
             }
-            
         },
         mounted() {
             axios
