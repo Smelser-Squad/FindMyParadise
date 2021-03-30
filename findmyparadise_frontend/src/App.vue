@@ -4,7 +4,7 @@
       <reservation title="Reservation"></reservation>
     </div>
     <div class="container">
-      <calendar title="Calendar"></calendar>
+      <DateRangePicker />
     </div>
     <div class="container">
       <Map />
@@ -15,6 +15,9 @@
     <div class="container">
       <description title="Description"></description>
     </div>
+  <div class="container">
+    
+  </div>
   </div>
 </template>
 
@@ -22,17 +25,19 @@
 import MorePlaces from "./components/MorePlaces.vue";
 import Reservation from "./components/Reservation.vue";
 import Map from "./components/Map.vue";
-import Calendar from "./components/Calendar.vue";
+// import Calendar from "./components/Calendar.vue";
 import Description from "./components/Description";
+import DateRangePicker from "./components/DateRangePicker.vue";
 
 export default {
   name: "App",
   components: {
     Reservation,
     Map,
-    Calendar,
+    // Calendar,
     MorePlaces,
-    Description
+    Description,
+    DateRangePicker
   },
 };
 </script>
