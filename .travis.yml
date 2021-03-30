@@ -2,5 +2,5 @@ jobs:
   include:
     - language: java
       before_install: cd ./findmyparadise/
-    - language: node.js
+    - language: node_js
       before_install: cd ./findmyparadise_frontend/

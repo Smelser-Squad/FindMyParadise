@@ -4,7 +4,7 @@ COPY pom.xml /server/pom.xml
 RUN mvn dependency:go-offline
 
 COPY src /server/src
-RUN mvn install -DskipTests
+RUN mvn install
 ARG JAR_FILE=target/*.jar
 COPY ${JAR_FILE} target/application.jar
 WORKDIR /server/target
@@ -17,8 +17,8 @@ RUN java -Djarmode=layertools -jar application.jar extract
 # RUN java -Djarmode=layertools -jar application.jar extract
 
 FROM openjdk:11-jre-slim
-# RUN addgroup --system spring && adduser --system --group spring
-# USER spring:spring
+RUN addgroup --system spring && adduser --system --group spring
+USER spring:spring
 ARG DEPENDENCY=/server/target
 COPY --from=builder ${DEPENDENCY}/dependencies/ ./
 COPY --from=builder ${DEPENDENCY}/snapshot-dependencies/ ./
