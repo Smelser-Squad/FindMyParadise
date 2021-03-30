@@ -19,15 +19,13 @@
           ></path>
         </svg>
         <span v-if="dataObject.reviews != undefined">{{dataObject.reviews[0].rating}} ({{dataObject.reviews.length}})</span>
-
-    
       </div>
     
     </header>
     <body>
       <form v-on:submit.prevent="submitForm"> 
-     
-  <DatePicker v-model="date" @click="OnClick()"/>
+     <Calendar @DatePick="Change"/>
+
 
       <h5>Guests:</h5>
       <Guests />
@@ -77,10 +75,12 @@
   </div>
 </template>
 <script>
-import { DatePicker } from 'v-calendar';
+
 import Guests from "./Guests";
 import axios from 'axios';
-import Calender from "./Calendar"
+import Calendar from './Calendar.vue';
+
+
 
 
 
@@ -120,15 +120,15 @@ export default {
   },
 
     components: {
-    DatePicker,
     Guests,
+    Calendar,
+    
   
   },
   methods: {
     OnClick() {
       console.log("Reserve");
-      console.log(this.date);
-      this.$emit('DatePick',this.date)
+      
     },
     CleaningFeepopup() {
       let popup = document.getElementById("CleaningFeepopup");
@@ -146,7 +146,13 @@ export default {
 ShowDetals(){
   this.show=true;
 
-}
+},
+Change(event){
+        // console.log(event);
+        this.form.CheckIn=event;
+        console.log(this.form.CheckIn)
+
+    }
   },
  
 };

@@ -1,7 +1,7 @@
 <template>
   <div id="AppBody">
     <div class="container">
-      <reservation title="Reservation" @DatePick="Change"></reservation>
+      <reservation title="Reservation"></reservation>
     </div>
     <div class="container">
       <amenities title="Amenities"></amenities>
@@ -44,24 +44,19 @@ import Amenities from "./components/Amenities.vue";
 export default {
   name: "App",
   components: {
-   Reservation,
+    Reservation,
     Map,
     Calendar,
     MorePlaces,
-
-    Description,
     Review,
     Reviewer,
-
+    Description,
     Amenities
 
 
   },
-  methods:{
-    Change(event){
-        console.log(event);
-    }
-  }
+  
+  
 };
 </script>
 <style>

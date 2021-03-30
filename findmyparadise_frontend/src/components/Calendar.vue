@@ -1,27 +1,17 @@
 
 <template>
   <div id="Calendar">
-    <h1>Pick a Date Range</h1>
-    <date-picker v-on:change="ChangeDate()"
-      class="datePicker"
-      v-model="date1"
-      lang="en"
-      type="date"
-      format="MM-dd-YYYY"
-      
+
+  
+    <date-picker class="datePicker" :min-date="new Date()" v-on:change="ChangeDate()"
+      v-model="range"
+      @click="OnClick()" is-range
+  
       
     ></date-picker>
-    <date-picker
-      class="datePicker"
-      v-model="date2"
-      lang="en"
-      type="date"
-      format="MM-dd-YYYY"
-      
-    ></date-picker>
-    <span>Start Date: {{updateDate(date1)}}</span>
+    <span>CheckIn: {{updateDate(range.start)}}</span>
     <br/>
-    <span>End Date: {{updateDate(date2)}}</span>
+    <span>CheckOut {{updateDate(range.end)}}</span>
     <br/>
     <button type="button" @click="numOfDays">Submit</button>
     <br/>
@@ -31,7 +21,7 @@
 </template>
 
 <script>
-import DatePicker from "vue3-datepicker";
+import { DatePicker } from 'v-calendar';
 export default {
   name: "Calendar",
 
@@ -43,6 +33,10 @@ export default {
     return {
       date1: '',
       date2: '',
+      range: {
+      start: new Date(),
+      end: new Date()
+    }
     };
   },
   methods: {
@@ -57,9 +51,12 @@ export default {
       
       return days
     },
-   ChangeDate:function(){
-     alert("Date Changed")
+   OnClick(){
+      this.$emit('DatePick',this.range.start);
+    
+
    }
+   
     
   }
 };
