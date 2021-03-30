@@ -51,10 +51,8 @@ export default {
 
     Description,
     Review,
-    Reviewer
+    Reviewer,
 
-    Reservation
-    Description,
     Amenities
 
 
