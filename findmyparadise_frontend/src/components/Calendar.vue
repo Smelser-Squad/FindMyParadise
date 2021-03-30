@@ -20,7 +20,7 @@
     <br/>
     <span>End Date: {{updateDate(date2)}}</span>
     <br/>
-    <button @click="numOfDays">Submit</button>
+    <button class="btn" @click="numOfDays">Submit</button>
     <br/>
     <span>Number of days: </span>
     <span>{{numOfDays()}}</span>
