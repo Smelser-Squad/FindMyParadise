@@ -17,7 +17,10 @@
       <more-places></more-places>
     </div>
     <div class="container">
-      <description @email="emailOverlay" title="Description"></description>
+      <description
+        title="Description"
+        @email="toggleEmail">  
+      </description>
     </div>
     <div class="reviewContainer">
       <review title="Review"></review>
@@ -25,6 +28,11 @@
     <div class="reviewerContainer"> 
       <reviewer> </reviewer>
     </div>
+    <email
+      v-if="emailTrigger"
+      :toggleEmail="() => toggleEmail()">
+    
+    </email>
   </div>
 </template>
 
@@ -41,6 +49,7 @@ import Review from "./components/Review"
 import Reviewer from "./components/Reviewer"
 
 import DateRangePicker from "./components/DateRangePicker.vue";
+import Email from "./components/Email"
 
 
 
@@ -58,13 +67,19 @@ export default {
     Reviewer,
 
 
-    DateRangePicker
-  
-
+    DateRangePicker,
+    Email
+  },
+  data() {
+    return {
+      emailTrigger: false,
+    }
   },
   methods: {
-    emailOverlay(host) {
-      console.log(host);
+    toggleEmail() {
+      console.log("CLICKED");
+      console.log(this.emailTrigger);
+      this.emailTrigger = !this.emailTrigger;
     }
   }
 };

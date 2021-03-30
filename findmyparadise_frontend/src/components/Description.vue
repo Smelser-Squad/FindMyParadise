@@ -17,7 +17,7 @@
     >
     <hr />
     <p>{{ dataObject.description }}</p>
-    <span @click="showEmail()"><u>Contact Host</u></span>
+    <span @click="toggleEmail"><u>Contact Host</u></span>
   </div>
 </template>
 
@@ -39,11 +39,10 @@ export default {
     });
   },
   methods: {
-    showEmail() {
-      console.log("Clicked");
-      this.$emit('email', this.dataObject.host);
-    },
-  },
+    toggleEmail() {
+      this.$emit("email");
+    }
+  }
 };
 </script>
 
