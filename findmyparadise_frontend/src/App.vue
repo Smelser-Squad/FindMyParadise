@@ -4,10 +4,11 @@
       <reservation title="Reservation"></reservation>
     </div>
     <div class="container">
+      >
       <amenities title="Amenities"></amenities>
     </div>
     <div class="container">
-      <calendar title="Calendar"></calendar>
+      <DateRangePicker />
     </div>
     <div class="container">
       <Map />
@@ -29,15 +30,18 @@
 
 <script>
 
-import MorePlaces from "./components/MorePlaces";
-import Reservation from "./components/Reservation";
-import Map from "./components/Map";
-import Calendar from "./components/Calendar.vue";
+import MorePlaces from "./components/MorePlaces.vue";
+import Reservation from "./components/Reservation.vue";
+import Map from "./components/Map.vue";
 import Description from "./components/Description";
+
 import Amenities from "./components/Amenities.vue";
 
 import Review from "./components/Review"
 import Reviewer from "./components/Reviewer"
+
+import DateRangePicker from "./components/DateRangePicker.vue";
+
 
 
 export default {
@@ -45,12 +49,17 @@ export default {
   components: {
     Reservation,
     Map,
-    Calendar,
+    // Calendar,
     MorePlaces,
     Description,
+
     Amenities,
     Review,
     Reviewer,
+
+
+    DateRangePicker
+  
 
   },
 };
