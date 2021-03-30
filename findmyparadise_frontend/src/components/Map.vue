@@ -1,38 +1,50 @@
 <template>
-  <h1>Map</h1>
-  <div id="map" ref="mapRef"></div>
+    <h1>Map</h1>
+    <div id="map" ref="mapRef"></div>
+    <h4>{{dataObject}}</h4>
+    <h4></h4>
+    <h4></h4>
+    <h4></h4>
 </template>
 
 <script>
-import { onMounted, ref } from "vue";
+import { ref, onMounted } from "vue";
 import axios from "axios";
-let listingID = 1;
+
+let listingID = 2;
 
 export default {
   name: "Map",
-  data() {
-    return {
-      dataObject: {},
-    };
-  },
   setup() {
     const mapRef = ref(null);
     onMounted(() => {
       axios
         .get(`http://localhost:8080/api/listing/${listingID}`)
         .then((res) => {
-          let pointOfInterest = [res.data.longitude, res.data.latitude];
+          console.log(res);
+          let POI = [res.data.longitude, res.data.latitude];
+          let lat = res.data.latitude.toString();
+          let long = res.data.longitude.toString();
+          let latFloatNum = parseFloat(lat);
+          let longFloatNum = parseFloat(long);
+          axios.get(`https://api.tomtom.com/search/2/nearbySearch/.json?lat=${latFloatNum}&lon=${longFloatNum}&key=ziBCBRJyocQkRJJD2WlhVIOaMvQ1agyK`)
+          .then((nearbyObj) => {
+            console.log(nearbyObj);
+            console.log(nearbyObj.data.results[3].poi.name);
+            console.log((nearbyObj.data.results[9].dist * 0.00062137119224).toFixed(2) + " mi");
+          });
           const tt = window.tt;
           var map = tt.map({
             key: "ziBCBRJyocQkRJJD2WlhVIOaMvQ1agyK",
             container: mapRef.value,
             style: "tomtom://vector/1/basic-main",
+            center: POI,
             zoom: 14,
-            center: pointOfInterest
           });
           map.addControl(new tt.FullscreenControl());
           map.addControl(new tt.NavigationControl());
           addMarker(map);
+        });
     });
     function addMarker(map) {
       const tt = window.tt;
@@ -56,12 +68,11 @@ export default {
           );
           marker.setPopup(popup).togglePopup();
         });
-  }
-  });
-  return {
+    }
+    return {
       mapRef,
     };
-   },
+  },
 };
 </script>
 <style>

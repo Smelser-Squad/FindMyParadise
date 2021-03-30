@@ -18,19 +18,19 @@
           ></path>
         </svg>
         <span v-if="dataObject.reviews != undefined">{{dataObject.reviews[0].rating}} ({{dataObject.reviews.length}})</span>
-
-    
       </div>
     
     </header>
     <body>
       <form>
-      <Calendar />
       <h5>Guests</h5>
       <select>
         <option>1 guest</option>
       </select>
       <Guests />
+      <h5>Dates</h5>
+      <div v-if="showCalendar" v-on:getStart="updateStart($event)"><DateRangePicker /></div>
+      <span> Start Date: {{start}} </span>
       <span
         class="_19di23v"
         style="
@@ -71,24 +71,25 @@
   </div>
 </template>
 <script>
-import Calendar from "./Calendar";
 import Guests from "./Guests";
+import DateRangePicker from "./DateRangePicker.vue"
 
-import axios from "axios";
 
-
+import axios from 'axios';
 
 
 let listingID=1;
-
-
 export default {
   name: "Reservation",
   data() {
     return {
   
       dataObject: {},
-     
+      showCalendar: false,
+      startDate: new Date(),
+      endDate: new Date(),
+      startStr: '',
+      endStr: ''
     };
   },
   mounted() {
@@ -98,14 +99,12 @@ export default {
     
     });
   },
-
   props: {
     title: String,
   },
-
   components: {
-    Calendar,
     Guests,
+    DateRangePicker
   },
   methods: {
     OnClick() {
@@ -119,6 +118,9 @@ export default {
       let popup = document.getElementById("ServiceFeepopup");
       popup.classList.toggle("show");
     },
+    updateStart(start) {
+      this.startDate = start;
+    }
   },
 };
 </script>

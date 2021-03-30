@@ -4,7 +4,7 @@
       Adults: <button type="button" id="DecresaeAdults" class="btn" @click="DecreaseAdults()">-</button> {{AdultsNum}} <button type="button" class="btn" @click="IncreaseAdults()">+</button>
     </h5>
     <h5>
-      Children:<button type="button" class="btn">-</button>{{ChildNum}}<button type="button" class="btn">+</button>
+      Children:<button type="button" class="btn" @click="DecreaseChild()">-</button>{{ChildNum}}<button type="button" class="btn">+</button>
     </h5>
     <h5>
       Infants: <button type="button" class="btn">-</button> {{InfantNum}} <button type="button" class="btn">+</button>

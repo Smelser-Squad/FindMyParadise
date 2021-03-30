@@ -1,0 +1,36 @@
+{
+    "amenities": [
+        {
+            "amenityName": "Hot Water",
+            "amenityCategory": "Bathroom"
+        },
+        {
+            "amenityName": "Shampoo",
+            "amenityCategory": "Bathroom"
+        },
+        {
+            "amenityName": "Wifi",
+            "amenityCategory": "Internet and office"
+        },
+        {
+            "amenityName": "Ethernet Connection",
+            "amenityCategory": "Internet and office"
+        },
+        {
+            "amenityName": "Oven",
+            "amenityCategory": "Kitchen and dining"
+        },
+        {
+            "amenityName": "Microwave",
+            "amenityCategory": "Kitchen and dining"
+        },
+        {
+            "amenityName": "Coffee Maker",
+            "amenityCategory": "Kitchen and dining"
+        },
+        {
+            "amenityName": "Stove",
+            "amenityCategory": "Kitchen and dining"
+        }
+    ]
+}
