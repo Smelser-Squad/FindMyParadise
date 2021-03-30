@@ -49,17 +49,17 @@ import Host from "./components/Host.vue";
 export default {
   name: "App",
   components: {
-   Reservation,
+    Reservation,
     Map,
     Calendar,
     MorePlaces,
-
-    Description,
     Review,
     Reviewer,
 
-    Amenities,
-    Host
+    Host,
+    Description,
+    Amenities
+
 
 
   },
