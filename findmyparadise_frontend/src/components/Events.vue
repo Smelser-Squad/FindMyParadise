@@ -44,7 +44,7 @@
 import HorizontalList from "./HorizontalList.vue";
 import dummyData from "../assets/Events.json";
 export default {
-  name: "things-to-do",
+  name: "events",
   components: {
     HorizontalList,
   },
