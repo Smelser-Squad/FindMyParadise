@@ -18,8 +18,6 @@
           ></path>
         </svg>
         <span v-if="dataObject.reviews != undefined">{{dataObject.reviews[0].rating}} ({{dataObject.reviews.length}})</span>
-
-    
       </div>
     
     </header>
