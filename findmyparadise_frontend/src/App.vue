@@ -34,6 +34,11 @@ import Reservation from "./components/Reservation";
 import Calendar from "./components/Calendar.vue";
 import Description from "./components/Description";
 
+import Review from "./components/Review"
+import Reviewer from "./components/Reviewer"
+
+import Amenities from "./components/Amenities.vue";
+
 import Review from "./components/Review";
 import Reviewer from "./components/Reviewer";
 
@@ -43,23 +48,23 @@ export default {
   name: "App",
   components: {
     Reservation,
-<<<<<<< HEAD
-    // Map,
-=======
+
+   Reservation,
     Map,
->>>>>>> 581530125de528bbba09204e4bcb68ab84461817
     Calendar,
     MorePlaces,
     Review,
     Reviewer,
-<<<<<<< HEAD
-    Amenities,
-=======
+
     Description,
+    Review,
+    Reviewer,
+
+  
     Amenities
 
 
->>>>>>> 581530125de528bbba09204e4bcb68ab84461817
+
   },
 };
 </script>

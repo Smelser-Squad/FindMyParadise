@@ -74,9 +74,13 @@
 import Calendar from "./Calendar";
 import Guests from "./Guests";
 
+
+
+import axios from 'axios';
+
 import axios from "axios";
 
-let listingID = 1;
+let listingID=1;
 export default {
   name: "Reservation",
   data() {
