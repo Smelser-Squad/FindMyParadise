@@ -10,7 +10,9 @@ import java.util.Set;
 
 @Table(name = "listing")
 
+
 @JsonIgnoreProperties(value = {"amenities","reservations"}, allowSetters = true)
+
 
 public class Listing {
     @Id
@@ -76,7 +78,7 @@ public class Listing {
     @Column (name ="listing_type")
     private String type;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "listing_amenities",
             joinColumns = @JoinColumn(name = "listing_id"),
