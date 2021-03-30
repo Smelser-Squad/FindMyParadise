@@ -8,7 +8,7 @@
       <amenities title="Amenities"></amenities>
     </div>
     <div class="container">
-      <DateRangePicker /
+      <DateRangePicker />
     </div>
     <div class="container">
       <Map />
@@ -34,10 +34,14 @@ import MorePlaces from "./components/MorePlaces.vue";
 import Reservation from "./components/Reservation.vue";
 import Map from "./components/Map.vue";
 import Description from "./components/Description";
-import DateRangePicker from "./components/DateRangePicker.vue";
+
+import Amenities from "./components/Amenities.vue";
+
 import Review from "./components/Review"
 import Reviewer from "./components/Reviewer"
-import Amenities from "./components/Amenities.vue";
+
+import DateRangePicker from "./components/DateRangePicker.vue";
+
 
 
 export default {
@@ -48,11 +52,15 @@ export default {
     // Calendar,
     MorePlaces,
     Description,
-    DateRangePicker
+
+    Amenities,
     Review,
     Reviewer,
-    Description,
-    Amenities
+
+
+    DateRangePicker
+  
+
   },
 };
 </script>
