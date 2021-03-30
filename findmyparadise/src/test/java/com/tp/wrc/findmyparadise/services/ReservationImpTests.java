@@ -42,49 +42,50 @@ public class ReservationImpTests {
     public void tearDown() {
 
     }
-    @Test
-    public void getReservationByIdGoldenPath() {
-        try {
-            Reservation test = toTest.getReservationById(1);
-            assertEquals(LocalDate.now(),test.getCheckInDate());
-            assertEquals(LocalDate.of(2021,4,13),test.getCheckOutDate());
-            assertEquals(1,test.getAdults());
-            assertEquals(0,test.getChildren());
-            assertEquals(0,test.getInfants());
-            assertEquals(23.00,test.getPrice());
-        } catch (InvalidReservationIdException | NullReservationIdException ex) {
-
-
-        }
-    }
-        @Test
-    public void deleteReservationTest() {
-        assertThrows(InvalidReservationIdException.class,()->toTest.deleteReservation(3));
-
-
-        }
-
-    @Test
-    public void deleteReservationWithNullIdTest() {
-        assertThrows(NullReservationIdException.class, () -> toTest.deleteReservation(null));
-    }
-@Test
-    public void addReservationGoldenPathTest() throws NullReservationIdException, InvalidReservationIdException {
-        Reservation test=  new Reservation();
-        test.setCheckInDate(LocalDate.now());
-        test.setCheckOutDate(LocalDate.of(2021,04,25));
-        test.setAdults(1);
-        test.setChildren(0);
-        test.setInfants(0);
-        Listing listing= new Listing();
-    listing.setName("Listing 1");
-    listing.setAddress("123 Fake Address");
-    listing.setPrice(60.00);
-    test.setListing(listing);
-    test.setPrice(listing.getPrice() * (ChronoUnit.DAYS.between(test.getCheckInDate(), test.getCheckOutDate())));
-    toTest.addReservation(test);
-
-
-}
-
+//    @Test
+//    public void getReservationByIdGoldenPath() {
+//        try {
+//            Reservation test = toTest.getReservationById(1);
+//            assertEquals(LocalDate.now(),test.getCheckInDate());
+//            assertEquals(LocalDate.of(2021,4,13),test.getCheckOutDate());
+//            assertEquals(1,test.getAdults());
+//            assertEquals(0,test.getChildren());
+//            assertEquals(0,test.getInfants());
+//            assertEquals(23.00,test.getPrice());
+//        } catch (InvalidReservationIdException | NullReservationIdException ex) {
+//
+//
+//        }
+//    }
+//        @Test
+//    public void deleteReservationTest() {
+//        assertThrows(InvalidReservationIdException.class,()->toTest.deleteReservation(3));
+//
+//
+//        }
+//
+//    @Test
+//    public void deleteReservationWithNullIdTest() {
+//        assertThrows(NullReservationIdException.class, () -> toTest.deleteReservation(null));
+//    }
+//@Test
+//    public void addReservationGoldenPathTest() throws NullReservationIdException, InvalidReservationIdException {
+//        Reservation test=  new Reservation();
+//        test.setCheckInDate(LocalDate.now());
+//        test.setCheckOutDate(LocalDate.of(2021,04,25));
+//        test.setAdults(1);
+//        test.setChildren(0);
+//        test.setInfants(0);
+//        Listing listing= new Listing();
+//    listing.setName("Listing 1");
+//    listing.setAddress("123 Fake Address");
+//    listing.setPrice(60.00);
+//    test.setListing(listing);
+//    test.setPrice(listing.getPrice() * (ChronoUnit.DAYS.between(test.getCheckInDate(), test.getCheckOutDate())));
+//    toTest.addReservation(test);
+//
+//
+//}
+//
+//}
 }

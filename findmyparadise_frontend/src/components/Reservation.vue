@@ -24,7 +24,7 @@
     </header>
     <body>
       <form v-on:submit.prevent="submitForm"> 
-     <Calendar @DatePick="Change"/>
+     
 
 
       <h5>Guests:</h5>
@@ -78,7 +78,7 @@
 
 import Guests from "./Guests";
 import axios from 'axios';
-import Calendar from './Calendar.vue';
+
 
 
 
@@ -121,7 +121,7 @@ export default {
 
     components: {
     Guests,
-    Calendar,
+    
     
   
   },
@@ -147,13 +147,7 @@ ShowDetals(){
   this.show=true;
 
 },
-Change(event){
-        // console.log(event);
-        this.form.CheckIn=event;
-        console.log(this.form.CheckIn)
-
-    }
-  },
+  }
  
 };
 </script>
