@@ -77,11 +77,7 @@ export default {
           marker.setPopup(popup).togglePopup();
         });
   }
-  });
-  return {
-      mapRef,
-    };
-   },
+  },
 };
 </script>
 <style>

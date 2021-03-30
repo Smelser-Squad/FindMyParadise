@@ -48,13 +48,9 @@ export default {
     Map,
     Calendar,
     MorePlaces,
-
     Description,
     Review,
-    Reviewer
-
-    Reservation
-    Description,
+    Reviewer,
     Amenities
 
 
