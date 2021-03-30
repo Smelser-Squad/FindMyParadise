@@ -24,6 +24,9 @@
     <div class="reviewerContainer"> 
       <reviewer> </reviewer>
     </div>
+    <div class="container">
+      <host></host>
+    </div>
   </div>
 </template>
 
@@ -40,6 +43,8 @@ import Reviewer from "./components/Reviewer"
 
 import Amenities from "./components/Amenities.vue";
 
+import Host from "./components/Host.vue";
+
 
 export default {
   name: "App",
@@ -53,7 +58,8 @@ export default {
     Review,
     Reviewer,
 
-    Amenities
+    Amenities,
+    Host
 
 
   },
