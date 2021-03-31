@@ -1,18 +1,14 @@
 <template>
-    <form> 
-        <!-- <label>Reviewer Name</label>
+  <form>
+    <!-- <label>Reviewer Name</label>
         <input type="text" required v-model="name"> -->
-    </form>
-    <div> 
-        <li  v-for="review in reviews" :key="review"> 
-            Accuracy Rating : 
-            {{review.accuracyRating}}
-           
-        </li> 
-
-       
-    </div>
-
+  </form>
+  <div>
+    <li v-for="review in reviews" :key="review">
+      Accuracy Rating :
+      {{ review.accuracyRating }}
+    </li>
+  </div>
 </template>
 
 <script>
@@ -20,10 +16,9 @@ import axios from "axios";
 
 export default {
   name: "Review",
-data() {
+  data() {
     return {
       reviews: null,
-      
     };
   },
   mounted() {
@@ -35,6 +30,5 @@ data() {
       })
       .catch((err) => Promise.reject(err));
   },
-  
 };
 </script>
