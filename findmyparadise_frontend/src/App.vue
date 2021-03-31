@@ -1,5 +1,8 @@
 <template>
   <div id="AppBody">
+    <div class="imgContainer">
+      <GalleryMini />
+    </div>
     <div class="container">
       <reservation title="Reservation"></reservation>
     </div>
@@ -55,7 +58,12 @@ import Events from "./components/Events";
 import DateRangePicker from "./components/DateRangePicker.vue";
 import Email from "./components/Email";
 
+
+import GalleryMini from "./components/GalleryMini.vue";
+
+
 import Host from "./components/Host.vue";
+
 
 export default {
   name: "App",
@@ -69,10 +77,16 @@ export default {
     Reviewer,
     Host,
     DateRangePicker,
+     GalleryMini,
     Events,
 
     Email,
   },
+
+
+   
+   
+  
 
   methods: {
     Change(event) {
@@ -83,6 +97,7 @@ export default {
       this.host = host;
     },
   },
+
 
   data() {
     return {
@@ -173,5 +188,15 @@ body {
   padding: 30px;
   border-radius: 5px;
   box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
+}
+
+.imgContainer{
+  max-width: 1300px;
+  margin: 30px auto;
+  object-fit: fill;
+  max-height: 500px;
+  border-radius: 10px;
+  box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
+  overflow: hidden;
 }
 </style>
