@@ -12,27 +12,32 @@
       <input
         type="text"
         name="description"
-        placeholder="Write Rating Description"
+        placeholder="Write Rating  Description"
         v-model="posts.description"
       />
       <br />
       <br />
-      <input
+      <!-- <input
         type="text"
         name="imageSrc"
         placeholder="Upload Image"
         v-model="posts.imageSrc"
-      />
+      /> -->
+
+      <form ref="uploadForm" @submit.prevent="submit">
+        <input type="file" ref="uploadImage" @change="onImageUpload()" class="form-control" required>
+        <input type="button" @click="startUpload" name="upload" value="Upload" />
+      </form>
       <br />
       <br />
 
-      <date-picker
+      <!-- <date-picker
         class="datePicker"
         v-model="posts.joinedDate"
         lang="en"
         type="date"
         format="MM-dd-YYYY"
-      ></date-picker>
+      ></date-picker> -->
 
       <br/> 
       <button type="submit">Add Review</button>
@@ -53,24 +58,34 @@
 
 <script>
 import axios from "axios";
-import DatePicker from "vue3-datepicker";
 
 export default {
   name: "Review",
-  components: {
-    DatePicker,
-  },
+  
   data() {
     return {
       posts: {
         name: null,
         imageSrc: null,
         description: null,
-        joinedDate: null,
       },
+      list: undefined, 
+      formData : null, 
     };
   },
  
+// reviewData(){
+//     return {
+//       list: undefined
+//     }
+//   },
+
+//  fileUploadData: ()=> ({
+//     formData: null
+//   }),
+  
+
+
   methods: {
     postData(e) {
       axios
@@ -80,13 +95,31 @@ export default {
         });
       e.preventDefault();
     },
+
+    onImageUpload(){
+    let file = this.$refs.uploadImage.files[0];
+    this.formData = new FormData(); 
+    this.formData.append("file", file); 
   },
 
- reviewData(){
-    return {
-      list: undefined
-    }
+  startUpload(){
+    axios({
+      url: 'http://localhost:8080/api/upload',
+      method: 'POST',
+      data: this.formData,
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'multipart/form-data'
+      },
+    }).then(response => {
+      console.log(response)
+    });
+    
+
+  }
   },
+
+ 
     mounted() {
     axios
       .get("http://localhost:8080/api/reviewers")
@@ -96,6 +129,9 @@ export default {
       })
       .catch((err) => Promise.reject(err));
   }
+
+  
+  
  
 };
 </script>

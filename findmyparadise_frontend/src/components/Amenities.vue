@@ -1,39 +1,45 @@
 <template>
-  <div id="Amenities">
-    <h3>Amenities</h3>
-    <ul>
-      <li v-for="amenity in amenities" :key="amenity">
-        <svg xmlns="http://www.w3.org/2000/svg">
-          <path v-bind:d="setDPath(amenity.amenityName)"></path>
-        </svg>
-        {{ amenity.amenityName }}
-      </li>
-    </ul>
 
-    <button class="showBtn" @click="() => TogglePopup('buttonTrigger')">
-      Show all {{ amenities.length }} amenities
-    </button>
+    <div id="Amenities">
+        <h3>Amenities</h3>
+        <ul class="initDisplay">
+            <li v-for="amenity in amenities.slice(0, 10)" :key="amenity">
+                <svg xmlns="http://www.w3.org/2000/svg">
+                    <path v-bind:d="setDPath(amenity.amenityName)"></path>
+                </svg>
+                {{amenity.amenityName}}
+            </li>
+        </ul>
 
-    <Modal
-      v-if="popupTriggers.buttonTrigger"
-      :TogglePopup="() => TogglePopup('buttonTrigger')"
-    >
-      <h3>Amenities</h3>
-      <br />
-      <ul>
-        <li v-for="amenity in amenities" :key="amenity">
-          {{ amenity.amenityName }}
-          <hr />
-        </li>
-      </ul>
-    </Modal>
-  </div>
+        <button class="showBtn" @click="() => TogglePopup('buttonTrigger')">
+            Show all {{amenities.length}} amenities
+        </button>
+        
+        <Modal v-if="popupTriggers.buttonTrigger" 
+               :TogglePopup="() => TogglePopup('buttonTrigger')">
+            <h3>Amenities</h3>
+            <br>
+            <ul>
+                <li v-for="amenity in amenities" :key="amenity">
+                    {{amenity.amenityName}}
+                    <hr>
+                </li>       
+            </ul>
+        </Modal>
+        
+    </div>
+
+ 
 </template>
 
 <script>
+
 import { ref } from "vue";
 import axios from "axios";
 import Modal from "./Modal";
+
+
+let listingID = 1;
 
 export default {
   components: { Modal },
@@ -41,7 +47,9 @@ export default {
   setup() {
     const popupTriggers = ref({
       buttonTrigger: false,
+
     });
+
 
     const TogglePopup = (trigger) => {
       popupTriggers.value[trigger] = !popupTriggers.value[trigger];
@@ -57,17 +65,17 @@ export default {
     return {
       amenities: [],
       amenityName: "",
-      dPath: "",
+
     };
   },
   mounted() {
     axios
-      .get("http://localhost:8080/api/amenities")
-      .then((res) => {
-        console.log(res.data);
-        this.amenities = res.data;
-      })
-      .catch((err) => Promise.reject(err));
+    .get(`http://localhost:8080/api/listing/${listingID}`)
+    .then((res) => {
+      this.amenities = res.data.amenities;
+    })
+    .catch((err) => Promise.reject(err));
+
   },
   methods: {
     setDPath(name) {
@@ -77,6 +85,7 @@ export default {
           this.dPath =
             "M16 20a4 4 0 1 1 0 8 4 4 0 0 1 0-8zm0 2a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm0-7a9 9 0 0 1 8.043 4.958L22.53 21.47a7.003 7.003 0 0 0-13.058 0l-1.514-1.514A9 9 0 0 1 16 15zm0-5c4.89 0 9.193 2.506 11.697 6.304l-1.45 1.45A11.993 11.993 0 0 0 16 12c-4.339 0-8.14 2.302-10.247 5.752l-1.45-1.449A13.987 13.987 0 0 1 16 10zm0-5c6.267 0 11.826 3.034 15.286 7.714l-1.432 1.432C26.773 9.821 21.716 7 16 7 10.285 7 5.228 9.82 2.146 14.145L.714 12.714C4.174 8.034 9.733 5 16 5z";
           break;
+
         }
         case "TV":
           this.dPath =
@@ -142,24 +151,34 @@ export default {
 </script>
 
 <style scoped>
-ul {
-  list-style-type: none;
-}
+    ul {
+        list-style-type: none;
+    }
 
-.showBtn {
-  border-radius: 12px;
-  background-color: white;
-  padding: 10px;
-  border: 1px solid;
-}
+    .initDisplay {
+        columns: 2;
+    }
 
-.showBtn:hover {
-  text-decoration: underline;
-  background-color: #f7f7f7;
-}
+    .showBtn {
+        border-radius: 12px;
+        background-color: white;
+        padding: 10px;
+        border: 1px solid;
+    }
 
-svg {
-  width: 35px;
-  height: 35px;
-}
+
+    .showBtn:hover {
+        text-decoration: underline;
+        background-color: #F7F7F7;
+    }
+
+
+    svg {
+        width: 35px;
+        height: 35px;
+    }
+
+
+
+
 </style>
