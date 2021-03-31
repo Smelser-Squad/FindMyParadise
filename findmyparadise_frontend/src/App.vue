@@ -17,10 +17,13 @@
       <more-places></more-places>
     </div>
     <div class="container">
-      <description title="Description"></description>
+      <description
+        title="Description"
+        @email="toggleEmail">  
+      </description>
     </div>
     <div class="reviewContainer">
-      <review title="Review"></review>
+      <review></review>
     </div>
     <div class="reviewerContainer"> 
       <reviewer> </reviewer>
@@ -28,11 +31,15 @@
     <div class="container">
       <host></host>
     </div>
+    <email
+      v-if="emailTrigger"
+      :toggleEmail="() => toggleEmail()">
+    
+    </email>
   </div>
 </template>
 
 <script>
-
 import MorePlaces from "./components/MorePlaces.vue";
 import Reservation from "./components/Reservation.vue";
 import Map from "./components/Map.vue";
@@ -44,6 +51,7 @@ import Review from "./components/Review"
 import Reviewer from "./components/Reviewer"
 
 import DateRangePicker from "./components/DateRangePicker.vue";
+import Email from "./components/Email"
 
 
 import Host from "./components/Host.vue";
@@ -54,28 +62,30 @@ export default {
   components: {
     Reservation,
     Map,
-    // Calendar,
     MorePlaces,
     Description,
     Amenities,
     Review,
     Reviewer,
-
     Host,
-
-    DateRangePicker
-  
+    DateRangePicker,
+    Email
   },
-  
-  methods:
-  {
-    Change(event){
-         console.log(event);
-       
-
+  data() {
+    return {
+      emailTrigger: false,
     }
   },
-  
+  methods: {
+    toggleEmail() {
+      console.log("CLICKED");
+      console.log(this.emailTrigger);
+      this.emailTrigger = !this.emailTrigger;
+    },
+    Change(event){
+      console.log(event);
+    }
+  }
 };
 </script>
 <style>
@@ -137,7 +147,6 @@ body {
 .datePicker {
   display: inline;
 }
-
 .reviewContainer {
   max-width: 500px;
   margin: 30px auto;
@@ -148,7 +157,6 @@ body {
   border-radius: 5px;
   box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
 }
-
 .reviewerContainer {
   max-width: 500px;
   margin: 30px auto;
