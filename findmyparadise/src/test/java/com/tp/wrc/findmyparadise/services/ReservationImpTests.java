@@ -1,19 +1,14 @@
 package com.tp.wrc.findmyparadise.services;
 
-import com.tp.wrc.findmyparadise.exceptions.InvalidReservationIdException;
-import com.tp.wrc.findmyparadise.exceptions.NullReservationIdException;
 import com.tp.wrc.findmyparadise.models.Listing;
 import com.tp.wrc.findmyparadise.models.Reservation;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 public class ReservationImpTests {

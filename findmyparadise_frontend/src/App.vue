@@ -24,6 +24,9 @@
     <div class="reviewerContainer">
       <reviewer> </reviewer>
     </div>
+    <div class="container">
+      <host></host>
+    </div>
     <div class="scrollContainer">
       <events title="Events"></events>
     </div>
@@ -50,6 +53,8 @@ import Events from "./components/Events";
 import DateRangePicker from "./components/DateRangePicker.vue";
 import Email from "./components/Email";
 
+import Host from "./components/Host.vue";
+
 export default {
   name: "App",
   components: {
@@ -60,24 +65,27 @@ export default {
     Amenities,
     Review,
     Reviewer,
+    Host,
     DateRangePicker,
     Events,
     Email,
   },
+
+  methods: {
+    Change(event) {
+      console.log(event);
+    },
+    toggleEmail(host) {
+      this.emailTrigger = !this.emailTrigger;
+      this.host = host;
+    },
+  },
+
   data() {
     return {
       emailTrigger: false,
       host: {},
     };
-  },
-  methods: {
-    toggleEmail(host) {
-      this.emailTrigger = !this.emailTrigger;
-      this.host = host;
-    },
-    Change(event) {
-      console.log(event);
-    },
   },
 };
 </script>

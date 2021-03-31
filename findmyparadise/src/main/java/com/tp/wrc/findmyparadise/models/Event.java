@@ -2,18 +2,17 @@ package com.tp.wrc.findmyparadise.models;
 
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
 @Table(name = "event")
-public class Event {
-
-    // V A R I A B L E S
+public class Event implements Serializable {
 
     @Id
     @Column(name = "event_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id; //Primary Key, Cannot be null
+    private Integer id;
 
     @Column(name = "title")
     private String title;
@@ -33,11 +32,7 @@ public class Event {
     @Column(name = "longitude")
     private double longitude;
 
-
-    // C O N S T R U C T O R S
-    public Event() {
-
-    }
+    public Event() {}
 
     public Event(String title, String summary, String category, double cost, double latitude, double longitude) {
         this.title = title;
@@ -48,9 +43,6 @@ public class Event {
         this.longitude = longitude;
     }
 
-    // M E T H O D S
-
-    // G E T T E R S && S E T T E R S
     public Integer getId() {
         return id;
     }
@@ -106,9 +98,6 @@ public class Event {
     public void setCost(double cost) {
         this.cost = cost;
     }
-
-    // HASH & EQUALS
-
 
     @Override
     public boolean equals(Object o) {
