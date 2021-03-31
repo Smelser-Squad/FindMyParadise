@@ -5,21 +5,22 @@ import com.tp.wrc.findmyparadise.exceptions.NullAmenityIdException;
 import com.tp.wrc.findmyparadise.exceptions.NullCategoryException;
 import com.tp.wrc.findmyparadise.models.Amenity;
 import com.tp.wrc.findmyparadise.repositories.AmenityRepository;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.ArrayList;
-import java.util.List;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-@SpringBootTest
+@ExtendWith(MockitoExtension.class)
 public class AmenityServiceImplTests {
 
-    @Autowired
+    @InjectMocks
     AmenityServiceImpl toTest;
+
+    @Mock
+    AmenityRepository repo;
 
     @Test
     public void findAmenityByIdNullAmenityIdTest() {
