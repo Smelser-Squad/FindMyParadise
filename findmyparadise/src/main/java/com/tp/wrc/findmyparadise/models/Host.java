@@ -3,6 +3,7 @@ package com.tp.wrc.findmyparadise.models;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.io.Serializable;
@@ -12,12 +13,10 @@ import java.util.Set;
 @Table(name = "host")
 public class Host implements Serializable {
 
-    // VARIABLES
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "host_id")
-    private Integer hostID; // PK NOT NULL
+    private Integer hostID;
 
     @Column(name = "host_name", nullable = false)
     private String hostName;
@@ -46,18 +45,10 @@ public class Host implements Serializable {
     @Column(name = "image_src", nullable = false)
     private String imageSrc;
 
-    @OneToMany(mappedBy = "host")
-    private Set<Listing> listings;
+    @OneToMany(mappedBy = "host", orphanRemoval = true, cascade = CascadeType.ALL)
+    private Set<Listing> listings = new HashSet<>();
 
-    // EMPTY CONSTRUCTOR
-
-    public Host() {
-
-
-    }
-
-    // CONSTRUCTOR
-
+    public Host() {}
 
     public Host(Integer hostID, String hostName, String totalReviews, boolean superHost, boolean verified,
                 String responseTime, Double responseRate, String joinDate, String email, String imageSrc) {
@@ -72,9 +63,6 @@ public class Host implements Serializable {
         this.email = email;
         this.imageSrc = imageSrc;
     }
-
-    // GETTERS AND SETTERS
-
 
     public Integer getHostID() {
         return hostID;
@@ -155,9 +143,5 @@ public class Host implements Serializable {
     public void setImageSrc(String imageSrc) {
         this.imageSrc = imageSrc;
     }
-
-
-
-
 }
 

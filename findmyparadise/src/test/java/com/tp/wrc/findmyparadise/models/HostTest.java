@@ -1,24 +1,14 @@
 package com.tp.wrc.findmyparadise.models;
 
-import com.mysql.cj.Query;
-import com.tp.wrc.findmyparadise.exceptions.InvalidHostEmailException;
 import com.tp.wrc.findmyparadise.exceptions.InvalidHostIDException;
-import com.tp.wrc.findmyparadise.exceptions.InvalidHostNameException;
 import com.tp.wrc.findmyparadise.exceptions.NullHostIDException;
-import com.tp.wrc.findmyparadise.models.Event;
-import com.tp.wrc.findmyparadise.models.Host;
 import com.tp.wrc.findmyparadise.repositories.HostRepository;
-import com.tp.wrc.findmyparadise.services.HostServiceImpl;
-import org.aspectj.lang.annotation.After;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import javax.persistence.EntityManager;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -31,19 +21,13 @@ public class HostTest {
     @Autowired
     HostRepository repo;
 
-
     //workaround to table id's not reseting after each test
     int id1;
     int id2;
 
     @BeforeEach
     public void setup() {
-
-
         Host test = new Host();
-
-
-
         test.setHostName("test name");
         test.setSuperHost(true);
         test.setVerified(true);
@@ -53,7 +37,9 @@ public class HostTest {
         test.setEmail("test@email.com");
         test.setImageSrc("test img src");
         test.setTotalReviews("test total reviews");
+
         repo.save(test);
+
         Host test2 = new Host();
         test2.setHostName("different test name");
         test2.setSuperHost(false);
@@ -64,6 +50,7 @@ public class HostTest {
         test2.setEmail("sample@gmail.com");
         test2.setImageSrc("different test img src");
         test2.setTotalReviews("different test total reviews");
+
         repo.save(test2);
 
         id1 = test.getHostID();
@@ -105,26 +92,29 @@ public class HostTest {
     void getAllGoldenPath() throws NullHostIDException, InvalidHostIDException {
         List<Host> allHosts = repo.findAll();
 
-        assertEquals("test name", allHosts.get(2).getHostName());
-        assertTrue(allHosts.get(2).isSuperHost());
-        assertTrue(allHosts.get(2).isVerified());
-        assertEquals("test response time", allHosts.get(2).getResponseTime());
-        assertEquals(100.00, allHosts.get(2).getResponseRate());
-        assertEquals("May 2020", allHosts.get(2).getJoinDate());
-        assertEquals("test@email.com", allHosts.get(2).getEmail());
-        assertEquals("test img src", allHosts.get(2).getImageSrc());
-        assertEquals("test total reviews", allHosts.get(2).getTotalReviews());
-        assertEquals("test@email.com", allHosts.get(2).getEmail());
+            //These ID's are 5 and 6 because when you run all tests these run after the other tests in the implementation,
+            //so there are other ID's before them.
 
-        assertEquals("different test name", allHosts.get(3).getHostName());
-        assertFalse(allHosts.get(3).isSuperHost());
-        assertFalse(allHosts.get(3).isVerified());
-        assertEquals("different test response time", allHosts.get(3).getResponseTime());
-        assertEquals(500.2, allHosts.get(3).getResponseRate());
-        assertEquals("October 1990", allHosts.get(3).getJoinDate());
-        assertEquals("sample@gmail.com", allHosts.get(3).getEmail());
-        assertEquals("different test img src", allHosts.get(3).getImageSrc());
-        assertEquals("different test total reviews", allHosts.get(3).getTotalReviews());
+        assertEquals("test name", allHosts.get(5).getHostName());
+        assertTrue(allHosts.get(5).isSuperHost());
+        assertTrue(allHosts.get(5).isVerified());
+        assertEquals("test response time", allHosts.get(5).getResponseTime());
+        assertEquals(100.00, allHosts.get(5).getResponseRate());
+        assertEquals("May 2020", allHosts.get(5).getJoinDate());
+        assertEquals("test@email.com", allHosts.get(5).getEmail());
+        assertEquals("test img src", allHosts.get(5).getImageSrc());
+        assertEquals("test total reviews", allHosts.get(5).getTotalReviews());
+        assertEquals("test@email.com", allHosts.get(5).getEmail());
+
+        assertEquals("different test name", allHosts.get(6).getHostName());
+        assertFalse(allHosts.get(6).isSuperHost());
+        assertFalse(allHosts.get(6).isVerified());
+        assertEquals("different test response time", allHosts.get(6).getResponseTime());
+        assertEquals(500.2, allHosts.get(6).getResponseRate());
+        assertEquals("October 1990", allHosts.get(6).getJoinDate());
+        assertEquals("sample@gmail.com", allHosts.get(6).getEmail());
+        assertEquals("different test img src", allHosts.get(6).getImageSrc());
+        assertEquals("different test total reviews", allHosts.get(6).getTotalReviews());
 
     }
 

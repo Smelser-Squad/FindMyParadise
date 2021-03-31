@@ -1,16 +1,16 @@
 package com.tp.wrc.findmyparadise.services;
 
 import com.tp.wrc.findmyparadise.exceptions.*;
-import com.tp.wrc.findmyparadise.models.Host;
 import com.tp.wrc.findmyparadise.models.Listing;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 public class ListingServiceImplTests {
@@ -18,11 +18,10 @@ public class ListingServiceImplTests {
     @Autowired
     ListingServiceImpl test;
 
-
     @BeforeEach()
     public void setup() throws InvalidHostIDException, NullListingPriceException, NullAddressException, NullHostIDException, NullListingNameException, InvalidListingNameException, InvalidAddressException {
         Listing listing = new Listing();
-        listing.setListingID(1);
+        listing.setListingId(1);
         listing.setName("Listing 1");
         listing.setAddress("123 Fake Address");
         listing.setPrice(60.00);
@@ -30,10 +29,11 @@ public class ListingServiceImplTests {
     }
 
     @Test
+    @Order(1)
     public void createListingTest() {
 
         Listing listing2 = new Listing();
-        listing2.setListingID(2);
+        listing2.setListingId(2);
         listing2.setName("Listing 2");
         listing2.setAddress("567 Test Address");
         listing2.setPrice(20.00);
@@ -45,7 +45,7 @@ public class ListingServiceImplTests {
         {
             fail();
         }
-        assertEquals(2,listing2.getListingID());
+        assertEquals(2,listing2.getListingId());
         assertEquals(1, listing2.getHost().getHostID());
         assertEquals("Listing 2",listing2.getName());
         assertEquals("567 Test Address",listing2.getAddress());
@@ -56,7 +56,7 @@ public class ListingServiceImplTests {
     public void createListingTestNullHostID()
     {
         Listing listing = new Listing();
-        listing.setListingID(1);
+        listing.setListingId(1);
         listing.setName("Listing 1");
         listing.setAddress("123 Fake Address");
         listing.setPrice(60.00);
@@ -67,7 +67,7 @@ public class ListingServiceImplTests {
     public void createListingTestNullListingName()
     {
         Listing listing = new Listing();
-        listing.setListingID(1);
+        listing.setListingId(1);
         listing.setName(null);
         listing.setAddress("123 Fake Address");
         listing.setPrice(60.00);
@@ -78,7 +78,7 @@ public class ListingServiceImplTests {
     public void createListingTestNullAddress()
     {
         Listing listing = new Listing();
-        listing.setListingID(1);
+        listing.setListingId(1);
         listing.setName("Listing 1");
         listing.setAddress(null);
         listing.setPrice(60.00);
@@ -90,7 +90,7 @@ public class ListingServiceImplTests {
     public void createListingTestNullPrice()
     {
         Listing listing = new Listing();
-        listing.setListingID(1);
+        listing.setListingId(1);
         listing.setName("Listing 1");
         listing.setAddress("123 Fake Address");
         listing.setPrice(null);
@@ -114,16 +114,17 @@ public class ListingServiceImplTests {
     }
 
     @Test
-    public void getListingByNameTest() throws InvalidListingNameException, NoListingFoundException {
+    public void getListingByNameTest() throws InvalidListingNameException, NoListingFoundException, NullListingNameException {
         List<Listing> listings = test.findByNameIgnoreCase("listing 1");
         assertEquals("Listing 1",listings.get(0).getName());
 
     }
 
     @Test
+    @Order(2)
     public void getListingsByTypeTest() throws NoListingFoundException, InvalidHostIDException, NullListingPriceException, NullAddressException, NullHostIDException, NullListingNameException, InvalidListingNameException, InvalidAddressException {
         Listing listing = new Listing();
-        listing.setListingID(3);
+        listing.setListingId(3);
         listing.setName("Listing 3");
         listing.setAddress("12345 Street");
         listing.setPrice(80.00);
@@ -144,16 +145,41 @@ public class ListingServiceImplTests {
     }
 
 
-//    TODO: implement so parent isn't deleted with child
-//    public void updateListingTest()
-//    {
-//
-//    }
-//
-//    public void deleteListingTest()
-//    {
-//
-//    }
+
+    @Test
+    @Order(3)
+    public void deleteListingTest() throws InvalidHostIDException, NullListingPriceException, NullAddressException, NullHostIDException, NullListingNameException, InvalidListingNameException, InvalidAddressException, NoListingFoundException, NullListingIDException {
+        Listing toDelete = new Listing();
+        toDelete.setListingId(4);
+        toDelete.setName("Listing 4");
+        toDelete.setAddress("To Delete Street");
+        toDelete.setPrice(75.00);
+        toDelete.setType("Mansion");
+        test.create(toDelete,1);
+        assertEquals("Listing 4",test.show(4).getName());
+
+        test.destroy(4);
+        assertThrows(NoListingFoundException.class,() ->test.show(4).getName());
+    }
+
+    @Test
+    @Order(4)
+    public void updateListingTest() throws InvalidHostIDException, NullListingPriceException, NullAddressException, NullHostIDException, NullListingNameException, InvalidListingNameException, InvalidAddressException, NoListingFoundException, NullListingIDException {
+        Listing toUpdate = new Listing();
+        toUpdate.setListingId(5);
+        toUpdate.setName("Listing 5");
+        toUpdate.setAddress("To Update Street");
+        toUpdate.setPrice(75.00);
+        toUpdate.setType("Condo");
+        test.create(toUpdate,1);
+
+        assertEquals("Listing 5",test.show(5).getName());
+        toUpdate.setName("NEW Listing 5");
+        
+        test.update(toUpdate.getListingId(),toUpdate);
+        assertEquals("NEW Listing 5",test.show(5).getName());
+
+    }
 
 }
 
