@@ -29,9 +29,9 @@
       <reviewer> </reviewer>
     </div>
     <email
-      v-if="emailTrigger"
-      :toggleEmail="() => toggleEmail()">
-    
+      v-if="emailTrigger && host != undefined"
+      :toggleEmail="() => toggleEmail()"
+      :host="host">
     </email>
   </div>
 </template>
@@ -68,13 +68,13 @@ export default {
   data() {
     return {
       emailTrigger: false,
+      host: {}
     }
   },
   methods: {
-    toggleEmail() {
-      console.log("CLICKED");
-      console.log(this.emailTrigger);
+    toggleEmail(host) {
       this.emailTrigger = !this.emailTrigger;
+      this.host = host;
     },
     Change(event){
       console.log(event);
@@ -117,6 +117,9 @@ body {
   text-decoration: none;
   font-size: 15px;
   font-family: inherit;
+}
+#mapLine {
+  margin: 0;
 }
 .btn:focus {
   outline: none;
