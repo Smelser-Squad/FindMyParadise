@@ -2,7 +2,7 @@
     <div id="Amenities">
         <h3>Amenities</h3>
         <ul>
-            <li v-for="amenity in amenities" :key="amenity">
+            <li v-for="amenity in amenities.slice(0, 10)" :key="amenity">
                 <svg xmlns="http://www.w3.org/2000/svg">
                     <path v-bind:d="setDPath(amenity.amenityName)"></path>
                 </svg>
@@ -58,7 +58,8 @@
             return {
                 amenities: [],
                 amenityName: "",
-                dPath: ""
+                dPath: "",
+                cols: 2
             }
         },
         mounted() {
@@ -128,6 +129,16 @@
                 return this.dPath;
             }
 
+        },
+        computed: {
+            columns () {
+                let columns = []
+                let mid = Math.ceil(this.amenities.length / this.cols)
+                for (let col = 0; col < this.cols; col++) {
+                    columns.push(this.amenities.slice(col * mid, col * mid + mid))
+                }
+                return columns
+            }
         }
     }
 </script>
@@ -153,4 +164,5 @@
         width: 35px;
         height: 35px;
     }
+
 </style>

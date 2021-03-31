@@ -35,6 +35,7 @@ export default {
             height: 70%;
             background-color: #fff;
             padding: 32px;
+            overflow-y: auto;
         }
     }
 
