@@ -24,31 +24,30 @@
       </div>
     </header>
     <body>
-      <form v-on:submit.prevent="submitForm">
-        <h5>Guests:</h5>
-        <Guests />
-        <h5>Dates</h5>
-        <div v-if="showCalendar" v-on:getStart="updateStart($event)">
-          <DateRangePicker />
-        </div>
-        <span> Start Date: {{ start }} </span>
-        <span
-          class="_19di23v"
-          style="
-            background-position: calc((100 - var(--mouse-x, 0)) * 1%)
-              calc((100 - var(--mouse-y, 0)) * 1%);
-            --mouse-x: 25.2363;
-            --mouse-y: 83.3333;
-          "
-        ></span>
-        <button
-          class="btn"
-          type="submit"
-          style="width: 420px; text-align: center"
-          @click="OnClick()"
-        >
-          Reserve
-        </button>
+      <form v-on:submit.prevent="submitForm"> 
+     
+
+
+      <h5>Guests:</h5>
+      <Guests />
+      <h5>Dates</h5>
+
+      <div v-if="showCalendar" ><DateRangePicker v-on:datePick="updateDates($event)"/></div>
+      <span> Start Date: {{range.start}} </span>
+
+      <div v-if="showCalendar" v-on:getStart="updateStart($event)"><DateRangePicker /></div>
+      <span> Start Date: {{start}} </span>
+
+      <span
+        class="_19di23v"
+        style="
+          background-position: calc((100 - var(--mouse-x, 0)) * 1%)
+            calc((100 - var(--mouse-y, 0)) * 1%);
+          --mouse-x: 25.2363;
+          --mouse-y: 83.3333;
+        "
+      ></span>
+      <button class="btn" type="submit" style="width:420px; text-align:center" @click="OnClick()">Reserve</button>
       </form>
       <p style="color: gray; text-align: center">You won't be charged yet</p>
       <u @click="ShowDetals()"><b> Show price details</b></u>
@@ -96,15 +95,24 @@
 </template>
 <script>
 import Guests from "./Guests";
+<<<<<<< HEAD
 import axios from "axios";
 
 let listingID = 1;
 
+=======
+import axios from 'axios';
+import DateRangePicker from "./DateRangePicker"
+
+let listingID=1;
+
+>>>>>>> master
 export default {
   name: "Reservation",
 
   data() {
     return {
+<<<<<<< HEAD
       show: false,
       date: new Date(),
       dataObject: {},
@@ -117,6 +125,30 @@ export default {
         NumOfDays: 1,
         TotalPrice: "",
       },
+=======
+      showCalendar: true,
+      show:false,
+      date:new Date(),
+      dataObject: {},
+      form:{
+        CheckIn:'2',
+        CheckOut:'',
+        NumAdults:'',
+        NumChildren:'',
+        NumInfants:'',
+        NumOfDays:1,
+        TotalPrice:''
+      },
+      range: {
+        start: new Date(),
+        end: new Date(),
+      },
+      
+      startDateStr: '',
+      endDateStr: ''
+      
+     
+>>>>>>> master
     };
   },
   mounted() {
@@ -129,6 +161,11 @@ export default {
 
   components: {
     Guests,
+<<<<<<< HEAD
+=======
+    DateRangePicker
+
+>>>>>>> master
   },
   methods: {
     OnClick() {
@@ -149,10 +186,26 @@ export default {
           console.log(res);
         });
     },
+<<<<<<< HEAD
     ShowDetals() {
       this.show = true;
     },
   },
+=======
+    ShowDetals(){
+      this.show=true;
+
+    },
+    updateDates(start) {
+      this.range.start = start;
+      
+      console.log(this.range.start);
+      console.log("we made it")
+    
+    }
+  }
+ 
+>>>>>>> master
 };
 </script>
 <style scoped>

@@ -24,7 +24,17 @@
     <div class="reviewerContainer">
       <reviewer> </reviewer>
     </div>
-    <email v-if="emailTrigger" :toggleEmail="() => toggleEmail()"> </email>
+    <div class="container">
+      <host></host>
+    </div>
+    <div class="scrollContainer">
+    <events title="Events"></events>
+    </div>
+    <email
+      v-if="emailTrigger && host != undefined"
+      :toggleEmail="() => toggleEmail()"
+      :host="host">
+    </email>
   </div>
 </template>
 
@@ -36,11 +46,15 @@ import Description from "./components/Description";
 
 import Amenities from "./components/Amenities.vue";
 
-import Review from "./components/Review";
-import Reviewer from "./components/Reviewer";
-
+import Review from "./components/Review"
+import Reviewer from "./components/Reviewer"
+import Events from "./components/Events";
 import DateRangePicker from "./components/DateRangePicker.vue";
-import Email from "./components/Email";
+import Email from "./components/Email"
+
+
+import Host from "./components/Host.vue";
+
 
 export default {
   name: "App",
@@ -52,24 +66,34 @@ export default {
     Amenities,
     Review,
     Reviewer,
+    Host,
     DateRangePicker,
-    Email,
+    Events,
+    Email
   },
+
+  
+  methods:
+  {
+    Change(event){
+         console.log(event);
+         
+      },
+      toggleEmail(host) {
+      this.emailTrigger = !this.emailTrigger;
+      this.host = host;
+    },
+   },
+
+
   data() {
     return {
       emailTrigger: false,
-    };
+      host: {}
+
+    }
   },
-  methods: {
-    toggleEmail() {
-      console.log("CLICKED");
-      console.log(this.emailTrigger);
-      this.emailTrigger = !this.emailTrigger;
-    },
-    Change(event) {
-      console.log(event);
-    },
-  },
+  
 };
 </script>
 <style>
@@ -107,6 +131,9 @@ body {
   text-decoration: none;
   font-size: 15px;
   font-family: inherit;
+}
+#mapLine {
+  margin: 0;
 }
 .btn:focus {
   outline: none;

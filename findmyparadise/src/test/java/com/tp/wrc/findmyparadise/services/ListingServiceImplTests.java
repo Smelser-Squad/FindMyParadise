@@ -114,7 +114,7 @@ public class ListingServiceImplTests {
     }
 
     @Test
-    public void getListingByNameTest() throws InvalidListingNameException, NoListingFoundException {
+    public void getListingByNameTest() throws InvalidListingNameException, NoListingFoundException, NullListingNameException {
         List<Listing> listings = test.findByNameIgnoreCase("listing 1");
         assertEquals("Listing 1",listings.get(0).getName());
 

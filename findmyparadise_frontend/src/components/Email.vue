@@ -1,6 +1,9 @@
 <template>
   <div class="email">
     <div class="email-inner">
+      <h2>
+        {{host.hostName}}
+      </h2>
       <button @click="toggleEmail()">Close email</button>
     </div>
   </div>
@@ -8,8 +11,8 @@
 
 <script>
 export default {
-  props: ["toggleEmail"],
-};
+  props: ['toggleEmail', 'host']
+}
 </script>
 
 <style scoped>

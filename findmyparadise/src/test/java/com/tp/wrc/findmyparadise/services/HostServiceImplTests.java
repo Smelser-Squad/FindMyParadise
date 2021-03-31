@@ -19,6 +19,8 @@ public class HostServiceImplTests {
     @Autowired
     HostServiceImpl service;
 
+
+
     @Test
     public void createHostInvalidEmail(){
         Host test = new Host();
@@ -82,12 +84,22 @@ public class HostServiceImplTests {
     }
 
     @Test //testing show method to ensure that data can be retrieved correctly from db
-    void showGoldenPath() {
+    void showGoldenPath() throws NullHostIDException, InvalidHostEmailException, InvalidHostIDException, InvalidHostNameException {
 
         Host test = new Host();
+        test.setHostName("test name");
+        test.setSuperHost(true);
+        test.setVerified(true);
+        test.setResponseTime("test response time");
+        test.setResponseRate(100.00);
+        test.setJoinDate("May 2020");
+        test.setEmail("test@email.com");
+        test.setImageSrc("test img src");
+        test.setTotalReviews("test total reviews");
 
         try {
-            test = service.show(4);
+            service.create(test);
+            service.show(test.getHostID());
         } catch (NullHostIDException | InvalidHostIDException e){
             fail();
         }
