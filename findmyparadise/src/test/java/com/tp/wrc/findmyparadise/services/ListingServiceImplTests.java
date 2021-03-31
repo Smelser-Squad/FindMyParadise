@@ -183,6 +183,7 @@ public class ListingServiceImplTests {
         assertEquals("Listing 5",test.show(5).getName());
         toUpdate.setName("NEW Listing 5");
 
+
         test.update(toUpdate.getListingID(),toUpdate);
         assertEquals("NEW Listing 5",test.show(5).getName());
 
