@@ -24,6 +24,7 @@
     <div class="reviewerContainer">
       <reviewer> </reviewer>
     </div>
+
     <div class="container">
       <host></host>
     </div>
@@ -47,6 +48,7 @@ import Description from "./components/Description";
 
 import Amenities from "./components/Amenities.vue";
 
+
 import Review from "./components/Review";
 import Reviewer from "./components/Reviewer";
 import Events from "./components/Events";
@@ -68,6 +70,7 @@ export default {
     Host,
     DateRangePicker,
     Events,
+
     Email,
   },
 

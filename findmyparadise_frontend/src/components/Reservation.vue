@@ -33,6 +33,8 @@
           <DateRangePicker v-on:datePick="updateDates($event)" />
         </div>
         <span> Start Date: {{ range.start }} </span>
+
+       
         <span
           class="_19di23v"
           style="
