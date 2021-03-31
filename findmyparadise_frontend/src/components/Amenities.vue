@@ -45,7 +45,8 @@ export default {
   setup() {
     const popupTriggers = ref({
       buttonTrigger: false,
-    });   
+    });
+
 
     const TogglePopup = (trigger) => {
       popupTriggers.value[trigger] = !popupTriggers.value[trigger];
@@ -171,6 +172,5 @@ export default {
         width: 35px;
         height: 35px;
     }
-
 </style>
 
