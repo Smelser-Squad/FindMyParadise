@@ -33,9 +33,13 @@
 </template>
 
 <script>
+
 import { ref } from "vue";
 import axios from "axios";
 import Modal from "./Modal";
+
+
+let listingID = 1;
 
 export default {
   components: { Modal },
@@ -43,8 +47,9 @@ export default {
   setup() {
     const popupTriggers = ref({
       buttonTrigger: false,
+
     });
-    
+
     const TogglePopup = (trigger) => {
       popupTriggers.value[trigger] = !popupTriggers.value[trigger];
     };
@@ -59,17 +64,17 @@ export default {
     return {
       amenities: [],
       amenityName: "",
-      dPath: "",
+
     };
   },
   mounted() {
     axios
-      .get("http://localhost:8080/api/amenities")
-      .then((res) => {
-        console.log(res.data);
-        this.amenities = res.data;
-      })
-      .catch((err) => Promise.reject(err));
+    .get(`http://localhost:8080/api/listing/${listingID}`)
+    .then((res) => {
+      this.amenities = res.data.amenities;
+    })
+    .catch((err) => Promise.reject(err));
+
   },
   methods: {
     setDPath(name) {
@@ -166,10 +171,13 @@ export default {
         background-color: #F7F7F7;
     }
 
-  
-svg {
-  width: 35px;
-  height: 35px;
-}
+
+    svg {
+        width: 35px;
+        height: 35px;
+    }
+
+
+
 
 </style>
