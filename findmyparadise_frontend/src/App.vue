@@ -7,11 +7,10 @@
       <reservation title="Reservation"></reservation>
     </div>
     <div class="container">
-      >
       <amenities title="Amenities"></amenities>
     </div>
     <div class="container">
-      <DateRangePicker />
+      <DateRangePicker @DatePick="Change" />
     </div>
     <div class="container">
       <Map />
@@ -20,19 +19,31 @@
       <more-places></more-places>
     </div>
     <div class="container">
-      <description title="Description"></description>
+      <description title="Description" @email="toggleEmail"> </description>
     </div>
     <div class="reviewContainer">
-      <review title="Review"></review>
+      <review></review>
     </div>
-    <div class="reviewerContainer"> 
+    <div class="reviewerContainer">
       <reviewer> </reviewer>
     </div>
+
+    <div class="container">
+      <host></host>
+    </div>
+    <div class="scrollContainer">
+      <events title="Events"></events>
+    </div>
+    <email
+      v-if="emailTrigger && host != undefined"
+      :toggleEmail="() => toggleEmail()"
+      :host="host"
+    >
+    </email>
   </div>
 </template>
 
 <script>
-
 import MorePlaces from "./components/MorePlaces.vue";
 import Reservation from "./components/Reservation.vue";
 import Map from "./components/Map.vue";
@@ -40,12 +51,18 @@ import Description from "./components/Description";
 
 import Amenities from "./components/Amenities.vue";
 
-import Review from "./components/Review"
-import Reviewer from "./components/Reviewer"
 
+import Review from "./components/Review";
+import Reviewer from "./components/Reviewer";
+import Events from "./components/Events";
 import DateRangePicker from "./components/DateRangePicker.vue";
+import Email from "./components/Email";
+
 
 import GalleryMini from "./components/GalleryMini.vue";
+
+
+import Host from "./components/Host.vue";
 
 
 export default {
@@ -53,19 +70,40 @@ export default {
   components: {
     Reservation,
     Map,
-    // Calendar,
     MorePlaces,
     Description,
-
     Amenities,
     Review,
     Reviewer,
-
-
+    Host,
     DateRangePicker,
-    GalleryMini
+     GalleryMini,
+    Events,
+
+    Email,
+  },
+
+
+   
+   
   
 
+  methods: {
+    Change(event) {
+      console.log(event);
+    },
+    toggleEmail(host) {
+      this.emailTrigger = !this.emailTrigger;
+      this.host = host;
+    },
+  },
+
+
+  data() {
+    return {
+      emailTrigger: false,
+      host: {},
+    };
   },
 };
 </script>
@@ -105,6 +143,9 @@ body {
   font-size: 15px;
   font-family: inherit;
 }
+#mapLine {
+  margin: 0;
+}
 .btn:focus {
   outline: none;
 }
@@ -128,7 +169,6 @@ body {
 .datePicker {
   display: inline;
 }
-
 .reviewContainer {
   max-width: 500px;
   margin: 30px auto;
@@ -139,7 +179,6 @@ body {
   border-radius: 5px;
   box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
 }
-
 .reviewerContainer {
   max-width: 500px;
   margin: 30px auto;

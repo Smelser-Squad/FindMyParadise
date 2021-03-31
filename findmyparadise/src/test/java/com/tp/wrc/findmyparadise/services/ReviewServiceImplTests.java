@@ -12,14 +12,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.testng.Assert.fail;
 
 @SpringBootTest
 public class ReviewServiceImplTests {
 
     @Autowired
     ReviewService toTest;
-
 
     @Test
     public void createReviewGoldenPathTest(){
