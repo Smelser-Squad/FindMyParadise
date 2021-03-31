@@ -4,7 +4,6 @@
       <reservation title="Reservation"></reservation>
     </div>
     <div class="container">
-      
       <amenities title="Amenities"></amenities>
     </div>
     <div class="container">
@@ -17,24 +16,25 @@
       <more-places></more-places>
     </div>
     <div class="container">
-      <description
-        title="Description"
-        @email="toggleEmail">  
-      </description>
+      <description title="Description" @email="toggleEmail"> </description>
+    </div>
+     <div class="container">
+      <host></host>
     </div>
     <div class="reviewContainer">
       <review></review>
     </div>
-    <div class="reviewerContainer"> 
+    <div class="reviewerContainer">
       <reviewer> </reviewer>
     </div>
     <div class="scrollContainer">
-    <events title="Events"></events>
+      <events title="Events"></events>
     </div>
     <email
       v-if="emailTrigger && host != undefined"
       :toggleEmail="() => toggleEmail()"
-      :host="host">
+      :host="host"
+    >
     </email>
   </div>
 </template>
@@ -45,11 +45,15 @@ import Reservation from "./components/Reservation.vue";
 import Map from "./components/Map.vue";
 import Description from "./components/Description";
 import Amenities from "./components/Amenities.vue";
-import Review from "./components/Review"
-import Reviewer from "./components/Reviewer"
+
+import Review from "./components/Review";
+import Reviewer from "./components/Reviewer";
 import Events from "./components/Events";
 import DateRangePicker from "./components/DateRangePicker.vue";
-import Email from "./components/Email"
+import Email from "./components/Email";
+
+import Host from "./components/Host.vue";
+
 export default {
   name: "App",
   components: {
@@ -62,23 +66,26 @@ export default {
     Reviewer,
     DateRangePicker,
     Events,
-    Email
+    Email,
+    Host
   },
-  data() {
-    return {
-      emailTrigger: false,
-      host: {}
-    }
-  },
+
   methods: {
+    Change(event) {
+      console.log(event);
+    },
     toggleEmail(host) {
       this.emailTrigger = !this.emailTrigger;
       this.host = host;
     },
-    Change(event){
-      console.log(event);
-    }
-  }
+  },
+
+  data() {
+    return {
+      emailTrigger: false,
+      host: {},
+    };
+  },
 };
 </script>
 <style>

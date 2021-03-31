@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div>
     <h5>
       Adults:
       <button

@@ -1,9 +1,8 @@
-
 <template>
   <div id="Resrevation body">
     <header>
       <h2>
-        <b>${{ dataObject.price}}</b> / night
+        <b>${{ dataObject.price }}</b> / night
       </h2>
       <div>
         <svg
@@ -25,73 +24,85 @@
       </div>
     </header>
     <body>
-      <form v-on:submit.prevent="submitForm"> 
-     
-
-
-      <h5>Guests:</h5>
-      <Guests />
-      <h5>Dates</h5>
+      <form v-on:submit.prevent="submitForm">
+        <h5>Guests:</h5>
+        <Guests />
 
       <div v-if="showCalendar" ><DateRangePicker v-on:datePick="updateDates($event)"/></div>
-      <input v-model="form.CheckIn"/> Start Date: {{range.start}}
-       <input v-model="form.CheckOut" />End Date: {{range.end}}
-
-      <!-- <div v-if="showCalendar" v-on:getStart="updateStart($event)"><DateRangePicker /></div>
-      <span> Start Date: {{start}} </span> -->
-
-      <span
-        class="_19di23v"
-        style="
-          background-position: calc((100 - var(--mouse-x, 0)) * 1%)
-            calc((100 - var(--mouse-y, 0)) * 1%);
-          --mouse-x: 25.2363;
-          --mouse-y: 83.3333;
-        "
-      ></span>
-      <button class="btn" type="submit" style="width:420px; text-align:center" @click="OnClick()">Reserve</button>
-      </form>
-      <p style="color:gray; text-align:center">You won't be charged yet</p>
-      <u @click="ShowDetals()"><b> Show price details</b></u>
-    <div v-if="show">
-      <div>
-      <u>${{dataObject.price}} x {{form.NumOfDays}} nights</u>
-      <span>${{dataObject.price * form.NumOfDays}}</span>
-    </div>
       
-      <div class="popup" @click="CleaningFeepopup()">
-        <u>Cleaning Fee</u> <span> ${{ dataObject.cleaningFee }}</span>
-        <span class="popuptext" id="CleaningFeepopup"
-          >The service fee, which the host has decided to pay, helps us run our
-          platform and offer services like 24/7 support on your trip.</span
+      <h3>CheckIn:</h3><input v-model="form.CheckIn"/>
+       <input v-model="form.CheckOut" />
+
+     
+
+        <span
+          class="_19di23v"
+          style="
+            background-position: calc((100 - var(--mouse-x, 0)) * 1%)
+              calc((100 - var(--mouse-y, 0)) * 1%);
+            --mouse-x: 25.2363;
+            --mouse-y: 83.3333;
+          "
+        ></span>
+        <button
+          class="btn"
+          type="submit"
+          style="width: 420px; text-align: center"
+          @click="OnClick()"
         >
+          Reserve
+        </button>
+      </form>
+      <p style="color: gray; text-align: center">You won't be charged yet</p>
+      <u @click="ShowDetals()"><b> Show price details</b></u>
+      <div v-if="show">
+        <div>
+          <u>${{ dataObject.price }} x {{ form.NumOfDays }} nights</u>
+          <span>${{ dataObject.price * form.NumOfDays }}</span>
+        </div>
+
+        <div class="popup" @click="CleaningFeepopup()">
+          <u>Cleaning Fee</u> <span> ${{ dataObject.cleaningFee }}</span>
+          <span class="popuptext" id="CleaningFeepopup"
+            >The service fee, which the host has decided to pay, helps us run
+            our platform and offer services like 24/7 support on your
+            trip.</span
+          >
+        </div>
+        <br />
+        <div class="popup" @click="ServiceFeepopup()">
+          <u>Service Fee</u><span> ${{ dataObject.serviceFee }}</span>
+          <span class="popuptext" id="ServiceFeepopup"
+            >One-time fee charged by host to cover the cost of cleaning their
+            space.</span
+          >
+        </div>
+        <br />
+        <div>
+          <u>Occupancy taxes and fees</u>
+          <span> ${{ dataObject.occupancyFee }} </span>
+        </div>
       </div>
-      <br />
-      <div class="popup" @click="ServiceFeepopup()">
-        <u>Service Fee</u><span> ${{ dataObject.serviceFee}}</span>
-        <span class="popuptext" id="ServiceFeepopup"
-          >One-time fee charged by host to cover the cost of cleaning their
-          space.</span
-        >
-      </div>
-      <br />
-      <div>
-        <u>Occupancy taxes and fees</u>
-        <span> ${{ dataObject.occupancyFee }} </span>
-      </div>
-    </div>
       <hr />
-      <p><b> Total: ${{dataObject.price + dataObject.cleaningFee + dataObject.serviceFee + dataObject.occupancyFee}}</b></p>
+      <p>
+        <b>
+          Total: ${{
+            dataObject.price +
+            dataObject.cleaningFee +
+            dataObject.serviceFee +
+            dataObject.occupancyFee
+          }}</b
+        >
+      </p>
     </body>
   </div>
 </template>
 <script>
-
 import Guests from "./Guests";
-import axios from 'axios';
-import DateRangePicker from "./DateRangePicker"
+import axios from "axios";
+import DateRangePicker from "./DateRangePicker";
 
-let listingID=1;
+let listingID = 1;
 
 export default {
   name: "Reservation",
@@ -99,8 +110,8 @@ export default {
   data() {
     return {
       showCalendar: true,
-      show:false,
-      date:new Date(),
+      show: false,
+      date: new Date(),
       dataObject: {},
       form:{
         CheckIn:'',
@@ -115,11 +126,9 @@ export default {
         start: new Date(),
         end: new Date(),
       },
-      
-      startDateStr: '',
-      endDateStr: ''
-      
-     
+
+      startDateStr: "",
+      endDateStr: "",
     };
   },
   mounted() {
@@ -127,15 +136,12 @@ export default {
       this.dataObject = res.data;
       console.log(res.data);
       console.log(this.date1);
-    
-    
     });
   },
 
-    components: {
+  components: {
     Guests,
-    DateRangePicker
-
+    DateRangePicker,
   },
   methods: {
     OnClick() {
@@ -152,24 +158,25 @@ export default {
       let popup = document.getElementById("ServiceFeepopup");
       popup.classList.toggle("show");
     },
-    submitForm(){
-      axios.post("http://localhost:8080/api/reservation",this.form).then((res=>{
-        console.log(res);
-      }))
+    submitForm() {
+      axios
+        .post("http://localhost:8080/api/reservation", this.form)
+        .then((res) => {
+          console.log(res);
+        });
     },
-    ShowDetals(){
-      this.show=true;
-
+    ShowDetals() {
+      this.show = true;
     },
     updateDates(start) {
       this.range.start = start;
-      
+      this.form.CheckIn= start.toString().substring(0, 15);
+      this.form.CheckOut=this.range.end.toString().substring(0,15);
+       
       console.log(this.range.start);
-      console.log("we made it")
-    
-    }
-  }
- 
+      console.log("we made it");
+    },
+  },
 };
 </script>
 <style scoped>
