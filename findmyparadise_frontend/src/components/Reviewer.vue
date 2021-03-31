@@ -45,7 +45,6 @@
 <script>
 import axios from "axios";
 import DatePicker from "vue3-datepicker";
-
 export default {
   name: "Review",
   components: {
@@ -58,7 +57,6 @@ export default {
         imageSrc: null, 
         description: null,
         joinedDate: null
-
       },
     };
   },
@@ -71,18 +69,15 @@ export default {
           console.warn(result);
         })
                 e.preventDefault();
-
         
     },
   },
-
   // mounted() {
   //   axios
   //     .post("http://localhost:8080/api/addReviewer")
   //     .then((response) => {
   //       this.reviewers = console.log(response)
   //       .finally(() => console.log('Data oading complete'));
-
   //     })
   //     .catch((err) => Promise.reject(err));
   // },

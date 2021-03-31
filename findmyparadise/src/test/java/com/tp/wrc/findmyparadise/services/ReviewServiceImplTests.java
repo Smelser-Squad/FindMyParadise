@@ -18,7 +18,7 @@ import static org.testng.Assert.fail;
 public class ReviewServiceImplTests {
 
     @Autowired
-    ReviewService toTest;
+    ReviewServiceImpl toTest;
 
 
     @Test
