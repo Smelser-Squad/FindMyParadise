@@ -1,5 +1,8 @@
 <template>
   <div id="AppBody">
+    <div class="imgContainer">
+      <GalleryMini />
+    </div>
     <div class="container">
       <reservation title="Reservation"></reservation>
     </div>
@@ -42,6 +45,7 @@ import Reviewer from "./components/Reviewer"
 
 import DateRangePicker from "./components/DateRangePicker.vue";
 
+import GalleryMini from "./components/GalleryMini.vue";
 
 
 export default {
@@ -58,7 +62,8 @@ export default {
     Reviewer,
 
 
-    DateRangePicker
+    DateRangePicker,
+    GalleryMini
   
 
   },
@@ -144,5 +149,15 @@ body {
   padding: 30px;
   border-radius: 5px;
   box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
+}
+
+.imgContainer{
+  max-width: 1300px;
+  margin: 30px auto;
+  object-fit: fill;
+  max-height: 500px;
+  border-radius: 10px;
+  box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
+  overflow: hidden;
 }
 </style>
