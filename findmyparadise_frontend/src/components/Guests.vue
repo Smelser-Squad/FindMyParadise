@@ -14,12 +14,12 @@
       <button type="button" class="btn" @click="IncreaseAdults()">+</button>
     </h5>
     <h5>
-      Children:<button type="button" class="btn">-</button>{{ ChildNum
-      }}<button type="button" class="btn">+</button>
+      Children:<button type="button" class="btn" @click="decreaseChild()">-</button>{{ ChildNum
+      }}<button type="button" class="btn" @click="increaseChild()">+</button>
     </h5>
     <h5>
-      Infants: <button type="button" class="btn">-</button> {{ InfantNum }}
-      <button type="button" class="btn">+</button>
+      Infants: <button type="button" class="btn" @click="decreaseInfants()">-</button> {{ InfantNum }}
+      <button type="button" class="btn" @click="increaseInfants()">+</button>
     </h5>
   </div>
 </template>
@@ -39,14 +39,28 @@ export default {
         this.AdultsNum -= 1;
       }
     },
-  },
-  DecreaseChild() {
-    if (this.ChildNum < 0) {
+    decreaseChild() {
+    if (this.ChildNum == 0) {
       console.log("Error");
     } else {
       this.ChildNum -= 1;
     }
   },
+  increaseChild() {
+    this.ChildNum += 1
+  },
+  decreaseInfants() {
+    if (this.InfantNum == 0) {
+      console.log("Error");
+    } else {
+      this.InfantNum -= 1;
+    }
+  },
+  increaseInfants() {
+    this.InfantNum += 1
+  }
+  },
+  
   data() {
     return {
       AdultsNum: 1,
