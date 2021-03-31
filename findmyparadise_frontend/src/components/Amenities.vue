@@ -57,8 +57,7 @@
             return {
                 amenities: [],
                 amenityName: "",
-                dPath: "",
-                cols: 2
+                dPath: ""
             }
         },
         mounted() {
@@ -126,16 +125,6 @@
                         break;
                 }
                 return this.dPath;
-            }
-        },
-        computed: {
-            columns () {
-                let columns = []
-                let mid = Math.ceil(this.amenities.length / this.cols)
-                for (let col = 0; col < this.cols; col++) {
-                    columns.push(this.amenities.slice(col * mid, col * mid + mid))
-                }
-                return columns
             }
         }
     }
