@@ -13,7 +13,10 @@
     <br/>
     <span>End Date: {{updateDate(range.end)}}</span>
     <br/>
+
     <button @click="sendDate">Submit</button>
+
+
     </div>
 </template>
 

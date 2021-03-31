@@ -5,15 +5,19 @@
       >{{ dataObject.reviews.length }} reviews -
       <u>{{ dataObject.address }}</u></span
     >
-    <h5 v-if="dataObject.host != undefined">
+    <hr />
+    <h5 v-if="dataObject.host != undefined" id="typeAndHost">
       {{ dataObject.type }} hosted by {{ dataObject.host.hostName }}
     </h5>
+    <img v-if="dataObject.host != undefined" :src="dataObject.host.imageSrc">
+    <br>
     <span
       >{{ dataObject.maxGuests }} guests - {{ dataObject.bedrooms }} bedrooms -
       {{ dataObject.bathrooms }} bathrooms</span
     >
+    <hr />
     <p>{{ dataObject.description }}</p>
-    <span @click="showEmail()"><u>Contact Host</u></span>
+    <span @click="toggleEmail"><u>Contact Host</u></span>
   </div>
 </template>
 
@@ -25,8 +29,7 @@ export default {
   name: "Description",
   data() {
     return {
-      dataObject: {},
-      overlay: false,
+      dataObject: {}
     };
   },
   mounted() {
@@ -36,12 +39,22 @@ export default {
     });
   },
   methods: {
-    showEmail() {
-      this.overlay = !this.overlay;
-      console.log(this.overlay);
-    },
-  },
+    toggleEmail() {
+      this.$emit("email", this.dataObject.host);
+    }
+  }
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+    img {
+        height: 50px;
+        width: 50px;
+        border-radius: 50%;
+        display: inline;
+        float: right;
+    }
+    #typeAndHost {
+        display: inline;
+    }
+</style>

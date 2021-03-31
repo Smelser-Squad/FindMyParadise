@@ -17,7 +17,10 @@
       <more-places></more-places>
     </div>
     <div class="container">
-      <description title="Description"></description>
+      <description
+        title="Description"
+        @email="toggleEmail">  
+      </description>
     </div>
     <div class="reviewContainer">
       <review></review>
@@ -25,6 +28,17 @@
     <div class="reviewerContainer"> 
       <reviewer> </reviewer>
     </div>
+    <div class="container">
+      <host></host>
+    </div>
+    <div class="scrollContainer">
+    <events title="Events"></events>
+    </div>
+    <email
+      v-if="emailTrigger && host != undefined"
+      :toggleEmail="() => toggleEmail()"
+      :host="host">
+    </email>
   </div>
 </template>
 
@@ -38,9 +52,12 @@ import Amenities from "./components/Amenities.vue";
 
 import Review from "./components/Review"
 import Reviewer from "./components/Reviewer"
-
+import Events from "./components/Events";
 import DateRangePicker from "./components/DateRangePicker.vue";
+import Email from "./components/Email"
 
+
+import Host from "./components/Host.vue";
 
 
 export default {
@@ -53,16 +70,30 @@ export default {
     Amenities,
     Review,
     Reviewer,
-    DateRangePicker
-  
+    Host,
+    DateRangePicker,
+    Events,
+    Email
   },
+
   
   methods:
   {
     Change(event){
          console.log(event);
          
-       
+      },
+      toggleEmail(host) {
+      this.emailTrigger = !this.emailTrigger;
+      this.host = host;
+    },
+   },
+
+
+  data() {
+    return {
+      emailTrigger: false,
+      host: {}
 
     }
   },
@@ -104,6 +135,9 @@ body {
   text-decoration: none;
   font-size: 15px;
   font-family: inherit;
+}
+#mapLine {
+  margin: 0;
 }
 .btn:focus {
   outline: none;

@@ -13,7 +13,6 @@ import java.util.Optional;
 @Service
 public class ListingServiceImpl implements ListingService {
 
-
     @Autowired
     private ListingRepository repo;
 
@@ -95,7 +94,15 @@ public class ListingServiceImpl implements ListingService {
     }
 
     @Override
-    public List<Listing> findByNameIgnoreCase(String listingName)  throws NoListingFoundException, InvalidListingNameException {
+    public List<Listing> findByNameIgnoreCase(String listingName) throws NoListingFoundException, InvalidListingNameException, NullListingNameException {
+        if(listingName == null)
+        {
+            throw new NullListingNameException("Cannot find a listing with a null name!");
+        }
+        if(listingName.trim().length() <= 0)
+        {
+            throw new InvalidListingNameException("You must enter an listing name that is not whitespace!");
+        }
         return repo.findByNameIgnoreCase(listingName);
     }
     
@@ -105,16 +112,32 @@ public class ListingServiceImpl implements ListingService {
         {
             throw new NullHostIDException("Host ID cannot be null!");
         }
+        if( hostID < 0)
+        {
+            throw new NullHostIDException("Invalid host ID!");
+        }
         return repo.findByHostHostID(hostID);
     }
 
     @Override
-    public List<Listing> findByPrice(Double price) {
+    public List<Listing> findByPrice(Double price) throws NullListingPriceException{
+        if(price == null || price < 0)
+        {
+            throw new NullListingPriceException("Invalid listing price! Price must be more than 0 or not null!");
+        }
         return repo.findByPrice(price);
     }
 
     @Override
-    public List<Listing> findByType(String type) throws NoListingFoundException {
+    public List<Listing> findByType(String type) throws NoListingFoundException, NullListingNameException, InvalidListingNameException {
+        if(type == null)
+        {
+            throw new NullListingNameException("Cannot find a listing with a null typing!");
+        }
+        if(type.trim().length() <= 0)
+        {
+            throw new InvalidListingNameException("You must enter an typing that is not whitespace!");
+        }
         return repo.findByType(type);
     }
 
