@@ -128,7 +128,6 @@
                 }
                 return this.dPath;
             }
-
         },
         computed: {
             columns () {
@@ -144,18 +143,18 @@
 </script>
 
 <style scoped>
-    ul {
-        list-style-type: none;
-    }
+ul {
+  list-style-type: none;
+}
 
-    .showBtn {
-        border-radius: 12px;
-        background-color: white;
-        padding: 10px;
-        border: 1px solid;
-    }
+.showBtn {
+  border-radius: 12px;
+  background-color: white;
+  padding: 10px;
+  border: 1px solid;
+}
 
-    .showBtn:hover {
+.showBtn:hover {
         text-decoration: underline;
         background-color: #F7F7F7;
     }
@@ -166,3 +165,4 @@
     }
 
 </style>
+

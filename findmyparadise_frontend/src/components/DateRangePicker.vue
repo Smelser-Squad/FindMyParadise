@@ -10,9 +10,11 @@
     />
     <br/>
     <span>Start Date: {{updateDate(range.start)}}</span>
+    
     <br/>
     <span>End Date: {{updateDate(range.end)}}</span>
     <br/>
+    <button @click="sendData">Submit</button>
     </div>
 </template>
 

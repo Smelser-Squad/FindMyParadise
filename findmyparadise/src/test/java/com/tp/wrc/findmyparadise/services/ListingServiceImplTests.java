@@ -3,10 +3,16 @@ package com.tp.wrc.findmyparadise.services;
 import com.tp.wrc.findmyparadise.exceptions.*;
 import com.tp.wrc.findmyparadise.models.Host;
 import com.tp.wrc.findmyparadise.models.Listing;
+import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.Before;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.testng.annotations.AfterClass;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
@@ -30,6 +36,7 @@ public class ListingServiceImplTests {
     }
 
     @Test
+    @Order(1)
     public void createListingTest() {
 
         Listing listing2 = new Listing();
@@ -114,13 +121,14 @@ public class ListingServiceImplTests {
     }
 
     @Test
-    public void getListingByNameTest() throws InvalidListingNameException, NoListingFoundException {
+    public void getListingByNameTest() throws InvalidListingNameException, NoListingFoundException, NullListingNameException {
         List<Listing> listings = test.findByNameIgnoreCase("listing 1");
         assertEquals("Listing 1",listings.get(0).getName());
 
     }
 
     @Test
+    @Order(2)
     public void getListingsByTypeTest() throws NoListingFoundException, InvalidHostIDException, NullListingPriceException, NullAddressException, NullHostIDException, NullListingNameException, InvalidListingNameException, InvalidAddressException {
         Listing listing = new Listing();
         listing.setListingID(3);
@@ -144,16 +152,42 @@ public class ListingServiceImplTests {
     }
 
 
-//    TODO: implement so parent isn't deleted with child
-//    public void updateListingTest()
-//    {
-//
-//    }
-//
-//    public void deleteListingTest()
-//    {
-//
-//    }
+
+    @Test
+    @Order(3)
+    public void deleteListingTest() throws InvalidHostIDException, NullListingPriceException, NullAddressException, NullHostIDException, NullListingNameException, InvalidListingNameException, InvalidAddressException, NoListingFoundException, NullListingIDException {
+        Listing toDelete = new Listing();
+        toDelete.setListingID(4);
+        toDelete.setName("Listing 4");
+        toDelete.setAddress("To Delete Street");
+        toDelete.setPrice(75.00);
+        toDelete.setType("Mansion");
+        test.create(toDelete,1);
+        assertEquals("Listing 4",test.show(4).getName());
+
+        test.destroy(4);
+        assertThrows(NoListingFoundException.class,() ->test.show(4).getName());
+    }
+
+    @Test
+    @Order(4)
+    public void updateListingTest() throws InvalidHostIDException, NullListingPriceException, NullAddressException, NullHostIDException, NullListingNameException, InvalidListingNameException, InvalidAddressException, NoListingFoundException, NullListingIDException {
+        Listing toUpdate = new Listing();
+        toUpdate.setListingID(5);
+        toUpdate.setName("Listing 5");
+        toUpdate.setAddress("To Update Street");
+        toUpdate.setPrice(75.00);
+        toUpdate.setType("Condo");
+        test.create(toUpdate,1);
+
+        assertEquals("Listing 5",test.show(5).getName());
+        toUpdate.setName("NEW Listing 5");
+
+
+        test.update(toUpdate.getListingID(),toUpdate);
+        assertEquals("NEW Listing 5",test.show(5).getName());
+
+    }
 
 }
 

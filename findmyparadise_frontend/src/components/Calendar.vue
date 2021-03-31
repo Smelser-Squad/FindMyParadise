@@ -1,4 +1,3 @@
-
 <template>
   <div id="Calendar">
 
@@ -39,8 +38,8 @@ export default {
   },
   methods: {
     updateDate(date) {
-      let dateSub = date.toString().substring(4,15)
-      return dateSub
+      let dateSub = date.toString().substring(4, 15);
+      return dateSub;
     },
     
    OnClick(){
@@ -53,4 +52,3 @@ export default {
   }
 };
 </script>
-
