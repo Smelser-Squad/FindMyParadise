@@ -10,13 +10,8 @@ import java.util.Set;
 
 @Entity
 @Table(name = "listing")
-<<<<<<< HEAD
-public class Listing {
-=======
-@JsonIgnoreProperties(value = {"amenities","reservations"}, allowSetters = true)
 public class Listing implements Serializable {
 
->>>>>>> 9d9b64af3a65385ec5349e1ad9c37021ece575f3
     @Id
     @Column(name = "listing_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
