@@ -35,6 +35,7 @@ export default {
     const dataDist3 = ref(props.locationDist);
     const dataDist4 = ref(props.locationDist);
     const mapRef = ref(null);
+    
     onMounted(() => {
       axios
         .get(`http://localhost:8080/api/listing/${listingID}`)

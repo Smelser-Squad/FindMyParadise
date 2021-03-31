@@ -1,17 +1,17 @@
 <template>
-  <div>
+  <div class="container">
     <h5>
       Adults:
       <button
         type="button"
-        id="DecresaeAdults"
+        id="decresaeAdults"
         class="btn"
-        @click="DecreaseAdults()"
+        @click="decreaseAdults()"
       >
-        -
+        
       </button>
       {{ AdultsNum }}
-      <button type="button" class="btn" @click="IncreaseAdults()">+</button>
+      <button type="button" class="btn" @click="increaseAdults()">+</button>
     </h5>
     <h5>
       Children:<button type="button" class="btn">-</button>{{ ChildNum
@@ -29,10 +29,10 @@ export default {
   name: "Guests",
   props: {},
   methods: {
-    IncreaseAdults() {
+    increaseAdults() {
       this.AdultsNum += 1;
     },
-    DecreaseAdults() {
+    decreaseAdults() {
       if (this.AdultsNum == 1) {
         console.log("Error");
       } else {
@@ -40,7 +40,7 @@ export default {
       }
     },
   },
-  DecreaseChild() {
+  decreaseChild() {
     if (this.ChildNum < 0) {
       console.log("Error");
     } else {
