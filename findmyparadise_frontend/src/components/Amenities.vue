@@ -34,6 +34,7 @@
     import axios from 'axios';
     import Modal from './Modal';
 
+    let listingID = 2;
     export default {
     components: { Modal },
         name: "Amenities",
@@ -57,17 +58,17 @@
             return {
                 amenities: [],
                 amenityName: "",
-                dPath: ""
+                dPath: "",
+                dataObject: {}
             }
         },
         mounted() {
-            axios
-                .get("http://localhost:8080/api/amenities")
-                .then((res) => {
-                    console.log(res.data);
-                    this.amenities = res.data;
-                })
-                .catch((err) => Promise.reject(err));
+            axios.get(`http://localhost:8080/api/listing/${listingID}`).then((res) => {
+                this.dataObject  = res.data;
+                console.log(this.dataObject)
+                console.log("AMENITIES?:" + this.dataObject.amenities)
+                this.amenities = this.dataObject.amenities
+            });
         },
         methods: {
 
