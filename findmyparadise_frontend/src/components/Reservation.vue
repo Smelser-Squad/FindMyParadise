@@ -34,10 +34,11 @@
       <h5>Dates</h5>
 
       <div v-if="showCalendar" ><DateRangePicker v-on:datePick="updateDates($event)"/></div>
-      <span> Start Date: {{range.start}} </span>
+      <input v-model="form.CheckIn"/> Start Date: {{range.start}}
+       <input v-model="form.CheckOut" />End Date: {{range.end}}
 
-      <div v-if="showCalendar" v-on:getStart="updateStart($event)"><DateRangePicker /></div>
-      <span> Start Date: {{start}} </span>
+      <!-- <div v-if="showCalendar" v-on:getStart="updateStart($event)"><DateRangePicker /></div>
+      <span> Start Date: {{start}} </span> -->
 
       <span
         class="_19di23v"
@@ -102,7 +103,7 @@ export default {
       date:new Date(),
       dataObject: {},
       form:{
-        CheckIn:'2',
+        CheckIn:'',
         CheckOut:'',
         NumAdults:'',
         NumChildren:'',
@@ -139,6 +140,8 @@ export default {
   methods: {
     OnClick() {
       console.log("Reserve");
+      console.log(this.form.CheckIn);
+      console.log(this.form.CheckOut);
       
     },
     CleaningFeepopup() {
