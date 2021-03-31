@@ -34,18 +34,20 @@
         format="MM-dd-YYYY"
       ></date-picker>
 
+      <br/> 
       <button type="submit">Add Review</button>
+      <br/> 
+      <br/> 
     </form>
   </div>
- <!-- <div @submit="getData" method="get">
-    <h1>All Reviews</h1>
-    <hr />
+ 
+  <h3>Review Details</h3>
+  <div v-for="reviewer in list" v-bind:key="reviewer.reviewId"> 
+    <p> Name: {{reviewer.name}}</p>
+    <p> Description: {{reviewer.description}}</p>
+    <p> Date: {{reviewer.joinedDate}} </p>
 
-    <li v-for="reviewer in posts" :key="reviewer">
-      Accuracy Rating :
-      {{ reviewer.name }}
-    </li>
-  </div> -->
+  </div>
  
 </template>
 
@@ -78,27 +80,22 @@ export default {
         });
       e.preventDefault();
     },
-    // getData() {
-    //   this.reviewers = [];
-    //   axios
-    //     .get("http://localhost:8080/api/reviewers", this.posts)
-    //     .then((res) => {
-    //       this.posts = res.data;
-    //       console.log(res)
-    //     })
-    //     .catch((err) => Promise.reject(err));
-    // },
   },
 
-  mounted() {
-    axios
-      .post("http://localhost:8080/api/reviewers")
-      .then((response) => {
-        // this.reviewers = console.log(response)
-        // .finally(() => console.log('Data oading complete'));
-console.warn(response)
-      })
-      // .catch((err) => Promise.reject(err));
+ reviewData(){
+    return {
+      list: undefined
+    }
   },
+    mounted() {
+    axios
+      .get("http://localhost:8080/api/reviewers")
+      .then((res) => {
+        console.log(res.data);
+        this.list = res.data;
+      })
+      .catch((err) => Promise.reject(err));
+  }
+ 
 };
 </script>
