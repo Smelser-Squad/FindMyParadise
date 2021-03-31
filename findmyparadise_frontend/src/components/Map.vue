@@ -1,16 +1,20 @@
 <template>
   <h1>Map</h1>
   <div id="map" ref="mapRef"></div>
+
   <p id="mapLine">{{ dataName1 + " : " + dataDist1 }}</p>
   <p id="mapLine">{{ dataName2 + " : " + dataDist2 }}</p>
   <p id="mapLine">{{ dataName3 + " : " + dataDist3 }}</p>
   <p id="mapLine">{{ dataName4 + " : " + dataDist4 }}</p>
+
 </template>
 
 <script>
 import { ref, onMounted } from "vue";
 import axios from "axios";
-let listingID = 2;
+
+let listingID = 1;
+
 export default {
   name: "Map",
   props: {
@@ -46,6 +50,7 @@ export default {
               `https://api.tomtom.com/search/2/nearbySearch/.json?lat=${latFloatNum}&lon=${longFloatNum}&key=ziBCBRJyocQkRJJD2WlhVIOaMvQ1agyK`
             )
             .then((nearbyObj) => {
+
               dataName1.value = nearbyObj.data.results[3].poi.name + " ";
               dataName2.value = nearbyObj.data.results[5].poi.name + " ";
               dataName3.value = nearbyObj.data.results[7].poi.name + " ";
@@ -68,6 +73,9 @@ export default {
               //   (nearbyObj.data.results[9].dist * 0.00062137119224).toFixed(2) +
               //     " mi"
               // );
+
+             
+
             });
           const tt = window.tt;
           var map = tt.map({

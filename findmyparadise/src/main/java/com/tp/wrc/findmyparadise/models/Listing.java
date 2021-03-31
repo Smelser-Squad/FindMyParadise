@@ -9,6 +9,11 @@ import java.util.Set;
 @Entity
 
 @Table(name = "listing")
+
+
+@JsonIgnoreProperties(value = {"amenities","reservations"}, allowSetters = true)
+
+
 public class Listing {
     @Id
     @Column(name = "listing_id")
@@ -24,7 +29,7 @@ public class Listing {
     @Column(name = "longitude")
     private Double longitude;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "host_id", nullable = false)
     private Host host;
 
