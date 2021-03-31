@@ -26,8 +26,6 @@
       <br />
       <br />
 
-     
-
       <date-picker
         class="datePicker"
         v-model="posts.joinedDate"
@@ -40,7 +38,6 @@
     </form>
   </div>
 </template>
-
 
 <script>
 import axios from "axios";
@@ -55,10 +52,9 @@ export default {
     return {
       posts: {
         name: null,
-        imageSrc: null, 
+        imageSrc: null,
         description: null,
-        joinedDate: null
-
+        joinedDate: null,
       },
     };
   },
@@ -69,10 +65,8 @@ export default {
         .then((result) => {
           // console.log(result);
           console.warn(result);
-        })
-                e.preventDefault();
-
-        
+        });
+      e.preventDefault();
     },
   },
 

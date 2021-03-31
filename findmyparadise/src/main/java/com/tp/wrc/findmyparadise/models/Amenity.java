@@ -12,7 +12,6 @@ import java.util.Set;
 @JsonIgnoreProperties(value = {"listings"}, allowSetters = true)
 public class Amenity implements Serializable {
 
-    //VARIABLES
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "amenity_id")
@@ -27,7 +26,6 @@ public class Amenity implements Serializable {
     @ManyToMany(mappedBy = "amenities", cascade = CascadeType.ALL)
     private Set<Listing> listings;
 
-    //CONSTRUCTORS
     public Amenity(){}
 
     public Amenity(Integer amenityId, String amenityName, String amenityCategory) {
@@ -36,7 +34,6 @@ public class Amenity implements Serializable {
         this.category = amenityCategory;
     }
 
-    //GETTERS & SETTERS
     public Integer getAmenityId() {
         return amenityId;
     }

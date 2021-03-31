@@ -4,23 +4,12 @@ import com.tp.wrc.findmyparadise.exceptions.InvalidHostEmailException;
 import com.tp.wrc.findmyparadise.exceptions.InvalidHostIDException;
 import com.tp.wrc.findmyparadise.exceptions.InvalidHostNameException;
 import com.tp.wrc.findmyparadise.exceptions.NullHostIDException;
-import com.tp.wrc.findmyparadise.models.Event;
 import com.tp.wrc.findmyparadise.models.Host;
-import com.tp.wrc.findmyparadise.services.HostServiceImpl;
-import org.aspectj.lang.annotation.After;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import javax.persistence.EntityManager;
-import java.util.List;
 import java.util.NoSuchElementException;
-
-import static org.junit.jupiter.api.Assertions.*;
-
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -94,9 +83,8 @@ public class HostServiceImplTests {
         }
     }
 
-    @Test //testing show method to ensure that data can be retrieved correctly from db
-    void showGoldenPath() throws NullHostIDException, InvalidHostEmailException, InvalidHostIDException, InvalidHostNameException {
-
+    @Test
+    void showGoldenPath() {
         Host test = new Host();
         test.setHostName("test name");
         test.setSuperHost(true);
@@ -111,7 +99,7 @@ public class HostServiceImplTests {
         try {
             service.create(test);
             service.show(test.getHostID());
-        } catch (NullHostIDException | InvalidHostIDException e){
+        } catch (NullHostIDException | InvalidHostIDException | InvalidHostEmailException | InvalidHostNameException e){
             fail();
         }
 
@@ -127,7 +115,7 @@ public class HostServiceImplTests {
 
     }
 
-    @Test //testing create to ensure that data can be added correctly to db
+    @Test
     void createGoldenPath() {
 
         Host test = new Host();
@@ -165,7 +153,7 @@ public class HostServiceImplTests {
         assertEquals("create test total reviews", retrieved.getTotalReviews());
     }
 
-    @Test //testing update to ensure that data can be updated correctly to db
+    @Test
     void updateGoldenPath() {
 
         Host original = new Host();
@@ -215,7 +203,7 @@ public class HostServiceImplTests {
 
     }
 
-    @Test //testing destroy to ensure that data can be deleted correctly from the db
+    @Test
     void destroyGoldenPath() {
 
         Host test = new Host();
@@ -256,7 +244,7 @@ public class HostServiceImplTests {
 
     }
 
-    @Test   //Throws NoSuchElementException instead of InvalidHostId exception because JPA already does some testing
+    @Test
     public void updateInvalidHostId() {
 
         Host invalid = new Host();
@@ -298,7 +286,7 @@ public class HostServiceImplTests {
 
     }
 
-    @Test   //Throws NoSuchElementException instead of InvalidHostId exception because JPA already does some testing
+    @Test
     public void destroyInvalidHostId() {
 
         assertThrows(NoSuchElementException.class, ()-> service.destroy(Integer.MAX_VALUE));

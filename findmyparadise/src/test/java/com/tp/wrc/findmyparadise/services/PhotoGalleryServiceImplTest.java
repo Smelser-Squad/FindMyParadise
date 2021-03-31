@@ -1,17 +1,14 @@
 package com.tp.wrc.findmyparadise.services;
 
-import com.tp.wrc.findmyparadise.models.Listing;
 import com.tp.wrc.findmyparadise.models.Photo;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
 class PhotoGalleryServiceImplTest {
@@ -65,11 +62,11 @@ class PhotoGalleryServiceImplTest {
         newPhoto.setCategory("Kitchen");
 
         newPhoto = toTest.addImage(newPhoto);
-        Photo tester = toTest.getById(newPhoto.getPhotoID());
+        Photo tester = toTest.getById(newPhoto.getPhotoId());
 
         assertEquals("someOtherLink", tester.getImageSrc());
         assertEquals("Kitchen", tester.getCategory());
-        assertEquals(3, tester.getPhotoID());
+        assertEquals(3, tester.getPhotoId());
 
     }
 
