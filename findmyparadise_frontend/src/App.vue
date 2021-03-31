@@ -75,21 +75,29 @@ export default {
     Events,
     Email
   },
+
+  
+  methods:
+  {
+    Change(event){
+         console.log(event);
+         
+      },
+      toggleEmail(host) {
+      this.emailTrigger = !this.emailTrigger;
+      this.host = host;
+    },
+   },
+
+
   data() {
     return {
       emailTrigger: false,
       host: {}
+
     }
   },
-  methods: {
-    toggleEmail(host) {
-      this.emailTrigger = !this.emailTrigger;
-      this.host = host;
-    },
-    Change(event){
-      console.log(event);
-    }
-  }
+  
 };
 </script>
 <style>
