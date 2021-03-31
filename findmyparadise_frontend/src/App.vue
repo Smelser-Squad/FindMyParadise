@@ -100,6 +100,9 @@ body {
   font-size: 15px;
   font-family: inherit;
 }
+#mapLine {
+  margin: 0;
+}
 .btn:focus {
   outline: none;
 }
