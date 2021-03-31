@@ -28,6 +28,9 @@
     <div class="reviewerContainer"> 
       <reviewer> </reviewer>
     </div>
+    <div class="scrollContainer">
+    <events title="Events"></events>
+    </div>
     <email
       v-if="emailTrigger && host != undefined"
       :toggleEmail="() => toggleEmail()"
@@ -46,7 +49,7 @@ import Amenities from "./components/Amenities.vue";
 
 import Review from "./components/Review"
 import Reviewer from "./components/Reviewer"
-
+import Events from "./components/Events";
 import DateRangePicker from "./components/DateRangePicker.vue";
 import Email from "./components/Email"
 
@@ -63,6 +66,7 @@ export default {
     Review,
     Reviewer,
     DateRangePicker,
+    Events,
     Email
   },
   data() {
