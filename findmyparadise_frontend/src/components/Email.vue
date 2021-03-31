@@ -2,7 +2,10 @@
   <div class="email">
     <div class="email-inner">
       <h2>
+
         Contact {{host.hostName}}
+
+
       </h2>
       <div class="input-row">
         <label class="input-label" for="guestName">
@@ -45,6 +48,7 @@
 
 <script>
 export default {
+
   name: 'Email',
   props: ['toggleEmail', 'host'],
   data: () => {
@@ -76,6 +80,11 @@ export default {
 }
 </script>
 
+
+
+
+
+
 <style scoped>
   .email {
     position: fixed;
@@ -102,3 +111,5 @@ export default {
     text-align: right;
   }
 </style>
+
+
