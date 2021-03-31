@@ -5,7 +5,6 @@
     v-model="range" 
     is-range 
     v-on:change="ChangeDate()"
-    @click="OnClick()"
     :min-date='new Date()' 
     />
     <br/>
@@ -14,7 +13,7 @@
     <br/>
     <span>End Date: {{updateDate(range.end)}}</span>
     <br/>
-    <button @click="sendData">Submit</button>
+    <button @click="sendDate">Submit</button>
     </div>
 </template>
 
@@ -40,8 +39,8 @@ export default {
       return dateSub
     },
     
-     OnClick(){
-      this.$emit('DatePick',this.range);
+    sendDate(){
+      this.$emit('datePick',this.range.start);
      }
     }
 }
