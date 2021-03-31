@@ -1,7 +1,7 @@
 <template>
     <div id="Amenities">
         <h3>Amenities</h3>
-        <ul>
+        <ul class="initDisplay">
             <li v-for="amenity in amenities.slice(0, 10)" :key="amenity">
                 <svg xmlns="http://www.w3.org/2000/svg">
                     <path v-bind:d="setDPath(amenity.amenityName)"></path>
@@ -22,8 +22,7 @@
                 <li v-for="amenity in amenities" :key="amenity">
                     {{amenity.amenityName}}
                     <hr>
-                </li>
-                
+                </li>       
             </ul>
         </Modal>
         
@@ -143,18 +142,22 @@
 </script>
 
 <style scoped>
-ul {
-  list-style-type: none;
-}
+    ul {
+        list-style-type: none;
+    }
 
-.showBtn {
-  border-radius: 12px;
-  background-color: white;
-  padding: 10px;
-  border: 1px solid;
-}
+    .initDisplay {
+        columns: 2;
+    }
 
-.showBtn:hover {
+    .showBtn {
+        border-radius: 12px;
+        background-color: white;
+        padding: 10px;
+        border: 1px solid;
+    }
+
+    .showBtn:hover {
         text-decoration: underline;
         background-color: #F7F7F7;
     }
