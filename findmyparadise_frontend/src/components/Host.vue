@@ -1,44 +1,48 @@
 <template>
   <div id="host">
-    <img :src="dataObject.imageSrc" />
+    {{hostName}}
+    <!-- <img :src="dataObject.host.imageSrc" />
     <div class="picInfo">
-      <h5>Hosted by {{ dataObject.hostName }}</h5>
+      <h5>Hosted by {{ dataObject.host.hostName }}</h5>
       <br />
-      <p>joined {{ dataObject.joinDate }}</p>
+      <p>joined {{ dataObject.host.joinDate }}</p>
     </div>
     <div class="moreHostInfo">
-      <span>{{ dataObject.totalReviews }} Reviews </span>
-      <span v-if="dataObject.verified != undefined">Identity Verified</span>
+      <span>{{ dataObject.host.totalReviews }} Reviews </span>
+      <span v-if="dataObject.host.verified != undefined">Identity Verified</span>
     </div>
     <div class="responseInfo">
-      <span>Response Rate: {{ dataObject.responseRate }}%</span>
+      <span>Response Rate: {{ dataObject.host.responseRate }}%</span>
       <br />
-      <span>Response Time: {{ dataObject.responseTime }}</span>
+      <span>Response Time: {{ dataObject.host.responseTime }}</span>
     </div>
     <div class="transferWarning">
       <span
         >To protect your payment, never fransfer money or communicate outside of
-        the find my paradise website</span
-      >
-    </div>
+        the find my paradise website</span>
+    </div> -->
   </div>
 </template>
 
 <script>
 import axios from "axios";
 
-let hostId = 1;
+let listingID = 1;
 export default {
   name: "Host",
   data() {
     return {
+      hostName : String,
       dataObject: {},
       overlay: false,
     };
   },
   mounted() {
-    axios.get(`http://localhost:8080/api/host/${hostId}`).then((res) => {
+    axios.get(`http://localhost:8080/api/listing/${listingID}`).then((res) => {
       this.dataObject = res.data;
+      this.hostName = res.data.host.hostName;
+      console.log(this.hostName);
+      console.log(this.dataObject);
       console.log(res.data);
     });
   },
