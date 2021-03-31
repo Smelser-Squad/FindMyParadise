@@ -31,10 +31,13 @@
     <div class="container">
       <host></host>
     </div>
+    <div class="scrollContainer">
+    <events title="Events"></events>
+    </div>
     <email
-      v-if="emailTrigger"
-      :toggleEmail="() => toggleEmail()">
-    
+      v-if="emailTrigger && host != undefined"
+      :toggleEmail="() => toggleEmail()"
+      :host="host">
     </email>
   </div>
 </template>
@@ -49,7 +52,7 @@ import Amenities from "./components/Amenities.vue";
 
 import Review from "./components/Review"
 import Reviewer from "./components/Reviewer"
-
+import Events from "./components/Events";
 import DateRangePicker from "./components/DateRangePicker.vue";
 import Email from "./components/Email"
 
@@ -69,18 +72,19 @@ export default {
     Reviewer,
     Host,
     DateRangePicker,
+    Events,
     Email
   },
   data() {
     return {
       emailTrigger: false,
+      host: {}
     }
   },
   methods: {
-    toggleEmail() {
-      console.log("CLICKED");
-      console.log(this.emailTrigger);
+    toggleEmail(host) {
       this.emailTrigger = !this.emailTrigger;
+      this.host = host;
     },
     Change(event){
       console.log(event);
@@ -123,6 +127,9 @@ body {
   text-decoration: none;
   font-size: 15px;
   font-family: inherit;
+}
+#mapLine {
+  margin: 0;
 }
 .btn:focus {
   outline: none;

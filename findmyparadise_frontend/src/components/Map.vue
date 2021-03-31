@@ -1,25 +1,39 @@
 <template>
   <h1>Map</h1>
   <div id="map" ref="mapRef"></div>
-  <h4>{{ dataObject }}</h4>
-  <h4></h4>
-  <h4></h4>
-  <h4></h4>
+
+  <p id="mapLine">{{ dataName1 + " : " + dataDist1 }}</p>
+  <p id="mapLine">{{ dataName2 + " : " + dataDist2 }}</p>
+  <p id="mapLine">{{ dataName3 + " : " + dataDist3 }}</p>
+  <p id="mapLine">{{ dataName4 + " : " + dataDist4 }}</p>
+
 </template>
 
 <script>
 import { onMounted, ref } from "vue";
 import axios from "axios";
+
 let listingID = 1;
 
 export default {
   name: "Map",
-  data() {
-    return {
-      dataObject: {},
-    };
+  props: {
+    locationName: {
+      type: String,
+    },
+    locationDist: {
+      type: String,
+    },
   },
-  setup() {
+  setup(props) {
+    const dataName1 = ref(props.locationName);
+    const dataName2 = ref(props.locationName);
+    const dataName3 = ref(props.locationName);
+    const dataName4 = ref(props.locationName);
+    const dataDist1 = ref(props.locationDist);
+    const dataDist2 = ref(props.locationDist);
+    const dataDist3 = ref(props.locationDist);
+    const dataDist4 = ref(props.locationDist);
     const mapRef = ref(null);
     onMounted(() => {
       axios
@@ -36,12 +50,32 @@ export default {
               `https://api.tomtom.com/search/2/nearbySearch/.json?lat=${latFloatNum}&lon=${longFloatNum}&key=ziBCBRJyocQkRJJD2WlhVIOaMvQ1agyK`
             )
             .then((nearbyObj) => {
-              console.log(nearbyObj);
-              console.log(nearbyObj.data.results[3].poi.name);
-              console.log(
+
+              dataName1.value = nearbyObj.data.results[3].poi.name + " ";
+              dataName2.value = nearbyObj.data.results[5].poi.name + " ";
+              dataName3.value = nearbyObj.data.results[7].poi.name + " ";
+              dataName4.value = nearbyObj.data.results[9].poi.name + " ";
+              dataDist1.value =
+                (nearbyObj.data.results[3].dist * 0.00062137119224).toFixed(2) +
+                " mi";
+              dataDist2.value =
+                (nearbyObj.data.results[5].dist * 0.00062137119224).toFixed(2) +
+                " mi";
+              dataDist3.value =
+                (nearbyObj.data.results[7].dist * 0.00062137119224).toFixed(2) +
+                " mi";
+              dataDist4.value =
                 (nearbyObj.data.results[9].dist * 0.00062137119224).toFixed(2) +
-                  " mi"
-              );
+                " mi";
+              // console.log(nearbyObj);
+              // console.log(nearbyObj.data.results[3].poi.name);
+              // console.log(
+              //   (nearbyObj.data.results[9].dist * 0.00062137119224).toFixed(2) +
+              //     " mi"
+              // );
+
+             
+
             });
           const tt = window.tt;
           var map = tt.map({
@@ -84,6 +118,14 @@ export default {
   ;
   return {
       mapRef,
+      dataName1,
+      dataName2,
+      dataName3,
+      dataName4,
+      dataDist1,
+      dataDist2,
+      dataDist3,
+      dataDist4,
     };
    },
 };
