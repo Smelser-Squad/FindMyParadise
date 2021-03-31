@@ -24,6 +24,9 @@ public class Event {
     @Column(name = "category")
     private String category;
 
+    @Column(name = "category")
+    private String imageSrc;
+
     @Column(name = "cost")
     private double cost;
 
