@@ -1,13 +1,10 @@
 package com.tp.wrc.findmyparadise.controllers;
 
 
-import com.tp.wrc.findmyparadise.exceptions.InvalidListingIDException;
-import com.tp.wrc.findmyparadise.exceptions.InvalidReservationIdException;
+import com.tp.wrc.findmyparadise.exceptions.*;
 
-import com.tp.wrc.findmyparadise.exceptions.NullReservationIdException;
 import com.tp.wrc.findmyparadise.models.Listing;
 import com.tp.wrc.findmyparadise.models.Reservation;
-import com.tp.wrc.findmyparadise.services.ReservationService;
 import com.tp.wrc.findmyparadise.services.ReservationServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -57,7 +54,7 @@ public class ReservationController {
     public ResponseEntity addReservation(@RequestBody Reservation newReservation) {
         try {
             return ResponseEntity.ok(service.addReservation(newReservation));
-        } catch (NullReservationIdException | InvalidReservationIdException ex) {
+        } catch (NullReservationObjectException | NullGuestsException | InvalidGuestsException | NullDatesException | PastDatesException ex) {
             return ResponseEntity.badRequest().body(ex.getMessage());
         }
     }
@@ -67,7 +64,7 @@ public class ReservationController {
         try {
             return ResponseEntity.ok(service.updateReservation(newReservation));
 
-        } catch (NullReservationIdException | InvalidReservationIdException ex) {
+        } catch (NullReservationIdException | InvalidReservationIdException | NullDatesException | InvalidGuestsException | NullGuestsException ex) {
             return ResponseEntity.badRequest().body(ex.getMessage());
         }
     }
