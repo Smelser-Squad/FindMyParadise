@@ -32,8 +32,13 @@
       <h5>Guests:</h5>
       <Guests />
       <h5>Dates</h5>
+
+      <div v-if="showCalendar" ><DateRangePicker v-on:datePick="updateDates($event)"/></div>
+      <span> Start Date: {{range.start}} </span>
+
       <div v-if="showCalendar" v-on:getStart="updateStart($event)"><DateRangePicker /></div>
       <span> Start Date: {{start}} </span>
+
       <span
         class="_19di23v"
         style="
@@ -83,22 +88,16 @@
 
 import Guests from "./Guests";
 import axios from 'axios';
-
-
-
-
-
-
-
+import DateRangePicker from "./DateRangePicker"
 
 let listingID=1;
-
 
 export default {
   name: "Reservation",
 
   data() {
     return {
+      showCalendar: true,
       show:false,
       date:new Date(),
       dataObject: {},
@@ -110,7 +109,15 @@ export default {
         NumInfants:'',
         NumOfDays:1,
         TotalPrice:''
-      }
+      },
+      range: {
+        start: new Date(),
+        end: new Date(),
+      },
+      
+      startDateStr: '',
+      endDateStr: ''
+      
      
     };
   },
@@ -126,9 +133,8 @@ export default {
 
     components: {
     Guests,
-    
-    
-  
+    DateRangePicker
+
   },
   methods: {
     OnClick() {
@@ -148,10 +154,17 @@ export default {
         console.log(res);
       }))
     },
-ShowDetals(){
-  this.show=true;
+    ShowDetals(){
+      this.show=true;
 
-},
+    },
+    updateDates(start) {
+      this.range.start = start;
+      
+      console.log(this.range.start);
+      console.log("we made it")
+    
+    }
   }
  
 };
