@@ -1,18 +1,26 @@
 package com.tp.wrc.findmyparadise.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "listing")
+<<<<<<< HEAD
 public class Listing {
+=======
+@JsonIgnoreProperties(value = {"amenities","reservations"}, allowSetters = true)
+public class Listing implements Serializable {
+
+>>>>>>> 9d9b64af3a65385ec5349e1ad9c37021ece575f3
     @Id
     @Column(name = "listing_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer listingID;
+    private Integer listingId;
 
     @Column(name = "name", nullable = false)
     private String name;
@@ -24,7 +32,7 @@ public class Listing {
     private Double longitude;
 
     @ManyToOne
-    @JoinColumn(name = "host_id", nullable = false)
+    @JoinColumn(name = "host_id")
     private Host host;
 
     @Column(name = "address", nullable = false)
@@ -48,17 +56,26 @@ public class Listing {
     @Column(name = "cleaning_fee")
     private Double cleaningFee;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "listing_id")
-    private Set<Review> reviews;
+    @OneToMany(fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL,
+            mappedBy = "listing",
+            orphanRemoval = true)
+    @JsonManagedReference
+    private Set<Review> reviews = new HashSet<>();
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "listing_id")
-    private Set<Reservation> reservations;
+    @OneToMany(fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL,
+            mappedBy = "listing",
+            orphanRemoval = true)
+    @JsonManagedReference
+    private Set<Reservation> reservations = new HashSet<>();
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "listing_id")
-    private Set<Photo> photos;
+    @OneToMany(fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL,
+            mappedBy = "listing",
+            orphanRemoval = true)
+    @JsonManagedReference
+    private Set<Photo> photos = new HashSet<>();
 
     @Column(name= "bedroom_quantity")
     private Integer bedrooms;
@@ -77,18 +94,18 @@ public class Listing {
             name = "listing_amenities",
             joinColumns = @JoinColumn(name = "listing_id"),
             inverseJoinColumns = @JoinColumn(name = "amenity_id"))
-    private Set<Amenity> amenities;
+    private Set<Amenity> amenities = new HashSet<>();
 
     public Listing() {
 
     }
 
-    public Integer getListingID() {
-        return listingID;
+    public Integer getListingId() {
+        return listingId;
     }
 
-    public void setListingID(Integer listingID) {
-        this.listingID = listingID;
+    public void setListingId(Integer listingId) {
+        this.listingId = listingId;
     }
 
     public String getName() {
