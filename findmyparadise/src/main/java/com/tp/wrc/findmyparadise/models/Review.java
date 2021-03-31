@@ -43,7 +43,6 @@ public class Review implements Serializable {
 
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-
     @JoinColumn(name = "reviewer_id", nullable = false)
     private Reviewer reviewer;
 
