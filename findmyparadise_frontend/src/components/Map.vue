@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import { ref, onMounted } from "vue";
+import { onMounted, ref } from "vue";
 import axios from "axios";
 
 let listingID = 1;
@@ -88,7 +88,9 @@ export default {
           map.addControl(new tt.FullscreenControl());
           map.addControl(new tt.NavigationControl());
           addMarker(map);
+
         });
+
     });
     function addMarker(map) {
       const tt = window.tt;
@@ -112,8 +114,9 @@ export default {
           );
           marker.setPopup(popup).togglePopup();
         });
-    }
-    return {
+  }
+  ;
+  return {
       mapRef,
       dataName1,
       dataName2,
@@ -124,7 +127,7 @@ export default {
       dataDist3,
       dataDist4,
     };
-  },
+   },
 };
 </script>
 <style>
