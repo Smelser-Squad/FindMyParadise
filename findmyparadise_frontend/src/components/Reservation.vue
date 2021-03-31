@@ -34,11 +34,7 @@
         </div>
         <span> Start Date: {{ range.start }} </span>
 
-        <div v-if="showCalendar" v-on:getStart="updateStart($event)">
-          <DateRangePicker />
-        </div>
-        <span> Start Date: {{ start }} </span>
-
+       
         <span
           class="_19di23v"
           style="

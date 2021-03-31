@@ -38,14 +38,18 @@ import { ref } from "vue";
 import axios from "axios";
 import Modal from "./Modal";
 
-let listingID = 2;
+
+let listingID = 1;
+
 export default {
   components: { Modal },
   name: "Amenities",
   setup() {
     const popupTriggers = ref({
       buttonTrigger: false,
-    });   
+
+    });
+
 
     const TogglePopup = (trigger) => {
       popupTriggers.value[trigger] = !popupTriggers.value[trigger];
@@ -61,7 +65,7 @@ export default {
     return {
       amenities: [],
       amenityName: "",
-      dPath: ""
+
     };
   },
   mounted() {
@@ -71,6 +75,7 @@ export default {
       this.amenities = res.data.amenities;
     })
     .catch((err) => Promise.reject(err));
+
   },
   methods: {
     setDPath(name) {
@@ -167,10 +172,13 @@ export default {
         background-color: #F7F7F7;
     }
 
+
     svg {
         width: 35px;
         height: 35px;
     }
 
-</style>
 
+
+
+</style>
