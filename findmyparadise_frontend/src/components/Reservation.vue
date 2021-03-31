@@ -31,6 +31,9 @@
 
       <h5>Guests:</h5>
       <Guests />
+      <h5>Dates</h5>
+      <div v-if="showCalendar" v-on:getStart="updateStart($event)"><DateRangePicker /></div>
+      <span> Start Date: {{start}} </span>
       <span
         class="_19di23v"
         style="

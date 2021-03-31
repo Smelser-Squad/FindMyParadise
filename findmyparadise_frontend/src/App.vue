@@ -57,7 +57,6 @@ export default {
   components: {
     Reservation,
     Map,
-    // Calendar,
     MorePlaces,
     Description,
     Amenities,
