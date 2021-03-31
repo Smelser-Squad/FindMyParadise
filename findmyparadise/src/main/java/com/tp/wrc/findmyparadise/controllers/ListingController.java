@@ -85,7 +85,7 @@ public class ListingController {
         {
             toReturn = service.findByNameIgnoreCase(name);
         }
-        catch (NoListingFoundException | InvalidListingNameException e)
+        catch (NoListingFoundException | InvalidListingNameException | NullListingNameException e)
         {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
@@ -102,7 +102,7 @@ public class ListingController {
         {
             toReturn = service.findByType(type);
         }
-        catch (NoListingFoundException e)
+        catch (NoListingFoundException | NullListingNameException | InvalidListingNameException e)
         {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
