@@ -26,8 +26,6 @@
       <br />
       <br />
 
-     
-
       <date-picker
         class="datePicker"
         v-model="posts.joinedDate"
@@ -39,8 +37,17 @@
       <button type="submit">Add Review</button>
     </form>
   </div>
-</template>
+ <!-- <div @submit="getData" method="get">
+    <h1>All Reviews</h1>
+    <hr />
 
+    <li v-for="reviewer in posts" :key="reviewer">
+      Accuracy Rating :
+      {{ reviewer.name }}
+    </li>
+  </div> -->
+ 
+</template>
 
 <script>
 import axios from "axios";
@@ -55,36 +62,43 @@ export default {
     return {
       posts: {
         name: null,
-        imageSrc: null, 
+        imageSrc: null,
         description: null,
-        joinedDate: null
-
+        joinedDate: null,
       },
     };
   },
+ 
   methods: {
     postData(e) {
       axios
         .post("http://localhost:8080/api/addReviewer", this.posts)
         .then((result) => {
-          // console.log(result);
           console.warn(result);
-        })
-                e.preventDefault();
-
-        
+        });
+      e.preventDefault();
     },
+    // getData() {
+    //   this.reviewers = [];
+    //   axios
+    //     .get("http://localhost:8080/api/reviewers", this.posts)
+    //     .then((res) => {
+    //       this.posts = res.data;
+    //       console.log(res)
+    //     })
+    //     .catch((err) => Promise.reject(err));
+    // },
   },
 
-  // mounted() {
-  //   axios
-  //     .post("http://localhost:8080/api/addReviewer")
-  //     .then((response) => {
-  //       this.reviewers = console.log(response)
-  //       .finally(() => console.log('Data oading complete'));
-
-  //     })
-  //     .catch((err) => Promise.reject(err));
-  // },
+  mounted() {
+    axios
+      .post("http://localhost:8080/api/reviewers")
+      .then((response) => {
+        // this.reviewers = console.log(response)
+        // .finally(() => console.log('Data oading complete'));
+console.warn(response)
+      })
+      // .catch((err) => Promise.reject(err));
+  },
 };
 </script>
