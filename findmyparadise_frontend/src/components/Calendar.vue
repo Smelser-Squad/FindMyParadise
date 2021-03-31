@@ -1,36 +1,54 @@
 <template>
   <div id="Calendar">
-    <h1>Pick a Date Range</h1>
-    <date-picker
-      class="datePicker"
-      v-model="date1"
-      lang="en"
-      type="date"
-      format="MM-dd-YYYY"
+
+  
+    <date-picker class="datePicker" :min-date="new Date()" v-on:change="ChangeDate()"
+      v-model="range"
+      @click="OnClick()" is-range
+  
+      
     ></date-picker>
-    <date-picker
-      class="datePicker"
-      v-model="date2"
-      lang="en"
-      type="date"
-      format="MM-dd-YYYY"
-    ></date-picker>
+    <span>CheckIn: {{updateDate(range.start)}}</span>
+    <br/>
+    <span>CheckOut {{updateDate(range.end)}}</span>
+    <br/>
+    
+    <br/>
   </div>
 </template>
 
 <script>
-import DatePicker from "vue3-datepicker";
+import { DatePicker } from 'v-calendar';
 export default {
   name: "Calendar",
-  props: {},
+
+
   components: {
     DatePicker,
   },
   data() {
     return {
-      date1: "",
-      date2: "",
+      date1: '',
+      date2: '',
+      range: {
+      start: new Date(),
+      end: new Date()
+    }
     };
   },
+  methods: {
+    updateDate(date) {
+      let dateSub = date.toString().substring(4, 15);
+      return dateSub;
+    },
+    
+   OnClick(){
+      this.$emit('DatePick',this.range);
+    
+
+   }
+   
+    
+  }
 };
 </script>

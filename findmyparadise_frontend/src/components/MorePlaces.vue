@@ -45,7 +45,7 @@
             </div>
 
             <div class="subtitle">
-              <div v-if="item.reviews">
+              <div v-if="item.reviews && item.reviews.length > 0">
                 <svg
                   viewBox="0 0 1000 1000"
                   role="presentation"

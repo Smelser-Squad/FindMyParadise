@@ -44,4 +44,12 @@ public class Photo {
     public void setCategory(String category) {
         this.category = category;
     }
+
+    public Listing getListing() {
+        return listing;
+    }
+
+    public void setListing(Listing listing) {
+        this.listing = listing;
+    }
 }

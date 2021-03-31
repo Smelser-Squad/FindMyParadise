@@ -4,23 +4,12 @@ import com.tp.wrc.findmyparadise.exceptions.InvalidHostEmailException;
 import com.tp.wrc.findmyparadise.exceptions.InvalidHostIDException;
 import com.tp.wrc.findmyparadise.exceptions.InvalidHostNameException;
 import com.tp.wrc.findmyparadise.exceptions.NullHostIDException;
-import com.tp.wrc.findmyparadise.models.Event;
 import com.tp.wrc.findmyparadise.models.Host;
-import com.tp.wrc.findmyparadise.services.HostServiceImpl;
-import org.aspectj.lang.annotation.After;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import javax.persistence.EntityManager;
-import java.util.List;
 import java.util.NoSuchElementException;
-
-import static org.junit.jupiter.api.Assertions.*;
-
 
 import static org.junit.jupiter.api.Assertions.*;
 

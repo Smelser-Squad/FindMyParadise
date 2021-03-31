@@ -1,11 +1,8 @@
 package com.tp.wrc.findmyparadise.models;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import javax.persistence.*;
 import java.io.Serializable;
-import java.time.LocalDate;
 
 @Entity
 @Table(name ="review")
@@ -40,20 +37,14 @@ public class Review implements Serializable {
     @Column(name = "review_text")
     private String reviewText;
 
-
-
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-
     @JoinColumn(name = "reviewer_id", nullable = false)
     private Reviewer reviewer;
 
-    public Review(){
-
-    }
+    public Review(){}
 
     public Review(Integer rating, Integer cleanlinessRating, Integer locationRating, Integer accuracyRating,
                   Integer valueRating, Integer checkInRating, Integer communicationRating, String reviewText, Reviewer reviewer){
-
         this.rating = rating;
         this.cleanlinessRating = cleanlinessRating;
         this.locationRating = locationRating;
@@ -72,8 +63,6 @@ public class Review implements Serializable {
     public void setReviewId(Integer reviewId) {
         this.reviewId = reviewId;
     }
-
-
 
     public Integer getRating() {
         return rating;
@@ -138,8 +127,6 @@ public class Review implements Serializable {
     public void setReviewText(String reviewText) {
         this.reviewText = reviewText;
     }
-
-
 
     public Reviewer getReviewer() {
         return reviewer;

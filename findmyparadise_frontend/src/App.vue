@@ -4,7 +4,11 @@
       <reservation title="Reservation"></reservation>
     </div>
     <div class="container">
-      <calendar title="Calendar"></calendar>
+      
+      <amenities title="Amenities"></amenities>
+    </div>
+    <div class="container">
+      <DateRangePicker @DatePick="Change" />
     </div>
     <div class="container">
       <Map />
@@ -13,36 +17,76 @@
       <more-places></more-places>
     </div>
     <div class="container">
-      <description title="Description"></description>
+      <description
+        title="Description"
+        @email="toggleEmail">  
+      </description>
     </div>
+    <div class="reviewContainer">
+      <review></review>
+    </div>
+    <div class="reviewerContainer"> 
+      <reviewer> </reviewer>
+    </div>
+    <email
+      v-if="emailTrigger"
+      :toggleEmail="() => toggleEmail()">
+    
+    </email>
   </div>
 </template>
 
 <script>
-import MorePlaces from "./components/MorePlaces";
-import Reservation from "./components/Reservation";
-import Map from "./components/Map";
-import Calendar from "./components/Calendar.vue";
+import MorePlaces from "./components/MorePlaces.vue";
+import Reservation from "./components/Reservation.vue";
+import Map from "./components/Map.vue";
 import Description from "./components/Description";
+
+import Amenities from "./components/Amenities.vue";
+
+import Review from "./components/Review"
+import Reviewer from "./components/Reviewer"
+
+import DateRangePicker from "./components/DateRangePicker.vue";
+import Email from "./components/Email"
+
+
 
 export default {
   name: "App",
   components: {
     Reservation,
     Map,
-    Calendar,
     MorePlaces,
-    Description
+    Description,
+    Amenities,
+    Review,
+    Reviewer,
+    DateRangePicker,
+    Email
   },
+  data() {
+    return {
+      emailTrigger: false,
+    }
+  },
+  methods: {
+    toggleEmail() {
+      console.log("CLICKED");
+      console.log(this.emailTrigger);
+      this.emailTrigger = !this.emailTrigger;
+    },
+    Change(event){
+      console.log(event);
+    }
+  }
 };
 </script>
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap");
-
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
 }
-
 * {
   box-sizing: border-box;
   margin: 0;
@@ -96,5 +140,25 @@ body {
 }
 .datePicker {
   display: inline;
+}
+.reviewContainer {
+  max-width: 500px;
+  margin: 30px auto;
+  overflow: auto;
+  min-height: 300px;
+  border: 1px solid gray;
+  padding: 30px;
+  border-radius: 5px;
+  box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
+}
+.reviewerContainer {
+  max-width: 500px;
+  margin: 30px auto;
+  overflow: auto;
+  min-height: 300px;
+  border: 1px solid gray;
+  padding: 30px;
+  border-radius: 5px;
+  box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
 }
 </style>

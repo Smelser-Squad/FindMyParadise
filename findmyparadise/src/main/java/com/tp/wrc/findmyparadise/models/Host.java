@@ -46,7 +46,7 @@ public class Host implements Serializable {
     @Column(name = "image_src", nullable = false)
     private String imageSrc;
 
-    @OneToMany(mappedBy = "host")
+    @OneToMany(mappedBy = "host", orphanRemoval = true, cascade = CascadeType.ALL)
     private Set<Listing> listings;
 
     // EMPTY CONSTRUCTOR

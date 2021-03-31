@@ -1,12 +1,7 @@
 package com.tp.wrc.findmyparadise.models;
 
-import org.apache.tomcat.jni.Local;
-
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "reviewer")
