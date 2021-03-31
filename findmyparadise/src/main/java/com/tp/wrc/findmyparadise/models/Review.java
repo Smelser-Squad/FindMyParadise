@@ -1,6 +1,8 @@
 package com.tp.wrc.findmyparadise.models;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -38,13 +40,18 @@ public class Review implements Serializable {
     private String reviewText;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "reviewer_id", nullable = false)
+    @JoinColumn(name = "fk_reviewer_id", referencedColumnName = "reviewer_id", nullable = false)
     private Reviewer reviewer;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "listing_id")
+    @JsonBackReference
+    private Listing listing;
 
     public Review(){}
 
     public Review(Integer rating, Integer cleanlinessRating, Integer locationRating, Integer accuracyRating,
-                  Integer valueRating, Integer checkInRating, Integer communicationRating, String reviewText, Reviewer reviewer){
+                  Integer valueRating, Integer checkInRating, Integer communicationRating, String reviewText, Reviewer reviewer, Listing listing){
         this.rating = rating;
         this.cleanlinessRating = cleanlinessRating;
         this.locationRating = locationRating;
@@ -54,6 +61,7 @@ public class Review implements Serializable {
         this.communicationRating = communicationRating;
         this.reviewText = reviewText;
         this.reviewer = reviewer;
+        this.listing = listing;
     }
 
     public Integer getReviewId() {
@@ -134,5 +142,13 @@ public class Review implements Serializable {
 
     public void setReviewer(Reviewer reviewer) {
         this.reviewer = reviewer;
+    }
+
+    public Listing getListing() {
+        return listing;
+    }
+
+    public void setListing(Listing listing) {
+        this.listing = listing;
     }
 }

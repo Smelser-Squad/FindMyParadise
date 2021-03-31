@@ -9,8 +9,8 @@
     <h5 v-if="dataObject.host != undefined" id="typeAndHost">
       {{ dataObject.type }} hosted by {{ dataObject.host.hostName }}
     </h5>
-    <img v-if="dataObject.host != undefined" :src="dataObject.host.imageSrc">
-    <br>
+    <img v-if="dataObject.host != undefined" :src="dataObject.host.imageSrc" />
+    <br />
     <span
       >{{ dataObject.maxGuests }} guests - {{ dataObject.bedrooms }} bedrooms -
       {{ dataObject.bathrooms }} bathrooms</span
@@ -29,7 +29,7 @@ export default {
   name: "Description",
   data() {
     return {
-      dataObject: {}
+      dataObject: {},
     };
   },
   mounted() {
@@ -41,20 +41,20 @@ export default {
   methods: {
     toggleEmail() {
       this.$emit("email");
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style scoped>
-    img {
-        height: 50px;
-        width: 50px;
-        border-radius: 50%;
-        display: inline;
-        float: right;
-    }
-    #typeAndHost {
-        display: inline;
-    }
+img {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  display: inline;
+  float: right;
+}
+#typeAndHost {
+  display: inline;
+}
 </style>

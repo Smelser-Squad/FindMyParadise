@@ -4,7 +4,6 @@
       <reservation title="Reservation"></reservation>
     </div>
     <div class="container">
-      
       <amenities title="Amenities"></amenities>
     </div>
     <div class="container">
@@ -17,22 +16,15 @@
       <more-places></more-places>
     </div>
     <div class="container">
-      <description
-        title="Description"
-        @email="toggleEmail">  
-      </description>
+      <description title="Description" @email="toggleEmail"> </description>
     </div>
     <div class="reviewContainer">
       <review></review>
     </div>
-    <div class="reviewerContainer"> 
+    <div class="reviewerContainer">
       <reviewer> </reviewer>
     </div>
-    <email
-      v-if="emailTrigger"
-      :toggleEmail="() => toggleEmail()">
-    
-    </email>
+    <email v-if="emailTrigger" :toggleEmail="() => toggleEmail()"> </email>
   </div>
 </template>
 
@@ -44,13 +36,11 @@ import Description from "./components/Description";
 
 import Amenities from "./components/Amenities.vue";
 
-import Review from "./components/Review"
-import Reviewer from "./components/Reviewer"
+import Review from "./components/Review";
+import Reviewer from "./components/Reviewer";
 
 import DateRangePicker from "./components/DateRangePicker.vue";
-import Email from "./components/Email"
-
-
+import Email from "./components/Email";
 
 export default {
   name: "App",
@@ -63,12 +53,12 @@ export default {
     Review,
     Reviewer,
     DateRangePicker,
-    Email
+    Email,
   },
   data() {
     return {
       emailTrigger: false,
-    }
+    };
   },
   methods: {
     toggleEmail() {
@@ -76,10 +66,10 @@ export default {
       console.log(this.emailTrigger);
       this.emailTrigger = !this.emailTrigger;
     },
-    Change(event){
+    Change(event) {
       console.log(event);
-    }
-  }
+    },
+  },
 };
 </script>
 <style>

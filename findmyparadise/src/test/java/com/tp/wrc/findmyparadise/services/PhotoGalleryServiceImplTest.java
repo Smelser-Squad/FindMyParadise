@@ -62,11 +62,11 @@ class PhotoGalleryServiceImplTest {
         newPhoto.setCategory("Kitchen");
 
         newPhoto = toTest.addImage(newPhoto);
-        Photo tester = toTest.getById(newPhoto.getPhotoID());
+        Photo tester = toTest.getById(newPhoto.getPhotoId());
 
         assertEquals("someOtherLink", tester.getImageSrc());
         assertEquals("Kitchen", tester.getCategory());
-        assertEquals(3, tester.getPhotoID());
+        assertEquals(3, tester.getPhotoId());
 
     }
 
