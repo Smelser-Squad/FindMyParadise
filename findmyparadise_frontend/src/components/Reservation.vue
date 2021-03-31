@@ -25,15 +25,17 @@
     </header>
     <body>
       <form v-on:submit.prevent="submitForm">
+      
         <h5>Guests:</h5>
         <Guests />
+
 
       <div v-if="showCalendar" ><DateRangePicker v-on:datePick="updateDates($event)"/></div>
       
       <h3>CheckIn:</h3><input v-model="form.CheckIn"/>
        <input v-model="form.CheckOut" />
 
-     
+    
 
         <span
           class="_19di23v"

@@ -1,7 +1,8 @@
 <template>
-  <h1>Map</h1>
+  <h4 id="listingHeader">{{listingData + " Location"}}</h4>
+  <br>
   <div id="map" ref="mapRef"></div>
-
+  <br>
   <p id="mapLine">{{ dataName1 + " : " + dataDist1 }}</p>
   <p id="mapLine">{{ dataName2 + " : " + dataDist2 }}</p>
   <p id="mapLine">{{ dataName3 + " : " + dataDist3 }}</p>
@@ -12,7 +13,7 @@
 import { onMounted, ref } from "vue";
 import axios from "axios";
 
-let listingID = 1;
+let listingID = 2;
 
 export default {
   name: "Map",
@@ -23,8 +24,12 @@ export default {
     locationDist: {
       type: String,
     },
+    listingName: {
+      type: String
+    }
   },
   setup(props) {
+    const listingData = ref(props.listingName);
     const dataName1 = ref(props.locationName);
     const dataName2 = ref(props.locationName);
     const dataName3 = ref(props.locationName);
@@ -40,6 +45,7 @@ export default {
         .get(`http://localhost:8080/api/listing/${listingID}`)
         .then((res) => {
           console.log(res);
+          listingData.value = res.data.name;
           let POI = [res.data.longitude, res.data.latitude];
           let lat = res.data.latitude.toString();
           let long = res.data.longitude.toString();
@@ -119,13 +125,18 @@ export default {
       dataDist2,
       dataDist3,
       dataDist4,
+      listingData
     };
   },
 };
 </script>
 <style>
+#listingHeader {
+  margin: auto;
+  text-align: center;
+}
 #map {
-  height: 200px;
-  width: 300px;
+  height: 350px;
+  width: 100%;
 }
 </style>
