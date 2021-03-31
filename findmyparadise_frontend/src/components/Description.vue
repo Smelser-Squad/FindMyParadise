@@ -41,8 +41,8 @@ export default {
   methods: {
     toggleEmail() {
       this.$emit("email", this.dataObject.host);
-    }
-  }
+    },
+  },
 };
 </script>
 

@@ -6,7 +6,6 @@
   <p id="mapLine">{{ dataName2 + " : " + dataDist2 }}</p>
   <p id="mapLine">{{ dataName3 + " : " + dataDist3 }}</p>
   <p id="mapLine">{{ dataName4 + " : " + dataDist4 }}</p>
-
 </template>
 
 <script>
@@ -50,7 +49,6 @@ export default {
               `https://api.tomtom.com/search/2/nearbySearch/.json?lat=${latFloatNum}&lon=${longFloatNum}&key=ziBCBRJyocQkRJJD2WlhVIOaMvQ1agyK`
             )
             .then((nearbyObj) => {
-
               dataName1.value = nearbyObj.data.results[3].poi.name + " ";
               dataName2.value = nearbyObj.data.results[5].poi.name + " ";
               dataName3.value = nearbyObj.data.results[7].poi.name + " ";
@@ -73,9 +71,6 @@ export default {
               //   (nearbyObj.data.results[9].dist * 0.00062137119224).toFixed(2) +
               //     " mi"
               // );
-
-             
-
             });
           const tt = window.tt;
           var map = tt.map({
@@ -88,9 +83,7 @@ export default {
           map.addControl(new tt.FullscreenControl());
           map.addControl(new tt.NavigationControl());
           addMarker(map);
-
         });
-
     });
     function addMarker(map) {
       const tt = window.tt;
@@ -114,9 +107,8 @@ export default {
           );
           marker.setPopup(popup).togglePopup();
         });
-  }
-  ;
-  return {
+    }
+    return {
       mapRef,
       dataName1,
       dataName2,
@@ -127,7 +119,7 @@ export default {
       dataDist3,
       dataDist4,
     };
-   },
+  },
 };
 </script>
 <style>

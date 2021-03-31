@@ -2,7 +2,7 @@
   <div class="email">
     <div class="email-inner">
       <h2>
-        {{host.hostName}}
+        {{ host.hostName }}
       </h2>
       <button @click="toggleEmail()">Close email</button>
     </div>
@@ -11,8 +11,8 @@
 
 <script>
 export default {
-  props: ['toggleEmail', 'host']
-}
+  props: ["toggleEmail", "host"],
+};
 </script>
 
 <style scoped>

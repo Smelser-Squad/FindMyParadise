@@ -1,23 +1,21 @@
 <template>
-    <div>
-    <DatePicker 
-    class="datePicker"
-    v-model="range" 
-    is-range 
-    v-on:change="ChangeDate()"
-    :min-date='new Date()' 
+  <div>
+    <DatePicker
+      class="datePicker"
+      v-model="range"
+      is-range
+      v-on:change="ChangeDate()"
+      :min-date="new Date()"
     />
-    <br/>
-    <span>Start Date: {{updateDate(range.start)}}</span>
-    
-    <br/>
-    <span>End Date: {{updateDate(range.end)}}</span>
-    <br/>
+    <br />
+    <span>Start Date: {{ updateDate(range.start) }}</span>
+
+    <br />
+    <span>End Date: {{ updateDate(range.end) }}</span>
+    <br />
 
     <button @click="sendDate">Submit</button>
-
-
-    </div>
+  </div>
 </template>
 
 <script>
@@ -45,10 +43,10 @@ export default {
     OnClick() {
       this.$emit("DatePick", this.range);
     },
-    
-    sendDate(){
-      this.$emit('datePick',this.range.start);
-     }
-    }
-}
+
+    sendDate() {
+      this.$emit("datePick", this.range.start);
+    },
+  },
+};
 </script>

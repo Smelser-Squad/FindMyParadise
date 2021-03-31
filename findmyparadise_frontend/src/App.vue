@@ -28,12 +28,13 @@
       <host></host>
     </div>
     <div class="scrollContainer">
-    <events title="Events"></events>
+      <events title="Events"></events>
     </div>
     <email
       v-if="emailTrigger && host != undefined"
       :toggleEmail="() => toggleEmail()"
-      :host="host">
+      :host="host"
+    >
     </email>
   </div>
 </template>
@@ -46,15 +47,13 @@ import Description from "./components/Description";
 
 import Amenities from "./components/Amenities.vue";
 
-import Review from "./components/Review"
-import Reviewer from "./components/Reviewer"
+import Review from "./components/Review";
+import Reviewer from "./components/Reviewer";
 import Events from "./components/Events";
 import DateRangePicker from "./components/DateRangePicker.vue";
-import Email from "./components/Email"
-
+import Email from "./components/Email";
 
 import Host from "./components/Host.vue";
-
 
 export default {
   name: "App",
@@ -69,31 +68,25 @@ export default {
     Host,
     DateRangePicker,
     Events,
-    Email
+    Email,
   },
 
-  
-  methods:
-  {
-    Change(event){
-         console.log(event);
-         
-      },
-      toggleEmail(host) {
+  methods: {
+    Change(event) {
+      console.log(event);
+    },
+    toggleEmail(host) {
       this.emailTrigger = !this.emailTrigger;
       this.host = host;
     },
-   },
-
+  },
 
   data() {
     return {
       emailTrigger: false,
-      host: {}
-
-    }
+      host: {},
+    };
   },
-  
 };
 </script>
 <style>
