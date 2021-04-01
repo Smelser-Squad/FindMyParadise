@@ -14,7 +14,7 @@
     <span>End Date: {{ updateDate(range.end) }}</span>
     <br />
 
-    <button @click="sendDate">Submit</button>
+    <button type="button" @click="sendDate">Submit</button>
   </div>
 </template>
 
@@ -40,14 +40,12 @@ export default {
       return dateSub;
     },
 
-    OnClick() {
-      this.$emit("DatePick", this.range);
-    },
 
     
     
     sendDate(){
-      this.$emit('datePick',this.range.start);
+      this.$emit('datePickIn',this.range.start);
+      this.$emit('datePickOut',this.range.end);
       
      }
     }

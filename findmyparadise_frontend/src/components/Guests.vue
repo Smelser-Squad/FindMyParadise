@@ -8,7 +8,7 @@
         class="btn"
         @click="decreaseAdults()"
       >
-        
+        -
       </button>
       {{ AdultsNum }}
       <button type="button" class="btn" @click="increaseAdults()">+</button>

@@ -25,13 +25,14 @@
     </header>
     <body>
       <form v-on:submit.prevent="submitForm">
+      
         <h5>Guests:</h5>
         <Guests />
 
-      <div v-if="showCalendar" ><DateRangePicker v-on:datePick="updateDates($event)"/></div>
+      <div v-if="showCalendar" ><DateRangePicker v-on:datePickIn="updateDatesIn($event)" v-on:datePickOut="updateDatesOut($event)"/></div>
       
-      <h3>CheckIn:</h3><input v-model="form.CheckIn"/>
-       <input v-model="form.CheckOut" />
+      <h3>CheckIn:</h3><input disabled v-model="form.CheckIn"/>
+       <input disabled v-model="form.CheckOut" />
 
      
 
@@ -48,14 +49,14 @@
           class="btn"
           type="submit"
           style="width: 420px; text-align: center"
-          @click="OnClick()"
+         
         >
           Reserve
         </button>
       </form>
       <p style="color: gray; text-align: center">You won't be charged yet</p>
-      <u @click="ShowDetals()"><b> Show price details</b></u>
-      <div v-if="show">
+      <u @click="showDetails()"><b> Show price details</b></u>
+      <div v-if="details">
         <div>
           <u>${{ dataObject.price }} x {{ form.NumOfDays }} nights</u>
           <span>${{ dataObject.price * form.NumOfDays }}</span>
@@ -102,6 +103,7 @@ import Guests from "./Guests";
 import axios from "axios";
 import DateRangePicker from "./DateRangePicker";
 
+
 let listingID = 1;
 
 export default {
@@ -110,7 +112,7 @@ export default {
   data() {
     return {
       showCalendar: true,
-      show: false,
+      details: false,
       date: new Date(),
       dataObject: {},
       form:{
@@ -131,7 +133,7 @@ export default {
       endDateStr: "",
     };
   },
-  mounted() {
+  onMounted() {
     axios.get(`http://localhost:8080/api/listing/${listingID}`).then((res) => {
       this.dataObject = res.data;
       console.log(res.data);
@@ -144,12 +146,7 @@ export default {
     DateRangePicker,
   },
   methods: {
-    OnClick() {
-      console.log("Reserve");
-      console.log(this.form.CheckIn);
-      console.log(this.form.CheckOut);
-      
-    },
+   
     CleaningFeepopup() {
       let popup = document.getElementById("CleaningFeepopup");
       popup.classList.toggle("show");
@@ -165,18 +162,20 @@ export default {
           console.log(res);
         });
     },
-    ShowDetals() {
-      this.show = true;
+    showDetails() {
+      this.details= true;
     },
-    updateDates(start) {
+    updateDatesIn(start) {
       this.range.start = start;
       this.form.CheckIn= start.toString().substring(0, 15);
-      this.form.CheckOut=this.range.end.toString().substring(0,15);
-       
-      console.log(this.range.start);
-      console.log("we made it");
+      // this.form.CheckOut=this.range.end;
     },
-  },
+    updateDatesOut(end) {
+      
+      this.form.CheckOut=end;
+
+  }
+  }
 };
 </script>
 <style scoped>
