@@ -33,9 +33,8 @@
       <div class="reviewContainer">
         <review></review>
       </div>
-      <div class="reviewerContainer">
-        <reviewer> </reviewer>
-      </div>
+      
+
       <div class="container">
         <host></host>
       </div>
@@ -56,7 +55,7 @@
     
   
    
-  </div>
+  
 
 
 
@@ -69,7 +68,6 @@ import Map from "./components/Map.vue";
 import Description from "./components/Description";
 import Amenities from "./components/Amenities.vue";
 import Review from "./components/Review";
-import Reviewer from "./components/Reviewer";
 import Events from "./components/Events";
 import DateRangePicker from "./components/DateRangePicker.vue";
 import Email from "./components/Email";
@@ -87,7 +85,6 @@ export default {
     Description,
     Amenities,
     Review,
-    Reviewer,
     Host,
     DateRangePicker,
     GalleryMini,
@@ -302,16 +299,6 @@ h5 {
   display: inline;
 }
 .reviewContainer {
-  max-width: 500px;
-  margin: 30px auto;
-  overflow: auto;
-  min-height: 300px;
-  border: 1px solid gray;
-  padding: 30px;
-  border-radius: 5px;
-  box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
-}
-.reviewerContainer {
   max-width: 500px;
   margin: 30px auto;
   overflow: auto;
