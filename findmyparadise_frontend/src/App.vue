@@ -8,7 +8,7 @@
         <GalleryMini />
       </div>
       <div class="reservationContainer">
-        <reservation title="Reservation"></reservation>
+        <Reservation title="Reservation" :dateStart="range.start" :dateEnd="range.end" />
       </div>
       <br />
       <div class="amenitiesContainer">
@@ -17,7 +17,7 @@
       <div class="mapContainer">
         <div class="left" style="width: 100%; height: 350px">
           <h4 id="dateHeader">Select Date Range</h4>
-          <DateRangePicker @DatePick="Change" />
+            <DateRangePicker @datePick="transferDates($event)" />
         </div>
         <div class="right">
           <Map />
@@ -49,53 +49,6 @@
       >
       </email>
     </div>
-
-    <div class="header">
-      <h1 data-text="Find Your Paradise">Find Your Paradise</h1>
-    </div>
-    <div class="imgContainer">
-      <GalleryMini />
-    </div>
-    <div class="container">
-      <Reservation
-        title="Reservation"
-        :dateStart="range.start"
-        :dateEnd="range.end"
-      />
-    </div>
-    <div class="container">
-      <amenities title="Amenities"></amenities>
-    </div>
-    <div class="container">
-      <DateRangePicker @datePick="transferDates($event)" />
-    </div>
-    <div class="mapContainer">
-      <Map />
-    </div>
-    <div class="scrollContainer">
-      <more-places></more-places>
-    </div>
-    <div class="container">
-      <description title="Description" @email="toggleEmail"> </description>
-    </div>
-    <div class="reviewContainer">
-      <review></review>
-    </div>
-    <div class="reviewerContainer">
-      <reviewer> </reviewer>
-    </div>
-    <div class="container">
-      <host @email="toggleEmail"></host>
-    </div>
-    <div class="scrollContainer">
-      <events title="Events"></events>
-    </div>
-    <email
-      v-if="emailTrigger && host != undefined"
-      :toggleEmail="() => toggleEmail()"
-      :host="host"
-    >
-    </email>
   </div>
 </template>
 

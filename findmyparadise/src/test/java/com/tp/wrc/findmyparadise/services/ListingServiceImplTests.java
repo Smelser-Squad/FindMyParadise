@@ -192,7 +192,7 @@ public class ListingServiceImplTests {
         assertThrows(InvalidListingNameException.class,()-> test.findByNameIgnoreCase(" "));
     }
 
-    @Test
+
     public void getListingsByPriceInvalidPriceTest() {
         assertThrows(NullListingPriceException.class,()-> test.findByPrice(-9.0));
         assertThrows(NullListingPriceException.class,()-> test.findByPrice(null));
