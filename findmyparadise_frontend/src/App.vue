@@ -1,6 +1,5 @@
 <template>
   <div id="AppBody">
-
     <div class="masterContainer">
       <div class="header">
         <img src="./assets/fyplogo.png" />
@@ -9,16 +8,20 @@
         <GalleryMini />
       </div>
       <div class="reservationContainer">
-        <reservation title="Reservation"></reservation>
+       <Reservation
+        title="Reservation"
+        :dateStart="range.start"
+        :dateEnd="range.end"
+      />
       </div>
-      <br>
+      <br />
       <div class="amenitiesContainer">
         <amenities title="Amenities"></amenities>
       </div>
       <div class="mapContainer">
-        <div class="left" style="width:100%; height: 350px">
+        <div class="left" style="width: 100%; height: 350px">
           <h4 id="dateHeader">Select Date Range</h4>
-          <DateRangePicker @DatePick="Change" />
+            <DateRangePicker @datePick="transferDates($event)" />
         </div>
         <div class="right">
           <Map />
@@ -37,7 +40,7 @@
       <div class="container">
         <host></host>
       </div>
-       <div class="scrollContainer">
+      <div class="scrollContainer">
         <more-places></more-places>
       </div>
       <div class="scrollContainer">
@@ -50,49 +53,13 @@
       >
       </email>
     </div>
+    </div>
+    
+  
+   
+  </div>
 
-    <div class="header">
-      <h1 data-text="Find Your Paradise">Find Your Paradise</h1>
-    </div>
-    <div class="imgContainer">
-      <GalleryMini />
-    </div>
 
-      <Reservation title="Reservation" :dateStart="range.start" :dateEnd="range.end" />
-    </div>
-    <div class="container">
-      <amenities title="Amenities"></amenities>
-    </div>
-    <div class="container">
-      <DateRangePicker @datePick="transferDates($event)" />
-    </div>
-    <div class="mapContainer">
-      <Map />
-    </div>
-    <div class="scrollContainer">
-      <more-places></more-places>
-    </div>
-    <div class="container">
-      <description title="Description" @email="toggleEmail"> </description>
-    </div>
-    <div class="reviewContainer">
-      <review></review>
-    </div>
-    <div class="reviewerContainer">
-      <reviewer> </reviewer>
-    </div>
-    <div class="container">
-      <host @email="toggleEmail"></host>
-    </div>
-    <div class="scrollContainer">
-      <events title="Events"></events>
-    </div>
-    <email
-      v-if="emailTrigger && host != undefined"
-      :toggleEmail="() => toggleEmail()"
-      :host="host"
-    >
-    </email>
 
 </template>
 
@@ -111,7 +78,6 @@ import Email from "./components/Email";
 import GalleryMini from "./components/GalleryMini.vue";
 
 import Host from "./components/Host.vue";
-
 
 export default {
   name: "App",
@@ -144,10 +110,8 @@ export default {
 
       console.log(this.range.start);
       console.log(this.range.end);
-      
     },
   },
-
 
   data() {
     return {
@@ -255,9 +219,7 @@ body {
 }
 
 .masterContainer div,
-
 .reservationContainer div,
-
 h2,
 h5 {
   margin: auto;
@@ -357,7 +319,6 @@ h5 {
   box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
 }
 
-
 .imgContainer {
   max-width: 1300px;
 
@@ -384,4 +345,3 @@ h5 {
   text-align: center;
 }
 </style>
-

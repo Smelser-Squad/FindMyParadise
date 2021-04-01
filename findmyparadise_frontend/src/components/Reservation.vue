@@ -25,7 +25,6 @@
     </header>
     <body>
       <form v-on:submit.prevent="submitForm">
-
         <div class="split">
           <div class="split-left">
             <h5>Guests:</h5>
@@ -41,11 +40,8 @@
         </div>
         <span> Start Date: {{ range.start }} </span>
 
-
-       
-       
-        <br/>
-        <span> End Date: {{updateDate(dateEnd)}}</span>
+        <br />
+        <span> End Date: {{ updateDate(dateEnd) }}</span>
 
         <span
           class="_19di23v"
@@ -120,7 +116,7 @@ export default {
   name: "Reservation",
   props: {
     dateStart: new Date(),
-    dateEnd: new Date()
+    dateEnd: new Date(),
   },
 
   data() {
@@ -183,7 +179,6 @@ export default {
     updateDate(date) {
       let dateSub = date;
       return dateSub;
-      
     },
   },
 };

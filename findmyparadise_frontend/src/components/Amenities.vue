@@ -103,7 +103,9 @@ import { ref } from "vue";
 import axios from "axios";
 import Modal from "./Modal";
 
-let listingID = 2;
+let listingID = 1;
+
+
 export default {
   components: { Modal },
   name: "Amenities",
@@ -148,6 +150,7 @@ export default {
   },
   mounted() {
     axios
+
     .get(`http://localhost:8080/api/listing/${listingID}`)
     .then((res) => {
       this.amenities = res.data.amenities;
@@ -162,6 +165,7 @@ export default {
     })
     .catch((err) => Promise.reject(err));
   
+
   },
   methods: {
     setDPath(name) {
@@ -268,6 +272,32 @@ export default {
 </script>
 
 <style scoped>
+
+ul {
+  list-style-type: none;
+}
+
+.initDisplay {
+  columns: 2;
+}
+
+.showBtn {
+  border-radius: 12px;
+  background-color: white;
+  padding: 10px;
+  border: 1px solid;
+}
+
+.showBtn:hover {
+  text-decoration: underline;
+  background-color: #f7f7f7;
+}
+
+svg {
+  width: 35px;
+  height: 35px;
+}
+
     ul {
         list-style-type: none;
     }
@@ -303,6 +333,7 @@ export default {
       padding-bottom: 20px;
       padding-top:20px;
     }
+
 
 </style>
 
