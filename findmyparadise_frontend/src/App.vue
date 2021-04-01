@@ -1,27 +1,27 @@
 <template>
   <div id="AppBody">
-    <div class="header">
-      <h1 data-text="Find Your Paradise">Find Your Paradise</h1>
-    </div>
-    <br />
-    <div class="reservationContainer">
+    <div class="masterContainer">
+      <div class="header">
+        <img src="./assets/fyplogo.png" />
+      </div>
       <div class="imgContainer">
         <GalleryMini />
       </div>
-      <div class="container">
+      <div class="reservationContainer">
         <reservation title="Reservation"></reservation>
       </div>
-      <div class="container">
+      <br>
+      <div class="amenitiesContainer">
         <amenities title="Amenities"></amenities>
       </div>
-      <div class="container">
-        <DateRangePicker @DatePick="Change" />
-      </div>
       <div class="mapContainer">
-        <Map />
-      </div>
-      <div class="scrollContainer">
-        <more-places></more-places>
+        <div class="left" style="width:100%; height: 350px">
+          <h4 id="dateHeader">Select Date Range</h4>
+          <DateRangePicker @DatePick="Change" />
+        </div>
+        <div class="right">
+          <Map />
+        </div>
       </div>
       <div class="container">
         <description title="Description" @email="toggleEmail"> </description>
@@ -35,6 +35,9 @@
 
       <div class="container">
         <host></host>
+      </div>
+       <div class="scrollContainer">
+        <more-places></more-places>
       </div>
       <div class="scrollContainer">
         <events title="Events"></events>
@@ -116,14 +119,15 @@ body {
   margin: auto;
   text-align: center;
   position: relative;
-  text-align: center;
-  margin-top: 30px;
-  margin-bottom: 45px;
   -webkit-box-reflect: -28px below linear-gradient(transparent, #0002);
+}
+.header img {
+  padding-bottom: 20px;
 }
 .header div {
   margin: auto;
   text-align: center;
+  margin-bottom: 20%;
 }
 .header h1 {
   font-size: 6vw;
@@ -133,8 +137,8 @@ body {
     #e2204c,
     #f04e39,
     #f67526,
-    #f39911,
-    #eabc12
+    rgb(252, 118, 140),
+    hotpink
   );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -142,7 +146,7 @@ body {
 .header h1::after {
   content: attr(data-text);
   position: absolute;
-  margin-left: 4.5%;
+  margin-left: 20.5%;
   top: 0;
   left: 0;
   /* Change the position of transformed element */
@@ -156,8 +160,8 @@ body {
     #e2204c,
     #f04e39,
     #f67526,
-    #f39911,
-    #eabc12
+    rgb(252, 118, 140),
+    hotpink
   );
   -webkit-background-clip: text;
   color: transparent;
@@ -176,31 +180,39 @@ body {
   border-radius: 5px;
   box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
 }
-.reservationContainer {
-  max-width: 800px;
+.masterContainer {
+  max-width: 90%;
   margin: 30px auto;
   overflow: auto;
   min-height: 300px;
   border: 1px solid gray;
+  background: whitesmoke;
   padding: 30px;
   border-radius: 5px;
   box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
 }
-.reservationContainer div,
+.masterContainer div,
 h2,
 h5 {
   margin: auto;
   text-align: center;
 }
 .mapContainer {
-  max-width: 600px;
+  display: flex;
+  max-width: 80%;
   margin: 30px auto;
   overflow: auto;
   min-height: 300px;
-  border: 1px solid gray;
   padding: 30px;
+  /* border: 1px solid gray;
   border-radius: 5px;
-  box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
+  box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px; */
+}
+.mapContainer .left {
+  flex: 1;
+}
+.mapContainer .right {
+  flex: 1;
 }
 .mapContainer div {
   margin: auto;
@@ -208,6 +220,16 @@ h5 {
 }
 .mapContainer p {
   text-align: left;
+}
+.reservationContainer {
+  max-width: 95%;
+  margin: 30px auto;
+  overflow: auto;
+  min-height: 300px;
+  border: 1px solid gray;
+  padding: 30px;
+  border-radius: 5px;
+  box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
 }
 .btn {
   display: inline-block;
@@ -269,12 +291,26 @@ h5 {
   box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
 }
 .imgContainer {
-  max-width: 1300px;
+  max-width: 100%;
   margin: 30px auto;
   object-fit: fill;
   max-height: 500px;
   border-radius: 10px;
   box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
-  overflow: hidden;
+  overflow: auto;
+}
+.amenitiesContainer {
+  max-width: 80%;
+  margin: 30px auto;
+  overflow: auto;
+  min-height: 300px;
+  padding: 30px;
+  /* border: 1px solid gray;
+  border-radius: 5px;
+  box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px; */
+}
+#dateHeader {
+  margin: auto;
+  text-align: center;
 }
 </style>

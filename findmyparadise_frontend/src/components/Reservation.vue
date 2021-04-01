@@ -1,5 +1,5 @@
 <template>
-  <div id="Resrevation body">
+  <div>
     <header>
       <h2>
         <b>${{ dataObject.price }}</b> / night
@@ -25,15 +25,19 @@
     </header>
     <body>
       <form v-on:submit.prevent="submitForm">
-      
-        <h5>Guests:</h5>
-        <Guests />
-        <h5>Dates</h5>
+        <div class="split">
+          <div class="split-left">
+            <h5>Guests:</h5>
+            <Guests />
+          </div>
+          <div class="split-right">
+            <h5>Dates</h5>
+          </div>
 
-        <div v-if="showCalendar">
-          <DateRangePicker v-on:datePick="updateDates($event)" />
+          <div v-if="showCalendar">
+            <DateRangePicker v-on:datePick="updateDates($event)" />
+          </div>
         </div>
-
         <span> Start Date: {{ range.start }} </span>
 
         <span
@@ -182,6 +186,15 @@ header {
   align-items: center;
   margin-bottom: 20px;
 }
+/* .split {
+  display: flex;
+}
+.split .split-left {
+  flex: 1;
+}
+.split .split-right {
+  flex: 1;
+} */
 .popup {
   position: relative;
   display: inline-block;
