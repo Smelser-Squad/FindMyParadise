@@ -25,7 +25,6 @@
     </header>
     <body>
       <form v-on:submit.prevent="submitForm">
-      
         <h5>Guests:</h5>
         <Guests />
         <h5>Dates</h5>
