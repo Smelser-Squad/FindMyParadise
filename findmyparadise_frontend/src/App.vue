@@ -5,13 +5,12 @@
       <h1 data-text="Find Your Paradise">Find Your Paradise</h1>
     </div>
     <br>
-    <div class="reservationContainer">
 
     <div class="imgContainer">
       <GalleryMini />
     </div>
-    <div class="container">
 
+    <div class="reservationContainer">
       <reservation title="Reservation"></reservation>
     </div>
     <div class="container">

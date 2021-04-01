@@ -19,17 +19,84 @@
                :TogglePopup="() => TogglePopup('buttonTrigger')">
             <h3>Amenities</h3>
             <br>
-            <ul>
-                <li v-for="amenity in amenities" :key="amenity">
-                    {{amenity.amenityName}}
-                    <hr>
-                </li>       
-            </ul>
-        </Modal>
-        
-    </div>
+            <div v-if="bathBool">
+              <h5 class="toggleHeader" id="bathroomHeader">Bathroom</h5>
+              <br>
+              <ul class="modalList">
+                  <li v-for="amenity in bathArr" :key="amenity">
+                      {{amenity.amenityName}}
+                      <hr>
+                  </li>       
+              </ul>
+            </div>
 
- 
+            <div v-if="bedBool">
+              <h5 class="toggleHeader" id="bedroomHeader">Bedroom and laundry</h5>
+              <br>
+              <ul class="modalList">
+                  <li v-for="amenity in bedArr" :key="amenity">
+                      {{amenity.amenityName}}
+                      <hr>
+                  </li>       
+              </ul>
+            </div>
+
+            <div v-if="entBool">
+              <h5 class="toggleHeader" id="entertainmentHeader" >Entertainment</h5>
+              <br>
+              <ul class="modalList">
+                  <li v-for="amenity in entArr" :key="amenity">
+                      {{amenity.amenityName}}
+                      <hr>
+                  </li>       
+              </ul>
+            </div>
+
+            <div v-if="heatBool">
+              <h5 class="toggleHeader" id="heatingHeader">Heating and cooling</h5>
+              <br>
+              <ul class="modalList">
+                  <li v-for="amenity in heatArr" :key="amenity">
+                      {{amenity.amenityName}}
+                      <hr>
+                  </li>       
+              </ul>
+            </div>
+
+            <div v-if="homeBool">
+              <h5 class="toggleHeader" id="homeHeader">Home safety</h5>
+              <br>
+              <ul class="modalList">
+                  <li v-for="amenity in homeArr" :key="amenity">
+                      {{amenity.amenityName}}
+                      <hr>
+                  </li>       
+              </ul>
+            </div>
+
+            <div v-if="intBool">
+              <h5 class="toggleHeader" id="internetHeader">Internet and office</h5>
+              <br>
+              <ul class="modalList">
+                  <li v-for="amenity in intArr" :key="amenity">
+                      {{amenity.amenityName}}
+                      <hr>
+                  </li>       
+              </ul>
+            </div>
+
+            <div v-if="kitBool">
+              <h5 class="toggleHeader" id="kitchenHeader">Kitchen and dining</h5>
+              <br>
+              <ul class="modalList">
+                  <li v-for="amenity in kitArr" :key="amenity">
+                      {{amenity.amenityName}}
+                      <hr>
+                  </li>       
+              </ul>
+            </div>
+        </Modal> 
+    </div>
 </template>
 
 <script>
@@ -62,7 +129,23 @@ export default {
     return {
       amenities: [],
       amenityName: "",
-      dPath: ""
+      dPath: "",
+
+      bathArr: [],
+      bedArr: [],
+      entArr: [],
+      heatArr: [],
+      homeArr:[],
+      intArr:[],
+      kitArr:[],
+
+      bathBool: false,
+      bedBool: false,
+      entBool: false,
+      heatBool: false,
+      homeBool: false,
+      intBool: false,
+      kitBool: false
     };
   },
   mounted() {
@@ -70,8 +153,17 @@ export default {
     .get(`http://localhost:8080/api/listing/${listingID}`)
     .then((res) => {
       this.amenities = res.data.amenities;
+      this.arrSetup();
+      this.bathBool = this.setupDisplay(this.bathArr);
+      this.bedBool = this.setupDisplay(this.bedArr);
+      this.entBool = this.setupDisplay(this.entArr);
+      this.heatBool = this.setupDisplay(this.heatArr);
+      this.homeBool = this.setupDisplay(this.homeArr);
+      this.intBool = this.setupDisplay(this.intArr);
+      this.kitBool = this.setupDisplay(this.kitArr);
     })
     .catch((err) => Promise.reject(err));
+  
   },
   methods: {
     setDPath(name) {
@@ -142,6 +234,38 @@ export default {
       }
       return this.dPath;
     },
+
+    processData(catName) {
+      let arr = new Array();
+      
+      for(let i = 0; i < this.amenities.length; i++) {
+        if(this.amenities[i].amenityCategory === catName) {
+          arr.push(this.amenities[i]);
+        }
+      }
+
+      return arr;
+    },
+
+    arrSetup() {
+      this.bathArr = this.processData("Bathroom");
+      this.bedArr = this.processData("Bedroom and laundry");
+      this.entArr = this.processData("Entertainment");
+      this.heatArr = this.processData("Heating and cooling");
+      this.homeArr = this.processData("Home and safety");
+      this.intArr = this.processData("Internet and office");
+      this.kitArr = this.processData("Kitchen and dining");
+    },
+
+    setupDisplay(arr) {
+      if(arr.length === 0) {
+        return false;
+      }
+      else {
+        return true;
+      }
+    }
+
   },
 };
 </script>
@@ -162,7 +286,6 @@ export default {
         border: 1px solid;
     }
 
-
     .showBtn:hover {
         text-decoration: underline;
         background-color: #F7F7F7;
@@ -171,6 +294,17 @@ export default {
     svg {
         width: 35px;
         height: 35px;
+    }
+
+    .toggleHeader {
+      float: left;
+    }
+
+    .modalList{
+      margin-top: 20px;
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      padding-top:20px;
     }
 </style>
 
