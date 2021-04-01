@@ -1,9 +1,13 @@
 <template>
-  <h4 id="listingHeader">{{listingData + " Location"}}</h4>
-  <br>
+  <h4 id="listingHeader">{{ listingData + " Location" }}</h4>
+  <br />
   <div id="map" ref="mapRef"></div>
+
   <br>
   <p id="mapLine"><b><u>Nearby Attractions</u></b></p>
+
+  <br />
+
   <p id="mapLine">{{ dataName1 + " : " + dataDist1 }}</p>
   <p id="mapLine">{{ dataName2 + " : " + dataDist2 }}</p>
   <p id="mapLine">{{ dataName3 + " : " + dataDist3 }}</p>
@@ -26,8 +30,8 @@ export default {
       type: String,
     },
     listingName: {
-      type: String
-    }
+      type: String,
+    },
   },
   setup(props) {
     const listingData = ref(props.listingName);
@@ -125,7 +129,7 @@ export default {
       dataDist2,
       dataDist3,
       dataDist4,
-      listingData
+      listingData,
     };
   },
 };

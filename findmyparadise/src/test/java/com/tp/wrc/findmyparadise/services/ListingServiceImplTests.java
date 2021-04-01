@@ -122,7 +122,7 @@ public class ListingServiceImplTests {
 
     @Test
     @Order(2)
-    public void getListingsByTypeTest() throws NoListingFoundException, InvalidHostIDException, NullListingPriceException, NullAddressException, NullHostIDException, NullListingNameException, InvalidListingNameException, InvalidAddressException {
+    public void getListingsByTypeTest() throws NoListingFoundException, InvalidHostIDException, NullListingPriceException, NullAddressException, NullHostIDException, InvalidAddressException, NullListingTypeException, InvalidListingTypeException, NullListingNameException, InvalidListingNameException {
         Listing listing = new Listing();
         listing.setListingId(3);
         listing.setName("Listing 3");
@@ -173,12 +173,35 @@ public class ListingServiceImplTests {
         toUpdate.setType("Condo");
         test.create(toUpdate,1);
 
+
         assertEquals("Listing 5",test.show(5).getName());
         toUpdate.setName("NEW Listing 5");
         
         test.update(toUpdate.getListingId(),toUpdate);
         assertEquals("NEW Listing 5",test.show(5).getName());
 
+    }
+
+    @Test
+    public void getListingsByTypeInvalidTypeTest() {
+        assertThrows(InvalidListingTypeException.class,()-> test.findByType(" "));
+    }
+
+    @Test
+    public void getListingsByNameInvalidNameTest() {
+        assertThrows(InvalidListingNameException.class,()-> test.findByNameIgnoreCase(" "));
+    }
+
+    @Test
+    public void getListingsByPriceInvalidPriceTest() {
+        assertThrows(NullListingPriceException.class,()-> test.findByPrice(-9.0));
+        assertThrows(NullListingPriceException.class,()-> test.findByPrice(null));
+    }
+
+    @Test
+    public void getListingByHostIDInvalidIDTest() {
+        assertThrows(InvalidHostIDException.class,()-> test.findByHostID(-9));
+        assertThrows(NullHostIDException.class,()-> test.findByHostID(null));
     }
 
 }

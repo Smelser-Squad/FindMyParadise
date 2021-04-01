@@ -45,7 +45,7 @@ export default {
     },
 
     sendDate() {
-      this.$emit("datePick", this.range.start);
+      this.$emit("datePick", this.range);
     },
   },
 };

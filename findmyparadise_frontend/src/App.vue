@@ -1,5 +1,6 @@
 <template>
   <div id="AppBody">
+
     <div class="masterContainer">
       <div class="header">
         <img src="./assets/fyplogo.png" />
@@ -49,6 +50,51 @@
       >
       </email>
     </div>
+
+    <div class="header">
+      <h1 data-text="Find Your Paradise">Find Your Paradise</h1>
+    </div>
+    <div class="imgContainer">
+      <GalleryMini />
+    </div>
+    <div class="container">
+
+      <Reservation title="Reservation" :dateStart="range.start" :dateEnd="range.end" />
+    </div>
+    <div class="container">
+      <amenities title="Amenities"></amenities>
+    </div>
+    <div class="container">
+      <DateRangePicker @datePick="transferDates($event)" />
+    </div>
+    <div class="mapContainer">
+      <Map />
+    </div>
+    <div class="scrollContainer">
+      <more-places></more-places>
+    </div>
+    <div class="container">
+      <description title="Description" @email="toggleEmail"> </description>
+    </div>
+    <div class="reviewContainer">
+      <review></review>
+    </div>
+    <div class="reviewerContainer">
+      <reviewer> </reviewer>
+    </div>
+    <div class="container">
+      <host @email="toggleEmail"></host>
+    </div>
+    <div class="scrollContainer">
+      <events title="Events"></events>
+    </div>
+    <email
+      v-if="emailTrigger && host != undefined"
+      :toggleEmail="() => toggleEmail()"
+      :host="host"
+    >
+    </email>
+
   </div>
 </template>
 
@@ -63,8 +109,12 @@ import Reviewer from "./components/Reviewer";
 import Events from "./components/Events";
 import DateRangePicker from "./components/DateRangePicker.vue";
 import Email from "./components/Email";
+
 import GalleryMini from "./components/GalleryMini.vue";
+
 import Host from "./components/Host.vue";
+
+
 export default {
   name: "App",
   components: {
@@ -90,11 +140,25 @@ export default {
       this.emailTrigger = !this.emailTrigger;
       this.host = host;
     },
+
+    transferDates(range) {
+      this.range = range;
+
+      console.log(this.range.start);
+      console.log(this.range.end);
+      
+    },
   },
+
+
   data() {
     return {
       emailTrigger: false,
       host: {},
+      range: {
+        start: new Date(),
+        end: new Date(),
+      },
     };
   },
 };
@@ -191,7 +255,11 @@ body {
   border-radius: 5px;
   box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
 }
+
 .masterContainer div,
+
+.reservationContainer div,
+
 h2,
 h5 {
   margin: auto;
@@ -290,8 +358,11 @@ h5 {
   border-radius: 5px;
   box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
 }
+
+
 .imgContainer {
-  max-width: 100%;
+  max-width: 1300px;
+
   margin: 30px auto;
   object-fit: fill;
   max-height: 500px;
@@ -299,6 +370,7 @@ h5 {
   box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
   overflow: auto;
 }
+
 .amenitiesContainer {
   max-width: 80%;
   margin: 30px auto;
@@ -314,3 +386,4 @@ h5 {
   text-align: center;
 }
 </style>
+
