@@ -3,12 +3,9 @@
     <div class="header">
       <h1 data-text="Find Your Paradise">Find Your Paradise</h1>
     </div>
-<<<<<<< HEAD
     <br>
     <!-- <div class="reservationContainer">   -->
 
-=======
->>>>>>> 3da0ca7954face15818e3f6146d09f7785501105
     <div class="imgContainer">
       <GalleryMini />
     </div>
