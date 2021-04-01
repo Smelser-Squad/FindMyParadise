@@ -115,7 +115,7 @@ export default {
   name: "Reservation",
   props: {
     dateStart: new Date(),
-    dateEnd: new Date()
+    dateEnd: new Date(),
   },
 
   data() {
@@ -176,9 +176,8 @@ export default {
       this.show = true;
     },
     updateDate(date) {
-      let dateSub = date.toString().substring(0, 15);
+      let dateSub = date;
       return dateSub;
-      
     },
   },
 };
