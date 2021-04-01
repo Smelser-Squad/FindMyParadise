@@ -5,7 +5,6 @@
       <h1 data-text="Find Your Paradise">Find Your Paradise</h1>
     </div>
     <br>
-    <div class="reservationContainer">
 
     <div class="imgContainer">
       <GalleryMini />
@@ -37,7 +36,7 @@
     </div>
 
     <div class="container">
-      <host></host>
+      <host @email="toggleEmail"></host>
     </div>
     <div class="scrollContainer">
       <events title="Events"></events>
