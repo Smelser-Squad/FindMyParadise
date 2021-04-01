@@ -52,13 +52,7 @@
       </email>
     </div>
     </div>
-    
   
-   
-  
-
-
-
 </template>
 
 <script>
