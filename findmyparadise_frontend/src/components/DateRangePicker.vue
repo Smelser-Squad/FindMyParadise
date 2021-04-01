@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="dateBox">
     <DatePicker
       class="datePicker"
       v-model="range"
@@ -45,8 +45,14 @@ export default {
     },
 
     sendDate() {
-      this.$emit("datePick", this.range.start);
+      this.$emit("datePick", this.range);
     },
   },
 };
 </script>
+<style scoped>
+.vc-weeks {
+  height: 350px !important;
+  width: 100% !important;
+}
+</style>
