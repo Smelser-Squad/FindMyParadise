@@ -4,7 +4,6 @@
       class="datePicker"
       v-model="range"
       is-range
-      v-on:change="ChangeDate()"
       :min-date="new Date()"
     />
     <br />
@@ -13,7 +12,8 @@
     <br />
     <span>End Date: {{ updateDate(range.end) }}</span>
     <br />
-
+  <span>Number of days: </span>
+    <span>{{numOfDays()}}</span>
     <button type="button" @click="sendDate">Submit</button>
   </div>
 </template>
@@ -39,13 +39,17 @@ export default {
       let dateSub = date.toString().substring(0, 15);
       return dateSub;
     },
-
-
-    
+     numOfDays() {
+      let difference = new Date(this.range.end).getTime() - new Date(this.range.start).getTime()
+      let days = Math.ceil(difference/ (1000 * 3600 * 24))
+      console.log(days)
+      return days
+    },
     
     sendDate(){
       this.$emit('datePickIn',this.range.start);
       this.$emit('datePickOut',this.range.end);
+      this.$$emit("differeceDays",this.numOfDays())
       
      }
     }

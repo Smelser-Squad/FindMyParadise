@@ -7,11 +7,12 @@
         id="decresaeAdults"
         class="btn"
         @click="decreaseAdults()"
+      
       >
         -
       </button>
       {{ AdultsNum }}
-      <button type="button" class="btn" @click="increaseAdults()">+</button>
+      <button type="button" class="btn" @click="increaseAdults();sendQty;">+</button>
     </h5>
     <h5>
       Children:<button type="button" class="btn" @click="decreaseChild()">-</button>{{ ChildNum
@@ -58,6 +59,9 @@ export default {
   },
   increaseInfants() {
     this.InfantNum += 1
+  },
+  sendQty(){
+    this.$emit('Qty',this.AdultsNum);
   }
   },
   
