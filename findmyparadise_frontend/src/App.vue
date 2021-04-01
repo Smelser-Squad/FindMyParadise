@@ -1,6 +1,5 @@
 <template>
   <div id="AppBody">
-
     <div class="masterContainer">
       <div class="header">
         <img src="./assets/fyplogo.png" />
@@ -11,12 +10,12 @@
       <div class="reservationContainer">
         <reservation title="Reservation"></reservation>
       </div>
-      <br>
+      <br />
       <div class="amenitiesContainer">
         <amenities title="Amenities"></amenities>
       </div>
       <div class="mapContainer">
-        <div class="left" style="width:100%; height: 350px">
+        <div class="left" style="width: 100%; height: 350px">
           <h4 id="dateHeader">Select Date Range</h4>
           <DateRangePicker @DatePick="Change" />
         </div>
@@ -37,7 +36,7 @@
       <div class="container">
         <host></host>
       </div>
-       <div class="scrollContainer">
+      <div class="scrollContainer">
         <more-places></more-places>
       </div>
       <div class="scrollContainer">
@@ -58,8 +57,11 @@
       <GalleryMini />
     </div>
     <div class="container">
-
-      <Reservation title="Reservation" :dateStart="range.start" :dateEnd="range.end" />
+      <Reservation
+        title="Reservation"
+        :dateStart="range.start"
+        :dateEnd="range.end"
+      />
     </div>
     <div class="container">
       <amenities title="Amenities"></amenities>
@@ -94,7 +96,6 @@
       :host="host"
     >
     </email>
-
   </div>
 </template>
 
@@ -113,7 +114,6 @@ import Email from "./components/Email";
 import GalleryMini from "./components/GalleryMini.vue";
 
 import Host from "./components/Host.vue";
-
 
 export default {
   name: "App",
@@ -146,10 +146,8 @@ export default {
 
       console.log(this.range.start);
       console.log(this.range.end);
-      
     },
   },
-
 
   data() {
     return {
@@ -257,9 +255,7 @@ body {
 }
 
 .masterContainer div,
-
 .reservationContainer div,
-
 h2,
 h5 {
   margin: auto;
@@ -359,7 +355,6 @@ h5 {
   box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
 }
 
-
 .imgContainer {
   max-width: 1300px;
 
@@ -386,4 +381,3 @@ h5 {
   text-align: center;
 }
 </style>
-
