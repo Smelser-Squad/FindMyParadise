@@ -1,8 +1,6 @@
 package com.tp.wrc.findmyparadise.controllers;
 
-import com.tp.wrc.findmyparadise.exceptions.InvalidReviewIdException;
 import com.tp.wrc.findmyparadise.exceptions.InvalidReviewerIdException;
-import com.tp.wrc.findmyparadise.exceptions.NullReviewIdException;
 import com.tp.wrc.findmyparadise.exceptions.NullReviewerIdException;
 import com.tp.wrc.findmyparadise.models.Reviewer;
 import com.tp.wrc.findmyparadise.services.ReviewerService;
@@ -12,7 +10,8 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin
+
+@CrossOrigin(origins ="http://localhost:8081")
 public class ReviewerController {
 
     @Autowired
@@ -23,7 +22,7 @@ public class ReviewerController {
     public ResponseEntity createReviewer(@RequestBody Reviewer newReviewer)
     {
         try {
-            return ResponseEntity.ok(service.create(newReviewer));
+            return ResponseEntity.ok(service.createReviewer(newReviewer));
         }
         catch (NullReviewerIdException | InvalidReviewerIdException ex)
         {
@@ -35,7 +34,7 @@ public class ReviewerController {
     public ResponseEntity getReviewerById(@PathVariable Integer reviewerId)
     {
         try {
-            return ResponseEntity.ok(service.show(reviewerId));
+            return ResponseEntity.ok(service.getReviewerById(reviewerId));
         }
         catch (NullReviewerIdException | InvalidReviewerIdException ex)
         {
@@ -61,7 +60,7 @@ public class ReviewerController {
 
     {
         try {
-            return ResponseEntity.ok(service.update(newReviewer));
+            return ResponseEntity.ok(service.updateReviewer(newReviewer));
         }
         catch (NullReviewerIdException | InvalidReviewerIdException ex)
         {

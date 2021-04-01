@@ -1,8 +1,6 @@
 package com.tp.wrc.findmyparadise.controllers;
 
-import com.tp.wrc.findmyparadise.exceptions.InvalidListingIDException;
-import com.tp.wrc.findmyparadise.exceptions.NoListingFoundException;
-import com.tp.wrc.findmyparadise.exceptions.NullListingIDException;
+import com.tp.wrc.findmyparadise.exceptions.*;
 import com.tp.wrc.findmyparadise.models.Listing;
 import com.tp.wrc.findmyparadise.services.ListingService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,17 +8,31 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api")
-@CrossOrigin
+
+
+
+@CrossOrigin(origins ="http://localhost:8081")
+
 public class ListingController {
 
     @Autowired
     ListingService service;
 
-    @PostMapping("/listing")
-    public ResponseEntity createListing(@RequestBody Listing newListing) {
-        return ResponseEntity.ok(service.create(newListing));
+    @PostMapping("/listing/host/{hostID}")
+    public ResponseEntity createListing(@RequestBody Listing newListing, @PathVariable Integer hostID) {
+        Listing listing = null;
+        try {
+            listing =  service.create(newListing, hostID);
+        }
+        catch (InvalidHostIDException | NullHostIDException | NullListingNameException | InvalidListingNameException | NullAddressException | InvalidAddressException | NullListingPriceException e)
+        {
+            ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+        return ResponseEntity.ok(listing);
     }
 
     @GetMapping("/listing/{listingId}")
@@ -63,5 +75,52 @@ public class ListingController {
         } else {
             return ResponseEntity.ok("Listing not deleted");
         }
+    }
+
+    @GetMapping("/listings/name/{name}")
+    public ResponseEntity getListingByListingName(@PathVariable String name)
+    {
+        List<Listing> toReturn = null;
+        try
+        {
+            toReturn = service.findByNameIgnoreCase(name);
+        }
+        catch (NoListingFoundException | InvalidListingNameException | NullListingNameException e)
+        {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+        return ResponseEntity.ok(toReturn);
+    }
+
+
+
+    @GetMapping("/listings/type/{type}")
+    public ResponseEntity getListingByListingType(@PathVariable String type)
+    {
+        List<Listing> toReturn = null;
+        try
+        {
+            toReturn = service.findByType(type);
+        }
+        catch (NoListingFoundException | InvalidListingTypeException | NullListingTypeException e)
+        {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+        return ResponseEntity.ok(toReturn);
+    }
+
+    @GetMapping("/listings/host/{hostID}")
+    public ResponseEntity getListingByListingType(@PathVariable Integer hostID)
+    {
+        List<Listing> toReturn = null;
+        try
+        {
+            toReturn = service.findByHostID(hostID);
+        }
+        catch (InvalidHostIDException | NullHostIDException e)
+        {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+        return ResponseEntity.ok(toReturn);
     }
 }

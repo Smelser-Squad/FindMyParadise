@@ -1,6 +1,7 @@
 package com.tp.wrc.findmyparadise.services;
 
 import com.tp.wrc.findmyparadise.exceptions.InvalidReviewerIdException;
+import com.tp.wrc.findmyparadise.exceptions.NullReviewIdException;
 import com.tp.wrc.findmyparadise.exceptions.NullReviewerIdException;
 import com.tp.wrc.findmyparadise.models.Reviewer;
 import com.tp.wrc.findmyparadise.repositories.ReviewerRepository;
@@ -23,7 +24,7 @@ public class ReviewerServiceImpl implements ReviewerService {
     }
 
     @Override
-    public Reviewer show(Integer reviewerId) throws InvalidReviewerIdException, NullReviewerIdException {
+    public Reviewer getReviewerById(Integer reviewerId) throws InvalidReviewerIdException, NullReviewerIdException {
         if(reviewerId==null){
             throw new NullReviewerIdException("Null reviewer id entered");
         }
@@ -39,12 +40,15 @@ public class ReviewerServiceImpl implements ReviewerService {
     }
 
     @Override
-    public Reviewer create(Reviewer newReviewer) throws InvalidReviewerIdException, NullReviewerIdException {
+    public Reviewer createReviewer(Reviewer newReviewer) throws InvalidReviewerIdException, NullReviewerIdException {
         return reviewerRepo.saveAndFlush(newReviewer);
     }
 
     @Override
-    public Reviewer update(Reviewer newReviewer) throws InvalidReviewerIdException, NullReviewerIdException {
+    public Reviewer updateReviewer(Reviewer newReviewer) throws InvalidReviewerIdException, NullReviewerIdException {
+        if(newReviewer.getReviewerId() == null)
+            throw new NullReviewerIdException("Reviewer id is null.");
+
         Reviewer toAdd = reviewerRepo.findById(newReviewer.getReviewerId()).get();
 
         if (toAdd != null) {
@@ -52,6 +56,7 @@ public class ReviewerServiceImpl implements ReviewerService {
             toAdd.setName(newReviewer.getName());
             toAdd.setImageSrc(newReviewer.getImageSrc());
             toAdd.setDescription(newReviewer.getDescription());
+            toAdd.setJoinedDate(newReviewer.getJoinedDate());
 
             return reviewerRepo.saveAndFlush(toAdd);
         } else {

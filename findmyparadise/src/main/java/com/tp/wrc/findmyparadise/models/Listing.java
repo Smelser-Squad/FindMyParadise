@@ -1,19 +1,23 @@
 package com.tp.wrc.findmyparadise.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-
 @Table(name = "listing")
-public class Listing {
+public class Listing implements Serializable {
+
     @Id
     @Column(name = "listing_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer listingID;
+    private Integer listingId;
 
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     private String name;
 
     @Column(name = "latitude")
@@ -22,17 +26,17 @@ public class Listing {
     @Column(name = "longitude")
     private Double longitude;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "host_id", nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "host_id")
     private Host host;
 
-    @Column(name = "address")
+    @Column(name = "address", nullable = false)
     private String address;
 
     @Column(name = "description")
     private String description;
 
-    @Column(name = "price")
+    @Column(name = "price", nullable = false)
     private Double price;
 
     @Column(name = "max_guests")
@@ -47,40 +51,56 @@ public class Listing {
     @Column(name = "cleaning_fee")
     private Double cleaningFee;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "listing_id")
-    private Set<Review> reviews;
+    @OneToMany(fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL,
+            mappedBy = "listing",
+            orphanRemoval = true)
+    @JsonManagedReference
+    private Set<Review> reviews = new HashSet<>();
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "listing_id")
-    private Set<Reservation> reservations;
+    @OneToMany(fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL,
+            mappedBy = "listing",
+            orphanRemoval = true)
+    @JsonManagedReference
+    private Set<Reservation> reservations = new HashSet<>();
+
+    @OneToMany(fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL,
+            mappedBy = "listing",
+            orphanRemoval = true)
+    @JsonManagedReference
+    private Set<Photo> photos = new HashSet<>();
 
     @Column(name= "bedroom_quantity")
     private Integer bedrooms;
 
+    @Column(name= "beds_quantity")
+    private Integer beds;
 
     @Column(name= "bathroom_quantity")
     private Integer bathrooms;
 
-    @Column(name= "beds_quantity")
-    private Integer beds;
-
     @Column (name ="listing_type")
     private String type;
 
-    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "listings")
-    private Set<Amenity> amenities;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "listing_amenities",
+            joinColumns = @JoinColumn(name = "listing_id"),
+            inverseJoinColumns = @JoinColumn(name = "amenity_id"))
+    private Set<Amenity> amenities = new HashSet<>();
 
     public Listing() {
 
     }
 
-    public Integer getListingID() {
-        return listingID;
+    public Integer getListingId() {
+        return listingId;
     }
 
-    public void setListingID(Integer listingID) {
-        this.listingID = listingID;
+    public void setListingId(Integer listingId) {
+        this.listingId = listingId;
     }
 
     public String getName() {
@@ -210,7 +230,6 @@ public class Listing {
         this.bathrooms = bathrooms;
     }
 
-
     public String getType() {
         return type;
     }
@@ -227,4 +246,11 @@ public class Listing {
         this.amenities = amenities;
     }
 
+    public Set<Photo> getPhotos() {
+        return photos;
+    }
+
+    public void setPhotos(Set<Photo> photos) {
+        this.photos = photos;
+    }
 }

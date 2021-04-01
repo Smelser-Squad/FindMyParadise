@@ -1,11 +1,10 @@
 package com.tp.wrc.findmyparadise.models;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.time.LocalDate;
 
 @Entity
 @Table(name ="review")
@@ -40,22 +39,19 @@ public class Review implements Serializable {
     @Column(name = "review_text")
     private String reviewText;
 
-    @Column(name = "joined_date")
-    private LocalDate joinedDate;
-
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-
-    @JoinColumn(name = "reviewer_id", nullable = false)
+    @JoinColumn(name = "fk_reviewer_id", referencedColumnName = "reviewer_id", nullable = false)
     private Reviewer reviewer;
 
-    public Review(){
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "listing_id")
+    @JsonBackReference
+    private Listing listing;
 
-    }
+    public Review(){}
 
-    public Review(Integer reviewId, Integer rating, Integer cleanlinessRating, Integer locationRating, Integer accuracyRating,
-                  Integer valueRating, Integer checkInRating, Integer communicationRating, String reviewText, LocalDate joinedDate, Reviewer reviewer){
-
-        this.reviewId = reviewId;
+    public Review(Integer rating, Integer cleanlinessRating, Integer locationRating, Integer accuracyRating,
+                  Integer valueRating, Integer checkInRating, Integer communicationRating, String reviewText, Reviewer reviewer, Listing listing){
         this.rating = rating;
         this.cleanlinessRating = cleanlinessRating;
         this.locationRating = locationRating;
@@ -65,6 +61,7 @@ public class Review implements Serializable {
         this.communicationRating = communicationRating;
         this.reviewText = reviewText;
         this.reviewer = reviewer;
+        this.listing = listing;
     }
 
     public Integer getReviewId() {
@@ -74,8 +71,6 @@ public class Review implements Serializable {
     public void setReviewId(Integer reviewId) {
         this.reviewId = reviewId;
     }
-
-
 
     public Integer getRating() {
         return rating;
@@ -141,19 +136,19 @@ public class Review implements Serializable {
         this.reviewText = reviewText;
     }
 
-    public LocalDate getJoinedDate() {
-        return joinedDate;
-    }
-
-    public void setJoinedDate(LocalDate joinedDate) {
-        this.joinedDate = joinedDate;
-    }
-
     public Reviewer getReviewer() {
         return reviewer;
     }
 
     public void setReviewer(Reviewer reviewer) {
         this.reviewer = reviewer;
+    }
+
+    public Listing getListing() {
+        return listing;
+    }
+
+    public void setListing(Listing listing) {
+        this.listing = listing;
     }
 }

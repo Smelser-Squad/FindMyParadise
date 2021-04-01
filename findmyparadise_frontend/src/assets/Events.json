@@ -1,0 +1,25 @@
+{
+    "events": [{
+            "title": "Disneyland",
+            "summary": "An amusement park",
+            "category": "Entertainment",
+            "imageSrc": "https://www.google.com/maps/uv?pb=!1s0x80dcd7da84d77583%3A0x7efd02b2f50ccd51!3m1!7e115!4shttps%3A%2F%2Flh5.googleusercontent.com%2Fp%2FAF1QipNroJzmrXUB9tkWL4fpWZ3XX4e8ufjAdMPu9lfA%3Dw426-h320-k-no!5sdisneyland%20-%20Google%20Search!15sCgIgAQ&imagekey=!1e10!2sAF1QipOhjBtYbYYuMhQRRaY6YkuxyJ9JY3MDj1u58h09&hl=en&sa=X&ved=2ahUKEwi-74W5vM7vAhWt2FkKHVfRAU4QoiowJnoECFgQAw#",
+            "cost": 59.99,
+            "latitude": 0.0,
+            "longitude": 0.0,
+            "averageRating": 4.95,
+            "totalReviews": 37
+        },
+        {
+            "title": "Museum of Technology",
+            "summary": "A thrilling museum showcasing the newest advancements in technology from the past decade.",
+            "category": "History",
+            "imageSrc": "url",
+            "cost": 9.99,
+            "latitude": 0.0,
+            "longitude": 0.0,
+            "averageRating": 4.95,
+            "totalReviews": 37
+        }
+    ]
+}

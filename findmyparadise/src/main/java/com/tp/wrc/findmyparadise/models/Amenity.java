@@ -1,5 +1,7 @@
 package com.tp.wrc.findmyparadise.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -7,9 +9,9 @@ import java.util.Set;
 
 @Entity
 @Table(name = "amenity")
+@JsonIgnoreProperties(value = {"listings"}, allowSetters = true)
 public class Amenity implements Serializable {
 
-    //VARIABLES
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "amenity_id")
@@ -21,10 +23,9 @@ public class Amenity implements Serializable {
     @Column(name = "amenity_category", nullable = false)
     private String category;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "amenities", cascade = CascadeType.ALL)
     private Set<Listing> listings;
 
-    //CONSTRUCTORS
     public Amenity(){}
 
     public Amenity(Integer amenityId, String amenityName, String amenityCategory) {
@@ -33,7 +34,6 @@ public class Amenity implements Serializable {
         this.category = amenityCategory;
     }
 
-    //GETTERS & SETTERS
     public Integer getAmenityId() {
         return amenityId;
     }
@@ -56,6 +56,14 @@ public class Amenity implements Serializable {
 
     public void setAmenityCategory(String amenityCategory) {
         this.category = amenityCategory;
+    }
+
+    public Set<Listing> getListings() {
+        return listings;
+    }
+
+    public void setListings(Set<Listing> listings) {
+        this.listings = listings;
     }
 
 }

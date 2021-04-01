@@ -11,7 +11,7 @@ public interface EventService {
 
     public Event show(int id);
 
-    public List<Event> findAllByCategory(String category);
+    public List<Event> findByCategory(String category);
 
     public Event create(Event event);
 

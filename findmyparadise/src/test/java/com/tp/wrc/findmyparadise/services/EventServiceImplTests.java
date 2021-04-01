@@ -6,14 +6,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-
-import static org.junit.jupiter.api.Assertions.fail;
 
 @SpringBootTest
 class EventServiceImplTests {
@@ -21,8 +17,6 @@ class EventServiceImplTests {
     @Autowired
     EventServiceImpl toTest;
 
-
-    //this will run before each @Test method
     @BeforeEach
     public void setUp() {
 
@@ -51,10 +45,9 @@ class EventServiceImplTests {
         assertEquals(0, event.getCost());
         assertEquals(0, event.getLatitude());
         assertEquals(0, event.getLongitude());
-
     }
 
-    @Test //Testing retrieving all events.
+    @Test
     public void findAllEventsTest() {
         List<Event> events = toTest.index();
         assertEquals("Event Title", events.get(0).getTitle());
@@ -66,7 +59,7 @@ class EventServiceImplTests {
 
     }
 
-    @Test //Testing creating an event.
+    @Test
     public void createEventTest() {
         Event newEvent = new Event();
         newEvent.setTitle("Event Title #2");
@@ -88,7 +81,7 @@ class EventServiceImplTests {
 
     }
 
-    @Test //Testing updating an event.
+    @Test
     public void updateEventTest() {
         Event updatedEvent = new Event("Updated Event Title", "Updated Event Summary", "Updated Event Category", 1, 1, 1);
         updatedEvent.setId(1);
@@ -98,9 +91,14 @@ class EventServiceImplTests {
         assertEquals("Updated Event Title", event.getTitle());
     }
 
-    @Test //Testing deleting an event.
+    @Test
     public void destroyEventTest() {
         assertTrue(toTest.destroy(1));
+    }
+
+    @Test
+    public void destroyEventWithNullIdTest() {
+        assertFalse(toTest.destroy(Integer.MAX_VALUE));
     }
 
 }

@@ -1,53 +1,141 @@
 <template>
-  <div class="map">
-    <h1>Map</h1>
-    <iframe
-      width="300"
-      height="200"
-      frameborder="0"
-      scrolling="no"
-      marginheight="0"
-      marginwidth="0"
-      id="gmap_canvas"
-      src="https://maps.google.com/maps?width=300&amp;height=200&amp;hl=en&amp;q=2%20College%20Hill%20Westminster+(Example%20Map)&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
-    ></iframe>
-  </div>
+  <h4 id="listingHeader">{{ listingData + " Location" }}</h4>
+  <br />
+  <div id="map" ref="mapRef"></div>
+  <br />
+  <p id="mapLine">{{ dataName1 + " : " + dataDist1 }}</p>
+  <p id="mapLine">{{ dataName2 + " : " + dataDist2 }}</p>
+  <p id="mapLine">{{ dataName3 + " : " + dataDist3 }}</p>
+  <p id="mapLine">{{ dataName4 + " : " + dataDist4 }}</p>
 </template>
 
 <script>
-
-let listingID = 1;
-
+import { onMounted, ref } from "vue";
 import axios from "axios";
 
-let thisLocation = axios.get(`https://localhost:8080/api/listing/${listingID}`)
-  .then(function (response) {
-    // handle success
-    console.log(response);
-  })
-  .catch(function (error) {
-    // handle error
-    console.log(error);
-  })
-  .then(function () {
-    // always executed
-  });
-
-thisLocation;
-
-// let locLatitude = thisLocation[0].latitude;
-
-// let locLongitude = thisLocation[0].longitude;
+let listingID = 2;
 
 export default {
   name: "Map",
+  props: {
+    locationName: {
+      type: String,
+    },
+    locationDist: {
+      type: String,
+    },
+    listingName: {
+      type: String,
+    },
+  },
+  setup(props) {
+    const listingData = ref(props.listingName);
+    const dataName1 = ref(props.locationName);
+    const dataName2 = ref(props.locationName);
+    const dataName3 = ref(props.locationName);
+    const dataName4 = ref(props.locationName);
+    const dataDist1 = ref(props.locationDist);
+    const dataDist2 = ref(props.locationDist);
+    const dataDist3 = ref(props.locationDist);
+    const dataDist4 = ref(props.locationDist);
+    const mapRef = ref(null);
+    onMounted(() => {
+      axios
+        .get(`http://localhost:8080/api/listing/${listingID}`)
+        .then((res) => {
+          console.log(res);
+          listingData.value = res.data.name;
+          let POI = [res.data.longitude, res.data.latitude];
+          let lat = res.data.latitude.toString();
+          let long = res.data.longitude.toString();
+          let latFloatNum = parseFloat(lat);
+          let longFloatNum = parseFloat(long);
+          axios
+            .get(
+              `https://api.tomtom.com/search/2/nearbySearch/.json?lat=${latFloatNum}&lon=${longFloatNum}&key=ziBCBRJyocQkRJJD2WlhVIOaMvQ1agyK`
+            )
+            .then((nearbyObj) => {
+              dataName1.value = nearbyObj.data.results[3].poi.name + " ";
+              dataName2.value = nearbyObj.data.results[5].poi.name + " ";
+              dataName3.value = nearbyObj.data.results[7].poi.name + " ";
+              dataName4.value = nearbyObj.data.results[9].poi.name + " ";
+              dataDist1.value =
+                (nearbyObj.data.results[3].dist * 0.00062137119224).toFixed(2) +
+                " mi";
+              dataDist2.value =
+                (nearbyObj.data.results[5].dist * 0.00062137119224).toFixed(2) +
+                " mi";
+              dataDist3.value =
+                (nearbyObj.data.results[7].dist * 0.00062137119224).toFixed(2) +
+                " mi";
+              dataDist4.value =
+                (nearbyObj.data.results[9].dist * 0.00062137119224).toFixed(2) +
+                " mi";
+              // console.log(nearbyObj);
+              // console.log(nearbyObj.data.results[3].poi.name);
+              // console.log(
+              //   (nearbyObj.data.results[9].dist * 0.00062137119224).toFixed(2) +
+              //     " mi"
+              // );
+            });
+          const tt = window.tt;
+          var map = tt.map({
+            key: "ziBCBRJyocQkRJJD2WlhVIOaMvQ1agyK",
+            container: mapRef.value,
+            style: "tomtom://vector/1/basic-main",
+            center: POI,
+            zoom: 14,
+          });
+          map.addControl(new tt.FullscreenControl());
+          map.addControl(new tt.NavigationControl());
+          addMarker(map);
+        });
+    });
+    function addMarker(map) {
+      const tt = window.tt;
+      axios
+        .get(`http://localhost:8080/api/listing/${listingID}`)
+        .then((res) => {
+          var location = [res.data.longitude, res.data.latitude];
+          console.log(res.data.latitude);
+          console.log(res.data.longitude);
+          var popupOffsets = {
+            top: [0, 0],
+            bottom: [0, -30],
+            "bottom-right": [0, -30],
+            "bottom-left": [0, -30],
+            left: [25, -35],
+            right: [-25, -35],
+          };
+          var marker = new tt.Marker().setLngLat(location).addTo(map);
+          var popup = new tt.Popup({ offset: popupOffsets }).setHTML(
+            res.data.name.toUpperCase()
+          );
+          marker.setPopup(popup).togglePopup();
+        });
+    }
+    return {
+      mapRef,
+      dataName1,
+      dataName2,
+      dataName3,
+      dataName4,
+      dataDist1,
+      dataDist2,
+      dataDist3,
+      dataDist4,
+      listingData,
+    };
+  },
 };
 </script>
-
-<style scoped>
-h1 {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
+<style>
+#listingHeader {
+  margin: auto;
+  text-align: center;
+}
+#map {
+  height: 350px;
+  width: 100%;
 }
 </style>
