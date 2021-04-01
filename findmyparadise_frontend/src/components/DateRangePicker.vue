@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="dateBox">
     <DatePicker
       class="datePicker"
       v-model="range"
@@ -50,3 +50,9 @@ export default {
   },
 };
 </script>
+<style scoped>
+.vc-weeks {
+  height: 350px !important;
+  width: 100% !important;
+}
+</style>

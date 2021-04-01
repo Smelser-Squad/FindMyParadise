@@ -2,7 +2,12 @@
   <h4 id="listingHeader">{{ listingData + " Location" }}</h4>
   <br />
   <div id="map" ref="mapRef"></div>
+
+  <br>
+  <p id="mapLine"><b><u>Nearby Attractions</u></b></p>
+
   <br />
+
   <p id="mapLine">{{ dataName1 + " : " + dataDist1 }}</p>
   <p id="mapLine">{{ dataName2 + " : " + dataDist2 }}</p>
   <p id="mapLine">{{ dataName3 + " : " + dataDist3 }}</p>
@@ -109,7 +114,7 @@ export default {
           };
           var marker = new tt.Marker().setLngLat(location).addTo(map);
           var popup = new tt.Popup({ offset: popupOffsets }).setHTML(
-            res.data.name.toUpperCase()
+            res.data.address.toUpperCase()
           );
           marker.setPopup(popup).togglePopup();
         });
@@ -130,6 +135,10 @@ export default {
 };
 </script>
 <style>
+#mapLine {
+  margin: auto;
+  text-align: center;
+}
 #listingHeader {
   margin: auto;
   text-align: center;
