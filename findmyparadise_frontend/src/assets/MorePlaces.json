@@ -65,5 +65,72 @@
                 "category": "what is this"
             }
         ]
+    },
+    {
+        "name": "Private Suite, new construction",
+        "beds": 1,
+        "bedrooms": 2,
+        "bathrooms": 2,
+        "type": "guest suite",
+        "latitude": -76.6,
+        "longitude": 45.3,
+        "address": "address",
+        "description": "Beach house",
+        "price": 131,
+        "maxGuests": 3,
+        "serviceFee": 32.32,
+        "occupancyFee": 24.3,
+        "cleaningFee": 23.2,
+        "host": {
+            "hostName": "Zack",
+            "totalReviews": "10",
+            "superhost": true,
+            "verified": true,
+            "responseTime": "2 hours",
+            "responseRate": 90,
+            "joinDate": "2015-01-03",
+            "email": "fake@email.com",
+            "imageSrc": ""
+        },
+        "reviews": [
+            {
+                "rating": 2.86,
+                "cleanlinessRating": 4.00,
+                "locationRating": 4.00,
+                "accuracyRating": 5.00,
+                "valueRating": 5.00,
+                "checkInRating": 5.00,
+                "communicationRating": 5.00,
+                "reviewText": "this place sucks",
+                "joinedDate": "2021-02-03",
+                "reviewer": {
+                    "name": "Zack",
+                    "imageSrc": "",
+                    "description": ""
+                }
+            },
+            {
+                "rating": 4.35,
+                "cleanlinessRating": 4.00,
+                "locationRating": 4.00,
+                "accuracyRating": 5.00,
+                "valueRating": 5.00,
+                "checkInRating": 5.00,
+                "communicationRating": 5.00,
+                "reviewText": "not bad",
+                "joinedDate": "2021-02-03",
+                "reviewer": {
+                    "name": "Zack",
+                    "imageSrc": "",
+                    "description": ""
+                }
+            }
+        ],
+        "photos": [
+            {
+                "imageSrc": "https://a0.muscache.com/im/pictures/2166f386-11b3-4d79-bb30-c65ef458cf16.jpg?im_w=720",
+                "category": "what is this"
+            }
+        ]
     }
 ]
