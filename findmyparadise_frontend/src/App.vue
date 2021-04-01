@@ -8,7 +8,7 @@
         <GalleryMini />
       </div>
       <div class="reservationContainer">
-        <reservation title="Reservation"></reservation>
+        <Reservation title="Reservation" :dateStart="range.start" :dateEnd="range.end" />
       </div>
       <br>
       <div class="amenitiesContainer">
@@ -32,7 +32,6 @@
       <div class="reviewerContainer">
         <reviewer> </reviewer>
       </div>
-
       <div class="container">
         <host></host>
       </div>
@@ -48,7 +47,7 @@
         :host="host"
       >
       </email>
-    </div>
+      </div>
   </div>
 </template>
 
@@ -63,7 +62,9 @@ import Reviewer from "./components/Reviewer";
 import Events from "./components/Events";
 import DateRangePicker from "./components/DateRangePicker.vue";
 import Email from "./components/Email";
+
 import GalleryMini from "./components/GalleryMini.vue";
+
 import Host from "./components/Host.vue";
 export default {
   name: "App",
@@ -90,11 +91,23 @@ export default {
       this.emailTrigger = !this.emailTrigger;
       this.host = host;
     },
+
+    transferDates(range) {
+      this.range = range;
+
+      console.log(this.range.start);
+      console.log(this.range.end);
+      
+    },
   },
   data() {
     return {
       emailTrigger: false,
       host: {},
+      range: {
+        start: new Date(),
+        end: new Date(),
+      },
     };
   },
 };
@@ -108,11 +121,10 @@ export default {
 }
 body {
   font-family: "Poppins", sans-serif;
-  display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: whitesmoke;
+  background: #DCDCDC;
   background-attachment: fixed;
 }
 .header {
@@ -191,7 +203,15 @@ body {
   border-radius: 5px;
   box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
 }
+
 .masterContainer div,
+h2,
+h5 {
+ margin: auto;
+ text-align: center;
+}
+
+.reservationContainer div,
 h2,
 h5 {
   margin: auto;
@@ -201,7 +221,7 @@ h5 {
   display: flex;
   max-width: 80%;
   margin: 30px auto;
-  overflow: auto;
+  overflow: hidden;
   min-height: 300px;
   padding: 30px;
   /* border: 1px solid gray;
@@ -291,13 +311,28 @@ h5 {
   box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
 }
 .imgContainer {
-  max-width: 100%;
+ max-width: 100%;
+ margin: 30px auto;
+ object-fit: fill;
+ max-height: 500px;
+ border-radius: 10px;
+ box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
+ overflow: auto;
+}
+
+.amenitiesContainer {
+  max-width: 80%;
   margin: 30px auto;
-  object-fit: fill;
-  max-height: 500px;
-  border-radius: 10px;
-  box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
   overflow: auto;
+  min-height: 300px;
+  padding: 30px;
+  /* border: 1px solid gray;
+  border-radius: 5px;
+  box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px; */
+}
+#dateHeader {
+  margin: auto;
+  text-align: center;
 }
 .amenitiesContainer {
   max-width: 80%;

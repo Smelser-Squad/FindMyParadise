@@ -1,5 +1,5 @@
 <template>
-  <h4 id="listingHeader">{{listingData + " Location"}}</h4>
+  <h4 id="listingHeader">{{ listingData + " Location" }}</h4>
   <br>
   <div id="map" ref="mapRef"></div>
   <br>
@@ -14,7 +14,7 @@
 import { onMounted, ref } from "vue";
 import axios from "axios";
 
-let listingID = 2;
+let listingID = 3;
 
 export default {
   name: "Map",
@@ -26,8 +26,8 @@ export default {
       type: String,
     },
     listingName: {
-      type: String
-    }
+      type: String,
+    },
   },
   setup(props) {
     const listingData = ref(props.listingName);
@@ -125,7 +125,7 @@ export default {
       dataDist2,
       dataDist3,
       dataDist4,
-      listingData
+      listingData,
     };
   },
 };
@@ -140,7 +140,7 @@ export default {
   text-align: center;
 }
 #map {
-  height: 350px;
+  height: 268px;
   width: 100%;
 }
 </style>

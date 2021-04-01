@@ -25,7 +25,7 @@ public class ReviewerServiceImplTests {
         reviewer.setImageSrc("Test Image Source");
         reviewer.setDescription("Test Description data");
         reviewer.setName("Rahman");
-        reviewer.setJoinedDate(LocalDate.of(2021, 03, 25));
+//        reviewer.setJoinedDate(LocalDate.of(2021, 03, 25));
 
         try{
             toTest.createReviewer(reviewer);
@@ -37,7 +37,7 @@ public class ReviewerServiceImplTests {
         assertEquals("Rahman", reviewer.getName());
         assertEquals("Test Image Source", reviewer.getImageSrc());
         assertEquals("Test Description data", reviewer.getDescription());
-        assertEquals(LocalDate.of(2021, 03, 25), reviewer.getJoinedDate());
+//        assertEquals(LocalDate.of(2021, 03, 25), reviewer.getJoinedDate());
     }
 
     @Test
@@ -47,7 +47,7 @@ public class ReviewerServiceImplTests {
         reviewer.setImageSrc("Test Image Source");
         reviewer.setDescription("Test Description data");
         reviewer.setName("Rahman");
-        reviewer.setJoinedDate(LocalDate.of(2021, 03, 25));
+//        reviewer.setJoinedDate(LocalDate.of(2021, 03, 25));
 
         try {
             toTest.createReviewer(reviewer);
@@ -60,7 +60,7 @@ public class ReviewerServiceImplTests {
         reviewer1.setImageSrc("Test Image Source1");
         reviewer1.setDescription("Test Description data1");
         reviewer1.setName("Rahman1");
-        reviewer1.setJoinedDate(LocalDate.of(2020, 03, 25));
+//        reviewer1.setJoinedDate(LocalDate.of(2020, 03, 25));
 
         try {
             toTest.createReviewer(reviewer1);
@@ -92,7 +92,7 @@ public class ReviewerServiceImplTests {
         assertEquals("Rahman", reviewer.getName());
         assertEquals("Test Image Source", reviewer.getImageSrc());
         assertEquals("Test Description data", reviewer.getDescription());
-        assertEquals(LocalDate.of(2021, 03, 25), reviewer.getJoinedDate());
+//        assertEquals(LocalDate.of(2021, 03, 25), reviewer.getJoinedDate());
 
     }
 
@@ -116,7 +116,7 @@ public class ReviewerServiceImplTests {
         reviewer.setImageSrc("Test Image Source");
         reviewer.setDescription("Test Description data");
         reviewer.setName("Rahman");
-        reviewer.setJoinedDate(LocalDate.of(2021, 03, 25));
+//        reviewer.setJoinedDate(LocalDate.of(2021, 03, 25));
 
 
 
