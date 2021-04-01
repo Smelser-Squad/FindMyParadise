@@ -3,10 +3,13 @@
     <div class="header">
       <h1 data-text="Find Your Paradise">Find Your Paradise</h1>
     </div>
+
     <br />
     <div class="reservationContainer">
       <reservation title="Reservation"></reservation>
     </div>
+
+  
     <div class="imgContainer">
       <GalleryMini />
     </div>
@@ -48,6 +51,7 @@
     >
     </email>
   </div>
+
 </template>
 
 <script>
