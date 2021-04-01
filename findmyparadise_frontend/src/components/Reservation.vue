@@ -181,7 +181,7 @@ export default {
       this.show = true;
     },
     updateDate(date) {
-      let dateSub = date.toString().substring(0, 15);
+      let dateSub = date;
       return dateSub;
       
     },

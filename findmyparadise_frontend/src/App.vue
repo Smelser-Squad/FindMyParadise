@@ -57,7 +57,6 @@
     <div class="imgContainer">
       <GalleryMini />
     </div>
-    <div class="container">
 
       <Reservation title="Reservation" :dateStart="range.start" :dateEnd="range.end" />
     </div>
@@ -95,7 +94,6 @@
     >
     </email>
 
-  </div>
 </template>
 
 <script>
