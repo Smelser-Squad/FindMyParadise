@@ -25,6 +25,7 @@
     </header>
     <body>
       <form v-on:submit.prevent="submitForm">
+      
         <h5>Guests:</h5>
         <Guests />
         <h5>Dates</h5>
@@ -32,12 +33,8 @@
         <div v-if="showCalendar">
           <DateRangePicker v-on:datePick="updateDates($event)" />
         </div>
-        <span> Start Date: {{ range.start }} </span>
 
-        <div v-if="showCalendar" v-on:getStart="updateStart($event)">
-          <DateRangePicker />
-        </div>
-        <span> Start Date: {{ start }} </span>
+        <span> Start Date: {{ range.start }} </span>
 
         <span
           class="_19di23v"
