@@ -10,14 +10,14 @@
       <div class="reservationContainer">
         <Reservation title="Reservation" :dateStart="range.start" :dateEnd="range.end" />
       </div>
-      <br>
+      <br />
       <div class="amenitiesContainer">
         <amenities title="Amenities"></amenities>
       </div>
       <div class="mapContainer">
-        <div class="left" style="width:100%; height: 350px">
+        <div class="left" style="width: 100%; height: 350px">
           <h4 id="dateHeader">Select Date Range</h4>
-          <DateRangePicker @DatePick="Change" />
+            <DateRangePicker @datePick="transferDates($event)" />
         </div>
         <div class="right">
           <Map />
@@ -35,7 +35,7 @@
       <div class="container">
         <host></host>
       </div>
-       <div class="scrollContainer">
+      <div class="scrollContainer">
         <more-places></more-places>
       </div>
       <div class="scrollContainer">
@@ -47,7 +47,7 @@
         :host="host"
       >
       </email>
-      </div>
+    </div>
   </div>
 </template>
 
@@ -66,6 +66,7 @@ import Email from "./components/Email";
 import GalleryMini from "./components/GalleryMini.vue";
 
 import Host from "./components/Host.vue";
+
 export default {
   name: "App",
   components: {
@@ -97,7 +98,6 @@ export default {
 
       console.log(this.range.start);
       console.log(this.range.end);
-      
     },
   },
   data() {
@@ -310,6 +310,7 @@ h5 {
   border-radius: 5px;
   box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
 }
+
 .imgContainer {
  max-width: 100%;
  margin: 30px auto;

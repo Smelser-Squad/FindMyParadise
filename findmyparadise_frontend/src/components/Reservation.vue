@@ -38,6 +38,7 @@
             <DateRangePicker v-on:datePick="updateDates($event)" />
           </div>
         </div>
+
         <span> Start Date: {{ updateDate(dateStart) }} </span>
         <br/>
         <span> End Date: {{updateDate(dateEnd)}}</span>
@@ -115,7 +116,7 @@ export default {
   name: "Reservation",
   props: {
     dateStart: new Date(),
-    dateEnd: new Date()
+    dateEnd: new Date(),
   },
 
   data() {
@@ -176,9 +177,8 @@ export default {
       this.show = true;
     },
     updateDate(date) {
-      let dateSub = date.toString().substring(0, 15);
+      let dateSub = date;
       return dateSub;
-      
     },
   },
 };
