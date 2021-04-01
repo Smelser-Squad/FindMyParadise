@@ -5,7 +5,7 @@
       <h1 data-text="Find Your Paradise">Find Your Paradise</h1>
     </div>
     <br>
-    <div class="reservationContainer">
+    <!-- <div class="reservationContainer">   -->
 
     <div class="imgContainer">
       <GalleryMini />
@@ -49,6 +49,7 @@
     >
     </email>
   </div>
+
 </template>
 
 <script>
