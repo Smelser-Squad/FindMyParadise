@@ -113,7 +113,7 @@ public class ListingServiceImpl implements ListingService {
         }
         if( hostID < 0)
         {
-            throw new NullHostIDException("Invalid host ID!");
+            throw new InvalidHostIDException("Invalid host ID!");
         }
         return repo.findByHostHostID(hostID);
     }
@@ -128,14 +128,14 @@ public class ListingServiceImpl implements ListingService {
     }
 
     @Override
-    public List<Listing> findByType(String type) throws NoListingFoundException, NullListingNameException, InvalidListingNameException {
+    public List<Listing> findByType(String type) throws NoListingFoundException, InvalidListingTypeException, NullListingTypeException {
         if(type == null)
         {
-            throw new NullListingNameException("Cannot find a listing with a null typing!");
+            throw new InvalidListingTypeException("Cannot find a listing with a null typing!");
         }
         if(type.trim().length() <= 0)
         {
-            throw new InvalidListingNameException("You must enter an typing that is not whitespace!");
+            throw new InvalidListingTypeException("You must enter an typing that is not whitespace!");
         }
         return repo.findByType(type);
     }
