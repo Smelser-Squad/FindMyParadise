@@ -192,11 +192,17 @@ public class ListingServiceImplTests {
         assertThrows(InvalidListingNameException.class,()-> test.findByNameIgnoreCase(" "));
     }
 
-    @Test
-    public void FakeTest() {
-        assertThrows(InvalidListingNameException.class,()-> test.findByNameIgnoreCase(" "));
+
+    public void getListingsByPriceInvalidPriceTest() {
+        assertThrows(NullListingPriceException.class,()-> test.findByPrice(-9.0));
+        assertThrows(NullListingPriceException.class,()-> test.findByPrice(null));
     }
 
+    @Test
+    public void getListingByHostIDInvalidIDTest() {
+        assertThrows(InvalidHostIDException.class,()-> test.findByHostID(-9));
+        assertThrows(NullHostIDException.class,()-> test.findByHostID(null));
+    }
 
 }
 
