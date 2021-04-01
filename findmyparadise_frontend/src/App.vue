@@ -8,7 +8,11 @@
         <GalleryMini />
       </div>
       <div class="reservationContainer">
-        <Reservation title="Reservation" :dateStart="range.start" :dateEnd="range.end" />
+       <Reservation
+        title="Reservation"
+        :dateStart="range.start"
+        :dateEnd="range.end"
+      />
       </div>
       <br />
       <div class="amenitiesContainer">
@@ -49,7 +53,14 @@
       >
       </email>
     </div>
+    </div>
+    
+  
+   
   </div>
+
+
+
 </template>
 
 <script>
