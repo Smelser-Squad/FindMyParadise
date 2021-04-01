@@ -51,13 +51,6 @@ public class Listing implements Serializable {
     @Column(name = "cleaning_fee")
     private Double cleaningFee;
 
-//    @OneToMany(fetch = FetchType.EAGER,
-//            cascade = CascadeType.ALL,
-//            mappedBy = "listing",
-//            orphanRemoval = true)
-//    @JsonManagedReference
-//    private Set<Review> reviews = new HashSet<>();
-
     @OneToMany(fetch = FetchType.EAGER,
             cascade = CascadeType.ALL,
             mappedBy = "listing",
