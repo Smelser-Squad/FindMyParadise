@@ -108,7 +108,6 @@ export default {
       console.log(this.range.end);
     },
   },
-
   data() {
     return {
       emailTrigger: false,
@@ -130,11 +129,10 @@ export default {
 }
 body {
   font-family: "Poppins", sans-serif;
-  display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: whitesmoke;
+  background: #DCDCDC;
   background-attachment: fixed;
 }
 .header {
@@ -215,6 +213,12 @@ body {
 }
 
 .masterContainer div,
+h2,
+h5 {
+ margin: auto;
+ text-align: center;
+}
+
 .reservationContainer div,
 h2,
 h5 {
@@ -225,7 +229,7 @@ h5 {
   display: flex;
   max-width: 80%;
   margin: 30px auto;
-  overflow: auto;
+  overflow: hidden;
   min-height: 300px;
   padding: 30px;
   /* border: 1px solid gray;
@@ -306,16 +310,29 @@ h5 {
 }
 
 .imgContainer {
-  max-width: 1300px;
-
-  margin: 30px auto;
-  object-fit: fill;
-  max-height: 500px;
-  border-radius: 10px;
-  box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
-  overflow: auto;
+ max-width: 100%;
+ margin: 30px auto;
+ object-fit: fill;
+ max-height: 500px;
+ border-radius: 10px;
+ box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
+ overflow: auto;
 }
 
+.amenitiesContainer {
+  max-width: 80%;
+  margin: 30px auto;
+  overflow: auto;
+  min-height: 300px;
+  padding: 30px;
+  /* border: 1px solid gray;
+  border-radius: 5px;
+  box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px; */
+}
+#dateHeader {
+  margin: auto;
+  text-align: center;
+}
 .amenitiesContainer {
   max-width: 80%;
   margin: 30px auto;

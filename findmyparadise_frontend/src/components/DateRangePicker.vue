@@ -6,6 +6,8 @@
       is-range
       v-on:change="ChangeDate()"
       :min-date="new Date()"
+      :columns = "2"
+      :rows = "1"
     />
     <br />
     <span>Start Date: {{ updateDate(range.start) }}</span>
@@ -13,8 +15,7 @@
     <br />
     <span>End Date: {{ updateDate(range.end) }}</span>
     <br />
-
-    <button @click="sendDate">Submit</button>
+    <button class="btn" @click="sendDate">Submit</button>
   </div>
 </template>
 
@@ -51,8 +52,7 @@ export default {
 };
 </script>
 <style scoped>
-.vc-weeks {
-  height: 350px !important;
-  width: 100% !important;
+.dateBox {
+  margin: auto;
 }
 </style>

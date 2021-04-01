@@ -23,7 +23,7 @@
         >
       </div>
     </header>
-    <body>
+    <body id ="ReservationBody">
       <form v-on:submit.prevent="submitForm">
         <div class="split">
           <div class="split-left">
@@ -38,11 +38,11 @@
             <DateRangePicker v-on:datePick="updateDates($event)" />
           </div>
         </div>
-        <span> Start Date: {{ range.start }} </span>
 
-        <br />
-        <span> End Date: {{ updateDate(dateEnd) }}</span>
-
+        <span> Start Date: {{ updateDate(dateStart) }} </span>
+        <br/>
+        <span> End Date: {{updateDate(dateEnd)}}</span>
+        <br/>
         <span
           class="_19di23v"
           style="
@@ -184,6 +184,13 @@ export default {
 };
 </script>
 <style scoped>
+#ReservationBody {
+  background: whitesmoke !important;
+}
+#ReservationBody {
+  margin: auto;
+  text-align: center;
+}
 header {
   display: flex;
   justify-content: space-between;
