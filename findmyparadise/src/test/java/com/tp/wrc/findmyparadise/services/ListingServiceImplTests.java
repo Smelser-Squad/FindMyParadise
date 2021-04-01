@@ -192,5 +192,11 @@ public class ListingServiceImplTests {
         assertThrows(InvalidListingNameException.class,()-> test.findByNameIgnoreCase(" "));
     }
 
+    @Test
+    public void FakeTest() {
+        assertThrows(InvalidListingNameException.class,()-> test.findByNameIgnoreCase(" "));
+    }
+
+
 }
 
