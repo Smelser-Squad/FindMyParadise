@@ -3,44 +3,49 @@
     <div class="header">
       <h1 data-text="Find Your Paradise">Find Your Paradise</h1>
     </div>
-    <br>
+    <br />
     <div class="reservationContainer">
-      <reservation title="Reservation"></reservation>
-    </div>
-    <div class="container">
-      <amenities title="Amenities"></amenities>
-    </div>
-    <div class="container">
-      <DateRangePicker @DatePick="Change" />
-    </div>
-    <div class="mapContainer">
-      <Map />
-    </div>
-    <div class="scrollContainer">
-      <more-places></more-places>
-    </div>
-    <div class="container">
-      <description title="Description" @email="toggleEmail"> </description>
-    </div>
-    <div class="reviewContainer">
-      <review></review>
-    </div>
-    <div class="reviewerContainer">
-      <reviewer> </reviewer>
-    </div>
+      <div class="imgContainer">
+        <GalleryMini />
+      </div>
+      <div class="container">
+        <reservation title="Reservation"></reservation>
+      </div>
+      <div class="container">
+        <amenities title="Amenities"></amenities>
+      </div>
+      <div class="container">
+        <DateRangePicker @DatePick="Change" />
+      </div>
+      <div class="mapContainer">
+        <Map />
+      </div>
+      <div class="scrollContainer">
+        <more-places></more-places>
+      </div>
+      <div class="container">
+        <description title="Description" @email="toggleEmail"> </description>
+      </div>
+      <div class="reviewContainer">
+        <review></review>
+      </div>
+      <div class="reviewerContainer">
+        <reviewer> </reviewer>
+      </div>
 
-    <div class="container">
-      <host></host>
+      <div class="container">
+        <host></host>
+      </div>
+      <div class="scrollContainer">
+        <events title="Events"></events>
+      </div>
+      <email
+        v-if="emailTrigger && host != undefined"
+        :toggleEmail="() => toggleEmail()"
+        :host="host"
+      >
+      </email>
     </div>
-    <div class="scrollContainer">
-      <events title="Events"></events>
-    </div>
-    <email
-      v-if="emailTrigger && host != undefined"
-      :toggleEmail="() => toggleEmail()"
-      :host="host"
-    >
-    </email>
   </div>
 </template>
 
@@ -49,17 +54,14 @@ import MorePlaces from "./components/MorePlaces.vue";
 import Reservation from "./components/Reservation.vue";
 import Map from "./components/Map.vue";
 import Description from "./components/Description";
-
 import Amenities from "./components/Amenities.vue";
-
 import Review from "./components/Review";
 import Reviewer from "./components/Reviewer";
 import Events from "./components/Events";
 import DateRangePicker from "./components/DateRangePicker.vue";
 import Email from "./components/Email";
-
+import GalleryMini from "./components/GalleryMini.vue";
 import Host from "./components/Host.vue";
-
 export default {
   name: "App",
   components: {
@@ -72,6 +74,7 @@ export default {
     Reviewer,
     Host,
     DateRangePicker,
+    GalleryMini,
     Events,
     Email,
   },
@@ -85,7 +88,6 @@ export default {
       this.host = host;
     },
   },
-
   data() {
     return {
       emailTrigger: false,
@@ -184,7 +186,9 @@ body {
   border-radius: 5px;
   box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
 }
-.reservationContainer div, h2, h5 {
+.reservationContainer div,
+h2,
+h5 {
   margin: auto;
   text-align: center;
 }
@@ -244,7 +248,6 @@ body {
 .datePicker {
   display: inline;
 }
-
 .reviewContainer {
   max-width: 500px;
   margin: 30px auto;
@@ -255,7 +258,6 @@ body {
   border-radius: 5px;
   box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
 }
-
 .reviewerContainer {
   max-width: 500px;
   margin: 30px auto;
@@ -265,5 +267,14 @@ body {
   padding: 30px;
   border-radius: 5px;
   box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
+}
+.imgContainer {
+  max-width: 1300px;
+  margin: 30px auto;
+  object-fit: fill;
+  max-height: 500px;
+  border-radius: 10px;
+  box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
+  overflow: hidden;
 }
 </style>

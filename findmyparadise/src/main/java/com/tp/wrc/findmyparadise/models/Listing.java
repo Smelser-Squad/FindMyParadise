@@ -11,7 +11,6 @@ import java.util.Set;
 @Entity
 @Table(name = "listing")
 
-@JsonIgnoreProperties(value = {"amenities","reservations"}, allowSetters = true)
 
 public class Listing implements Serializable {
 
