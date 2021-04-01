@@ -24,7 +24,7 @@ public class ReservationServiceImpTests {
     public void tearDown() {
 
     }
-   @Test
+    @Test
     public void addReservationGoldenPathTest(){
         try {
             Reservation newReservation = new Reservation();
@@ -47,23 +47,23 @@ public class ReservationServiceImpTests {
         {
             fail();
         }
-   }
-   @Test
-   public void addReserverationNullObjectTest(){
+    }
+    @Test
+    public void addReserverationNullObjectTest(){
         assertThrows(NullReservationObjectException.class,()->toTest.addReservation(null));
-   }
+    }
 
-   @Test
-   public void addReservationNullAdultTest(){
-           Reservation reservation=new Reservation();
-           reservation.setCheckInDate(LocalDate.now());
-           reservation.setCheckOutDate(LocalDate.now());
-           reservation.setAdults(null);
-           reservation.setChildren(2);
-           reservation.setInfants(1);
+    @Test
+    public void addReservationNullAdultTest(){
+        Reservation reservation=new Reservation();
+        reservation.setCheckInDate(LocalDate.now());
+        reservation.setCheckOutDate(LocalDate.now());
+        reservation.setAdults(null);
+        reservation.setChildren(2);
+        reservation.setInfants(1);
 
-           assertThrows(NullGuestsException.class,()->toTest.addReservation(reservation));
-   }
+        assertThrows(NullGuestsException.class,()->toTest.addReservation(reservation));
+    }
     @Test
     public void addReservationNullChildTest(){
         Reservation reservation=new Reservation();
@@ -163,23 +163,23 @@ public class ReservationServiceImpTests {
 
         assertThrows(PastDatesException.class,()->toTest.addReservation(reservation));
     }
-   @Test
-   public void updateReservationGoldenPathTest() {
-       try {
-           Reservation reservation = toTest.getReservationById(1);
+    @Test
+    public void updateReservationGoldenPathTest() {
+        try {
+            Reservation reservation = toTest.getReservationById(1);
 
-           reservation.setAdults(2);
-           reservation.setChildren(2);
-           toTest.updateReservation(reservation);
+            reservation.setAdults(2);
+            reservation.setChildren(2);
+            toTest.updateReservation(reservation);
 
-           assertEquals(1, reservation.getReservationId());
-           assertEquals(2, reservation.getAdults());
-           assertEquals(2, reservation.getChildren());
+            assertEquals(1, reservation.getReservationId());
+            assertEquals(2, reservation.getAdults());
+            assertEquals(2, reservation.getChildren());
 
-       } catch (NullReservationIdException | InvalidReservationIdException | NullDatesException | InvalidGuestsException | NullGuestsException ex) {
+        } catch (NullReservationIdException | InvalidReservationIdException | NullDatesException | InvalidGuestsException | NullGuestsException ex) {
             fail();
-       }
-   }
+        }
+    }
 
     @Test
     public void deleteReservationGoldenPathTest() {
@@ -199,10 +199,10 @@ public class ReservationServiceImpTests {
             assertEquals(1, reservation.getReservationId());
             assertEquals(2, reservation.getAdults());
             assertEquals(0, reservation.getChildren());
-           assertEquals(400.00,reservation.getPrice());
-           assertEquals(0,reservation.getInfants());
-           assertEquals(LocalDate.now(),reservation.getCheckInDate());
-           assertEquals(LocalDate.of(2021,4,23),reservation.getCheckOutDate());
+            assertEquals(400.00,reservation.getPrice());
+            assertEquals(0,reservation.getInfants());
+            assertEquals(LocalDate.now(),reservation.getCheckInDate());
+            assertEquals(LocalDate.of(2021,4,23),reservation.getCheckOutDate());
 
         } catch (InvalidReservationIdException | NullReservationIdException ex) {
             fail();
