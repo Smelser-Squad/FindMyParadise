@@ -3,8 +3,10 @@
   <br />
   <div id="map" ref="mapRef"></div>
 
-  <br>
-  <p id="mapLine"><b><u>Nearby Attractions</u></b></p>
+  <br />
+  <p id="mapLine">
+    <b><u>Nearby Attractions</u></b>
+  </p>
 
   <br />
 
