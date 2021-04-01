@@ -56,13 +56,6 @@ public class Listing implements Serializable {
             mappedBy = "listing",
             orphanRemoval = true)
     @JsonManagedReference
-    private Set<Review> reviews = new HashSet<>();
-
-    @OneToMany(fetch = FetchType.EAGER,
-            cascade = CascadeType.ALL,
-            mappedBy = "listing",
-            orphanRemoval = true)
-    @JsonManagedReference
     private Set<Reservation> reservations = new HashSet<>();
 
     @OneToMany(fetch = FetchType.EAGER,
@@ -90,6 +83,14 @@ public class Listing implements Serializable {
             joinColumns = @JoinColumn(name = "listing_id"),
             inverseJoinColumns = @JoinColumn(name = "amenity_id"))
     private Set<Amenity> amenities = new HashSet<>();
+
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "listing_reviews",
+            joinColumns = @JoinColumn(name = "listing_id"),
+            inverseJoinColumns = @JoinColumn(name = "review_id"))
+    private Set<Review> reviews = new HashSet<>();
 
     public Listing() {
 
@@ -253,4 +254,5 @@ public class Listing implements Serializable {
     public void setPhotos(Set<Photo> photos) {
         this.photos = photos;
     }
+
 }
