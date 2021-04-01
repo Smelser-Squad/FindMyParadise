@@ -31,11 +31,9 @@
 </template>
 
 <script>
-
 import { ref } from "vue";
 import axios from "axios";
 import Modal from "./Modal";
-
 
 let listingID = 1;
 
@@ -45,7 +43,6 @@ export default {
   setup() {
     const popupTriggers = ref({
       buttonTrigger: false,
-
     });
 
     const TogglePopup = (trigger) => {
@@ -62,17 +59,15 @@ export default {
     return {
       amenities: [],
       amenityName: "",
-
     };
   },
   mounted() {
     axios
-    .get(`http://localhost:8080/api/listing/${listingID}`)
-    .then((res) => {
-      this.amenities = res.data.amenities;
-    })
-    .catch((err) => Promise.reject(err));
-
+      .get(`http://localhost:8080/api/listing/${listingID}`)
+      .then((res) => {
+        this.amenities = res.data.amenities;
+      })
+      .catch((err) => Promise.reject(err));
   },
   methods: {
     setDPath(name) {
@@ -171,5 +166,4 @@ svg {
   width: 35px;
   height: 35px;
 }
-
 </style>
