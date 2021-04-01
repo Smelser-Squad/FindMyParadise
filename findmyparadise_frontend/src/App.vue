@@ -1,6 +1,17 @@
 <template>
   <div id="AppBody">
+
+    <div class="header">
+      <h1 data-text="Find Your Paradise">Find Your Paradise</h1>
+    </div>
+    <br>
+    <div class="reservationContainer">
+
+    <div class="imgContainer">
+      <GalleryMini />
+    </div>
     <div class="container">
+
       <reservation title="Reservation"></reservation>
     </div>
     <div class="container">
@@ -9,7 +20,7 @@
     <div class="container">
       <DateRangePicker @DatePick="Change" />
     </div>
-    <div class="container">
+    <div class="mapContainer">
       <Map />
     </div>
     <div class="scrollContainer">
@@ -48,14 +59,18 @@ import Description from "./components/Description";
 
 import Amenities from "./components/Amenities.vue";
 
-
 import Review from "./components/Review";
 import Reviewer from "./components/Reviewer";
 import Events from "./components/Events";
 import DateRangePicker from "./components/DateRangePicker.vue";
 import Email from "./components/Email";
 
+
+import GalleryMini from "./components/GalleryMini.vue";
+
+
 import Host from "./components/Host.vue";
+
 
 export default {
   name: "App",
@@ -69,10 +84,15 @@ export default {
     Reviewer,
     Host,
     DateRangePicker,
+     GalleryMini,
     Events,
-
     Email,
   },
+
+
+   
+   
+  
 
   methods: {
     Change(event) {
@@ -84,6 +104,7 @@ export default {
     },
   },
 
+
   data() {
     return {
       emailTrigger: false,
@@ -94,9 +115,6 @@ export default {
 </script>
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap");
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-}
 * {
   box-sizing: border-box;
   margin: 0;
@@ -104,6 +122,66 @@ export default {
 }
 body {
   font-family: "Poppins", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: whitesmoke;
+  background-attachment: fixed;
+}
+.header {
+  margin: auto;
+  text-align: center;
+  position: relative;
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 45px;
+  -webkit-box-reflect: -28px below linear-gradient(transparent, #0002);
+}
+.header div {
+  margin: auto;
+  text-align: center;
+}
+.header h1 {
+  font-size: 6vw;
+  font-style: italic;
+  background-image: linear-gradient(
+    to right,
+    #e2204c,
+    #f04e39,
+    #f67526,
+    #f39911,
+    #eabc12
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.header h1::after {
+  content: attr(data-text);
+  position: absolute;
+  margin-left: 4.5%;
+  top: 0;
+  left: 0;
+  /* Change the position of transformed element */
+  transform-origin: bottom;
+  /*  Rotates around x-axis */
+  transform: rotateX(180deg);
+  line-height: 0.85em;
+  /* linear-gradient defined by up,down,left ,right ,diagonal */
+  background-image: linear-gradient(
+    to right,
+    #e2204c,
+    #f04e39,
+    #f67526,
+    #f39911,
+    #eabc12
+  );
+  -webkit-background-clip: text;
+  color: transparent;
+  opacity: 0.1;
+}
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
 }
 .container {
   max-width: 500px;
@@ -114,6 +192,37 @@ body {
   padding: 30px;
   border-radius: 5px;
   box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
+}
+.reservationContainer {
+  max-width: 800px;
+  margin: 30px auto;
+  overflow: auto;
+  min-height: 300px;
+  border: 1px solid gray;
+  padding: 30px;
+  border-radius: 5px;
+  box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
+}
+.reservationContainer div, h2, h5 {
+  margin: auto;
+  text-align: center;
+}
+.mapContainer {
+  max-width: 600px;
+  margin: 30px auto;
+  overflow: auto;
+  min-height: 300px;
+  border: 1px solid gray;
+  padding: 30px;
+  border-radius: 5px;
+  box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
+}
+.mapContainer div {
+  margin: auto;
+  text-align: center;
+}
+.mapContainer p {
+  text-align: left;
 }
 .btn {
   display: inline-block;
@@ -154,6 +263,7 @@ body {
 .datePicker {
   display: inline;
 }
+
 .reviewContainer {
   max-width: 500px;
   margin: 30px auto;
@@ -164,6 +274,7 @@ body {
   border-radius: 5px;
   box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
 }
+
 .reviewerContainer {
   max-width: 500px;
   margin: 30px auto;
@@ -174,4 +285,15 @@ body {
   border-radius: 5px;
   box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
 }
+
+.imgContainer{
+  max-width: 1300px;
+  margin: 30px auto;
+  object-fit: fill;
+  max-height: 500px;
+  border-radius: 10px;
+  box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
+  overflow: hidden;
+}
 </style>
+
