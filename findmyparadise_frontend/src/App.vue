@@ -7,7 +7,6 @@
       <GalleryMini />
     </div>
     <div class="container">
-
       <Reservation title="Reservation" :dateStart="range.start" :dateEnd="range.end" />
     </div>
     <div class="container">

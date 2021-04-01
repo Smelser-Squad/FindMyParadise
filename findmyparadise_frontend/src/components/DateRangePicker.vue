@@ -1,20 +1,19 @@
 <template>
   <div>
     <DatePicker
+      is-expanded
       class="datePicker"
       v-model="range"
       is-range
       v-on:change="ChangeDate()"
       :min-date="new Date()"
+      :rows="1"
+      :columns="2"
+      
+      
     />
-    <br />
-    <span>Start Date: {{ updateDate(range.start) }}</span>
 
-    <br />
-    <span>End Date: {{ updateDate(range.end) }}</span>
-    <br />
-
-    <button @click="sendDate">Submit</button>
+    <button class="btn" @click="sendDate">Submit</button>
   </div>
 </template>
 

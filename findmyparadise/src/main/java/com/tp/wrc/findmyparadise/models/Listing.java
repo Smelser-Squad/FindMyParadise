@@ -10,21 +10,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "listing")
-<<<<<<< HEAD
-<<<<<<< HEAD
-//<<<<<<< HEAD
-//@JsonIgnoreProperties(value = {"amenities","reservations"}, allowSetters = true)
-//=======
-//
-//
-//>>>>>>> 70401ba41f685d3d2c8e7ad2eb1286264c107415
-=======
->>>>>>> 08341f489da30393dbab5fb235c6d84730281ad5
-=======
 
-@JsonIgnoreProperties(value = {"amenities","reservations"}, allowSetters = true)
-
->>>>>>> 0192deab083a008f473e5a0abfbb7b4e56876c7f
 public class Listing implements Serializable {
 
     @Id
