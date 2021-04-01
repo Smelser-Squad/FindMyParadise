@@ -14,7 +14,7 @@
     <span>End Date: {{ updateDate(range.end) }}</span>
     <br />
 
-    <button @click="sendDate">Submit</button>
+    <button class="btn" @click="sendDate">Submit</button>
   </div>
 </template>
 
@@ -51,7 +51,7 @@ export default {
 };
 </script>
 <style scoped>
-.vc-weeks {
+.vc-pane {
   height: 350px !important;
   width: 100% !important;
 }
