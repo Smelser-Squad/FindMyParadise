@@ -2,3 +2,6 @@
 .idea
 node_modules/
 .vscode/
+.db.env
+.serv.env
+.client.env
