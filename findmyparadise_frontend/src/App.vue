@@ -3,27 +3,18 @@
     <div class="header">
       <h1 data-text="Find Your Paradise">Find Your Paradise</h1>
     </div>
-
-
-
-    <br />
-    <div class="reservationContainer">
-      <reservation title="Reservation"></reservation>
-    </div>
-
-
-  
     <div class="imgContainer">
       <GalleryMini />
     </div>
     <div class="container">
-      <reservation title="Reservation"></reservation>
+
+      <Reservation title="Reservation" :dateStart="range.start" :dateEnd="range.end" />
     </div>
     <div class="container">
       <amenities title="Amenities"></amenities>
     </div>
     <div class="container">
-      <DateRangePicker @DatePick="Change" />
+      <DateRangePicker @datePick="transferDates($event)" />
     </div>
     <div class="mapContainer">
       <Map />
@@ -40,7 +31,6 @@
     <div class="reviewerContainer">
       <reviewer> </reviewer>
     </div>
-
     <div class="container">
       <host @email="toggleEmail"></host>
     </div>
@@ -54,7 +44,6 @@
     >
     </email>
   </div>
-
 </template>
 
 <script>
@@ -100,12 +89,23 @@ export default {
       this.emailTrigger = !this.emailTrigger;
       this.host = host;
     },
+    transferDates(range) {
+      this.range = range;
+
+      console.log(this.range.start);
+      console.log(this.range.end);
+      
+    },
   },
 
   data() {
     return {
       emailTrigger: false,
       host: {},
+      range: {
+        start: new Date(),
+        end: new Date(),
+      },
     };
   },
 };

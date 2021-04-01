@@ -31,7 +31,6 @@
 </template>
 
 <script>
-
 import { ref } from "vue";
 import axios from "axios";
 import Modal from "./Modal";
@@ -62,7 +61,6 @@ export default {
     return {
       amenities: [],
       amenityName: "",
-
     };
   },
   mounted() {
