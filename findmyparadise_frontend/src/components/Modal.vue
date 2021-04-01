@@ -37,10 +37,9 @@ export default {
     }
 
     .popup-close {
-        float: right;
-        padding: 0;
-        border: none;
-        background: none;
+      float: right;
+      padding: 0;
+      border: none;
+      background: none;
     }
-
 </style>
