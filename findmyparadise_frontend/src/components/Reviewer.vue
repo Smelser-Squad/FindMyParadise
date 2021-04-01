@@ -50,19 +50,60 @@
   </div>
 
   <h3>Review Details</h3>
-  <div v-for="reviewer in list" v-bind:key="reviewer.reviewId">
+
+
+  <div v-for="reviewer in list.slice(0, 1)" v-bind:key="reviewer.reviewId">
     <p>Name: {{ reviewer.name }}</p>
     <p>Description: {{ reviewer.description }}</p>
     <p>Date: {{ reviewer.joinedDate }}</p>
+
+     <button class="showBtn" @click="() => TogglePopup('buttonTrigger')">
+      Show all Review Deatails
+    </button>
+
+    <Modal
+      v-if="popupTriggers.buttonTrigger"
+      :TogglePopup="() => TogglePopup('buttonTrigger')"
+    >
+      <h3>Reviews</h3>
+      <br />
+      <ul>
+        <li v-for="reviewer in list" :key="reviewer">
+          {{ reviewer.name }}
+          <hr />
+        </li>
+      </ul>
+    </Modal>
+
   </div>
+
+
 </template>
 
 <script>
 import axios from "axios";
-
+import { ref } from "vue";
+import Modal from "./Modal";
 export default {
   name: "Review",
+    components: { Modal },
 
+setup() {
+    const popupTriggers = ref({
+      buttonTrigger: false,
+
+    });
+
+    const TogglePopup = (trigger) => {
+      popupTriggers.value[trigger] = !popupTriggers.value[trigger];
+    };
+
+    return {
+      Modal,
+      popupTriggers,
+      TogglePopup,
+    };
+  },
   data() {
     return {
       posts: {
@@ -70,7 +111,7 @@ export default {
         imageSrc: null,
         description: null,
       },
-      list: undefined,
+      list: [],
       formData: null,
     };
   },
