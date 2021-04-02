@@ -1,5 +1,5 @@
 <template>
-  <div id="Resrevation body">
+  <div>
     <header>
       <h2>
         <b>${{dailyPrice}}</b> / night
@@ -29,6 +29,7 @@
 
      
 
+
         <span
           class="_19di23v"
           style="
@@ -51,8 +52,10 @@
       <u @click="showDetails()"><b> Show price details</b></u>
       <div v-if="details">
         <div>
+
           <u>${{ dailyPrice }} x {{ form.NumOfDays }} nights</u>
           <span>${{ dailyPrice * form.NumOfDays }}</span>
+
         </div>
 
         <div class="popup" @click="CleaningFeepopup()">
@@ -90,15 +93,16 @@
 <script>
 import Guests from "./Guests";
 import axios from "axios";
+
 import moment from 'moment';
-
-
 
 let listingID = 1;
 
 export default {
   name: "Reservation",
+
   props: ['dateStart','dateEnd','days'],
+
 
   data() {
     return {
@@ -148,7 +152,7 @@ export default {
 
   components: {
     Guests,
- 
+
   },
   methods: {
    
@@ -168,8 +172,9 @@ export default {
         });
          console.log(this.form);
     },
-    showDetails() {
-      this.details= true;
+
+    ShowDetals() {
+      this.show = true;
     },
   increaseAQty(num){
     
@@ -225,12 +230,28 @@ export default {
 };
 </script>
 <style scoped>
+#ReservationBody {
+  background: whitesmoke !important;
+}
+#ReservationBody {
+  margin: auto;
+  text-align: center;
+}
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
 }
+/* .split {
+  display: flex;
+}
+.split .split-left {
+  flex: 1;
+}
+.split .split-right {
+  flex: 1;
+} */
 .popup {
   position: relative;
   display: inline-block;

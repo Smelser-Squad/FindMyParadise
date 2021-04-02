@@ -15,12 +15,14 @@
       <button type="button" class="btn" @click="sendIncreaseAdultQty();increaseAdults()">+</button>
     </h5>
     <h5>
+
       Children:<button type="button" class="btn" @click="sendDecreaseChildQty();decreaseChild()">-</button>{{ ChildNum
       }}<button type="button" class="btn" @click="sendIncreaseAdultQty();increaseChild()">+</button>
     </h5>
     <h5>
       Infants: <button type="button" class="btn" @click="sendDecreaseInfantQty();decreaseInfants()">-</button> {{ InfantNum }}
       <button type="button" class="btn" @click="sendIncreaseInfantQty();increaseInfants()">+</button>
+
     </h5>
   </div>
 </template>
@@ -86,8 +88,9 @@ export default {
   
 
   },
+
   },
-  
+
   data() {
     return {
       AdultsNum: 1,

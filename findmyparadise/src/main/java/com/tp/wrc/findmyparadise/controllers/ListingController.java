@@ -102,7 +102,7 @@ public class ListingController {
         {
             toReturn = service.findByType(type);
         }
-        catch (NoListingFoundException | NullListingNameException | InvalidListingNameException e)
+        catch (NoListingFoundException | InvalidListingTypeException | NullListingTypeException e)
         {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }

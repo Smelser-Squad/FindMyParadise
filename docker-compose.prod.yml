@@ -1,0 +1,50 @@
+version: "3.7"
+services:
+  backend:
+    image: findmyparadise_backend:0.0.1
+    build: ./findmyparadise
+    restart: always
+    environment:
+      env_file: .serv.env
+    networks:
+      - server
+      - client
+    depends_on:
+      db:
+        condition: service_healthy
+  db:
+    environment:
+      env_file: .db.env
+    image: mysql:8.0.23
+    restart: always
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "--silent"]
+      interval: 3s
+      retries: 5
+      start_period: 30s
+    volumes:
+      - db-data:/var/lib/mysql
+    networks:
+      - server
+    ports:
+      - 3306:3306
+  frontend:
+    image: findmyparadise_frontend:0.0.1
+    build:
+      context: ./findmyparadise_frontend
+      target: production
+    environment:
+      env_file: .client.env
+    ports:
+      - 80:80
+    volumes:
+      - ./findmyparadise_frontend:/frontend
+      - frontend-modules:/frontend/node_modules
+    networks:
+      - client
+volumes:
+  db-data:
+  frontend-modules:
+networks:
+  server: {}
+  client: {}

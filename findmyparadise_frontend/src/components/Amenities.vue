@@ -1,43 +1,109 @@
 <template>
+  <div id="Amenities">
+    <h3>Amenities</h3>
+    <ul class="initDisplay">
+      <li v-for="amenity in amenities.slice(0, 10)" :key="amenity">
+        <svg xmlns="http://www.w3.org/2000/svg">
+          <path v-bind:d="setDPath(amenity.amenityName)"></path>
+        </svg>
+        {{ amenity.amenityName }}
+      </li>
+    </ul>
 
-    <div id="Amenities">
-        <h3>Amenities</h3>
-        <ul class="initDisplay">
-            <li v-for="amenity in amenities.slice(0, 10)" :key="amenity">
-                <svg xmlns="http://www.w3.org/2000/svg">
-                    <path v-bind:d="setDPath(amenity.amenityName)"></path>
-                </svg>
-                {{amenity.amenityName}}
-            </li>
+    <button class="showBtn" @click="() => TogglePopup('buttonTrigger')">
+      Show all {{ amenities.length }} amenities
+    </button>
+
+    <Modal
+      v-if="popupTriggers.buttonTrigger"
+      :TogglePopup="() => TogglePopup('buttonTrigger')"
+    >
+      <h3>Amenities</h3>
+      <br />
+      <div v-if="bathBool">
+        <h5 class="toggleHeader" id="bathroomHeader">Bathroom</h5>
+        <br />
+        <ul class="modalList">
+          <li v-for="amenity in bathArr" :key="amenity">
+            {{ amenity.amenityName }}
+            <hr />
+          </li>
         </ul>
+      </div>
 
-        <button class="showBtn" @click="() => TogglePopup('buttonTrigger')">
-            Show all {{amenities.length}} amenities
-        </button>
-        
-        <Modal v-if="popupTriggers.buttonTrigger" 
-               :TogglePopup="() => TogglePopup('buttonTrigger')">
-            <h3>Amenities</h3>
-            <br>
-            <ul>
-                <li v-for="amenity in amenities" :key="amenity">
-                    {{amenity.amenityName}}
-                    <hr>
-                </li>       
-            </ul>
-        </Modal>
-        
-    </div>
+      <div v-if="bedBool">
+        <h5 class="toggleHeader" id="bedroomHeader">Bedroom and laundry</h5>
+        <br />
+        <ul class="modalList">
+          <li v-for="amenity in bedArr" :key="amenity">
+            {{ amenity.amenityName }}
+            <hr />
+          </li>
+        </ul>
+      </div>
 
- 
+      <div v-if="entBool">
+        <h5 class="toggleHeader" id="entertainmentHeader">Entertainment</h5>
+        <br />
+        <ul class="modalList">
+          <li v-for="amenity in entArr" :key="amenity">
+            {{ amenity.amenityName }}
+            <hr />
+          </li>
+        </ul>
+      </div>
+
+      <div v-if="heatBool">
+        <h5 class="toggleHeader" id="heatingHeader">Heating and cooling</h5>
+        <br />
+        <ul class="modalList">
+          <li v-for="amenity in heatArr" :key="amenity">
+            {{ amenity.amenityName }}
+            <hr />
+          </li>
+        </ul>
+      </div>
+
+      <div v-if="homeBool">
+        <h5 class="toggleHeader" id="homeHeader">Home safety</h5>
+        <br />
+        <ul class="modalList">
+          <li v-for="amenity in homeArr" :key="amenity">
+            {{ amenity.amenityName }}
+            <hr />
+          </li>
+        </ul>
+      </div>
+
+      <div v-if="intBool">
+        <h5 class="toggleHeader" id="internetHeader">Internet and office</h5>
+        <br />
+        <ul class="modalList">
+          <li v-for="amenity in intArr" :key="amenity">
+            {{ amenity.amenityName }}
+            <hr />
+          </li>
+        </ul>
+      </div>
+
+      <div v-if="kitBool">
+        <h5 class="toggleHeader" id="kitchenHeader">Kitchen and dining</h5>
+        <br />
+        <ul class="modalList">
+          <li v-for="amenity in kitArr" :key="amenity">
+            {{ amenity.amenityName }}
+            <hr />
+          </li>
+        </ul>
+      </div>
+    </Modal>
+  </div>
 </template>
 
 <script>
-
 import { ref } from "vue";
 import axios from "axios";
 import Modal from "./Modal";
-
 
 let listingID = 1;
 
@@ -47,13 +113,11 @@ export default {
   setup() {
     const popupTriggers = ref({
       buttonTrigger: false,
-
     });
-
-
+    
     const TogglePopup = (trigger) => {
       popupTriggers.value[trigger] = !popupTriggers.value[trigger];
-    };
+    }
 
     return {
       Modal,
@@ -65,17 +129,41 @@ export default {
     return {
       amenities: [],
       amenityName: "",
+      dPath: "",
 
+      bathArr: [],
+      bedArr: [],
+      entArr: [],
+      heatArr: [],
+      homeArr: [],
+      intArr: [],
+      kitArr: [],
+
+      bathBool: false,
+      bedBool: false,
+      entBool: false,
+      heatBool: false,
+      homeBool: false,
+      intBool: false,
+      kitBool: false,
     };
   },
   mounted() {
     axios
-    .get(`http://localhost:8080/api/listing/${listingID}`)
-    .then((res) => {
-      this.amenities = res.data.amenities;
-    })
-    .catch((err) => Promise.reject(err));
 
+      .get(`http://localhost:8080/api/listing/${listingID}`)
+      .then((res) => {
+        this.amenities = res.data.amenities;
+        this.arrSetup();
+        this.bathBool = this.setupDisplay(this.bathArr);
+        this.bedBool = this.setupDisplay(this.bedArr);
+        this.entBool = this.setupDisplay(this.entArr);
+        this.heatBool = this.setupDisplay(this.heatArr);
+        this.homeBool = this.setupDisplay(this.homeArr);
+        this.intBool = this.setupDisplay(this.intArr);
+        this.kitBool = this.setupDisplay(this.kitArr);
+      })
+      .catch((err) => Promise.reject(err));
   },
   methods: {
     setDPath(name) {
@@ -85,7 +173,6 @@ export default {
           this.dPath =
             "M16 20a4 4 0 1 1 0 8 4 4 0 0 1 0-8zm0 2a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm0-7a9 9 0 0 1 8.043 4.958L22.53 21.47a7.003 7.003 0 0 0-13.058 0l-1.514-1.514A9 9 0 0 1 16 15zm0-5c4.89 0 9.193 2.506 11.697 6.304l-1.45 1.45A11.993 11.993 0 0 0 16 12c-4.339 0-8.14 2.302-10.247 5.752l-1.45-1.449A13.987 13.987 0 0 1 16 10zm0-5c6.267 0 11.826 3.034 15.286 7.714l-1.432 1.432C26.773 9.821 21.716 7 16 7 10.285 7 5.228 9.82 2.146 14.145L.714 12.714C4.174 8.034 9.733 5 16 5z";
           break;
-
         }
         case "TV":
           this.dPath =
@@ -146,39 +233,99 @@ export default {
       }
       return this.dPath;
     },
+
+    processData(catName) {
+      let arr = new Array();
+
+      for (let i = 0; i < this.amenities.length; i++) {
+        if (this.amenities[i].amenityCategory === catName) {
+          arr.push(this.amenities[i]);
+        }
+      }
+
+      return arr;
+    },
+
+    arrSetup() {
+      this.bathArr = this.processData("Bathroom");
+      this.bedArr = this.processData("Bedroom and laundry");
+      this.entArr = this.processData("Entertainment");
+      this.heatArr = this.processData("Heating and cooling");
+      this.homeArr = this.processData("Home and safety");
+      this.intArr = this.processData("Internet and office");
+      this.kitArr = this.processData("Kitchen and dining");
+    },
+
+    setupDisplay(arr) {
+      if (arr.length === 0) {
+        return false;
+      } else {
+        return true;
+      }
+    },
   },
 };
 </script>
 
 <style scoped>
-    ul {
-        list-style-type: none;
-    }
+ul {
+  list-style-type: none;
+}
 
-    .initDisplay {
-        columns: 2;
-    }
+.initDisplay {
+  columns: 2;
+}
 
-    .showBtn {
-        border-radius: 12px;
-        background-color: white;
-        padding: 10px;
-        border: 1px solid;
-    }
+.showBtn {
+  border-radius: 12px;
+  background-color: white;
+  padding: 10px;
+  border: 1px solid;
+}
 
+.showBtn:hover {
+  text-decoration: underline;
+  background-color: #f7f7f7;
+}
 
-    .showBtn:hover {
-        text-decoration: underline;
-        background-color: #F7F7F7;
-    }
+svg {
+  width: 35px;
+  height: 35px;
+}
 
+ul {
+  list-style-type: none;
+}
 
-    svg {
-        width: 35px;
-        height: 35px;
-    }
+.initDisplay {
+  columns: 2;
+}
 
+.showBtn {
+  border-radius: 12px;
+  background-color: white;
+  padding: 10px;
+  border: 1px solid;
+}
 
+.showBtn:hover {
+  text-decoration: underline;
+  background-color: #f7f7f7;
+}
 
+svg {
+  width: 35px;
+  height: 35px;
+}
 
+.toggleHeader {
+  float: left;
+}
+
+.modalList {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
 </style>

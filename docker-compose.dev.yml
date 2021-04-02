@@ -1,0 +1,57 @@
+version: "3.7"
+services:
+  backend:
+    image: findmyparadise_backend:dev
+    build: ./findmyparadise
+    restart: always
+    environment:
+      MYSQL_HOST: db
+      MYSQL_USER: user
+      MYSQL_PASSWORD: test
+    networks:
+      - server
+      - client
+    ports:
+      - 8080:8080
+    depends_on:
+      db:
+        condition: service_healthy
+  db:
+    environment:
+      MYSQL_ROOT_PASSWORD: Password123
+      MYSQL_USER: user
+      MYSQL_PASSWORD: test
+      MYSQL_DATABASE: findmyparadisedb
+    image: mysql:8.0.23
+    restart: always
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "--silent"]
+      interval: 3s
+      retries: 5
+      start_period: 30s
+    volumes:
+      - db-data:/var/lib/mysql
+    networks:
+      - server
+    ports:
+      - 3306:3306
+  frontend:
+    image: findmyparadise_frontend:dev
+    build:
+      context: ./findmyparadise_frontend
+      target: development
+    environment:
+      VUE_APP_SERVER_URL: http://backend:8080
+    ports:
+      - 8081:8080
+    volumes:
+      - ./findmyparadise_frontend:/frontend
+      - frontend-modules:/frontend/node_modules
+    networks:
+      - client
+volumes:
+  db-data:
+  frontend-modules:
+networks:
+  server: {}
+  client: {}

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="dateBox">
     <DatePicker
       class="datePicker"
       v-model="range"
@@ -7,6 +7,7 @@
       :min-date="new Date()"
       :columns = "2"
       :rows = "1"
+
     />
     <br />
   
@@ -15,8 +16,10 @@
     <br />
     <span>End Date: {{ updateDate(range.end) }}</span>
     <br />
+
   <span>Number of days: </span>
     <span>{{numOfDays()}}</span>
+
     <button class="btn" @click="sendDate">Submit</button>
   </div>
 </template>
@@ -48,14 +51,21 @@ export default {
       console.log(days)
       return days
     },
+
     
  
        sendDate() {
       this.$emit("datePick", this.range);
       this.$emit("diffDays",this.numOfDays())
+
     },
       
      
     }
 }
 </script>
+<style scoped>
+.dateBox {
+  margin: auto;
+}
+</style>

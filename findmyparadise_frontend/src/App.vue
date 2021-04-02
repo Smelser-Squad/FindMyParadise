@@ -1,5 +1,6 @@
 <template>
   <div id="AppBody">
+
     <div class="header">
       <h1 data-text="Find Your Paradise">Find Your Paradise</h1>
     </div>
@@ -43,6 +44,7 @@
       :host="host"
     >
     </email>
+
   </div>
 </template>
 
@@ -53,7 +55,6 @@ import Map from "./components/Map.vue";
 import Description from "./components/Description";
 import Amenities from "./components/Amenities.vue";
 import Review from "./components/Review";
-import Reviewer from "./components/Reviewer";
 import Events from "./components/Events";
 import DateRangePicker from "./components/DateRangePicker.vue";
 import Email from "./components/Email";
@@ -68,7 +69,6 @@ export default {
     Description,
     Amenities,
     Review,
-    Reviewer,
     Host,
     DateRangePicker,
     GalleryMini,
@@ -87,12 +87,14 @@ export default {
       this.range = range;
       console.log(this.range.start);
       console.log(this.range.end);
+
       
     },
     transferDays(num){
       this.days=num;
       console.log(this.days);
     }
+
   },
   data() {
     return {
@@ -102,7 +104,9 @@ export default {
         start: new Date(),
         end: new Date(),
       },
+
       days:''
+
     };
   },
 };
@@ -116,25 +120,25 @@ export default {
 }
 body {
   font-family: "Poppins", sans-serif;
-  display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: whitesmoke;
+  background: #dcdcdc;
   background-attachment: fixed;
 }
 .header {
   margin: auto;
   text-align: center;
   position: relative;
-  text-align: center;
-  margin-top: 30px;
-  margin-bottom: 45px;
   -webkit-box-reflect: -28px below linear-gradient(transparent, #0002);
+}
+.header img {
+  padding-bottom: 20px;
 }
 .header div {
   margin: auto;
   text-align: center;
+  margin-bottom: 20%;
 }
 .header h1 {
   font-size: 6vw;
@@ -144,8 +148,8 @@ body {
     #e2204c,
     #f04e39,
     #f67526,
-    #f39911,
-    #eabc12
+    rgb(252, 118, 140),
+    hotpink
   );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -153,7 +157,7 @@ body {
 .header h1::after {
   content: attr(data-text);
   position: absolute;
-  margin-left: 4.5%;
+  margin-left: 20.5%;
   top: 0;
   left: 0;
   /* Change the position of transformed element */
@@ -167,8 +171,8 @@ body {
     #e2204c,
     #f04e39,
     #f67526,
-    #f39911,
-    #eabc12
+    rgb(252, 118, 140),
+    hotpink
   );
   -webkit-background-clip: text;
   color: transparent;
@@ -187,16 +191,18 @@ body {
   border-radius: 5px;
   box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
 }
-.reservationContainer {
-  max-width: 800px;
+.masterContainer {
+  max-width: 90%;
   margin: 30px auto;
   overflow: auto;
   min-height: 300px;
   border: 1px solid gray;
+  background: whitesmoke;
   padding: 30px;
   border-radius: 5px;
   box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
 }
+
 .reservationContainer div,
 h2,
 h5 {
@@ -204,14 +210,21 @@ h5 {
   text-align: center;
 }
 .mapContainer {
-  max-width: 600px;
+  display: flex;
+  max-width: 80%;
   margin: 30px auto;
-  overflow: auto;
+  overflow: hidden;
   min-height: 300px;
-  border: 1px solid gray;
   padding: 30px;
+  /* border: 1px solid gray;
   border-radius: 5px;
-  box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
+  box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px; */
+}
+.mapContainer .left {
+  flex: 1;
+}
+.mapContainer .right {
+  flex: 1;
 }
 .mapContainer div {
   margin: auto;
@@ -219,6 +232,16 @@ h5 {
 }
 .mapContainer p {
   text-align: left;
+}
+.reservationContainer {
+  max-width: 95%;
+  margin: 30px auto;
+  overflow: auto;
+  min-height: 300px;
+  border: 1px solid gray;
+  padding: 30px;
+  border-radius: 5px;
+  box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
 }
 .btn {
   display: inline-block;
@@ -269,7 +292,36 @@ h5 {
   border-radius: 5px;
   box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
 }
+
 .reviewerContainer {
+  max-width: 500px;
+
+.imgContainer {
+  max-width: 100%;
+  margin: 30px auto;
+  object-fit: fill;
+  max-height: 500px;
+  border-radius: 10px;
+  box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
+  overflow: auto;
+}
+.amenitiesContainer {
+  max-width: 80%;
+  margin: 30px auto;
+  overflow: auto;
+  min-height: 300px;
+  padding: 30px;
+  /* border: 1px solid gray;
+  border-radius: 5px;
+  box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px; */
+}
+
+#dateHeader {
+  margin: auto;
+  text-align: center;
+}
+
+.hostContainer {
   max-width: 500px;
   margin: 30px auto;
   overflow: auto;
@@ -278,14 +330,8 @@ h5 {
   padding: 30px;
   border-radius: 5px;
   box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
+  position: relative;
 }
-.imgContainer {
-  max-width: 1300px;
-  margin: 30px auto;
-  object-fit: fill;
-  max-height: 500px;
-  border-radius: 10px;
-  box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
-  overflow: hidden;
-}
+
 </style>
+
