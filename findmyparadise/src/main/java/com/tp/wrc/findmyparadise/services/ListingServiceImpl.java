@@ -1,13 +1,18 @@
 package com.tp.wrc.findmyparadise.services;
 
+import com.tp.wrc.findmyparadise.controllers.requests.AddListingRequest;
 import com.tp.wrc.findmyparadise.exceptions.*;
+import com.tp.wrc.findmyparadise.models.Health;
 import com.tp.wrc.findmyparadise.models.Host;
 import com.tp.wrc.findmyparadise.models.Listing;
+import com.tp.wrc.findmyparadise.models.Rules;
 import com.tp.wrc.findmyparadise.repositories.ListingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class ListingServiceImpl implements ListingService {
@@ -16,7 +21,16 @@ public class ListingServiceImpl implements ListingService {
     private ListingRepository repo;
 
     @Autowired
-    HostServiceImpl service;
+    HostServiceImpl hostService;
+
+    @Autowired
+    RulesServiceImpl rulesService;
+
+    @Autowired
+    HealthServiceImpl healthService;
+
+
+
 
     @Override
     public List<Listing> index() {
@@ -29,15 +43,54 @@ public class ListingServiceImpl implements ListingService {
         return listing;
     }
 
+//    @Override
+//    public Listing create(Listing listing, Integer hostID) throws InvalidHostIDException, NullHostIDException, NullListingNameException, InvalidListingNameException, NullAddressException, InvalidAddressException, NullListingPriceException {
+//        if(hostID == null)
+//        {
+//            throw new NullHostIDException("Cannot have a null host ID!");
+//        }
+//        if(hostID < 0 )
+//        {
+//            throw new InvalidHostIDException("Cannot have a host ID that is "+ hostID+"!");
+//        }
+//        if(listing.getName() == null)
+//        {
+//            throw new NullListingNameException("Cannot have a null listing name!");
+//        }
+//        if(listing.getName().trim().length() <= 0)
+//        {
+//            throw new InvalidListingNameException("You must enter a title that is not whitespace!");
+//        }
+//        if(listing.getAddress() == null)
+//        {
+//            throw new NullAddressException("Cannot have a null listing name!");
+//        }
+//        if(listing.getName().trim().length() <= 0)
+//        {
+//            throw new InvalidAddressException("You must enter an address that is not whitespace!");
+//        }
+//        if(listing.getPrice() == null)
+//        {
+//            throw new NullListingPriceException("Cannot have a null price!");
+//        }
+//        if(listing.getPrice() <= 0)
+//        {
+//            throw new InvalidListingNameException("Invalid monetary amount! Must be more than 0!");
+//        }
+//        Host listHost = service.show(hostID);
+//        listing.setHost(listHost);
+//        return repo.saveAndFlush(listing);
+//    }
+
     @Override
-    public Listing create(Listing listing, Integer hostID) throws InvalidHostIDException, NullHostIDException, NullListingNameException, InvalidListingNameException, NullAddressException, InvalidAddressException, NullListingPriceException {
-        if(hostID == null)
+    public Listing create(AddListingRequest listing) throws InvalidHostIDException, NullHostIDException, NullListingNameException, InvalidListingNameException, NullAddressException, InvalidAddressException, NullListingPriceException {
+        if(listing.getHostID() == null)
         {
             throw new NullHostIDException("Cannot have a null host ID!");
         }
-        if(hostID < 0 )
+        if(listing.getHostID() < 0 )
         {
-            throw new InvalidHostIDException("Cannot have a host ID that is "+ hostID+"!");
+            throw new InvalidHostIDException("Cannot have a host ID that is "+ listing.getHostID()+"!");
         }
         if(listing.getName() == null)
         {
@@ -63,9 +116,34 @@ public class ListingServiceImpl implements ListingService {
         {
             throw new InvalidListingNameException("Invalid monetary amount! Must be more than 0!");
         }
-        Host listHost = service.show(hostID);
-        listing.setHost(listHost);
-        return repo.saveAndFlush(listing);
+        Listing newListing = new Listing();
+        Host listHost = hostService.show(listing.getHostID());
+        List<Rules> rule = new ArrayList<>();
+        for(Integer id : listing.getRuleID())
+        {
+            try {
+                rule.add(rulesService.show(id));
+            }
+            catch (NoListingFoundException e)
+            {
+                System.out.println("Cannot find that rule!");
+            }
+        }
+        List<Health> health = new ArrayList<>();
+        for(Integer id : listing.getHealthID())
+        {
+            try {
+                health.add(healthService.show(id));
+            }
+            catch (NoListingFoundException e)
+            {
+                System.out.println("Cannot find that health rule!");
+            }
+        }
+        newListing.setHost(listHost);
+        newListing.setRules((Set<Rules>) rule);
+        newListing.setHealthRules((Set<Health>) health);
+        return repo.saveAndFlush(newListing);
     }
 
 

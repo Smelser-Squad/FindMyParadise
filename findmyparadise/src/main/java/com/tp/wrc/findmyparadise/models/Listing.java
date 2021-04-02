@@ -268,4 +268,19 @@ public class Listing implements Serializable {
         this.photos = photos;
     }
 
+    public Set<Rules> getRules() {
+        return rules;
+    }
+
+    public void setRules(Set<Rules> rules) {
+        this.rules = rules;
+    }
+
+    public Set<Health> getHealthRules() {
+        return healthRules;
+    }
+
+    public void setHealthRules(Set<Health> healthRules) {
+        this.healthRules = healthRules;
+    }
 }

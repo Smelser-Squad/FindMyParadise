@@ -8,13 +8,11 @@ import java.util.Set;
 @Table(name = "house_rules")
 public class Rules implements Serializable {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="rule_id")
     private Integer ruleId;
-
-    @Column(name = "rule_name")
-    private String ruleName;
 
     @Column(name = "rule_value")
     private String ruleValue;
@@ -29,10 +27,10 @@ public class Rules implements Serializable {
 
     }
 
-    public Rules(Integer ruleId, Set<Listing> listings, String ruleName) {
+    public Rules(Integer ruleId, Set<Listing> listings, String ruleValue) {
         this.ruleId = ruleId;
         this.listings = listings;
-        this.ruleName = ruleName;
+        this.ruleValue = ruleValue;
     }
 
     public Integer getRuleId() {
@@ -43,12 +41,13 @@ public class Rules implements Serializable {
         this.ruleId = ruleId;
     }
 
-    public String getRuleName() {
-        return ruleName;
+
+    public String getRuleValue() {
+        return ruleValue;
     }
 
-    public void setRuleName(String ruleName) {
-        this.ruleName = ruleName;
+    public void setRuleValue(String ruleValue) {
+        this.ruleValue = ruleValue;
     }
 
     public Set<Listing> getListings() {
