@@ -83,7 +83,6 @@ public class Listing implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "amenity_id"))
     private Set<Amenity> amenities = new HashSet<>();
 
-
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "listing_reviews",
