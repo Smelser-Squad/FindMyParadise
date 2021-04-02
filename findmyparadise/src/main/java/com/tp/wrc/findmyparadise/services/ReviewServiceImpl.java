@@ -60,7 +60,6 @@ public class ReviewServiceImpl implements ReviewService {
             toAdd.setValueRating(newReview.getValueRating());
             toAdd.setCheckInRating(newReview.getCheckInRating());
             toAdd.setCommunicationRating(newReview.getCommunicationRating());
-            toAdd.setReviewText(newReview.getReviewText());
             toAdd.setReviewer(newReview.getReviewer());
             return reviewRepo.saveAndFlush(toAdd);
         } else {
