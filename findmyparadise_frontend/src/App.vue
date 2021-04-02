@@ -1,5 +1,9 @@
 <template>
   <div id="AppBody">
+    <div class="masterContainer">
+      <div class="header">
+        <img src="./assets/fyplogo.png" />
+      </div>
       <div class="imgContainer">
         <GalleryMini />
       </div>
@@ -10,6 +14,7 @@
           :dateEnd="range.end"
         />
       </div>
+      <hr class="light" />
       <br />
       <div class="amenitiesContainer">
         <amenities title="Amenities"></amenities>
@@ -25,19 +30,20 @@
       </div>
       <hr class="light" />
       <br />
-      <br />
-      <div class="container">
-        <description title="Description" @email="toggleEmail"> </description>
+      <div class="grid-container">
+        <div class="container">
+          <description title="Description" @email="toggleEmail"> </description>
+        </div>
+        <div class="container">
+          <review></review>
+        </div>
+        <div class="hostContainer">
+          <host></host>
+        </div>
       </div>
-      <div class="reviewContainer">
-        <review></review>
-      </div>
-      <div class="reviewerContainer">
-        <reviewer> </reviewer>
-      </div>
-      <div class="container">
-        <host></host>
-      </div>
+      <br>
+      <hr class="light">
+      <br>
       <div class="scrollContainer">
         <more-places></more-places>
       </div>
@@ -51,6 +57,7 @@
       >
       </email>
     </div>
+  </div>
 </template>
 
 <script>
@@ -63,9 +70,7 @@ import Review from "./components/Review";
 import Events from "./components/Events";
 import DateRangePicker from "./components/DateRangePicker.vue";
 import Email from "./components/Email";
-
 import GalleryMini from "./components/GalleryMini.vue";
-
 import Host from "./components/Host.vue";
 export default {
   name: "App",
@@ -82,7 +87,6 @@ export default {
     Events,
     Email,
   },
-
   methods: {
     Change(event) {
       console.log(event);
@@ -91,12 +95,14 @@ export default {
       this.emailTrigger = !this.emailTrigger;
       this.host = host;
     },
-
     transferDates(range) {
       this.range = range;
-
       console.log(this.range.start);
       console.log(this.range.end);
+    },
+    transferDays(num) {
+      this.days = num;
+      console.log(this.days);
     },
   },
   data() {
@@ -107,6 +113,8 @@ export default {
         start: new Date(),
         end: new Date(),
       },
+
+      days: "",
     };
   },
 };
@@ -188,6 +196,11 @@ body {
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
 }
+.vc-pane-container {
+  border: 2px solid black;
+  border-color: black;
+  background-color: white;
+}
 .container {
   max-width: 500px;
   margin: 30px auto;
@@ -209,6 +222,10 @@ body {
   padding: 30px;
   border-radius: 5px;
   box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
+}
+.amenitiesContainer h3 {
+  margin: auto;
+  text-align: center;
 }
 /* .masterContainer div,
 h2,
@@ -248,7 +265,8 @@ h5 {
 .reservationContainer {
   max-width: 95%;
   margin: 30px auto;
-  overflow: auto;
+  overflow: hidden;
+  max-height: 725px;
   min-height: 200px;
   /* border: 1px solid gray; */
   padding: 30px;
@@ -295,7 +313,12 @@ h5 {
 .datePicker {
   display: inline;
 }
-.reviewContainer {
+.grid-container {
+  display: grid;
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+/* .reviewContainer {
   max-width: 500px;
   margin: 30px auto;
   overflow: auto;
@@ -304,37 +327,24 @@ h5 {
   padding: 30px;
   border-radius: 5px;
   box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
+  float: left;
 }
-.imgContainer {
-  max-width: 100%;
-  margin: 30px auto;
-  object-fit: fill;
-  max-height: 500px;
-  border-radius: 10px;
-  box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
-  overflow: auto;
-}
-.amenitiesContainer {
-  max-width: 80%;
+.descContainer {
+  max-width: 500px;
   margin: 30px auto;
   overflow: auto;
   min-height: 300px;
-  position: absolute;
-  top: 1500px;
-  left: 50%;
-  -webkit-transform: translateX(-50%);
-  transform: translateX(-50%);
-  text-align: center;
+  border: 1px solid gray;
   padding: 30px;
-  /* border: 1px solid gray;
   border-radius: 5px;
-  box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px; */
-}
+  box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
+  float: right;
+} */
 .imgContainer {
   max-width: 100%;
   margin: 30px auto;
   object-fit: fill;
-  max-height: 500px;
+  max-height: 400px;
   border-radius: 10px;
   box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
   overflow: auto;
@@ -353,19 +363,16 @@ h5 {
   margin: auto;
   text-align: center;
 }
-.amenitiesContainer {
-  max-width: 80%;
+.hostContainer {
+  max-width: 500px;
   margin: 30px auto;
   overflow: auto;
   min-height: 300px;
+  border: 1px solid gray;
   padding: 30px;
-  /* border: 1px solid gray;
   border-radius: 5px;
-  box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px; */
-}
-#dateHeader {
-  margin: auto;
-  text-align: center;
+  box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
+  position: relative;
 }
 .light {
   margin: auto;
@@ -373,3 +380,4 @@ h5 {
   width: 80%;
 }
 </style>
+

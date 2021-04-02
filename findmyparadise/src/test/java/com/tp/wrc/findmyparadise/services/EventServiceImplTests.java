@@ -83,7 +83,7 @@ class EventServiceImplTests {
 
     @Test
     public void updateEventTest() {
-        Event updatedEvent = new Event("Updated Event Title", "Updated Event Summary", "Updated Event Category", 1, 1, 1);
+        Event updatedEvent = new Event("Updated Event Title", "Updated Event Summary", "Updated Event Category", "Updated Image Source", 1, 1, 1);
         updatedEvent.setId(1);
         toTest.update(updatedEvent);
         Event event = toTest.show(1);

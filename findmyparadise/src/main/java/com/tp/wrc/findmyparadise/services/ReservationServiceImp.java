@@ -1,10 +1,7 @@
 package com.tp.wrc.findmyparadise.services;
 
 
-import com.tp.wrc.findmyparadise.exceptions.InvalidListingIDException;
-import com.tp.wrc.findmyparadise.exceptions.InvalidReservationIdException;
-
-import com.tp.wrc.findmyparadise.exceptions.NullReservationIdException;
+import com.tp.wrc.findmyparadise.exceptions.*;
 
 import com.tp.wrc.findmyparadise.models.Listing;
 import com.tp.wrc.findmyparadise.models.Reservation;
@@ -12,6 +9,7 @@ import com.tp.wrc.findmyparadise.repositories.ReservationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -51,13 +49,43 @@ public class ReservationServiceImp implements ReservationService{
 
 
     @Override
-    public Reservation addReservation(Reservation newReservation) throws InvalidReservationIdException, NullReservationIdException {
+    public Reservation addReservation(Reservation newReservation) throws NullReservationObjectException, NullGuestsException, InvalidGuestsException, NullDatesException, PastDatesException {
+        if(newReservation==null){
+            throw new NullReservationObjectException("Cannot add null reservation");
+
+        }
+        if(newReservation.getAdults() ==null|| newReservation.getChildren()==null || newReservation.getInfants()==null){
+            throw new NullGuestsException("Cannot add reservation with null guests");
+        }
+        if(newReservation.getAdults()<1 || newReservation.getChildren()<0 || newReservation.getInfants()<0){
+            throw new InvalidGuestsException("Cannot add reservation with invalid guests");
+        }
+        if(newReservation.getCheckInDate()==null || newReservation.getCheckOutDate()==null){
+            throw new NullDatesException("Cannot add a reservation with null date");
+        }
+
+        if(newReservation.getCheckOutDate().isBefore(newReservation.getCheckInDate())){
+            throw new PastDatesException("Cannot add reservation with past date");
+        }
+
+
+
         return repo.saveAndFlush(newReservation);
     }
 
     @Override
-    public Reservation updateReservation(Reservation newReservation) throws InvalidReservationIdException, NullReservationIdException {
+    public Reservation updateReservation(Reservation newReservation) throws InvalidReservationIdException, NullReservationIdException, NullDatesException,InvalidGuestsException, NullGuestsException {
         Reservation edited = repo.findById(newReservation.getReservationId()).get();
+
+        if(edited.getAdults() ==null|| edited.getChildren()==null || edited.getInfants()==null){
+            throw new NullGuestsException("Cannot update reservation with null guests");
+        }
+        if(edited.getAdults()<1 || edited.getChildren()<0 || edited.getInfants()<0){
+            throw new InvalidGuestsException("Cannot update reservation with invalid guests");
+        }
+        if(edited.getCheckInDate()==null || edited.getCheckOutDate()==null){
+            throw new NullDatesException("Cannot update a reservation with null date");
+        }
 
         if (edited != null) {
 
@@ -81,6 +109,7 @@ public class ReservationServiceImp implements ReservationService{
         if(reservationId==null){
             throw new NullReservationIdException("Null Reservation id entered");
         }
+
         Reservation newReservation = repo.findById(reservationId).get();
 
         if (newReservation != null) {
