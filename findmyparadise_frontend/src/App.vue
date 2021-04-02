@@ -29,9 +29,7 @@
     <div class="reviewContainer">
       <review></review>
     </div>
-    <div class="reviewerContainer">
-      <reviewer> </reviewer>
-    </div>
+   
     <div class="container">
       <host @email="toggleEmail"></host>
     </div>
@@ -341,4 +339,3 @@ h5 {
 }
 
 </style>
-

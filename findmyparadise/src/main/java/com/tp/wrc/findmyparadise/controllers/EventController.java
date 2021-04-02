@@ -5,6 +5,7 @@ import com.tp.wrc.findmyparadise.exceptions.InvalidEventIdException;
 import com.tp.wrc.findmyparadise.exceptions.NullEventIdException;
 import com.tp.wrc.findmyparadise.models.Amenity;
 import com.tp.wrc.findmyparadise.models.Event;
+import com.tp.wrc.findmyparadise.models.Listing;
 import com.tp.wrc.findmyparadise.services.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -56,6 +57,20 @@ public class EventController {
         List<Event> toReturn;
         try {
             toReturn = service.index();
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+
+        return ResponseEntity.ok(toReturn);
+    }
+
+    //Retrieves a list of all Events in the database within a given distance (in miles) from a Listing.
+    @GetMapping("/events-dist/{distance}")
+    public ResponseEntity getEventsWithinFiveMiles(@RequestBody Listing listing, @PathVariable int distance) {
+
+        List<Event> toReturn;
+        try {
+            toReturn = service.indexWithinDistance(listing, distance);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
