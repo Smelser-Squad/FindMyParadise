@@ -63,9 +63,12 @@ public class ReservationServiceImp implements ReservationService{
         if(newReservation.getCheckInDate()==null || newReservation.getCheckOutDate()==null){
             throw new NullDatesException("Cannot add a reservation with null date");
         }
-        if(!newReservation.getCheckInDate().isEqual(LocalDate.now()) || newReservation.getCheckOutDate().isBefore(newReservation.getCheckInDate())){
-            throw new PastDatesException("Cannot add reservation with past dates");
+
+        if(newReservation.getCheckOutDate().isBefore(newReservation.getCheckInDate())){
+            throw new PastDatesException("Cannot add reservation with past date");
         }
+
+
 
         return repo.saveAndFlush(newReservation);
     }

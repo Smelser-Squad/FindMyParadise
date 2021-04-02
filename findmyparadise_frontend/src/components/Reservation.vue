@@ -14,7 +14,9 @@
       <form v-on:submit.prevent="submitForm" method="post">
       
         <h5>Guests:</h5>
-        <Guests @Qty="updateQty($event)" />
+        <Guests @iAQty="increaseAQty($event)" @dAQty="decreaseAQty($event)" 
+        @iCQty="increaseCQty($event)" @dCQty="decreaseCQty($event)" 
+        @iIQty="increaseIQty($event)" @dIQty="decreaseAQty($event)"/>
  <span> Start Date: {{updateDate(dateStart)}}</span>
         <br/>
         <span> End Date: {{updateDate(dateEnd)}}</span>
@@ -88,6 +90,7 @@
 <script>
 import Guests from "./Guests";
 import axios from "axios";
+import moment from 'moment';
 
 
 
@@ -111,9 +114,9 @@ export default {
       form:{
         CheckIn:'',
         CheckOut:'',
-        NumAdults:'',
-        NumChildren:'',
-        NumInfants:'',
+        NumAdults:1,
+        NumChildren:0,
+        NumInfants:0,
         NumOfDays:1,
         TotalPrice:''
       },
@@ -168,16 +171,46 @@ export default {
     showDetails() {
       this.details= true;
     },
-  updateQty(num){
+  increaseAQty(num){
     
     this.form.NumAdults=num +1;
    
   
   },
+  decreaseAQty(num){
+    
+    this.form.NumAdults-=num;
+   
+  
+  },
+  increaseCQty(num){
+    
+    this.form.NumChildren=num+1;
+   
+  
+  },
+  decreaseCQty(num){
+    
+    this.form.NumChildren-=num;
+   
+  
+  },
+  increaseIQty(num){
+    
+    this.form.NumInfants=num;
+   
+  
+  },
+  decreaseIQty(num){
+    
+    this.form.NumInfants-=num;
+   
+  
+  },
    updateDate(date) {
        let dateSub = date
-       this.form.CheckIn=this.dateStart;
-       this.form.CheckOut=this.dateEnd;
+       this.form.CheckIn=moment(this.dateStart).format('MM-DD-YYYY');
+       this.form.CheckOut=moment(this.dateEnd).format('MM-DD-YYYY');
       return dateSub;
     },
     updateDays(num){

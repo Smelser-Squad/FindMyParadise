@@ -9,6 +9,7 @@
       :rows = "1"
     />
     <br />
+  
     <span>Start Date: {{ updateDate(range.start) }}</span>
 
     <br />
@@ -22,6 +23,7 @@
 
 <script>
 import { DatePicker } from "v-calendar";
+import moment from 'moment';
 // import Calendar from './Calendar.vue';
 
 export default {
@@ -38,8 +40,7 @@ export default {
   },
   methods: {
     updateDate(date) {
-      let dateSub = date.toString().substring(0, 15);
-      return dateSub;
+      return moment(date).format('MM-DD-YYYY');
     },
      numOfDays() {
       let difference = new Date(this.range.end).getTime() - new Date(this.range.start).getTime()
