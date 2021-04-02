@@ -1,7 +1,7 @@
 <template>
     <div class="row">
         <div class="left">
-            <img class="leftImage" src="https://a0.muscache.com/im/pictures/36283cf5-95c8-4c70-800f-b1c5a9a6f5a0.jpg?im_w=1200" @click="() => TogglePopup('buttonTrigger')">
+            <img class="leftImage" src="" @click="() => TogglePopup('buttonTrigger')">
         </div>
         <div class="rightSide">
             <img class="rightTop" src="https://a0.muscache.com/im/pictures/73b354de-ca65-45a4-a492-a6f8c922edc2.jpg?im_w=720" @click="() => TogglePopup('buttonTrigger')">
@@ -40,10 +40,10 @@
 
 <script>
 import { ref } from "vue";
-//import axios from "axios";
+import axios from "axios";
 import Modal from "./Modal";
 
-//let listingId = 1;
+let listingId = 1;
 export default {
     components: { Modal },
     name: "carousel",
@@ -61,15 +61,22 @@ export default {
             popupTriggers,
             TogglePopup,
         };
+    },
+    data(){
+        return {
+            dataObject: {},
+        };
+    },
+    mounted(){
+        axios.get(`http://localhost:8080/api/gallery/listing/${listingId}`).then((res) => {
+            this.dataObject = res.data;
+            console.log(res.data);
+            document.getElementsByClassName("leftImage").src = res.data.imageSrc;
+        })
+    },
+    methods(){
+
     }
-    // data(){
-    //     imageSrc : 'https://a0.muscache.com/im/pictures/36283cf5-95c8-4c70-800f-b1c5a9a6f5a0.jpg?im_w=1200'
-    // }//,
-    // methods(){
-    //     displayImage(item){
-    //         return null;
-    //     };
-    // }
 };
 </script>
 
