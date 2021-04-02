@@ -9,7 +9,10 @@ import java.util.Set;
 
 @Entity
 @Table(name = "listing")
+<<<<<<< HEAD
 
+=======
+>>>>>>> 89811e1cd9453d9a215b18896038489ae070191e
 public class Listing implements Serializable {
 
     @Id
