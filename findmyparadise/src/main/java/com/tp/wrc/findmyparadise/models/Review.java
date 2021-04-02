@@ -1,13 +1,14 @@
 package com.tp.wrc.findmyparadise.models;
-
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Set;
 
 @Entity
 @Table(name ="review")
+@JsonIgnoreProperties(value = {"listings"}, allowSetters = true)
+
 public class Review implements Serializable {
 
     @Id
@@ -36,22 +37,19 @@ public class Review implements Serializable {
     @Column(name = "communication_rating")
     private Integer communicationRating;
 
-    @Column(name = "review_text")
-    private String reviewText;
+
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "fk_reviewer_id", referencedColumnName = "reviewer_id", nullable = false)
     private Reviewer reviewer;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "listing_id")
-    @JsonBackReference
-    private Listing listing;
+    @ManyToMany(mappedBy = "reviews", cascade = CascadeType.ALL)
+    private Set<Listing> listings;
 
     public Review(){}
 
     public Review(Integer rating, Integer cleanlinessRating, Integer locationRating, Integer accuracyRating,
-                  Integer valueRating, Integer checkInRating, Integer communicationRating, String reviewText, Reviewer reviewer, Listing listing){
+                  Integer valueRating, Integer checkInRating, Integer communicationRating, Reviewer reviewer){
         this.rating = rating;
         this.cleanlinessRating = cleanlinessRating;
         this.locationRating = locationRating;
@@ -59,9 +57,7 @@ public class Review implements Serializable {
         this.valueRating = valueRating;
         this.checkInRating = checkInRating;
         this.communicationRating = communicationRating;
-        this.reviewText = reviewText;
         this.reviewer = reviewer;
-        this.listing = listing;
     }
 
     public Integer getReviewId() {
@@ -128,13 +124,7 @@ public class Review implements Serializable {
         this.communicationRating = communicationRating;
     }
 
-    public String getReviewText() {
-        return reviewText;
-    }
 
-    public void setReviewText(String reviewText) {
-        this.reviewText = reviewText;
-    }
 
     public Reviewer getReviewer() {
         return reviewer;
@@ -144,11 +134,11 @@ public class Review implements Serializable {
         this.reviewer = reviewer;
     }
 
-    public Listing getListing() {
-        return listing;
+    public Set<Listing> getListings() {
+        return listings;
     }
 
-    public void setListing(Listing listing) {
-        this.listing = listing;
+    public void setListings(Set<Listing> listings) {
+        this.listings = listings;
     }
 }

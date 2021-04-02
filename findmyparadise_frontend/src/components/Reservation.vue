@@ -1,5 +1,5 @@
 <template>
-  <div id="Resrevation body">
+  <div>
     <header>
       <h2>
         <b>${{ dataObject.price }}</b> / night
@@ -23,14 +23,26 @@
         >
       </div>
     </header>
-    <body>
+    <body id ="ReservationBody">
       <form v-on:submit.prevent="submitForm">
-        <h5>Guests:</h5>
-        <Guests />
-        <h5>Dates</h5>
-        <span> Start Date: {{updateDate(dateStart)}}</span>
+        <div class="split">
+          <div class="split-left">
+            <h5>Guests:</h5>
+            <Guests />
+          </div>
+          <div class="split-right">
+            <h5>Dates</h5>
+          </div>
+
+          <div v-if="showCalendar">
+            <DateRangePicker v-on:datePick="updateDates($event)" />
+          </div>
+        </div>
+
+        <span> Start Date: {{ updateDate(dateStart) }} </span>
         <br/>
         <span> End Date: {{updateDate(dateEnd)}}</span>
+        <br/>
         <span
           class="_19di23v"
           style="
@@ -104,7 +116,7 @@ export default {
   name: "Reservation",
   props: {
     dateStart: new Date(),
-    dateEnd: new Date()
+    dateEnd: new Date(),
   },
 
   data() {
@@ -165,20 +177,35 @@ export default {
       this.show = true;
     },
     updateDate(date) {
-      let dateSub = date.toString().substring(0, 15);
+      let dateSub = date;
       return dateSub;
-      
     },
   },
 };
 </script>
 <style scoped>
+#ReservationBody {
+  background: whitesmoke !important;
+}
+#ReservationBody {
+  margin: auto;
+  text-align: center;
+}
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
 }
+/* .split {
+  display: flex;
+}
+.split .split-left {
+  flex: 1;
+}
+.split .split-right {
+  flex: 1;
+} */
 .popup {
   position: relative;
   display: inline-block;
