@@ -32,16 +32,11 @@
     <div class="reviewerContainer">
       <reviewer> </reviewer>
     </div>
-<<<<<<< HEAD
-    <div class="scrollContainer">
-    <events title="Events"></events>
-=======
     <div class="container">
       <host @email="toggleEmail"></host>
     </div>
     <div class="scrollContainer">
       <events title="Events"></events>
->>>>>>> 6dbb5ae8bb229da21c727437c4a9c4edcf6afed9
     </div>
     <email
       v-if="emailTrigger && host != undefined"
@@ -59,13 +54,7 @@ import Reservation from "./components/Reservation.vue";
 import Map from "./components/Map.vue";
 import Description from "./components/Description";
 import Amenities from "./components/Amenities.vue";
-<<<<<<< HEAD
-
-import Review from "./components/Review"
-import Reviewer from "./components/Reviewer"
-=======
 import Review from "./components/Review";
->>>>>>> 6dbb5ae8bb229da21c727437c4a9c4edcf6afed9
 import Events from "./components/Events";
 import DateRangePicker from "./components/DateRangePicker.vue";
 import Email from "./components/Email";
@@ -82,20 +71,9 @@ export default {
     Review,
     Host,
     DateRangePicker,
-<<<<<<< HEAD
-    Events,
-    Email
-  },
-  data() {
-    return {
-      emailTrigger: false,
-      host: {}
-    }
-=======
     GalleryMini,
     Events,
     Email,
->>>>>>> 6dbb5ae8bb229da21c727437c4a9c4edcf6afed9
   },
   methods: {
     Change(event) {
@@ -356,4 +334,3 @@ h5 {
 }
 
 </style>
-
