@@ -34,7 +34,7 @@
         <review></review>
       </div>
 
-      <div class="container">
+      <div class="hostContainer">
         <host></host>
       </div>
       <div class="scrollContainer">
@@ -63,11 +63,8 @@ import Review from "./components/Review";
 import Events from "./components/Events";
 import DateRangePicker from "./components/DateRangePicker.vue";
 import Email from "./components/Email";
-
 import GalleryMini from "./components/GalleryMini.vue";
-
 import Host from "./components/Host.vue";
-
 export default {
   name: "App",
   components: {
@@ -83,7 +80,6 @@ export default {
     Events,
     Email,
   },
-
   methods: {
     Change(event) {
       console.log(event);
@@ -92,10 +88,8 @@ export default {
       this.emailTrigger = !this.emailTrigger;
       this.host = host;
     },
-
     transferDates(range) {
       this.range = range;
-
       console.log(this.range.start);
       console.log(this.range.end);
     },
@@ -203,14 +197,12 @@ body {
   border-radius: 5px;
   box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
 }
-
 .masterContainer div,
 h2,
 h5 {
   margin: auto;
   text-align: center;
 }
-
 .reservationContainer div,
 h2,
 h5 {
@@ -300,7 +292,6 @@ h5 {
   border-radius: 5px;
   box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
 }
-
 .imgContainer {
   max-width: 100%;
   margin: 30px auto;
@@ -310,7 +301,6 @@ h5 {
   box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
   overflow: auto;
 }
-
 .amenitiesContainer {
   max-width: 80%;
   margin: 30px auto;
@@ -338,5 +328,16 @@ h5 {
 #dateHeader {
   margin: auto;
   text-align: center;
+}
+.hostContainer {
+  max-width: 500px;
+  margin: 30px auto;
+  overflow: auto;
+  min-height: 300px;
+  border: 1px solid gray;
+  padding: 30px;
+  border-radius: 5px;
+  box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
+  position: relative;
 }
 </style>
