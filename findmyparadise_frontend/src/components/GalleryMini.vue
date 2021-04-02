@@ -4,10 +4,10 @@
             <img class="leftImage" :src="firstImage" @click="() => TogglePopup('buttonTrigger')">
         </div>
         <div class="rightSide">
-            <img class="rightTop" src="https://a0.muscache.com/im/pictures/73b354de-ca65-45a4-a492-a6f8c922edc2.jpg?im_w=720" @click="() => TogglePopup('buttonTrigger')">
-            <img class="rightTopR" src="https://a0.muscache.com/im/pictures/d4a660ca-31ea-41d0-94bd-d277657d170a.jpg?im_w=720" @click="() => TogglePopup('buttonTrigger')">
-            <img class="rightBot" src="https://a0.muscache.com/im/pictures/15d1a761-3e20-4631-83ca-32594fa88975.jpg?im_w=1440" @click="() => TogglePopup('buttonTrigger')">
-            <img class="rightBotR" src="https://a0.muscache.com/im/pictures/939d189e-560e-49fd-aa01-b0f26740b786.jpg?im_w=720" @click="() => TogglePopup('buttonTrigger')">
+            <img class="rightTop" :src="secondImage" @click="() => TogglePopup('buttonTrigger')">
+            <img class="rightTopR" :src="thirdImage" @click="() => TogglePopup('buttonTrigger')">
+            <img class="rightBot" :src="fourthImage" @click="() => TogglePopup('buttonTrigger')">
+            <img class="rightBotR" :src="fifthImage" @click="() => TogglePopup('buttonTrigger')">
         </div>
     </div>
 
@@ -15,15 +15,10 @@
                :TogglePopup="() => TogglePopup('buttonTrigger')">
             <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="https://a0.muscache.com/im/pictures/b79fb3f2-70a2-4fcd-a207-db3124d01e8b.jpg?im_w=1200" class="d-block w-100" alt="">
+                    <div class="carousel-item active" v-for="image in images" :key="image">
+                        <img :src="image.imageSrc" class="d-block w-100" alt="">
                     </div>
-                    <div class="carousel-item">
-                        <img src="" class="d-block w-100" alt="">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="" class="d-block w-100" alt="">
-                    </div>
+                    
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -64,19 +59,24 @@ export default {
     },
     data(){
         return {
-            dataObject: {},
+            images: {},
             firstImage : String,
             secondImage: String,
             thirdImage: String,
-            forthImage: String,
-            fiveImage: String
+            fourthImage: String,
+            fifthImage: String
         };
     },
     mounted(){
         axios.get(`http://localhost:8080/api/gallery/listing/${listingId}`).then((res) => {
-            this.dataObject = res.data;
+            this.images = res.data;
+            console.log(this.images);
             this.firstImage = res.data[0].imageSrc;
-            console.log(res.data);
+            this.secondImage = res.data[1].imageSrc;
+            this.thirdImage = res.data[2].imageSrc;
+            this.fourthImage = res.data[3].imageSrc;
+            this.fifthImage = res.data[4].imageSrc;
+
         })
     },
     methods(){
