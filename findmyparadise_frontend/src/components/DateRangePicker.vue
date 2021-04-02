@@ -5,6 +5,8 @@
       v-model="range"
       is-range
       :min-date="new Date()"
+      :columns = "2"
+      :rows = "1"
     />
     <br />
     <span>Start Date: {{ updateDate(range.start) }}</span>
@@ -14,7 +16,7 @@
     <br />
   <span>Number of days: </span>
     <span>{{numOfDays()}}</span>
-    <button type="button" @click="sendDate">Submit</button>
+    <button class="btn" @click="sendDate">Submit</button>
   </div>
 </template>
 
@@ -46,12 +48,13 @@ export default {
       return days
     },
     
-    sendDate(){
-      this.$emit('datePickIn',this.range.start);
-      this.$emit('datePickOut',this.range.end);
-      this.$$emit("differeceDays",this.numOfDays())
+ 
+       sendDate() {
+      this.$emit("datePick", this.range);
+      this.$emit("diffDays",this.numOfDays())
+    },
       
-     }
+     
     }
 }
 </script>

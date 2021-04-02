@@ -12,7 +12,7 @@
         -
       </button>
       {{ AdultsNum }}
-      <button type="button" class="btn" @click="increaseAdults();sendQty;">+</button>
+      <button type="button" class="btn" @click="sendQty();increaseAdults()">+</button>
     </h5>
     <h5>
       Children:<button type="button" class="btn" @click="decreaseChild()">-</button>{{ ChildNum
@@ -62,6 +62,8 @@ export default {
   },
   sendQty(){
     this.$emit('Qty',this.AdultsNum);
+  
+
   }
   },
   

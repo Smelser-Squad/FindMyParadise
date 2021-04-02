@@ -11,15 +11,19 @@
       </div>
     </header>
     <body>
-      <form v-on:submit.prevent="submitForm">
+      <form v-on:submit.prevent="submitForm" method="post">
       
         <h5>Guests:</h5>
-        <Guests v-on:Qty="updateQty($event)" />
+        <Guests @Qty="updateQty($event)" />
+ <span> Start Date: {{updateDate(dateStart)}}</span>
+        <br/>
+        <span> End Date: {{updateDate(dateEnd)}}</span>
 
-      <div v-if="showCalendar" ><DateRangePicker v-on:datePickIn="updateDatesIn($event)" v-on:datePickOut="updateDatesOut($event)" v-on:differeceDays="updateNights($event)"/></div>
+       <span>{{updateDays(days)}}</span>
       
-      <h3>CheckIn:</h3><input disabled v-model="form.CheckIn"/>
-       <input disabled v-model="form.CheckOut" />
+      
+      <h4>CheckIn:</h4><input disabled v-model="form.CheckIn"/>
+       <h4>CheckOut:</h4><input disabled v-model="form.CheckOut" />
 
      
 
@@ -84,19 +88,20 @@
 <script>
 import Guests from "./Guests";
 import axios from "axios";
-import DateRangePicker from "./DateRangePicker";
+
 
 
 let listingID = 1;
 
 export default {
   name: "Reservation",
-  
+  props: ['dateStart','dateEnd','days'],
 
   data() {
     return {
       showCalendar: true,
       details: false,
+      date:new Date(),
       dataObject: {},
       dailyPrice:'',
       cleaningFee:'',
@@ -116,6 +121,7 @@ export default {
         start: new Date(),
         end: new Date(),
       },
+    
     
 
 
@@ -139,7 +145,7 @@ export default {
 
   components: {
     Guests,
-    DateRangePicker,
+ 
   },
   methods: {
    
@@ -155,29 +161,32 @@ export default {
       axios
         .post("http://localhost:8080/api/reservation", this.form)
         .then((res) => {
-          console.log(res);
+          console.log(res.data);
         });
-        console.log(this.form);
+         console.log(this.form);
     },
     showDetails() {
       this.details= true;
     },
-    updateDatesIn(start) {
-      this.range.start = start;
-      this.form.CheckIn= start.toString().substring(0, 15);
-      // this.form.CheckOut=this.range.end;
-    },
-    updateDatesOut(end) {
-      
-      this.form.CheckOut=end.toString().substring(0, 15);
-
-  },
-  updateNights(nights){
-    this.form.NumOfDays=nights;
+  updateQty(num){
+    
+    this.form.NumAdults=num +1;
+   
   
   },
-  updateQty(num){
-    this.form.NumAdults=num;
+   updateDate(date) {
+       let dateSub = date
+       this.form.CheckIn=this.dateStart;
+       this.form.CheckOut=this.dateEnd;
+      return dateSub;
+    },
+    updateDays(num){
+      if(num==0){
+        this.form.NumOfDays=1
+      }else{
+     this.form.NumOfDays=num;
+      }
+       this.form.TotalPrice=(this.dailyPrice*this.form.NumOfDays) +this.serviceFee + this.cleaningFee + this.occupancyFee;
   }
   }
 };
