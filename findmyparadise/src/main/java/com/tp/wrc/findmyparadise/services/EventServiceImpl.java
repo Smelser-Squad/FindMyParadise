@@ -1,10 +1,12 @@
 package com.tp.wrc.findmyparadise.services;
 
 import com.tp.wrc.findmyparadise.models.Event;
+import com.tp.wrc.findmyparadise.models.Listing;
 import com.tp.wrc.findmyparadise.repositories.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,6 +20,38 @@ public class EventServiceImpl implements EventService {
     @Override
     public List<Event> index() {
         return eRepo.findAll();
+    }
+
+    @Override
+    public List<Event> indexWithinDistance(Listing listing, int distance) {
+        List<Event> events = eRepo.findAll();
+        List<Event> toReturn = new ArrayList();
+        for(Event event : events) {
+            double theta = listing.getLongitude() - event.getLongitude();
+            double dist = Math.sin(deg2rad(listing.getLatitude())) * Math.sin(deg2rad(event.getLatitude())) + Math.cos(deg2rad(listing.getLatitude())) * Math.cos(deg2rad(event.getLatitude())) * Math.cos(deg2rad(theta));
+            dist = Math.acos(dist);
+            dist = rad2deg(dist);
+            dist = dist * 60 * 1.1515;
+            if(dist <= distance){
+                toReturn.add(event);
+            }
+        }
+
+        return toReturn;
+    }
+
+    /*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+    /*::  This function converts decimal degrees to radians             :*/
+    /*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+    private double deg2rad(double deg) {
+        return (deg * Math.PI / 180.0);
+    }
+
+    /*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+    /*::  This function converts radians to decimal degrees             :*/
+    /*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+    private double rad2deg(double rad) {
+        return (rad * 180.0 / Math.PI);
     }
 
     @Override

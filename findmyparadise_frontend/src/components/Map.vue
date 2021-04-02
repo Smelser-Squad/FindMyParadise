@@ -18,7 +18,8 @@
 import { onMounted, ref } from "vue";
 import axios from "axios";
 
-let listingID = 3;
+let listingID = 1;
+
 export default {
   name: "Map",
   props: {
@@ -43,6 +44,7 @@ export default {
     const dataDist3 = ref(props.locationDist);
     const dataDist4 = ref(props.locationDist);
     const mapRef = ref(null);
+    
     onMounted(() => {
       axios
         .get(`http://localhost:8080/api/listing/${listingID}`)

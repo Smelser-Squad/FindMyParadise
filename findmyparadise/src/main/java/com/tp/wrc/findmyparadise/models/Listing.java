@@ -1,10 +1,11 @@
 package com.tp.wrc.findmyparadise.models;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
+
 @Entity
 @Table(name = "listing")
 public class Listing implements Serializable {
@@ -67,7 +68,6 @@ public class Listing implements Serializable {
             joinColumns = @JoinColumn(name = "listing_id"),
             inverseJoinColumns = @JoinColumn(name = "amenity_id"))
     private Set<Amenity> amenities = new HashSet<>();
-
 
     public Listing() {
     }
@@ -192,3 +192,4 @@ public class Listing implements Serializable {
         this.photos = photos;
     }
 }
+

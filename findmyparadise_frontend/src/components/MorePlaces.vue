@@ -84,7 +84,7 @@ import axios from "axios";
 export default {
   name: "more-places",
   components: {
-    HorizontalList,
+    HorizontalList
   },
   props: ["listing"],
   data() {

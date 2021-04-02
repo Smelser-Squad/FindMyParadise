@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import javax.persistence.*;
 import java.io.Serializable;
+
 @Entity
 @Table(name ="review")
 @JsonIgnoreProperties(value = {"listings"}, allowSetters = true)
@@ -30,10 +31,12 @@ public class Review implements Serializable {
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "fk_reviewer_id", referencedColumnName = "reviewer_id", nullable = false)
     private Reviewer reviewer;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "listing_id")
     @JsonBackReference
     private Listing listing;
+
 
     public Review(){}
     public Review(Integer rating, Integer cleanlinessRating, Integer locationRating, Integer accuracyRating,
@@ -106,6 +109,7 @@ public class Review implements Serializable {
     public Listing getListing() {
         return listing;
     }
+
     public void setListing(Listing listing) {
         this.listing = listing;
     }
