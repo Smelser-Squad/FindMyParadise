@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>Things to do!</h2>
+    <h2>Things To Do!</h2>
 
     <horizontal-list :items="items" :options="options">
       <template v-slot:default="{ item }">
