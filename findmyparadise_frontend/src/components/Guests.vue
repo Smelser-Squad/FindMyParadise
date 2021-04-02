@@ -4,7 +4,7 @@
       Adults:
       <button
         type="button"
-        id="DecresaeAdults"
+        id="DecreaseAdults"
         class="btn"
         @click="DecreaseAdults()"
       >
@@ -13,17 +13,17 @@
       {{ AdultsNum }}
       <button type="button" class="btn" @click="IncreaseAdults()">+</button>
     </h5>
-    <h5>
+    <h5 id="childGuests">
       Children:<button type="button" class="btn" @click="decreaseChild()">
         -</button
       >{{ ChildNum
-      }}<button type="button" class="btn" @click="increaseChild()">+</button>
+      }}<button id="IncreaseChild" type="button" class="btn" @click="increaseChild()">+</button>
     </h5>
-    <h5>
+    <h5 id="infantGuests">
       Infants:
       <button type="button" class="btn" @click="decreaseInfants()">-</button>
       {{ InfantNum }}
-      <button type="button" class="btn" @click="increaseInfants()">+</button>
+      <button id="IncreaseInfant" type="button" class="btn" @click="increaseInfants()">+</button>
     </h5>
   </div>
 </template>
@@ -74,3 +74,21 @@ export default {
   },
 };
 </script>
+<style scoped>
+#IncreaseInfant {
+  margin: auto;
+  margin-left: 2.5px;
+}
+#IncreaseChild {
+  margin: auto;
+  margin-left: 7.5px;
+}
+#childGuests {
+  margin: auto;
+  margin-right: 21px;
+}
+#infantGuests {
+  margin: auto;
+  margin-right: 10px;
+}
+</style>

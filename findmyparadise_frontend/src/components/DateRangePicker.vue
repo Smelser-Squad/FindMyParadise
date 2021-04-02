@@ -7,7 +7,7 @@
       v-on:change="ChangeDate()"
       :min-date="new Date()"
       :columns = "2"
-      :rows = "2"
+      :rows = "1"
     />
     <br />
     <span>Start Date: {{ updateDate(range.start) }}</span>

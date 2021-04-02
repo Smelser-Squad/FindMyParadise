@@ -91,7 +91,7 @@
         </div>
       </div>
       <hr />
-      <p>
+      <p id="total">
         <b>
           Total: ${{
             dataObject.price +

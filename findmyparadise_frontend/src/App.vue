@@ -1,9 +1,5 @@
 <template>
   <div id="AppBody">
-    <div class="masterContainer">
-      <div class="header">
-        <img src="./assets/fyplogo.png" />
-      </div>
       <div class="imgContainer">
         <GalleryMini />
       </div>
@@ -18,15 +14,18 @@
       <div class="amenitiesContainer">
         <amenities title="Amenities"></amenities>
       </div>
-      <hr class="light">
+      <hr class="light" />
       <div class="calenderContainer">
         <h4 id="dateHeader">Select Date Range</h4>
         <DateRangePicker @datePick="transferDates($event)" />
       </div>
-      <hr class="light">
+      <hr class="light" />
       <div class="mapContainer">
         <Map />
       </div>
+      <hr class="light" />
+      <br />
+      <br />
       <div class="container">
         <description title="Description" @email="toggleEmail"> </description>
       </div>
@@ -52,7 +51,6 @@
       >
       </email>
     </div>
-  </div>
 </template>
 
 <script>
@@ -62,7 +60,6 @@ import Map from "./components/Map.vue";
 import Description from "./components/Description";
 import Amenities from "./components/Amenities.vue";
 import Review from "./components/Review";
-import Reviewer from "./components/Reviewer";
 import Events from "./components/Events";
 import DateRangePicker from "./components/DateRangePicker.vue";
 import Email from "./components/Email";
@@ -79,7 +76,6 @@ export default {
     Description,
     Amenities,
     Review,
-    Reviewer,
     Host,
     DateRangePicker,
     GalleryMini,
@@ -127,7 +123,14 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: #dcdcdc;
+  background-image: linear-gradient(
+    to right top,
+    #000000,
+    #311921,
+    #5d2a3d,
+    #8e3b5c,
+    #c14d7d
+  );
   background-attachment: fixed;
 }
 .header {
@@ -202,16 +205,17 @@ body {
   min-height: 300px;
   border: 1px solid gray;
   background: whitesmoke;
+  opacity: 0.92;
   padding: 30px;
   border-radius: 5px;
   box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
 }
-.masterContainer div,
+/* .masterContainer div,
 h2,
 h5 {
   margin: auto;
   text-align: center;
-}
+} */
 .reservationContainer div,
 h2,
 h5 {
@@ -221,7 +225,7 @@ h5 {
 .mapContainer {
   max-width: 80%;
   margin: 30px auto;
-  overflow: auto;
+  overflow: hidden;
   min-height: 300px;
   /* border: 1px solid gray; */
   background: whitesmoke;
@@ -232,6 +236,7 @@ h5 {
 .calenderContainer {
   max-width: 80%;
   margin: 30px auto;
+  text-align: center;
   overflow: auto;
   min-height: 300px;
   /* border: 1px solid gray; */
@@ -244,11 +249,11 @@ h5 {
   max-width: 95%;
   margin: 30px auto;
   overflow: auto;
-  min-height: 300px;
-  border: 1px solid gray;
+  min-height: 200px;
+  /* border: 1px solid gray; */
   padding: 30px;
-  border-radius: 5px;
-  box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
+  /* border-radius: 5px;
+  box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px; */
 }
 .btn {
   display: inline-block;
@@ -300,15 +305,30 @@ h5 {
   border-radius: 5px;
   box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
 }
-.reviewerContainer {
-  max-width: 500px;
+.imgContainer {
+  max-width: 100%;
+  margin: 30px auto;
+  object-fit: fill;
+  max-height: 500px;
+  border-radius: 10px;
+  box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
+  overflow: auto;
+}
+.amenitiesContainer {
+  max-width: 80%;
   margin: 30px auto;
   overflow: auto;
   min-height: 300px;
-  border: 1px solid gray;
+  position: absolute;
+  top: 1500px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  text-align: center;
   padding: 30px;
+  /* border: 1px solid gray;
   border-radius: 5px;
-  box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
+  box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px; */
 }
 .imgContainer {
   max-width: 100%;
@@ -319,7 +339,6 @@ h5 {
   box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
   overflow: auto;
 }
-
 .amenitiesContainer {
   max-width: 80%;
   margin: 30px auto;
