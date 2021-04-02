@@ -18,14 +18,14 @@
       <div class="amenitiesContainer">
         <amenities title="Amenities"></amenities>
       </div>
+      <hr class="light">
+      <div class="calenderContainer">
+        <h4 id="dateHeader">Select Date Range</h4>
+        <DateRangePicker @datePick="transferDates($event)" />
+      </div>
+      <hr class="light">
       <div class="mapContainer">
-        <div class="left" style="width: 100%; height: 350px">
-          <h4 id="dateHeader">Select Date Range</h4>
-          <DateRangePicker @datePick="transferDates($event)" />
-        </div>
-        <div class="right">
-          <Map />
-        </div>
+        <Map />
       </div>
       <div class="container">
         <description title="Description" @email="toggleEmail"> </description>
@@ -206,14 +206,12 @@ body {
   border-radius: 5px;
   box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
 }
-
 .masterContainer div,
 h2,
 h5 {
   margin: auto;
   text-align: center;
 }
-
 .reservationContainer div,
 h2,
 h5 {
@@ -221,28 +219,26 @@ h5 {
   text-align: center;
 }
 .mapContainer {
-  display: flex;
   max-width: 80%;
   margin: 30px auto;
-  overflow: hidden;
+  overflow: auto;
   min-height: 300px;
+  /* border: 1px solid gray; */
+  background: whitesmoke;
   padding: 30px;
-  /* border: 1px solid gray;
-  border-radius: 5px;
+  /* border-radius: 5px;
   box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px; */
 }
-.mapContainer .left {
-  flex: 1;
-}
-.mapContainer .right {
-  flex: 1;
-}
-.mapContainer div {
-  margin: auto;
-  text-align: center;
-}
-.mapContainer p {
-  text-align: left;
+.calenderContainer {
+  max-width: 80%;
+  margin: 30px auto;
+  overflow: auto;
+  min-height: 300px;
+  /* border: 1px solid gray; */
+  background: whitesmoke;
+  padding: 30px;
+  /* border-radius: 5px;
+  box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px; */
 }
 .reservationContainer {
   max-width: 95%;
@@ -268,7 +264,8 @@ h5 {
   font-family: inherit;
 }
 #mapLine {
-  margin: 0;
+  margin: auto;
+  text-align: left;
 }
 .btn:focus {
   outline: none;
@@ -350,5 +347,10 @@ h5 {
 #dateHeader {
   margin: auto;
   text-align: center;
+}
+.light {
+  margin: auto;
+  text-align: center;
+  width: 80%;
 }
 </style>

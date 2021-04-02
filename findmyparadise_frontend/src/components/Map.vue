@@ -140,7 +140,7 @@ export default {
   text-align: center;
 }
 #map {
-  height: 268px;
+  height: 300px;
   width: 100%;
 }
 </style>
