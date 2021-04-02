@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>More places to stay</h2>
+    <h2>More Places To Stay</h2>
 
     <horizontal-list :items="items" :options="options">
       <template v-slot:default="{ item }">
@@ -10,7 +10,7 @@
               <img :src="item.photos[0].imageSrc" />
               <div class="image-overlay">
                 <div>
-                  <div class="superhost-container" v-if="item.host.superhost">
+                  <div class="superhost-container" v-if="item.host.superHost">
                     <div class="superhost">SUPERHOST</div>
                   </div>
                 </div>
@@ -84,7 +84,7 @@ import axios from "axios";
 export default {
   name: "more-places",
   components: {
-    HorizontalList,
+    HorizontalList
   },
   props: ["listing"],
   data() {

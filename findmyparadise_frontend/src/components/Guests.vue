@@ -65,7 +65,6 @@ export default {
   sendIncreaseAdultQty(){
     this.$emit('iAQty',this.AdultsNum);
   
-
   },
   sendDecreaseAdultQty(){
      this.$emit('dAQty',this.AdultsNum);
@@ -73,7 +72,6 @@ export default {
   sendIncreaseChildQty(){
     this.$emit('iCQty',this.AdultsNum);
   
-
   },
    sendDecreaseChildQty(){
      this.$emit('dCQty',this.AdultsNum);
@@ -81,16 +79,12 @@ export default {
    sendIncreaseInfantQty(){
     this.$emit('iIQty',this.AdultsNum);
   
-
   },
    sendDecreaseInfantQty(){
     this.$emit('dIQty',this.AdultsNum);
   
-
   },
-
   },
-
   data() {
     return {
       AdultsNum: 1,

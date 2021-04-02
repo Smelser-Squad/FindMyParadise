@@ -1,19 +1,20 @@
 <template>
   <div id="Amenities">
     <h3>Amenities</h3>
-    <ul class="initDisplay">
-      <li v-for="amenity in amenities.slice(0, 10)" :key="amenity">
-        <svg xmlns="http://www.w3.org/2000/svg">
-          <path v-bind:d="setDPath(amenity.amenityName)"></path>
-        </svg>
-        {{ amenity.amenityName }}
-      </li>
-    </ul>
+    <div class="initialDisplay">
+      <ul class="initDisplay">
+        <li v-for="amenity in amenities.slice(0, 10)" :key="amenity">
+          <svg xmlns="http://www.w3.org/2000/svg">
+            <path v-bind:d="setDPath(amenity.amenityName)"></path>
+          </svg>
+          {{ amenity.amenityName }}
+        </li>
+      </ul>
 
-    <button class="showBtn" @click="() => TogglePopup('buttonTrigger')">
-      Show all {{ amenities.length }} amenities
-    </button>
-
+      <button class="showBtn" @click="() => TogglePopup('buttonTrigger')">
+        Show All {{ amenities.length }} Amenities
+      </button>
+    </div>
     <Modal
       v-if="popupTriggers.buttonTrigger"
       :TogglePopup="() => TogglePopup('buttonTrigger')"
@@ -104,9 +105,7 @@
 import { ref } from "vue";
 import axios from "axios";
 import Modal from "./Modal";
-
 let listingID = 1;
-
 export default {
   components: { Modal },
   name: "Amenities",
@@ -114,11 +113,10 @@ export default {
     const popupTriggers = ref({
       buttonTrigger: false,
     });
-    
+
     const TogglePopup = (trigger) => {
       popupTriggers.value[trigger] = !popupTriggers.value[trigger];
-    }
-
+    };
     return {
       Modal,
       popupTriggers,
@@ -130,7 +128,6 @@ export default {
       amenities: [],
       amenityName: "",
       dPath: "",
-
       bathArr: [],
       bedArr: [],
       entArr: [],
@@ -138,7 +135,6 @@ export default {
       homeArr: [],
       intArr: [],
       kitArr: [],
-
       bathBool: false,
       bedBool: false,
       entBool: false,
@@ -150,7 +146,6 @@ export default {
   },
   mounted() {
     axios
-
       .get(`http://localhost:8080/api/listing/${listingID}`)
       .then((res) => {
         this.amenities = res.data.amenities;
@@ -233,19 +228,15 @@ export default {
       }
       return this.dPath;
     },
-
     processData(catName) {
       let arr = new Array();
-
       for (let i = 0; i < this.amenities.length; i++) {
         if (this.amenities[i].amenityCategory === catName) {
           arr.push(this.amenities[i]);
         }
       }
-
       return arr;
     },
-
     arrSetup() {
       this.bathArr = this.processData("Bathroom");
       this.bedArr = this.processData("Bedroom and laundry");
@@ -255,7 +246,6 @@ export default {
       this.intArr = this.processData("Internet and office");
       this.kitArr = this.processData("Kitchen and dining");
     },
-
     setupDisplay(arr) {
       if (arr.length === 0) {
         return false;
@@ -271,57 +261,50 @@ export default {
 ul {
   list-style-type: none;
 }
-
+.initialDisplay {
+  margin: auto;
+  text-align: center;
+}
 .initDisplay {
   columns: 2;
 }
-
 .showBtn {
   border-radius: 12px;
   background-color: white;
   padding: 10px;
   border: 1px solid;
 }
-
 .showBtn:hover {
   text-decoration: underline;
   background-color: #f7f7f7;
 }
-
 svg {
   width: 35px;
   height: 35px;
 }
-
 ul {
   list-style-type: none;
 }
-
 .initDisplay {
   columns: 2;
 }
-
 .showBtn {
   border-radius: 12px;
   background-color: white;
   padding: 10px;
   border: 1px solid;
 }
-
 .showBtn:hover {
   text-decoration: underline;
   background-color: #f7f7f7;
 }
-
 svg {
   width: 35px;
   height: 35px;
 }
-
 .toggleHeader {
   float: left;
 }
-
 .modalList {
   margin-top: 20px;
   margin-bottom: 20px;

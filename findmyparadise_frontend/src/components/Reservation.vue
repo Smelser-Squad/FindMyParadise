@@ -2,15 +2,13 @@
   <div>
     <header>
       <h2>
-        <b>${{dailyPrice}}</b> / night
+        <b>${{ dailyPrice }}</b> / night
       </h2>
       <div>
-       
-        <span style="color:gray;"> ({{reviewsNum}}) reviews</span
-        >
+        <span style="color: gray"> ({{ reviewsNum }}) reviews</span>
       </div>
     </header>
-    <body>
+    <body id="ReservationBody">
       <form v-on:submit.prevent="submitForm" method="post">
 
       <h4>CheckIn:</h4><input disabled v-model="form.checkInDate"/>
@@ -44,7 +42,6 @@
           class="btn"
           type="submit"
           style="width: 420px; text-align: center"
-         
         >
           Reserve
         </button>
@@ -83,7 +80,7 @@
       <hr />
       <p>
         <b>
-          Total: ${{ form.TotalPrice
+          Total: ${{ form.price
           }}</b
         >
       </p>
@@ -93,17 +90,11 @@
 <script>
 import Guests from "./Guests";
 import axios from "axios";
-
-import moment from 'moment';
-
+import moment from "moment";
 let listingID = 1;
-
 export default {
   name: "Reservation",
-
-  props: ['dateStart','dateEnd','days'],
-
-
+  props: ["dateStart", "dateEnd", "days"],
   data() {
     return {
    
@@ -127,9 +118,6 @@ export default {
         start: new Date(),
         end: new Date(),
       },
-    
-    
-
 
       startDateStr: "",
       endDateStr: "",
@@ -149,13 +137,10 @@ export default {
    
     });
   },
-
   components: {
     Guests,
-
   },
   methods: {
-   
     CleaningFeepopup() {
       let popup = document.getElementById("CleaningFeepopup");
       popup.classList.toggle("show");
@@ -236,6 +221,15 @@ export default {
 };
 </script>
 <style scoped>
+#totalPrice {
+  margin-top: 20px;
+  border: 5px solid black;
+  border-radius: 50%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-left: 40%;
+  margin-right: 40%;
+}
 #ReservationBody {
   background: whitesmoke !important;
 }
