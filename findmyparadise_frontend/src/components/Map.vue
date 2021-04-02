@@ -1,14 +1,10 @@
 <template>
   <h4 id="listingHeader">{{ listingData + " Location" }}</h4>
-  <br />
+  <br>
   <div id="map" ref="mapRef"></div>
 
-  <br />
-  <p id="mapLine">
-    <b><u>Nearby Attractions</u></b>
-  </p>
-
-  <br />
+  <br>
+  <p id="mapLine"><b><u>Nearby Attractions</u></b></p>
 
   <p id="mapLine">{{ dataName1 + " : " + dataDist1 }}</p>
   <p id="mapLine">{{ dataName2 + " : " + dataDist2 }}</p>
@@ -21,7 +17,6 @@ import { onMounted, ref } from "vue";
 import axios from "axios";
 
 let listingID = 1;
-
 export default {
   name: "Map",
   props: {
@@ -146,7 +141,7 @@ export default {
   text-align: center;
 }
 #map {
-  height: 350px;
+  height: 268px;
   width: 100%;
 }
 </style>

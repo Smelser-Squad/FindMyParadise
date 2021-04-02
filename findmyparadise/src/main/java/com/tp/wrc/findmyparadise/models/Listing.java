@@ -91,6 +91,7 @@ public class Listing implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "amenity_id"))
     private Set<Amenity> amenities = new HashSet<>();
 
+
     public Listing() {
 
     }
