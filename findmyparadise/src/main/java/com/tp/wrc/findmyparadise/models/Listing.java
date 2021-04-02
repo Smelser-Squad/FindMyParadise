@@ -91,6 +91,20 @@ public class Listing implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "review_id"))
     private Set<Review> reviews = new HashSet<>();
 
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name="listing_rules",
+            joinColumns = @JoinColumn(name = "listing_id"),
+            inverseJoinColumns = @JoinColumn(name = "rule_id"))
+    private Set<Rules> rules = new HashSet<>();
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name="listing_health",
+            joinColumns = @JoinColumn(name = "listing_id"),
+            inverseJoinColumns = @JoinColumn(name = "health_id"))
+    private Set<Health> healthRules = new HashSet<>();
+
     public Listing() {
 
     }
