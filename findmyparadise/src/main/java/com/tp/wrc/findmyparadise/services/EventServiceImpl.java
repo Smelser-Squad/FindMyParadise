@@ -22,7 +22,11 @@ public class EventServiceImpl implements EventService {
         return eRepo.findAll();
     }
 
+
     @Override
+    /*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+    /*::  This function returns all events within a given distance from a listing :*/
+    /*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
     public List<Event> indexWithinDistance(Listing listing, int distance) {
         List<Event> events = eRepo.findAll();
         List<Event> toReturn = new ArrayList();

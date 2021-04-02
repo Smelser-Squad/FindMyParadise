@@ -66,7 +66,7 @@ public class EventController {
 
     //Retrieves a list of all Events in the database within a given distance (in miles) from a Listing.
     @GetMapping("/events-dist/{distance}")
-    public ResponseEntity getEventsWithinFiveMiles(@RequestBody Listing listing, @PathVariable int distance) {
+    public ResponseEntity getEventsWithinGivenDistance(@RequestBody Listing listing, @PathVariable int distance) {
 
         List<Event> toReturn;
         try {
