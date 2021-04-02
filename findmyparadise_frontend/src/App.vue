@@ -8,11 +8,11 @@
         <GalleryMini />
       </div>
       <div class="reservationContainer">
-       <Reservation
-        title="Reservation"
-        :dateStart="range.start"
-        :dateEnd="range.end"
-      />
+        <Reservation
+          title="Reservation"
+          :dateStart="range.start"
+          :dateEnd="range.end"
+        />
       </div>
       <br />
       <div class="amenitiesContainer">
@@ -21,7 +21,7 @@
       <div class="mapContainer">
         <div class="left" style="width: 100%; height: 350px">
           <h4 id="dateHeader">Select Date Range</h4>
-            <DateRangePicker @datePick="transferDates($event)" />
+          <DateRangePicker @datePick="transferDates($event)" />
         </div>
         <div class="right">
           <Map />
@@ -33,7 +33,6 @@
       <div class="reviewContainer">
         <review></review>
       </div>
-      
 
       <div class="hostContainer">
         <host></host>
@@ -51,14 +50,7 @@
       >
       </email>
     </div>
-    </div>
-    
-  
-   
-  
-
-
-
+  </div>
 </template>
 
 <script>
@@ -126,7 +118,7 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: #DCDCDC;
+  background: #dcdcdc;
   background-attachment: fixed;
 }
 .header {
@@ -208,8 +200,8 @@ body {
 .masterContainer div,
 h2,
 h5 {
- margin: auto;
- text-align: center;
+  margin: auto;
+  text-align: center;
 }
 .reservationContainer div,
 h2,
@@ -301,13 +293,13 @@ h5 {
   box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
 }
 .imgContainer {
- max-width: 100%;
- margin: 30px auto;
- object-fit: fill;
- max-height: 500px;
- border-radius: 10px;
- box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
- overflow: auto;
+  max-width: 100%;
+  margin: 30px auto;
+  object-fit: fill;
+  max-height: 500px;
+  border-radius: 10px;
+  box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
+  overflow: auto;
 }
 .amenitiesContainer {
   max-width: 80%;

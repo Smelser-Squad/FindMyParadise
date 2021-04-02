@@ -23,7 +23,7 @@
         >
       </div>
     </header>
-    <body id ="ReservationBody">
+    <body id="ReservationBody">
       <form v-on:submit.prevent="submitForm">
         <div class="split">
           <div class="split-left">
@@ -40,9 +40,9 @@
         </div>
 
         <span> Start Date: {{ updateDate(dateStart) }} </span>
-        <br/>
-        <span> End Date: {{updateDate(dateEnd)}}</span>
-        <br/>
+        <br />
+        <span> End Date: {{ updateDate(dateEnd) }}</span>
+        <br />
         <span
           class="_19di23v"
           style="
