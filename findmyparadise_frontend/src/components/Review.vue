@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <!-- <div>
     <form @submit="postData" method="post">
       <input
         type="text"
@@ -17,12 +17,6 @@
       />
       <br />
       <br />
-      <!-- <input
-        type="text"
-        name="imageSrc"
-        placeholder="Upload Image"
-        v-model="posts.imageSrc"
-      /> -->
 
       <form ref="uploadForm" @submit.prevent="submit">
         <input
@@ -47,9 +41,8 @@
       <br />
       <br />
     </form>
-  </div>
+  </div> -->
 
-  <h3>Review Details</h3>
 
   <div>
     <svg
@@ -57,13 +50,13 @@
       role="presentation"
       aria-hidden="true"
       focusable="false"
-      style="height: 14px; width: 14px; fill: red"
-    >
+      style="height: 20px; width: 20px; fill: red; margin: 15px;">
       <path
         d="M972 380c9 28 2 50-20 67L725 619l87 280c11 39-18 75-54 75-12 0-23-4-33-12L499 790 273 962a58 58 0 0 1-78-12 50 50 0 0 1-8-51l86-278L46 447c-21-17-28-39-19-67 8-24 29-40 52-40h280l87-279c7-23 28-39 52-39 25 0 47 17 54 41l87 277h280c24 0 45 16 53 40z"
       ></path>
-    </svg>
-    <span> {{ overallRating }} ({{ list.length }} Reviews)</span>
+      
+    </svg> 
+    <span class="avRatingView"> {{ overallRating }} ({{ list.length }} Reviews)</span>
   </div>
 
   <div class="left">
@@ -92,17 +85,25 @@
     <p>{{ reviewer.description }}</p>
 
     <button class="showBtn" @click="() => TogglePopup('buttonTrigger')">
-      Show all Review Deatails
+      Show all {{ list.length }} reviews
     </button>
 
     <Modal
       v-if="popupTriggers.buttonTrigger"
       :TogglePopup="() => TogglePopup('buttonTrigger')"
     >
-      <h3>Reviews</h3>
+      <div class="row">
+                    <div class="row">
+                    <div class="search-wrapper panel-heading col-sm-12">
+                        <input class="form-control" type="text" v-model="search" placeholder="Review Search" />
+                    </div>                        
+                </div>
+                     
+                </div>
+
       <br />
       <ul>
-        <li v-for="reviewer in list" :key="reviewer">
+        <li v-for="reviewer in filteredReviews" :key="reviewer">
           <img :src="reviewer.imageSrc" />
 
           {{ reviewer.name }}
@@ -159,6 +160,7 @@ export default {
       averageAccuracy: 0,
       averageLocation: 0,
       averageValue: 0,
+      search: ''
     };
   },
 
@@ -254,6 +256,24 @@ export default {
       })
       .catch((err) => Promise.reject(err));
   },
+  // computed: {
+  //   filteredReviews() { 
+  //     return this.list.filter((review => 
+  //     review.description.toLowerCase().includes(this.search.toLowerCase)))
+  //   }
+  // }
+
+  computed: {
+    filteredReviews (){
+    if(this.search){
+      return this.list.filter((item)=>{
+        return item.description.startsWith(this.search);
+      })
+      }else{
+        return this.list;
+      }
+    }
+  }
 };
 </script>
 
@@ -275,5 +295,11 @@ img {
 .right {
   width: 50%;
   float: left;
+}
+.avRatingView{
+  font-weight: bold;
+  font-size: 25px;
+  margin-left:0.5em;
+  
 }
 </style>

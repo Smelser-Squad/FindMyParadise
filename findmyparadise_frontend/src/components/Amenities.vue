@@ -114,10 +114,10 @@ export default {
     const popupTriggers = ref({
       buttonTrigger: false,
     });
-    
+
     const TogglePopup = (trigger) => {
       popupTriggers.value[trigger] = !popupTriggers.value[trigger];
-    }
+    };
 
     return {
       Modal,
