@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.testng.Assert.fail;
 
 @SpringBootTest
 public class ReviewServiceImplTests {
@@ -20,13 +19,11 @@ public class ReviewServiceImplTests {
     @Autowired
     ReviewService toTest;
 
-
     @Test
     public void createReviewGoldenPathTest(){
 
         Review review = new Review();
         review.setRating(1);
-        review.setReviewText("test review text");
         review.setCommunicationRating(1);
         review.setCheckInRating(1);
         review.setValueRating(1);
@@ -38,7 +35,6 @@ public class ReviewServiceImplTests {
        reviewer.setImageSrc("Test Image Source");
        reviewer.setDescription("Test Description data");
        reviewer.setName("Rahman");
-       reviewer.setJoinedDate(LocalDate.of(2021, 03, 25));
 
         review.setReviewer(reviewer);
 
@@ -50,7 +46,6 @@ public class ReviewServiceImplTests {
        }
 
         assertEquals(1, review.getRating());
-        assertEquals("test review text", review.getReviewText());
         assertEquals(1, review.getCommunicationRating());
         assertEquals(1, review.getCheckInRating());
         assertEquals(1, review.getValueRating());
@@ -60,7 +55,6 @@ public class ReviewServiceImplTests {
         assertEquals("Rahman", review.getReviewer().getName());
         assertEquals("Test Image Source", review.getReviewer().getImageSrc());
         assertEquals("Test Description data", review.getReviewer().getDescription());
-        assertEquals(LocalDate.of(2021, 03, 25), review.getReviewer().getJoinedDate());
 
     }
 
@@ -68,7 +62,6 @@ public class ReviewServiceImplTests {
     public void getAllReviewsGoldenPathTest() {
         Review review = new Review();
         review.setRating(1);
-        review.setReviewText("test review text");
         review.setCommunicationRating(1);
         review.setCheckInRating(1);
         review.setValueRating(1);
@@ -81,7 +74,6 @@ public class ReviewServiceImplTests {
         reviewer.setImageSrc("Test Image Source");
         reviewer.setDescription("Test Description data");
         reviewer.setName("Rahman");
-        reviewer.setJoinedDate(LocalDate.of(2021, 03, 25));
         review.setReviewer(reviewer);
         try{
             toTest.create(review);
@@ -93,7 +85,6 @@ public class ReviewServiceImplTests {
 
         Review review1 = new Review();
         review1.setRating(2);
-        review1.setReviewText("test review text2");
         review1.setCommunicationRating(2);
         review1.setCheckInRating(2);
         review1.setValueRating(2);
@@ -106,7 +97,6 @@ public class ReviewServiceImplTests {
         reviewer2.setImageSrc("Test Image Source2");
         reviewer2.setDescription("Test Description data2");
         reviewer2.setName("Rahman2");
-        reviewer2.setJoinedDate(LocalDate.of(2020, 03, 25));
         review1.setReviewer(reviewer2);
 
         try{
@@ -127,7 +117,6 @@ public class ReviewServiceImplTests {
         assertEquals(3, reviews.size());
 
         assertEquals(1, review.getRating());
-        assertEquals("test review text", review.getReviewText());
         assertEquals(1, review.getCommunicationRating());
         assertEquals(1, review.getCheckInRating());
         assertEquals(1, review.getValueRating());
@@ -137,10 +126,8 @@ public class ReviewServiceImplTests {
         assertEquals("Rahman", review.getReviewer().getName());
         assertEquals("Test Image Source", review.getReviewer().getImageSrc());
         assertEquals("Test Description data", review.getReviewer().getDescription());
-        assertEquals(LocalDate.of(2021, 03, 25), review.getReviewer().getJoinedDate());
 
         assertEquals(2, review1.getRating());
-        assertEquals("test review text2", review1.getReviewText());
         assertEquals(2, review1.getCommunicationRating());
         assertEquals(2, review1.getCheckInRating());
         assertEquals(2, review1.getValueRating());
@@ -168,7 +155,6 @@ public class ReviewServiceImplTests {
 
         assertEquals(1, review.getReviewId());
         assertEquals(1, review.getRating());
-        assertEquals("test review text", review.getReviewText());
         assertEquals(1, review.getCommunicationRating());
         assertEquals(1, review.getCheckInRating());
         assertEquals(1, review.getValueRating());
@@ -178,7 +164,6 @@ public class ReviewServiceImplTests {
         assertEquals("Rahman", review.getReviewer().getName());
         assertEquals("Test Image Source", review.getReviewer().getImageSrc());
         assertEquals("Test Description data", review.getReviewer().getDescription());
-        assertEquals(LocalDate.of(2021, 03, 25), review.getReviewer().getJoinedDate());
 
     }
 
@@ -200,7 +185,6 @@ public class ReviewServiceImplTests {
     public void updateReviewGoldenPath() {
         Review review = new Review();
         review.setRating(1);
-        review.setReviewText("test review text");
         review.setCommunicationRating(1);
         review.setCheckInRating(1);
         review.setValueRating(1);
@@ -212,7 +196,6 @@ public class ReviewServiceImplTests {
         reviewer.setImageSrc("Test Image Source");
         reviewer.setDescription("Test Description data");
         reviewer.setName("Rahman");
-        reviewer.setJoinedDate(LocalDate.of(2021, 03, 25));
         review.setReviewer(reviewer);
 
         try {
@@ -236,7 +219,6 @@ public class ReviewServiceImplTests {
     public void updateNullReviewIdTest() {
         Review review = new Review();
         review.setReviewId(null);
-        review.setReviewText("test");
         assertThrows(NullReviewIdException.class, () -> toTest.update(review));
 
     }

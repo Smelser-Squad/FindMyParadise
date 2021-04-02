@@ -6,9 +6,7 @@
       <template v-slot:default="{ item }">
         <div>
           <a target="_blank" href="">
-            <div class="image-container">
-              
-            </div>
+            <div class="image-container"></div>
 
             <div class="subtitle">
               <div>
@@ -63,7 +61,7 @@ export default {
   },
   mounted() {
     axios
-      .get("http://localhost:8081/api/events")
+      .get("http://localhost:8080/api/events")
       .then((res) => {
         console.log(res.data);
         this.items = res.data;

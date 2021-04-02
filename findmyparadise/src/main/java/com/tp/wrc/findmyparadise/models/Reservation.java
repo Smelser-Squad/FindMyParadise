@@ -1,5 +1,7 @@
 package com.tp.wrc.findmyparadise.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -17,9 +19,11 @@ public class Reservation implements Serializable {
     private Integer reservationId;
 
     @Column(name = "check_in_date", nullable = false)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM-dd-yyyy")
     private LocalDate checkInDate;
 
     @Column(name = "check_out_date", nullable = false)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM-dd-yyyy")
     private LocalDate checkOutDate;
 
     @Column(name = "price", nullable = false)
@@ -34,8 +38,9 @@ public class Reservation implements Serializable {
     @Column(name = "infants", nullable = false)
     private Integer infants;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "fk_listing", referencedColumnName = "listing_id")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "listing_id")
+    @JsonBackReference
     private Listing listing;
 
     public Reservation() {}

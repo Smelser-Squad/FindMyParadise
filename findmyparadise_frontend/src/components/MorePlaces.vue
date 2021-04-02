@@ -5,7 +5,7 @@
     <horizontal-list :items="items" :options="options">
       <template v-slot:default="{ item }">
         <div>
-          <a target="_blank" href="">
+          <a @click="listingClicked(item.listingId)">
             <div class="image-container">
               <img :src="item.photos[0].imageSrc" />
               <div class="image-overlay">
@@ -16,7 +16,7 @@
                 </div>
                 <div
                   class="button-container"
-                  v-on:click.prevent="liked(item.listingID)"
+                  v-on:click.stop="liked(item.listingId)"
                 >
                   <button>
                     <svg
@@ -86,6 +86,7 @@ export default {
   components: {
     HorizontalList,
   },
+  props: ["listing"],
   data() {
     return {
       items: [],
@@ -103,7 +104,6 @@ export default {
     axios
       .get("http://localhost:8080/api/listings")
       .then((res) => {
-        console.log(res.data);
         this.items = res.data;
       })
       .catch((err) => Promise.reject(err));
@@ -111,6 +111,9 @@ export default {
   methods: {
     liked(listingId) {
       alert(`You liked listing with id: ${listingId}!`);
+    },
+    listingClicked(listingId) {
+      alert(listingId);
     },
     calculateAverageRating(reviews) {
       return (
@@ -130,6 +133,9 @@ a:focus,
 a:active {
   text-decoration: none;
   color: inherit;
+}
+a:hover {
+  cursor: pointer;
 }
 p {
   margin-top: 6px;

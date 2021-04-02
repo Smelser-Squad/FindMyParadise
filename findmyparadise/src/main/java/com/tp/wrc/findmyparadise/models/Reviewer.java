@@ -1,16 +1,17 @@
 package com.tp.wrc.findmyparadise.models;
 
-import org.apache.tomcat.jni.Local;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "reviewer")
-public class Reviewer {
+public class Reviewer implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,13 +28,15 @@ public class Reviewer {
     private String description;
 
     @Column(name = "joined_date")
+    @JsonFormat(pattern = "MMMM yyyy")
+    @CreationTimestamp
     private LocalDate joinedDate;
 
-//    @OneToMany(mappedBy = "reviewer")
-//    private Set<Review> reviews;
-//    public Reviewer(){
-//
-//    }
+
+    @OneToMany(mappedBy = "reviewer", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Review> reviews = new HashSet<>();
+
+    
 
     public Reviewer() {
 
