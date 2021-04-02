@@ -66,20 +66,17 @@
     <span> {{ list.length }} Reviews</span>
   </div>
 
-    <div class="left"> 
+  <div class="left">
+    <p>Cleanliness</p>
+    <p>Cleanliness</p>
+    <p>Check-in</p>
+  </div>
 
-<p> Cleanliness</p>
-<p> Cleanliness</p>
-<p> Check-in</p>
-
-    </div> 
-
-    <div class="right"> 
-<p>Accuracy</p>
-<p>Location</p>
-<p>Value</p>
-
-    </div> 
+  <div class="right">
+    <p>Accuracy</p>
+    <p>Location</p>
+    <p>Value</p>
+  </div>
 
   <div
     v-for="reviewer in list.slice(0, 1)"
@@ -198,14 +195,14 @@ export default {
       })
       .catch((err) => Promise.reject(err));
 
-  axios
+    axios
       .get("http://localhost:8080/api/reviews")
       .then((res) => {
         console.log(res.data);
         this.reviewList = res.data;
       })
       .catch((err) => Promise.reject(err));
-  }
+  },
 };
 </script>
 
@@ -223,8 +220,8 @@ img {
   display: inline-block;
 }
 
-
-.left, .right {
+.left,
+.right {
   width: 50%;
   float: left;
 }
