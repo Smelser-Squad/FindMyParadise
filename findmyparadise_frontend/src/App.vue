@@ -1,48 +1,62 @@
 <template>
   <div id="AppBody">
-
-    <div class="header">
-      <h1 data-text="Find Your Paradise">Find Your Paradise</h1>
+    <div class="masterContainer">
+      <div class="header">
+        <img src="./assets/fyplogo.png" />
+      </div>
+      <div class="imgContainer">
+        <GalleryMini />
+      </div>
+      <div class="reservationContainer">
+        <Reservation
+          title="Reservation"
+          :dateStart="range.start"
+          :dateEnd="range.end"
+        />
+      </div>
+      <hr class="light" />
+      <br />
+      <div class="amenitiesContainer">
+        <amenities title="Amenities"></amenities>
+      </div>
+      <hr class="light" />
+      <div class="calenderContainer">
+        <h4 id="dateHeader">Select Date Range</h4>
+        <DateRangePicker @datePick="transferDates($event)" />
+      </div>
+      <hr class="light" />
+      <div class="mapContainer">
+        <Map />
+      </div>
+      <hr class="light" />
+      <br />
+      <div class="grid-container">
+        <div class="container">
+          <description title="Description" @email="toggleEmail"> </description>
+        </div>
+        <div class="container">
+          <review></review>
+        </div>
+        <div class="hostContainer">
+          <host></host>
+        </div>
+      </div>
+      <br>
+      <hr class="light">
+      <br>
+      <div class="scrollContainer">
+        <more-places></more-places>
+      </div>
+      <div class="scrollContainer">
+        <events title="Events"></events>
+      </div>
+      <email
+        v-if="emailTrigger && host != undefined"
+        :toggleEmail="() => toggleEmail()"
+        :host="host"
+      >
+      </email>
     </div>
-    <div class="imgContainer">
-      <GalleryMini />
-    </div>
-    <div class="container">
-
-      <Reservation title="Reservation" :dateStart="range.start" :dateEnd="range.end" :days="days"/>
-    </div>
-    <div class="container">
-      <amenities title="Amenities"></amenities>
-    </div>
-    <div class="container">
-      <DateRangePicker @datePick="transferDates($event)" @diffDays="transferDays($event)" />
-    </div>
-    <div class="mapContainer">
-      <Map />
-    </div>
-    <div class="scrollContainer">
-      <more-places></more-places>
-    </div>
-    <div class="container">
-      <description title="Description" @email="toggleEmail"> </description>
-    </div>
-    <div class="reviewContainer">
-      <review></review>
-    </div>
-   
-    <div class="container">
-      <host @email="toggleEmail"></host>
-    </div>
-    <div class="scrollContainer">
-      <events title="Events"></events>
-    </div>
-    <email
-      v-if="emailTrigger && host != undefined"
-      :toggleEmail="() => toggleEmail()"
-      :host="host"
-    >
-    </email>
-
   </div>
 </template>
 
@@ -85,14 +99,11 @@ export default {
       this.range = range;
       console.log(this.range.start);
       console.log(this.range.end);
-
-      
     },
-    transferDays(num){
-      this.days=num;
+    transferDays(num) {
+      this.days = num;
       console.log(this.days);
-    }
-
+    },
   },
   data() {
     return {
@@ -103,8 +114,7 @@ export default {
         end: new Date(),
       },
 
-      days:''
-
+      days: "",
     };
   },
 };
@@ -121,7 +131,14 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: #dcdcdc;
+  background-image: linear-gradient(
+    to right top,
+    #000000,
+    #311921,
+    #5d2a3d,
+    #8e3b5c,
+    #c14d7d
+  );
   background-attachment: fixed;
 }
 .header {
@@ -179,6 +196,11 @@ body {
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
 }
+.vc-pane-container {
+  border: 2px solid black;
+  border-color: black;
+  background-color: white;
+}
 .container {
   max-width: 500px;
   margin: 30px auto;
@@ -196,11 +218,21 @@ body {
   min-height: 300px;
   border: 1px solid gray;
   background: whitesmoke;
+  opacity: 0.92;
   padding: 30px;
   border-radius: 5px;
   box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
 }
-
+.amenitiesContainer h3 {
+  margin: auto;
+  text-align: center;
+}
+/* .masterContainer div,
+h2,
+h5 {
+  margin: auto;
+  text-align: center;
+} */
 .reservationContainer div,
 h2,
 h5 {
@@ -208,38 +240,38 @@ h5 {
   text-align: center;
 }
 .mapContainer {
-  display: flex;
   max-width: 80%;
   margin: 30px auto;
   overflow: hidden;
   min-height: 300px;
+  /* border: 1px solid gray; */
+  background: whitesmoke;
   padding: 30px;
-  /* border: 1px solid gray;
-  border-radius: 5px;
+  /* border-radius: 5px;
   box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px; */
 }
-.mapContainer .left {
-  flex: 1;
-}
-.mapContainer .right {
-  flex: 1;
-}
-.mapContainer div {
-  margin: auto;
+.calenderContainer {
+  max-width: 80%;
+  margin: 30px auto;
   text-align: center;
-}
-.mapContainer p {
-  text-align: left;
+  overflow: auto;
+  min-height: 300px;
+  /* border: 1px solid gray; */
+  background: whitesmoke;
+  padding: 30px;
+  /* border-radius: 5px;
+  box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px; */
 }
 .reservationContainer {
   max-width: 95%;
   margin: 30px auto;
-  overflow: auto;
-  min-height: 300px;
-  border: 1px solid gray;
+  overflow: hidden;
+  max-height: 725px;
+  min-height: 200px;
+  /* border: 1px solid gray; */
   padding: 30px;
-  border-radius: 5px;
-  box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
+  /* border-radius: 5px;
+  box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px; */
 }
 .btn {
   display: inline-block;
@@ -255,7 +287,8 @@ h5 {
   font-family: inherit;
 }
 #mapLine {
-  margin: 0;
+  margin: auto;
+  text-align: left;
 }
 .btn:focus {
   outline: none;
@@ -287,7 +320,12 @@ h5 {
   background-color: white;
   border-radius: 10px;
 }
-.reviewContainer {
+.grid-container {
+  display: grid;
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+/* .reviewContainer {
   max-width: 500px;
   margin: 30px auto;
   overflow: auto;
@@ -296,16 +334,31 @@ h5 {
   padding: 30px;
   border-radius: 5px;
   box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
+  float: left;
 }
+<<<<<<< HEAD
 
 .reviewerContainer {
   max-width: 500px;
 }
+=======
+.descContainer {
+  max-width: 500px;
+  margin: 30px auto;
+  overflow: auto;
+  min-height: 300px;
+  border: 1px solid gray;
+  padding: 30px;
+  border-radius: 5px;
+  box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
+  float: right;
+} */
+>>>>>>> 5eb80882062d9c567e999cad26144562f1f364a2
 .imgContainer {
   max-width: 100%;
   margin: 30px auto;
   object-fit: fill;
-  max-height: 500px;
+  max-height: 400px;
   border-radius: 10px;
   box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
   overflow: auto;
@@ -320,12 +373,10 @@ h5 {
   border-radius: 5px;
   box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px; */
 }
-
 #dateHeader {
   margin: auto;
   text-align: center;
 }
-
 .hostContainer {
   max-width: 500px;
   margin: 30px auto;
@@ -337,5 +388,9 @@ h5 {
   box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
   position: relative;
 }
-
+.light {
+  margin: auto;
+  text-align: center;
+  width: 80%;
+}
 </style>
