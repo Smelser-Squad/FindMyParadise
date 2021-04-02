@@ -1,7 +1,7 @@
 <template>
     <div class="row">
         <div class="left">
-            <img class="leftImage" src="" @click="() => TogglePopup('buttonTrigger')">
+            <img class="leftImage" :src="firstImage" @click="() => TogglePopup('buttonTrigger')">
         </div>
         <div class="rightSide">
             <img class="rightTop" src="https://a0.muscache.com/im/pictures/73b354de-ca65-45a4-a492-a6f8c922edc2.jpg?im_w=720" @click="() => TogglePopup('buttonTrigger')">
@@ -65,13 +65,18 @@ export default {
     data(){
         return {
             dataObject: {},
+            firstImage : String,
+            secondImage: String,
+            thirdImage: String,
+            forthImage: String,
+            fiveImage: String
         };
     },
     mounted(){
         axios.get(`http://localhost:8080/api/gallery/listing/${listingId}`).then((res) => {
             this.dataObject = res.data;
+            this.firstImage = res.data[0].imageSrc;
             console.log(res.data);
-            document.getElementsByClassName("leftImage").src = res.data.imageSrc;
         })
     },
     methods(){
