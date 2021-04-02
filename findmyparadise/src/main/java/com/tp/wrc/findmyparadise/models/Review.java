@@ -1,9 +1,11 @@
 package com.tp.wrc.findmyparadise.models;
+
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Set;
 
 @Entity
 @Table(name ="review")
@@ -43,8 +45,11 @@ public class Review implements Serializable {
     @JoinColumn(name = "fk_reviewer_id", referencedColumnName = "reviewer_id", nullable = false)
     private Reviewer reviewer;
 
-    @ManyToMany(mappedBy = "reviews", cascade = CascadeType.ALL)
-    private Set<Listing> listings;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "listing_id")
+    @JsonBackReference
+    private Listing listing;
+
 
     public Review(){}
 
@@ -134,11 +139,11 @@ public class Review implements Serializable {
         this.reviewer = reviewer;
     }
 
-    public Set<Listing> getListings() {
-        return listings;
+    public Listing getListing() {
+        return listing;
     }
 
-    public void setListings(Set<Listing> listings) {
-        this.listings = listings;
+    public void setListing(Listing listing) {
+        this.listing = listing;
     }
 }
