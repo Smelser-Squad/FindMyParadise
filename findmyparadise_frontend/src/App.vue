@@ -35,7 +35,10 @@
       </div>
 
       <div class="hostContainer">
-        <host></host>
+        <host @email="toggleEmail"></host>
+      </div>
+      <div class="container">
+        <things-to-know></things-to-know>
       </div>
       <div class="scrollContainer">
         <more-places></more-places>
@@ -65,6 +68,7 @@ import DateRangePicker from "./components/DateRangePicker.vue";
 import Email from "./components/Email";
 import GalleryMini from "./components/GalleryMini.vue";
 import Host from "./components/Host.vue";
+import ThingsToKnow from "./components/ThingsToKnow.vue";
 export default {
   name: "App",
   components: {
@@ -79,6 +83,7 @@ export default {
     GalleryMini,
     Events,
     Email,
+    ThingsToKnow,
   },
   methods: {
     Change(event) {
