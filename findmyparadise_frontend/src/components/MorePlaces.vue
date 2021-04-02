@@ -16,7 +16,7 @@
                 </div>
                 <div
                   class="button-container"
-                  v-on:click.prevent="liked(item.listingID)"
+                  v-on:click.stop="liked(item.listingId)"
                 >
                   <button>
                     <svg
@@ -133,6 +133,9 @@ a:focus,
 a:active {
   text-decoration: none;
   color: inherit;
+}
+a:hover {
+  cursor: pointer;
 }
 p {
   margin-top: 6px;

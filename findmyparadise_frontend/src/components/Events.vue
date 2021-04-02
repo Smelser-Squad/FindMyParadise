@@ -6,9 +6,7 @@
       <template v-slot:default="{ item }">
         <div>
           <a target="_blank" href="">
-            <div class="image-container">
-              
-            </div>
+            <div class="image-container"></div>
 
             <div class="subtitle">
               <div>
