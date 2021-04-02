@@ -25,7 +25,7 @@ export default {
     axios
       .get("http://localhost:8080/api/reviews")
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         this.reviews = res.data;
       })
       .catch((err) => Promise.reject(err));
