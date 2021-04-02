@@ -29,9 +29,7 @@
     <div class="reviewContainer">
       <review></review>
     </div>
-    <div class="reviewerContainer">
-      <reviewer> </reviewer>
-    </div>
+   
     <div class="container">
       <host @email="toggleEmail"></host>
     </div>
@@ -292,9 +290,6 @@ h5 {
   border-radius: 5px;
   box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
 }
-
-.reviewerContainer {
-  max-width: 500px;
 
 .imgContainer {
   max-width: 100%;
