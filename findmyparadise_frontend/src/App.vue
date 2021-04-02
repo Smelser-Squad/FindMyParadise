@@ -212,12 +212,12 @@ body {
   box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
 }
 
-.masterContainer div,
+/* .masterContainer div,
 h2,
 h5 {
  margin: auto;
  text-align: center;
-}
+} */
 
 .reservationContainer div,
 h2,

@@ -1,6 +1,5 @@
 package com.tp.wrc.findmyparadise.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
