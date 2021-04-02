@@ -30,7 +30,7 @@
       <review></review>
     </div>
    
-    <div class="container">
+    <div class="hostContainer">
       <host @email="toggleEmail"></host>
     </div>
     <div class="scrollContainer">
