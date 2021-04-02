@@ -103,7 +103,7 @@ import { ref } from "vue";
 import axios from "axios";
 import Modal from "./Modal";
 
-let listingID = 1;
+let listingID = 2;
 
 
 export default {
@@ -304,6 +304,7 @@ svg {
 
     .initDisplay {
         columns: 2;
+        text-align: left;
     }
 
     .showBtn {
@@ -332,6 +333,14 @@ svg {
       margin-bottom: 20px;
       padding-bottom: 20px;
       padding-top:20px;
+      text-align: left;
+    }
+
+    #Amenities {
+      max-width: 500px;
+      border: 1px solid gray;
+      border-radius: 5px;
+      padding: 20px;
     }
 
 
