@@ -295,7 +295,7 @@ h5 {
 
 .reviewerContainer {
   max-width: 500px;
-
+}
 .imgContainer {
   max-width: 100%;
   margin: 30px auto;

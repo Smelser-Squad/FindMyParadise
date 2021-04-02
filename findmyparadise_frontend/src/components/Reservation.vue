@@ -12,22 +12,23 @@
     </header>
     <body>
       <form v-on:submit.prevent="submitForm" method="post">
-      
+
+      <h4>CheckIn:</h4><input disabled v-model="form.checkInDate"/>
+       <h4>CheckOut:</h4><input disabled v-model="form.checkOutDate" />
+
+     
         <h5>Guests:</h5>
         <Guests @iAQty="increaseAQty($event)" @dAQty="decreaseAQty($event)" 
         @iCQty="increaseCQty($event)" @dCQty="decreaseCQty($event)" 
         @iIQty="increaseIQty($event)" @dIQty="decreaseAQty($event)"/>
- <span> Start Date: {{updateDate(dateStart)}}</span>
+ <span style="display:none;"> Start Date: {{updateDate(dateStart)}}</span>
         <br/>
-        <span> End Date: {{updateDate(dateEnd)}}</span>
+        <span style="display:none;"> {{updateDate(dateEnd)}}</span>
 
        <span>{{updateDays(days)}}</span>
       
       
-      <h4>CheckIn:</h4><input disabled v-model="form.CheckIn"/>
-       <h4>CheckOut:</h4><input disabled v-model="form.CheckOut" />
-
-     
+      
 
 
         <span
@@ -49,12 +50,11 @@
         </button>
       </form>
       <p style="color: gray; text-align: center">You won't be charged yet</p>
-      <u @click="showDetails()"><b> Show price details</b></u>
-      <div v-if="details">
+      
         <div>
 
-          <u>${{ dailyPrice }} x {{ form.NumOfDays }} nights</u>
-          <span>${{ dailyPrice * form.NumOfDays }}</span>
+          <u>${{ dailyPrice }} x {{ NumOfDays }} nights</u>
+          <span>${{ dailyPrice * NumOfDays }}</span>
 
         </div>
 
@@ -79,7 +79,7 @@
           <u>Occupancy taxes and fees</u>
           <span> ${{ occupancyFee }} </span>
         </div>
-      </div>
+      
       <hr />
       <p>
         <b>
@@ -106,23 +106,22 @@ export default {
 
   data() {
     return {
-      showCalendar: true,
-      details: false,
-      date:new Date(),
-      dataObject: {},
+   
+     
       dailyPrice:'',
       cleaningFee:'',
       occupancyFee:'',
       serviceFee:'',
       reviewsNum:'',
+      maxGuests:'',
+       NumOfDays:1,
       form:{
-        CheckIn:'',
-        CheckOut:'',
-        NumAdults:1,
-        NumChildren:0,
-        NumInfants:0,
-        NumOfDays:1,
-        TotalPrice:''
+        checkInDate:'',
+        checkOutDate:'',
+        adults:1,
+        children:0,
+        infants:0,
+        price:''
       },
       range: {
         start: new Date(),
@@ -138,12 +137,13 @@ export default {
   },
   mounted() {
     axios.get(`http://localhost:8080/api/listing/${listingID}`).then((res) => {
+      this.maxGuests=res.data.maxGuests;
       this.dailyPrice = res.data.price;
       this.cleaningFee=res.data.cleaningFee;
       this.occupancyFee=res.data.occupancyFee;
       this.serviceFee=res.data.serviceFee;
       this.reviewsNum=res.data.reviews.length;
-      this.form.TotalPrice=(this.dailyPrice*this.form.NumOfDays) +this.serviceFee + this.cleaningFee + this.occupancyFee;
+      this.form.price=(this.dailyPrice*this.NumOfDays) +this.serviceFee + this.cleaningFee + this.occupancyFee;
       
       
    
@@ -170,61 +170,67 @@ export default {
         .then((res) => {
           console.log(res.data);
         });
-         console.log(this.form);
+         
     },
 
-    ShowDetals() {
-      this.show = true;
-    },
+   
   increaseAQty(num){
-    
-    this.form.NumAdults=num +1;
+    if(this.maxGuests==this.form.adults){
+      this.form.adults==this.form.adults;
+      console.log('Error')
+    }
+    this.form.adults=num +1;
    
   
   },
   decreaseAQty(num){
     
-    this.form.NumAdults-=num;
+    this.form.adults-=num;
    
   
   },
   increaseCQty(num){
-    
-    this.form.NumChildren=num+1;
+
+     if(this.maxGuests==this.form.children){
+      console.log('Error')
+    }
+    this.form.children=num+1;
    
   
   },
   decreaseCQty(num){
     
-    this.form.NumChildren-=num;
+    this.form.children-=num;
    
   
   },
   increaseIQty(num){
-    
-    this.form.NumInfants=num;
+     if(this.maxGuests==this.form.infants){
+      console.log('Error')
+    }
+    this.form.infants=num;
    
   
   },
   decreaseIQty(num){
     
-    this.form.NumInfants-=num;
+    this.form.infants-=num;
    
   
   },
    updateDate(date) {
        let dateSub = date
-       this.form.CheckIn=moment(this.dateStart).format('MM-DD-YYYY');
-       this.form.CheckOut=moment(this.dateEnd).format('MM-DD-YYYY');
+       this.form.checkInDate=moment(this.dateStart).format('MM-DD-YYYY');
+       this.form.checkOutDate=moment(this.dateEnd).format('MM-DD-YYYY');
       return dateSub;
     },
     updateDays(num){
       if(num==0){
-        this.form.NumOfDays=1
+        this.NumOfDays=1
       }else{
-     this.form.NumOfDays=num;
+     this.NumOfDays=num;
       }
-       this.form.TotalPrice=(this.dailyPrice*this.form.NumOfDays) +this.serviceFee + this.cleaningFee + this.occupancyFee;
+       this.form.price=(this.dailyPrice*this.NumOfDays) +this.serviceFee + this.cleaningFee + this.occupancyFee;
   }
   }
 };

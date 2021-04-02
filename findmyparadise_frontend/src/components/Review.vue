@@ -168,7 +168,9 @@ export default {
         .post("http://localhost:8080/api/addReviewer", this.posts)
         .then((result) => {
           console.warn(result);
+          
         });
+        
       e.preventDefault();
     },
 
