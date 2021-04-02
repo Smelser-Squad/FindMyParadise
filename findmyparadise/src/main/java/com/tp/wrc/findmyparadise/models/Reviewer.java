@@ -36,6 +36,8 @@ public class Reviewer implements Serializable {
     @OneToMany(mappedBy = "reviewer", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Review> reviews = new HashSet<>();
 
+    
+
     public Reviewer() {
 
     }

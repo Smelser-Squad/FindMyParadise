@@ -1,8 +1,11 @@
 <template>
   <h4 id="listingHeader">{{ listingData + " Location" }}</h4>
-  <br />
+  <br>
   <div id="map" ref="mapRef"></div>
-  <br />
+
+  <br>
+  <p id="mapLine"><b><u>Nearby Attractions</u></b></p>
+
   <p id="mapLine">{{ dataName1 + " : " + dataDist1 }}</p>
   <p id="mapLine">{{ dataName2 + " : " + dataDist2 }}</p>
   <p id="mapLine">{{ dataName3 + " : " + dataDist3 }}</p>
@@ -13,8 +16,7 @@
 import { onMounted, ref } from "vue";
 import axios from "axios";
 
-let listingID = 2;
-
+let listingID = 1;
 export default {
   name: "Map",
   props: {
@@ -109,7 +111,7 @@ export default {
           };
           var marker = new tt.Marker().setLngLat(location).addTo(map);
           var popup = new tt.Popup({ offset: popupOffsets }).setHTML(
-            res.data.name.toUpperCase()
+            res.data.address.toUpperCase()
           );
           marker.setPopup(popup).togglePopup();
         });
@@ -130,12 +132,16 @@ export default {
 };
 </script>
 <style>
+#mapLine {
+  margin: auto;
+  text-align: center;
+}
 #listingHeader {
   margin: auto;
   text-align: center;
 }
 #map {
-  height: 350px;
+  height: 268px;
   width: 100%;
 }
 </style>

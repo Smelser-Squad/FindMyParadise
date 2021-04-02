@@ -1,11 +1,13 @@
 <template>
-  <div>
+  <div class="dateBox">
     <DatePicker
       class="datePicker"
       v-model="range"
       is-range
       v-on:change="ChangeDate()"
       :min-date="new Date()"
+      :columns = "2"
+      :rows = "1"
     />
     <br />
     <span>Start Date: {{ updateDate(range.start) }}</span>
@@ -13,8 +15,7 @@
     <br />
     <span>End Date: {{ updateDate(range.end) }}</span>
     <br />
-
-    <button @click="sendDate">Submit</button>
+    <button class="btn" @click="sendDate">Submit</button>
   </div>
 </template>
 
@@ -50,3 +51,8 @@ export default {
   },
 };
 </script>
+<style scoped>
+.dateBox {
+  margin: auto;
+}
+</style>
