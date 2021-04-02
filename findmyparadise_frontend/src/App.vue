@@ -8,36 +8,42 @@
         <GalleryMini />
       </div>
       <div class="reservationContainer">
-       <Reservation
-        title="Reservation"
-        :dateStart="range.start"
-        :dateEnd="range.end"
-      />
+        <Reservation
+          title="Reservation"
+          :dateStart="range.start"
+          :dateEnd="range.end"
+        />
       </div>
+      <hr class="light" />
       <br />
       <div class="amenitiesContainer">
         <amenities title="Amenities"></amenities>
       </div>
+      <hr class="light" />
+      <div class="calenderContainer">
+        <h4 id="dateHeader">Select Date Range</h4>
+        <DateRangePicker @datePick="transferDates($event)" />
+      </div>
+      <hr class="light" />
       <div class="mapContainer">
-        <div class="left" style="width: 100%; height: 350px">
-          <h4 id="dateHeader">Select Date Range</h4>
-            <DateRangePicker @datePick="transferDates($event)" />
+        <Map />
+      </div>
+      <hr class="light" />
+      <br />
+      <div class="grid-container">
+        <div class="container">
+          <description title="Description" @email="toggleEmail"> </description>
         </div>
-        <div class="right">
-          <Map />
+        <div class="container">
+          <review></review>
+        </div>
+        <div class="hostContainer">
+          <host></host>
         </div>
       </div>
-      <div class="container">
-        <description title="Description" @email="toggleEmail"> </description>
-      </div>
-      <div class="reviewContainer">
-        <review></review>
-      </div>
-      
-
-      <div class="container">
-        <host></host>
-      </div>
+      <br>
+      <hr class="light">
+      <br>
       <div class="scrollContainer">
         <more-places></more-places>
       </div>
@@ -51,14 +57,7 @@
       >
       </email>
     </div>
-    </div>
-    
-  
-   
-  
-
-
-
+  </div>
 </template>
 
 <script>
@@ -71,11 +70,8 @@ import Review from "./components/Review";
 import Events from "./components/Events";
 import DateRangePicker from "./components/DateRangePicker.vue";
 import Email from "./components/Email";
-
 import GalleryMini from "./components/GalleryMini.vue";
-
 import Host from "./components/Host.vue";
-
 export default {
   name: "App",
   components: {
@@ -91,7 +87,6 @@ export default {
     Events,
     Email,
   },
-
   methods: {
     Change(event) {
       console.log(event);
@@ -100,12 +95,14 @@ export default {
       this.emailTrigger = !this.emailTrigger;
       this.host = host;
     },
-
     transferDates(range) {
       this.range = range;
-
       console.log(this.range.start);
       console.log(this.range.end);
+    },
+    transferDays(num) {
+      this.days = num;
+      console.log(this.days);
     },
   },
   data() {
@@ -116,6 +113,8 @@ export default {
         start: new Date(),
         end: new Date(),
       },
+
+      days: "",
     };
   },
 };
@@ -132,7 +131,14 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: #DCDCDC;
+  background-image: linear-gradient(
+    to right top,
+    #000000,
+    #311921,
+    #5d2a3d,
+    #8e3b5c,
+    #c14d7d
+  );
   background-attachment: fixed;
 }
 .header {
@@ -190,6 +196,11 @@ body {
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
 }
+.vc-pane-container {
+  border: 2px solid black;
+  border-color: black;
+  background-color: white;
+}
 .container {
   max-width: 500px;
   margin: 30px auto;
@@ -207,18 +218,21 @@ body {
   min-height: 300px;
   border: 1px solid gray;
   background: whitesmoke;
+  opacity: 0.92;
   padding: 30px;
   border-radius: 5px;
   box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
 }
-
-.masterContainer div,
+.amenitiesContainer h3 {
+  margin: auto;
+  text-align: center;
+}
+/* .masterContainer div,
 h2,
 h5 {
- margin: auto;
- text-align: center;
-}
-
+  margin: auto;
+  text-align: center;
+} */
 .reservationContainer div,
 h2,
 h5 {
@@ -226,38 +240,38 @@ h5 {
   text-align: center;
 }
 .mapContainer {
-  display: flex;
   max-width: 80%;
   margin: 30px auto;
   overflow: hidden;
   min-height: 300px;
+  /* border: 1px solid gray; */
+  background: whitesmoke;
   padding: 30px;
-  /* border: 1px solid gray;
-  border-radius: 5px;
+  /* border-radius: 5px;
   box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px; */
 }
-.mapContainer .left {
-  flex: 1;
-}
-.mapContainer .right {
-  flex: 1;
-}
-.mapContainer div {
-  margin: auto;
+.calenderContainer {
+  max-width: 80%;
+  margin: 30px auto;
   text-align: center;
-}
-.mapContainer p {
-  text-align: left;
+  overflow: auto;
+  min-height: 300px;
+  /* border: 1px solid gray; */
+  background: whitesmoke;
+  padding: 30px;
+  /* border-radius: 5px;
+  box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px; */
 }
 .reservationContainer {
   max-width: 95%;
   margin: 30px auto;
-  overflow: auto;
-  min-height: 300px;
-  border: 1px solid gray;
+  overflow: hidden;
+  max-height: 725px;
+  min-height: 200px;
+  /* border: 1px solid gray; */
   padding: 30px;
-  border-radius: 5px;
-  box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
+  /* border-radius: 5px;
+  box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px; */
 }
 .btn {
   display: inline-block;
@@ -273,7 +287,8 @@ h5 {
   font-family: inherit;
 }
 #mapLine {
-  margin: 0;
+  margin: auto;
+  text-align: left;
 }
 .btn:focus {
   outline: none;
@@ -298,7 +313,12 @@ h5 {
 .datePicker {
   display: inline;
 }
-.reviewContainer {
+.grid-container {
+  display: grid;
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+/* .reviewContainer {
   max-width: 500px;
   margin: 30px auto;
   overflow: auto;
@@ -307,18 +327,28 @@ h5 {
   padding: 30px;
   border-radius: 5px;
   box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
+  float: left;
 }
-
+.descContainer {
+  max-width: 500px;
+  margin: 30px auto;
+  overflow: auto;
+  min-height: 300px;
+  border: 1px solid gray;
+  padding: 30px;
+  border-radius: 5px;
+  box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
+  float: right;
+} */
 .imgContainer {
- max-width: 100%;
- margin: 30px auto;
- object-fit: fill;
- max-height: 500px;
- border-radius: 10px;
- box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
- overflow: auto;
+  max-width: 100%;
+  margin: 30px auto;
+  object-fit: fill;
+  max-height: 400px;
+  border-radius: 10px;
+  box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
+  overflow: auto;
 }
-
 .amenitiesContainer {
   max-width: 80%;
   margin: 30px auto;
@@ -333,18 +363,20 @@ h5 {
   margin: auto;
   text-align: center;
 }
-.amenitiesContainer {
-  max-width: 80%;
+.hostContainer {
+  max-width: 500px;
   margin: 30px auto;
   overflow: auto;
   min-height: 300px;
+  border: 1px solid gray;
   padding: 30px;
-  /* border: 1px solid gray;
   border-radius: 5px;
-  box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px; */
+  box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
+  position: relative;
 }
-#dateHeader {
+.light {
   margin: auto;
   text-align: center;
+  width: 80%;
 }
 </style>

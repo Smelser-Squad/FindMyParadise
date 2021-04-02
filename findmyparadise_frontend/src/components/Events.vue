@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>Things to do!</h2>
+    <h2>Things To Do!</h2>
 
     <horizontal-list :items="items" :options="options">
       <template v-slot:default="{ item }">
@@ -61,7 +61,7 @@ export default {
   },
   mounted() {
     axios
-      .get("http://localhost:8081/api/events")
+      .get("http://localhost:8080/api/events")
       .then((res) => {
         console.log(res.data);
         this.items = res.data;
