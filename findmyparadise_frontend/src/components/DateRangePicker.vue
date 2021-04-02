@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="dateBox">
     <DatePicker
       is-expanded
       class="datePicker"
@@ -7,10 +7,6 @@
       is-range
       v-on:change="ChangeDate()"
       :min-date="new Date()"
-      :rows="1"
-      :columns="2"
-      
-      
     />
 
     <button class="btn" @click="sendDate">Submit</button>
@@ -49,3 +45,9 @@ export default {
   },
 };
 </script>
+<style scoped>
+.vc-weeks {
+  height: 350px !important;
+  width: 100% !important;
+}
+</style>

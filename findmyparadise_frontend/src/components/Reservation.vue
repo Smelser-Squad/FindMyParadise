@@ -1,5 +1,5 @@
 <template>
-  <div id="Resrevation body">
+  <div>
     <header>
       <h2>
         <b>${{ dataObject.price }}</b> / night
@@ -179,6 +179,15 @@ header {
   align-items: center;
   margin-bottom: 20px;
 }
+/* .split {
+  display: flex;
+}
+.split .split-left {
+  flex: 1;
+}
+.split .split-right {
+  flex: 1;
+} */
 .popup {
   position: relative;
   display: inline-block;

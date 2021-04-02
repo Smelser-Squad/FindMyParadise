@@ -113,7 +113,7 @@ public class ListingServiceImpl implements ListingService {
         }
         if( hostID < 0)
         {
-            throw new NullHostIDException("Invalid host ID!");
+            throw new InvalidHostIDException("Invalid host ID!");
         }
         return repo.findByHostHostID(hostID);
     }
