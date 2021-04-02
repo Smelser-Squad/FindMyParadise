@@ -8,16 +8,19 @@
             Health and Safety
         </div>
         <div id="cancellation">
-            Cancellation policy
+            <p>Cancellation policy</p>
+            <span>You have until {{ updateDate(dateStart) }} to cancel your reservation</span>
         </div>
     </div>
 </template>
 
 <script>
 import axios from "axios";
+import moment from "moment";
 
 let listingID = 1;
 export default {
+    props : ["dateStart"],
     data() {
         
     },
@@ -27,7 +30,9 @@ export default {
         })
     },
     methods : {
-
+        updateDate(date) {
+        return moment(date).format("MM-DD");
+        },
     }
 }
 </script>

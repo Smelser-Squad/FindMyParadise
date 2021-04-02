@@ -2,34 +2,36 @@
   <div>
     <header>
       <h2>
-        <b>${{dailyPrice}}</b> / night
+        <b>${{ dailyPrice }}</b> / night
       </h2>
       <div>
-       
-        <span style="color:gray;"> ({{reviewsNum}}) reviews</span
-        >
+        <span style="color: gray"> ({{ reviewsNum }}) reviews</span>
       </div>
     </header>
-    <body>
+    <body id="ReservationBody">
       <form v-on:submit.prevent="submitForm" method="post">
-      
         <h5>Guests:</h5>
-        <Guests @iAQty="increaseAQty($event)" @dAQty="decreaseAQty($event)" 
-        @iCQty="increaseCQty($event)" @dCQty="decreaseCQty($event)" 
-        @iIQty="increaseIQty($event)" @dIQty="decreaseAQty($event)"/>
- <span> Start Date: {{updateDate(dateStart)}}</span>
-        <br/>
-        <span> End Date: {{updateDate(dateEnd)}}</span>
-
-       <span>{{updateDays(days)}}</span>
-      
-      
-      <h4>CheckIn:</h4><input disabled v-model="form.CheckIn"/>
-       <h4>CheckOut:</h4><input disabled v-model="form.CheckOut" />
-
-     
-
-
+        <Guests
+          @iAQty="increaseAQty($event)"
+          @dAQty="decreaseAQty($event)"
+          @iCQty="increaseCQty($event)"
+          @dCQty="decreaseCQty($event)"
+          @iIQty="increaseIQty($event)"
+          @dIQty="decreaseAQty($event)"
+        />
+        <br>
+        <span> Start Date: {{ updateDate(dateStart) }}</span>
+        <br />
+        <span> End Date: {{ updateDate(dateEnd) }}</span>
+        <br>
+        <span>{{ updateDays(days) }}</span>
+        <br>
+        <h4>CheckIn:</h4>
+        <input disabled v-model="form.CheckIn" />
+        <h4>CheckOut:</h4>
+        <input disabled v-model="form.CheckOut" />
+        <br>
+        <br />
         <span
           class="_19di23v"
           style="
@@ -43,7 +45,6 @@
           class="btn"
           type="submit"
           style="width: 420px; text-align: center"
-         
         >
           Reserve
         </button>
@@ -52,10 +53,8 @@
       <u @click="showDetails()"><b> Show price details</b></u>
       <div v-if="details">
         <div>
-
           <u>${{ dailyPrice }} x {{ form.NumOfDays }} nights</u>
           <span>${{ dailyPrice * form.NumOfDays }}</span>
-
         </div>
 
         <div class="popup" @click="CleaningFeepopup()">
@@ -80,12 +79,9 @@
           <span> ${{ occupancyFee }} </span>
         </div>
       </div>
-      <hr />
-      <p>
-        <b>
-          Total: ${{ form.TotalPrice
-          }}</b
-        >
+      <br>
+      <p id = "totalPrice">
+        <b> Total: ${{ form.TotalPrice }}</b>
       </p>
     </body>
   </div>
@@ -93,44 +89,35 @@
 <script>
 import Guests from "./Guests";
 import axios from "axios";
-
-import moment from 'moment';
-
+import moment from "moment";
 let listingID = 1;
-
 export default {
   name: "Reservation",
-
-  props: ['dateStart','dateEnd','days'],
-
-
+  props: ["dateStart", "dateEnd", "days"],
   data() {
     return {
       showCalendar: true,
       details: false,
-      date:new Date(),
+      date: new Date(),
       dataObject: {},
-      dailyPrice:'',
-      cleaningFee:'',
-      occupancyFee:'',
-      serviceFee:'',
-      reviewsNum:'',
-      form:{
-        CheckIn:'',
-        CheckOut:'',
-        NumAdults:1,
-        NumChildren:0,
-        NumInfants:0,
-        NumOfDays:1,
-        TotalPrice:''
+      dailyPrice: "",
+      cleaningFee: "",
+      occupancyFee: "",
+      serviceFee: "",
+      reviewsNum: "",
+      form: {
+        CheckIn: "",
+        CheckOut: "",
+        NumAdults: 1,
+        NumChildren: 0,
+        NumInfants: 0,
+        NumOfDays: 1,
+        TotalPrice: "",
       },
       range: {
         start: new Date(),
         end: new Date(),
       },
-    
-    
-
 
       startDateStr: "",
       endDateStr: "",
@@ -139,23 +126,21 @@ export default {
   mounted() {
     axios.get(`http://localhost:8080/api/listing/${listingID}`).then((res) => {
       this.dailyPrice = res.data.price;
-      this.cleaningFee=res.data.cleaningFee;
-      this.occupancyFee=res.data.occupancyFee;
-      this.serviceFee=res.data.serviceFee;
-      this.reviewsNum=res.data.reviews.length;
-      this.form.TotalPrice=(this.dailyPrice*this.form.NumOfDays) +this.serviceFee + this.cleaningFee + this.occupancyFee;
-      
-      
-   
+      this.cleaningFee = res.data.cleaningFee;
+      this.occupancyFee = res.data.occupancyFee;
+      this.serviceFee = res.data.serviceFee;
+      this.reviewsNum = res.data.reviews.length;
+      this.form.TotalPrice =
+        this.dailyPrice * this.form.NumOfDays +
+        this.serviceFee +
+        this.cleaningFee +
+        this.occupancyFee;
     });
   },
-
   components: {
     Guests,
-
   },
   methods: {
-   
     CleaningFeepopup() {
       let popup = document.getElementById("CleaningFeepopup");
       popup.classList.toggle("show");
@@ -170,66 +155,60 @@ export default {
         .then((res) => {
           console.log(res.data);
         });
-         console.log(this.form);
+      console.log(this.form);
     },
-
     ShowDetals() {
       this.show = true;
     },
-  increaseAQty(num){
-    
-    this.form.NumAdults=num +1;
-   
-  
-  },
-  decreaseAQty(num){
-    
-    this.form.NumAdults-=num;
-   
-  
-  },
-  increaseCQty(num){
-    
-    this.form.NumChildren=num+1;
-   
-  
-  },
-  decreaseCQty(num){
-    
-    this.form.NumChildren-=num;
-   
-  
-  },
-  increaseIQty(num){
-    
-    this.form.NumInfants=num;
-   
-  
-  },
-  decreaseIQty(num){
-    
-    this.form.NumInfants-=num;
-   
-  
-  },
-   updateDate(date) {
-       let dateSub = date
-       this.form.CheckIn=moment(this.dateStart).format('MM-DD-YYYY');
-       this.form.CheckOut=moment(this.dateEnd).format('MM-DD-YYYY');
+    increaseAQty(num) {
+      this.form.NumAdults = num + 1;
+    },
+    decreaseAQty(num) {
+      this.form.NumAdults -= num;
+    },
+    increaseCQty(num) {
+      this.form.NumChildren = num + 1;
+    },
+    decreaseCQty(num) {
+      this.form.NumChildren -= num;
+    },
+    increaseIQty(num) {
+      this.form.NumInfants = num;
+    },
+    decreaseIQty(num) {
+      this.form.NumInfants -= num;
+    },
+    updateDate(date) {
+      let dateSub = date;
+      this.form.CheckIn = moment(this.dateStart).format("MM-DD-YYYY");
+      this.form.CheckOut = moment(this.dateEnd).format("MM-DD-YYYY");
       return dateSub;
     },
-    updateDays(num){
-      if(num==0){
-        this.form.NumOfDays=1
-      }else{
-     this.form.NumOfDays=num;
+    updateDays(num) {
+      if (num == 0) {
+        this.form.NumOfDays = 1;
+      } else {
+        this.form.NumOfDays = num;
       }
-       this.form.TotalPrice=(this.dailyPrice*this.form.NumOfDays) +this.serviceFee + this.cleaningFee + this.occupancyFee;
-  }
-  }
+      this.form.TotalPrice =
+        this.dailyPrice * this.form.NumOfDays +
+        this.serviceFee +
+        this.cleaningFee +
+        this.occupancyFee;
+    },
+  },
 };
 </script>
 <style scoped>
+#totalPrice {
+  margin-top: 20px;
+  border: 5px solid black;
+  border-radius: 50%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-left: 40%;
+  margin-right: 40%;
+}
 #ReservationBody {
   background: whitesmoke !important;
 }
