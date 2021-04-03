@@ -44,7 +44,7 @@
   </div> -->
 
 
-  <div>
+  <div style="margin-bottom:20px;">
     <svg
       viewBox="0 0 1000 1000"
       role="presentation"
@@ -59,18 +59,143 @@
     <span class="avRatingView"> {{ overallRating }} ({{ reviewList.length }} Reviews)</span>
   </div>
 <br>
-  <div class="left">
-    <p>Cleanliness {{ averageCleanliness }}</p>
-    <p>Communication {{ averageCommunication }}</p>
-    <p>Check-in {{ averageCheckIn }}</p>
+
+<div class="left">
+  <div class="leftRat"> 
+    Cleanliness
+  </div>
+  <div class="rightBar"> 
+          <div class="progress" >
+            <div
+              class="progress-bar bg-success"
+              role="progressbar"
+              v-bind:aria-valuenow="averageCleanliness"
+              aria-valuemin="0"
+              aria-valuemax="5"
+              v-bind:style="{ width: averageCleanlinessBar + '%'}">
+            </div>
+          </div>
+  </div> 
+    <div class="moreRight"> 
+    {{ averageCleanliness }}
+    </div> 
+
+<br> 
+<br> 
+
+<div class="leftRat"> 
+    Communication
+  </div>
+  <div class="rightBar"> 
+          <div class="progress" >
+            <div
+              class="progress-bar bg-success"
+              role="progressbar"
+              v-bind:aria-valuenow="averageCommunication"
+              aria-valuemin="0"
+              aria-valuemax="5"
+              v-bind:style="{ width: averageCommunicationBar + '%'}">
+            </div>
+          </div>
+  </div> 
+    <div class="moreRight"> 
+    {{ averageCommunication }}
+    </div> 
+
+       <br> 
+<br> 
+
+<div class="leftRat"> 
+    Check-in
+  </div>
+  <div class="rightBar"> 
+          <div class="progress" >
+            <div
+              class="progress-bar bg-success"
+              role="progressbar"
+              v-bind:aria-valuenow="averageCheckIn"
+              aria-valuemin="0"
+              aria-valuemax="5"
+              v-bind:style="{ width: averageCheckInBar + '%'}">
+            </div>
+          </div>
+  </div> 
+    <div class="moreRight"> 
+    {{ averageCheckIn }}
+    </div> 
+      
+    
   </div>
 
-  <div class="right">
-    <p>Accuracy {{ averageAccuracy }}</p>
-    <p>Location {{ averageLocation }}</p>
-    <p>Value {{ averageValue }}</p>
-  </div>
 
+<div class="right">
+
+<div class="leftRat"> 
+    Accuracy
+  </div>
+  <div class="rightBar"> 
+          <div class="progress" >
+            <div
+              class="progress-bar bg-success"
+              role="progressbar"
+              v-bind:aria-valuenow="averageAccuracy"
+              aria-valuemin="0"
+              aria-valuemax="5"
+              v-bind:style="{ width: averageAccuracyBar + '%'}">
+            </div>
+          </div>
+  </div> 
+    <div class="moreRight"> 
+    {{ averageAccuracy }}
+    </div> 
+
+<br> 
+<br> 
+
+<div class="leftRat"> 
+    Location
+  </div>
+  <div class="rightBar"> 
+          <div class="progress" >
+            <div
+              class="progress-bar bg-success"
+              role="progressbar"
+              v-bind:aria-valuenow="averageLocation"
+              aria-valuemin="0"
+              aria-valuemax="5"
+              v-bind:style="{ width: averageLocationBar + '%'}">
+            </div>
+          </div>
+  </div> 
+    <div class="moreRight"> 
+    {{ averageLocation }}
+    </div> 
+
+       <br> 
+<br> 
+
+<div class="leftRat"> 
+    Value
+  </div>
+  <div class="rightBar"> 
+          <div class="progress" >
+            <div
+              class="progress-bar bg-success"
+              role="progressbar"
+              v-bind:aria-valuenow="averageValue"
+              aria-valuemin="0"
+              aria-valuemax="5"
+              v-bind:style="{ width: averageValueBar + '%'}">
+            </div>
+          </div>
+  </div> 
+    <div class="moreRight"> 
+    {{ averageValue }}
+    </div> 
+  </div> 
+
+  <br> 
+  <br>
 
   <div
     v-for="reviewer in list.slice(0, 1)"
@@ -89,7 +214,7 @@
   </div>
     <br>
    
-    <p style="float:left">{{ reviewer.reviewer.description }}</p>
+    <p style="float:left; margin-bottom: 80px">{{ reviewer.reviewer.description }}</p>
 
     <button class="showBtn" @click="() => TogglePopup('buttonTrigger')">
       Show all {{ reviewList.length }} reviews
@@ -124,7 +249,7 @@
                     <div class="row">
                     <div class="search-wrapper panel-heading col-sm-12">
                       <label> 
-                        <input class="form-control" type="text" v-model="search" placeholder="Review Search" />
+                       <input class="form-control" type="text" v-model="search" placeholder="Review Search" />
                       </label>
                     </div>                        
                      </div>
@@ -137,15 +262,140 @@
 <br>
 
 <div class="ratingDialog"> 
-  <p>Cleanliness {{ averageCleanliness }}</p>
-    <p>Communication {{ averageCommunication }}</p>
-    <p>Check-in {{ averageCheckIn }}</p>
-    <p>Accuracy {{ averageAccuracy }}</p>
-    <p>Location {{ averageLocation }}</p>
-    <p>Value {{ averageValue }}</p>
-</div>
+<div class="left">
+  <div class="leftRat"> 
+    Cleanliness
+  </div>
+  <div class="rightBar"> 
+          <div class="progress" >
+            <div
+              class="progress-bar bg-success"
+              role="progressbar"
+              v-bind:aria-valuenow="averageCleanliness"
+              aria-valuemin="0"
+              aria-valuemax="5"
+              v-bind:style="{ width: averageCleanlinessBar + '%'}">
+            </div>
+          </div>
+  </div> 
+    <div class="moreRight"> 
+    {{ averageCleanliness }}
+    </div> 
 
-      <br />
+<br> 
+<br> 
+
+<div class="leftRat"> 
+    Communication
+  </div>
+  <div class="rightBar"> 
+          <div class="progress" >
+            <div
+              class="progress-bar bg-success"
+              role="progressbar"
+              v-bind:aria-valuenow="averageCommunication"
+              aria-valuemin="0"
+              aria-valuemax="5"
+              v-bind:style="{ width: averageCommunicationBar + '%'}">
+            </div>
+          </div>
+  </div> 
+    <div class="moreRight"> 
+    {{ averageCommunication }}
+    </div> 
+
+       <br> 
+<br> 
+
+<div class="leftRat"> 
+    Check-in
+  </div>
+  <div class="rightBar"> 
+          <div class="progress" >
+            <div
+              class="progress-bar bg-success"
+              role="progressbar"
+              v-bind:aria-valuenow="averageCheckIn"
+              aria-valuemin="0"
+              aria-valuemax="5"
+              v-bind:style="{ width: averageCheckInBar + '%'}">
+            </div>
+          </div>
+  </div> 
+    <div class="moreRight"> 
+    {{ averageCheckIn }}
+    </div> 
+  </div>
+
+<div class="right">
+<div class="leftRat"> 
+    Accuracy
+  </div>
+  <div class="rightBar"> 
+          <div class="progress" >
+            <div
+              class="progress-bar bg-success"
+              role="progressbar"
+              v-bind:aria-valuenow="averageAccuracy"
+              aria-valuemin="0"
+              aria-valuemax="5"
+              v-bind:style="{ width: averageAccuracyBar + '%'}">
+            </div>
+          </div>
+  </div> 
+    <div class="moreRight"> 
+    {{ averageAccuracy }}
+    </div> 
+
+<br> 
+<br> 
+
+<div class="leftRat"> 
+    Location
+  </div>
+  <div class="rightBar"> 
+          <div class="progress" >
+            <div
+              class="progress-bar bg-success"
+              role="progressbar"
+              v-bind:aria-valuenow="averageLocation"
+              aria-valuemin="0"
+              aria-valuemax="5"
+              v-bind:style="{ width: averageLocationBar + '%'}">
+            </div>
+          </div>
+  </div> 
+    <div class="moreRight"> 
+    {{ averageLocation }}
+    </div> 
+
+       <br> 
+<br> 
+
+<div class="leftRat"> 
+    Value
+  </div>
+  <div class="rightBar"> 
+          <div class="progress" >
+            <div
+              class="progress-bar bg-success"
+              role="progressbar"
+              v-bind:aria-valuenow="averageValue"
+              aria-valuemin="0"
+              aria-valuemax="5"
+              v-bind:style="{ width: averageValueBar + '%'}">
+            </div>
+          </div>
+  </div> 
+    <div class="moreRight"> 
+    {{ averageValue }}
+    </div> 
+
+  </div> 
+</div>
+<br><br>
+<br><br>
+<div> 
       <ul>
         <lu v-for="reviewer in filteredReviews" :key="reviewer">
           <div> 
@@ -156,8 +406,6 @@
               <h3 class="name">{{ reviewer.reviewer.name }}</h3> 
               <p>{{ reviewer.reviewer.joinedDate }}</p>
           </div> 
-         
-
           <br>
           </div>
            <p style="float:left">{{ reviewer.reviewer.description }}</p>
@@ -165,9 +413,13 @@
 <br>
 <br><br>
 <br><br>
+<br><br>
+
           <hr />
+         
         </lu>
       </ul>
+      </div> 
     </Modal>
   </div>
 </template>
@@ -214,7 +466,13 @@ export default {
       averageAccuracy: 0,
       averageLocation: 0,
       averageValue: 0,
-      search: ''
+      search: '',
+      averageCleanlinessBar: 0, 
+      averageCommunicationBar: 0,
+      averageCheckInBar: 0,
+      averageAccuracyBar: 0, 
+      averageLocationBar: 0, 
+      averageValueBar: 0
     };
   },
 
@@ -273,6 +531,9 @@ export default {
           0
         );
         this.averageCleanliness = totalCleanlinessRt / this.reviewList.length;
+        this.averageCleanlinessBar = (this.averageCleanliness / 5 )* 100; 
+
+
 
         const totalCommunicationRt = this.reviewList.reduce(
           (acc, { communicationRating }) =>
@@ -282,29 +543,39 @@ export default {
         this.averageCommunication =
           totalCommunicationRt / this.reviewList.length;
 
+          this.averageCommunicationBar = (this.averageCommunication / 5) * 100; 
+
         const totalCheckInRt = this.reviewList.reduce(
           (acc, { checkInRating }) => (acc += Number(checkInRating)),
           0
         );
         this.averageCheckIn = totalCheckInRt / this.reviewList.length;
+        this.averageCheckInBar = (this.averageCheckIn / 5 )* 100; 
 
         const totalAccuracyRt = this.reviewList.reduce(
           (acc, { accuracyRating }) => (acc += Number(accuracyRating)),
           0
         );
         this.averageAccuracy = totalAccuracyRt / this.reviewList.length;
+        this.averageAccuracyBar = (this.averageAccuracy / 5 )* 100; 
+
+
 
         const totalLocationRt = this.reviewList.reduce(
           (acc, { locationRating }) => (acc += Number(locationRating)),
           0
         );
         this.averageLocation = totalLocationRt / this.reviewList.length;
+        this.averageLocationBar = (this.averageLocation / 5 )* 100; 
+
 
         const totalValueRt = this.reviewList.reduce(
           (acc, { valueRating }) => (acc += Number(valueRating)),
           0
         );
         this.averageValue = totalValueRt / this.reviewList.length;
+        this.averageValueBar = (this.averageValue / 5 )* 100; 
+
       })
       .catch((err) => Promise.reject(err));
   },
@@ -314,7 +585,7 @@ export default {
     filteredReviews (){
     if(this.search){
       return this.list.filter((item)=>{
-        return item.reviewer.description.includes(this.search);
+        return item.reviewer.description.toLowerCase().includes(this.search.toLowerCase());
       })
       }else{
         return this.list;
@@ -326,8 +597,8 @@ export default {
 
 <style scoped>
 img {
-  height: 50px;
-  width: 50px;
+  height: 60px;
+  width: 60px;
   border-radius: 50%;
   margin-right: 20px;
   display: inline;
@@ -342,11 +613,12 @@ img {
 .right {
   width: 50%;
   float: left;
+  margin-bottom: 45px;
 }
 
 .rightImage,
 .leftInfo{
-  width: 20%;
+  width: 10%;
   float: left;
 }
 
@@ -399,28 +671,55 @@ input {
   font-size: 1.3rem;
 
 }
-/* .showBtn{
-  float:left;
-  width: 200px; 
-  height: 50px;
-} */
+hr{
+margin-bottom: 2rem; 
+
+}
+
 .showBtn {
   border-radius: 12px;
   background-color: white;
   padding: 10px;
   border: 1px solid;
-    float:left;
-
+  float:left;
   width: 200px; 
   height: 50px;
+  margin-left: 350px;
 }
 .showBtn:hover {
   background-color: #d0e7ee;
 }
-
-
 .ratingDialog {
     box-sizing: border-box;
     text-align: center;
 }
+
+.progress{
+  height: 8px;
+  width: 200px;
+  margin-top: 10px;
+  margin-left: 100px
+}
+
+.bg-success {
+    background-color: black!important;
+}
+
+
+
+.leftRat,
+.rightBar{
+  width: 20%;
+  float: left;
+  font-size: 18px;
+}
+
+
+.moreRight{
+  float: right;
+  margin-right: 40px;
+  font-weight: bold;
+
+}
+
 </style>
