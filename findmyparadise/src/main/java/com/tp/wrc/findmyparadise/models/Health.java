@@ -1,11 +1,14 @@
 package com.tp.wrc.findmyparadise.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Set;
 
 @Entity
 @Table(name = "health_safety")
+@JsonIgnoreProperties(value = {"listings"}, allowSetters = true)
 public class Health implements Serializable {
 
     @Id

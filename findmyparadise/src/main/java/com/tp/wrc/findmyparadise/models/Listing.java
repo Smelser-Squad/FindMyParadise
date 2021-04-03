@@ -4,7 +4,10 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -83,6 +86,12 @@ public class Listing implements Serializable {
     @Column (name ="listing_type")
     private String type;
 
+    @Column (name ="check_in")
+    private LocalDate checkIn;
+
+    @Column (name ="check_out")
+    private LocalDate checkOut;
+
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "listing_amenities",
@@ -95,14 +104,14 @@ public class Listing implements Serializable {
             name="listing_rules",
             joinColumns = @JoinColumn(name = "listing_id"),
             inverseJoinColumns = @JoinColumn(name = "rule_id"))
-    private Set<Rules> rules = new HashSet<>();
+    private List<Rules> rules = new ArrayList<>();
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name="listing_health",
             joinColumns = @JoinColumn(name = "listing_id"),
             inverseJoinColumns = @JoinColumn(name = "health_id"))
-    private Set<Health> healthRules = new HashSet<>();
+    private List<Health> healthRules = new ArrayList<>();
 
     public Listing() {
 
@@ -251,6 +260,22 @@ public class Listing implements Serializable {
         this.type = type;
     }
 
+    public LocalDate getCheckIn() {
+        return checkIn;
+    }
+
+    public void setCheckIn(LocalDate checkIn) {
+        this.checkIn = checkIn;
+    }
+
+    public LocalDate getCheckOut() {
+        return checkOut;
+    }
+
+    public void setCheckOut(LocalDate checkOut) {
+        this.checkOut = checkOut;
+    }
+
     public Set<Amenity> getAmenities() {
         return amenities;
     }
@@ -267,20 +292,19 @@ public class Listing implements Serializable {
         this.photos = photos;
     }
 
-    public Set<Rules> getRules() {
+    public List<Rules> getRules() {
         return rules;
     }
 
-    public void setRules(Set<Rules> rules) {
+    public void setRules(List<Rules> rules) {
         this.rules = rules;
     }
 
-    public Set<Health> getHealthRules() {
+    public List<Health> getHealthRules() {
         return healthRules;
     }
 
-    public void setHealthRules(Set<Health> healthRules) {
+    public void setHealthRules(List<Health> healthRules) {
         this.healthRules = healthRules;
     }
-
 }

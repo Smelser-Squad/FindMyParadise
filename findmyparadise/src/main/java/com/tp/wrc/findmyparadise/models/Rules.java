@@ -1,11 +1,14 @@
 package com.tp.wrc.findmyparadise.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Set;
 
 @Entity
 @Table(name = "house_rules")
+@JsonIgnoreProperties(value = {"listings"}, allowSetters = true)
 public class Rules implements Serializable {
 
 
@@ -16,7 +19,6 @@ public class Rules implements Serializable {
 
     @Column(name = "rule_value")
     private String ruleValue;
-
 
     @ManyToMany(mappedBy = "rules", cascade = CascadeType.ALL)
     private Set<Listing> listings;

@@ -2,15 +2,13 @@ package com.tp.wrc.findmyparadise.services;
 
 import com.tp.wrc.findmyparadise.controllers.requests.AddListingRequest;
 import com.tp.wrc.findmyparadise.exceptions.*;
-import com.tp.wrc.findmyparadise.models.Health;
-import com.tp.wrc.findmyparadise.models.Host;
-import com.tp.wrc.findmyparadise.models.Listing;
-import com.tp.wrc.findmyparadise.models.Rules;
+import com.tp.wrc.findmyparadise.models.*;
 import com.tp.wrc.findmyparadise.repositories.ListingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -29,6 +27,8 @@ public class ListingServiceImpl implements ListingService {
     @Autowired
     HealthServiceImpl healthService;
 
+    @Autowired
+    AmenityServiceImpl amenityService;
 
 
 
@@ -140,9 +140,38 @@ public class ListingServiceImpl implements ListingService {
                 System.out.println("Cannot find that health rule!");
             }
         }
+        Set<Amenity> amenity = new HashSet<>();
+        for(Integer id : listing.getAmenityID())
+        {
+            try {
+                amenity.add(amenityService.findAmenityById(id));
+            }
+            catch (NullAmenityIdException | InvalidAmenityIdException e)
+            {
+                System.out.println("Cannot find that health rule!");
+            }
+        }
+
         newListing.setHost(listHost);
-        newListing.setRules((Set<Rules>) rule);
-        newListing.setHealthRules((Set<Health>) health);
+        newListing.setRules(rule);
+        newListing.setHealthRules(health);
+        newListing.setAmenities(amenity);
+
+        newListing.setAddress(listing.getAddress());
+        newListing.setName(listing.getName());
+        newListing.setPrice(listing.getPrice());
+        newListing.setLatitude(listing.getLatitude());
+        newListing.setLongitude(listing.getLongitude());
+        newListing.setDescription(listing.getDescription());
+        newListing.setServiceFee(listing.getServiceFee());
+        newListing.setOccupancyFee(listing.getOccupancyFee());
+        newListing.setCleaningFee(listing.getCleaningFee());
+        newListing.setMaxGuests(listing.getMaxGuests());
+        newListing.setBathrooms(listing.getBathrooms());
+        newListing.setBedrooms(listing.getBedrooms());
+        newListing.setBeds(listing.getBeds());
+        newListing.setType(listing.getType());
+
         return repo.saveAndFlush(newListing);
     }
 

@@ -36,8 +36,6 @@ public class AddListingRequest {
     private String type;
 
 
-
-
     public Integer getListingID() {
         return listingID;
     }
