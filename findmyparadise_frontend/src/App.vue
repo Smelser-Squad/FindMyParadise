@@ -50,6 +50,11 @@
       <div class="scrollContainer">
         <events title="Events"></events>
       </div>
+      <div class="scrollContainer">
+        <information> </information>
+      </div>
+
+
       <email
         v-if="emailTrigger && host != undefined"
         :toggleEmail="() => toggleEmail()"
@@ -72,6 +77,7 @@ import DateRangePicker from "./components/DateRangePicker.vue";
 import Email from "./components/Email";
 import GalleryMini from "./components/GalleryMini.vue";
 import Host from "./components/Host.vue";
+import Information from "./components/Information.vue";
 export default {
   name: "App",
   components: {
@@ -86,6 +92,7 @@ export default {
     GalleryMini,
     Events,
     Email,
+    Information,
   },
   methods: {
     Change(event) {
