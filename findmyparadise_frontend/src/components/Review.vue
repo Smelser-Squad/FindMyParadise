@@ -50,15 +50,15 @@
       role="presentation"
       aria-hidden="true"
       focusable="false"
-      style="height: 20px; width: 20px; fill: red; margin: 15px;">
+      style="height: 22px; width: 22px; fill: red; margin-top:-12px;">
       <path
         d="M972 380c9 28 2 50-20 67L725 619l87 280c11 39-18 75-54 75-12 0-23-4-33-12L499 790 273 962a58 58 0 0 1-78-12 50 50 0 0 1-8-51l86-278L46 447c-21-17-28-39-19-67 8-24 29-40 52-40h280l87-279c7-23 28-39 52-39 25 0 47 17 54 41l87 277h280c24 0 45 16 53 40z"
       ></path>
       
     </svg> 
-    <span class="avRatingView"> {{ overallRating }} ({{ list.length }} Reviews)</span>
+    <span class="avRatingView"> {{ overallRating }} ({{ reviewList.length }} Reviews)</span>
   </div>
-
+<br>
   <div class="left">
     <p>Cleanliness {{ averageCleanliness }}</p>
     <p>Communication {{ averageCommunication }}</p>
@@ -71,27 +71,55 @@
     <p>Value {{ averageValue }}</p>
   </div>
 
+
   <div
     v-for="reviewer in list.slice(0, 1)"
     v-bind:key="reviewer.reviewId"
     class="revierInfo"
   >
-    <img :src="reviewer.imageSrc" />
 
-    <h3>{{ reviewer.name }}</h3>
-    <p>{{ reviewer.joinedDate }}</p>
-
-    <br />
-    <p>{{ reviewer.description }}</p>
+  <div> 
+        <div class="rightImage">
+          <img :src="reviewer.reviewer.imageSrc" />
+        </div> 
+        <div class="leftInfo"> 
+            <h3 class="name">{{ reviewer.reviewer.name }}</h3>
+            <p>{{ reviewer.reviewer.joinedDate }}</p>
+        </div> 
+  </div>
+    <br>
+   
+    <p style="float:left">{{ reviewer.reviewer.description }}</p>
 
     <button class="showBtn" @click="() => TogglePopup('buttonTrigger')">
-      Show all {{ list.length }} reviews
+      Show all {{ reviewList.length }} reviews
     </button>
+
 
     <Modal
       v-if="popupTriggers.buttonTrigger"
       :TogglePopup="() => TogglePopup('buttonTrigger')"
     >
+<br> 
+<br> 
+    <div class="leftRating">
+     <svg
+      viewBox="0 0 1000 1000"
+      role="presentation"
+      aria-hidden="true"
+      focusable="false"
+      style="height: 30px; width: 30px; fill: red;  margin-top:-12px;">
+      <path
+        d="M972 380c9 28 2 50-20 67L725 619l87 280c11 39-18 75-54 75-12 0-23-4-33-12L499 790 273 962a58 58 0 0 1-78-12 50 50 0 0 1-8-51l86-278L46 447c-21-17-28-39-19-67 8-24 29-40 52-40h280l87-279c7-23 28-39 52-39 25 0 47 17 54 41l87 277h280c24 0 45 16 53 40z"
+      ></path>
+      
+    </svg> 
+    <span class="avRatingViewDialog"> {{ overallRating }} ({{ reviewList.length }} Reviews)</span>
+  </div>
+
+  <div class="rightSearch">
+    
+  
       <div class="row">
                     <div class="row">
                     <div class="search-wrapper panel-heading col-sm-12">
@@ -99,24 +127,46 @@
                         <input class="form-control" type="text" v-model="search" placeholder="Review Search" />
                       </label>
                     </div>                        
-                </div>
+                     </div>
                      
                 </div>
+                </div>
+<br>
+<br>
+<br>
+<br>
+
+<div class="ratingDialog"> 
+  <p>Cleanliness {{ averageCleanliness }}</p>
+    <p>Communication {{ averageCommunication }}</p>
+    <p>Check-in {{ averageCheckIn }}</p>
+    <p>Accuracy {{ averageAccuracy }}</p>
+    <p>Location {{ averageLocation }}</p>
+    <p>Value {{ averageValue }}</p>
+</div>
 
       <br />
       <ul>
-        <li v-for="reviewer in filteredReviews" :key="reviewer">
-          <img :src="reviewer.imageSrc" />
+        <lu v-for="reviewer in filteredReviews" :key="reviewer">
+          <div> 
+              <div class="rightImageDialog">
+              <img :src="reviewer.reviewer.imageSrc" />
+              </div> 
+              <div class="leftInfoDialog"> 
+              <h3 class="name">{{ reviewer.reviewer.name }}</h3> 
+              <p>{{ reviewer.reviewer.joinedDate }}</p>
+          </div> 
+         
 
-          {{ reviewer.name }}
-          <br />
-          {{ reviewer.joinedDate }}
-
-          <br />
-          <p>{{ reviewer.description }}</p>
-
+          <br>
+          </div>
+           <p style="float:left">{{ reviewer.reviewer.description }}</p>
+<br>
+<br>
+<br><br>
+<br><br>
           <hr />
-        </li>
+        </lu>
       </ul>
     </Modal>
   </div>
@@ -126,6 +176,8 @@
 import axios from "axios";
 import { ref } from "vue";
 import Modal from "./Modal";
+let listingID = 1;
+
 export default {
   name: "Reviewer",
   components: { Modal },
@@ -199,18 +251,16 @@ export default {
 
   mounted() {
     axios
-      .get("http://localhost:8080/api/reviewers")
+      .get(`http://localhost:8080/api/listing/${listingID}`)
       .then((res) => {
-        console.log(res.data);
-        this.list = res.data;
+        this.list = res.data.reviews;
       })
       .catch((err) => Promise.reject(err));
 
     axios
-      .get("http://localhost:8080/api/reviews")
+      .get(`http://localhost:8080/api/listing/${listingID}`)
       .then((res) => {
-        console.log(res.data);
-        this.reviewList = res.data;
+        this.reviewList = res.data.reviews;
 
         const totalRatings = this.reviewList.reduce(
           (acc, { rating }) => (acc += Number(rating)),
@@ -264,8 +314,7 @@ export default {
     filteredReviews (){
     if(this.search){
       return this.list.filter((item)=>{
-        console.log(item);
-        return item.description.includes(this.search);
+        return item.reviewer.description.includes(this.search);
       })
       }else{
         return this.list;
@@ -294,11 +343,39 @@ img {
   width: 50%;
   float: left;
 }
+
+.rightImage,
+.leftInfo{
+  width: 20%;
+  float: left;
+}
+
+.leftRating{
+float: left;
+    margin-right: 17px;
+}
+
+.rightSearch{
+    float: right;
+
+}
+
+.rightImageDialog,
+.leftInfoDialog{
+width: 10%;
+  float: left;
+}
 .avRatingView{
   font-weight: bold;
   font-size: 25px;
   margin-left:0.5em;
   
+}
+
+.avRatingViewDialog{
+  font-weight: bold;
+  font-size: 30px;
+  margin-left:0.5em;
 }
 
 label {
@@ -316,6 +393,34 @@ label:before {
 }
 
 input {
-  padding: 10px 30px;
+  padding: 10px 150px;
+}
+.name{
+  font-size: 1.3rem;
+
+}
+/* .showBtn{
+  float:left;
+  width: 200px; 
+  height: 50px;
+} */
+.showBtn {
+  border-radius: 12px;
+  background-color: white;
+  padding: 10px;
+  border: 1px solid;
+    float:left;
+
+  width: 200px; 
+  height: 50px;
+}
+.showBtn:hover {
+  background-color: #d0e7ee;
+}
+
+
+.ratingDialog {
+    box-sizing: border-box;
+    text-align: center;
 }
 </style>
