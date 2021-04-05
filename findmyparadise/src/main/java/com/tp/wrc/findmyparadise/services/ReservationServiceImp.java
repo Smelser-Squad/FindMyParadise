@@ -19,6 +19,8 @@ public class ReservationServiceImp implements ReservationService{
     @Autowired
     ReservationRepository repo;
 
+    @Autowired
+    ListingServiceImpl lrepo;
 
     @Override
     public List<Reservation> getAllReservations() throws InvalidReservationIdException, NullReservationIdException {
@@ -49,7 +51,7 @@ public class ReservationServiceImp implements ReservationService{
 
 
     @Override
-    public Reservation addReservation(Reservation newReservation) throws NullReservationObjectException, NullGuestsException, InvalidGuestsException, NullDatesException, PastDatesException {
+    public Reservation addReservation(Reservation newReservation,Integer listingId) throws NullReservationObjectException, NullGuestsException, InvalidGuestsException, NullDatesException, PastDatesException, NoListingFoundException {
         if(newReservation==null){
             throw new NullReservationObjectException("Cannot add null reservation");
 
@@ -67,7 +69,11 @@ public class ReservationServiceImp implements ReservationService{
         if(newReservation.getCheckOutDate().isBefore(newReservation.getCheckInDate())){
             throw new PastDatesException("Cannot add reservation with past date");
         }
+        if(listingId==null){
+            throw new NoListingFoundException("Cannot add a reservation without a null listing");
+        }
 
+        newReservation.setListing(lrepo.show(listingId));
 
 
         return repo.saveAndFlush(newReservation);

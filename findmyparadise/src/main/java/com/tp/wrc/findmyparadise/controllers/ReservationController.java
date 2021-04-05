@@ -50,11 +50,11 @@ public class ReservationController {
         }
     }
 
-    @PostMapping("/reservation")
-    public ResponseEntity addReservation(@RequestBody Reservation newReservation) {
+    @PostMapping("/reservation/{listingId}")
+    public ResponseEntity addReservation(@RequestBody Reservation newReservation,@PathVariable Integer listingId ) {
         try {
-            return ResponseEntity.ok(service.addReservation(newReservation));
-        } catch (NullReservationObjectException | NullGuestsException | InvalidGuestsException | NullDatesException | PastDatesException ex) {
+            return ResponseEntity.ok(service.addReservation(newReservation, listingId));
+        } catch (NullReservationObjectException | NullGuestsException | InvalidGuestsException | NullDatesException | PastDatesException | NoListingFoundException ex) {
             return ResponseEntity.badRequest().body(ex.getMessage());
         }
     }

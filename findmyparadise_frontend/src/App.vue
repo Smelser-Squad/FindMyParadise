@@ -12,6 +12,7 @@
           title="Reservation"
           :dateStart="range.start"
           :dateEnd="range.end"
+          :days="days"
         />
       </div>
       <hr class="light" />
@@ -22,7 +23,7 @@
       <hr class="light" />
       <div class="calenderContainer">
         <h4 id="dateHeader">Select Date Range</h4>
-        <DateRangePicker @datePick="transferDates($event)" />
+        <DateRangePicker @datePick="transferDates($event)" @diffDays="transferDays($event)" />
       </div>
       <hr class="light" />
       <div class="mapContainer">

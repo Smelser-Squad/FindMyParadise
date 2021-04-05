@@ -18,6 +18,8 @@ public class ReservationServiceImpTests {
     @Autowired
     ReservationServiceImp toTest;
 
+    @Autowired
+    ListingServiceImpl listingtoTest;
 
 
     @AfterEach
@@ -25,7 +27,7 @@ public class ReservationServiceImpTests {
 
     }
     @Test
-    public void addReservationGoldenPathTest(){
+    public void addReservationGoldenPathTest() {
         try {
             Reservation newReservation = new Reservation();
             newReservation.setCheckInDate(LocalDate.now());
@@ -34,7 +36,10 @@ public class ReservationServiceImpTests {
             newReservation.setChildren(0);
             newReservation.setInfants(0);
             newReservation.setPrice(400.00);
-            toTest.addReservation(newReservation);
+
+
+            toTest.addReservation(newReservation, 1);
+
             Reservation added = toTest.getReservationById(newReservation.getReservationId());
 
             assertEquals(LocalDate.now(), added.getCheckInDate());
@@ -42,15 +47,15 @@ public class ReservationServiceImpTests {
             assertEquals(1, added.getAdults());
             assertEquals(0, added.getChildren());
             assertEquals(0, added.getInfants());
-            assertEquals(400.00,added.getPrice());
-        } catch (NullReservationIdException | InvalidReservationIdException | NullReservationObjectException | NullGuestsException | InvalidGuestsException | NullDatesException | PastDatesException ex)
-        {
+            assertEquals(400.00, added.getPrice());
+        } catch (NullReservationIdException | InvalidReservationIdException | NullReservationObjectException | NullGuestsException | InvalidGuestsException | NullDatesException | PastDatesException | NoListingFoundException ex) {
             fail();
         }
     }
+
     @Test
     public void addReserverationNullObjectTest(){
-        assertThrows(NullReservationObjectException.class,()->toTest.addReservation(null));
+        assertThrows(NullReservationObjectException.class,()->toTest.addReservation(null,1));
     }
 
     @Test
@@ -62,7 +67,7 @@ public class ReservationServiceImpTests {
         reservation.setChildren(2);
         reservation.setInfants(1);
 
-        assertThrows(NullGuestsException.class,()->toTest.addReservation(reservation));
+        assertThrows(NullGuestsException.class,()->toTest.addReservation(reservation,1));
     }
     @Test
     public void addReservationNullChildTest(){
@@ -73,7 +78,7 @@ public class ReservationServiceImpTests {
         reservation.setChildren(null);
         reservation.setInfants(1);
 
-        assertThrows(NullGuestsException.class,()->toTest.addReservation(reservation));
+        assertThrows(NullGuestsException.class,()->toTest.addReservation(reservation,1));
     }
     @Test
     public void addReservationNullInfantTest(){
@@ -84,7 +89,7 @@ public class ReservationServiceImpTests {
         reservation.setChildren(1);
         reservation.setInfants(null);
 
-        assertThrows(NullGuestsException.class,()->toTest.addReservation(reservation));
+        assertThrows(NullGuestsException.class,()->toTest.addReservation(reservation,1));
     }
     @Test
     public void addReservationAdultLowerBoundTest(){
@@ -95,7 +100,7 @@ public class ReservationServiceImpTests {
         reservation.setChildren(1);
         reservation.setInfants(1);
 
-        assertThrows(InvalidGuestsException.class,()->toTest.addReservation(reservation));
+        assertThrows(InvalidGuestsException.class,()->toTest.addReservation(reservation,1));
     }
     @Test
     public void addReservationChildLowerBoundTest(){
@@ -106,7 +111,7 @@ public class ReservationServiceImpTests {
         reservation.setChildren(Integer.MIN_VALUE);
         reservation.setInfants(1);
 
-        assertThrows(InvalidGuestsException.class,()->toTest.addReservation(reservation));
+        assertThrows(InvalidGuestsException.class,()->toTest.addReservation(reservation,1));
     }
     @Test
     public void addReservationInfantLowerBoundTest(){
@@ -117,7 +122,7 @@ public class ReservationServiceImpTests {
         reservation.setChildren(1);
         reservation.setInfants(Integer.MIN_VALUE);
 
-        assertThrows(InvalidGuestsException.class,()->toTest.addReservation(reservation));
+        assertThrows(InvalidGuestsException.class,()->toTest.addReservation(reservation,1));
     }
     @Test
     public void addReservationNullCheckInTest(){
@@ -128,7 +133,7 @@ public class ReservationServiceImpTests {
         reservation.setChildren(0);
         reservation.setInfants(1);
 
-        assertThrows(NullDatesException.class,()->toTest.addReservation(reservation));
+        assertThrows(NullDatesException.class,()->toTest.addReservation(reservation,1));
     }
     @Test
     public void addReservationInvalidInfantTest(){
@@ -139,19 +144,19 @@ public class ReservationServiceImpTests {
         reservation.setChildren(0);
         reservation.setInfants(Integer.MIN_VALUE);
 
-        assertThrows(InvalidGuestsException.class,()->toTest.addReservation(reservation));
+        assertThrows(InvalidGuestsException.class,()->toTest.addReservation(reservation,1));
     }
     @Test
-    public void addReservationCheckInDateLowerBound(){
+    public void addReservationNullListingTest(){
         Reservation reservation=new Reservation();
         reservation.setCheckInDate(LocalDate.of(2020,8,6));
         reservation.setCheckOutDate(LocalDate.now());
         reservation.setAdults(1);
         reservation.setChildren(0);
         reservation.setInfants(0);
-
-        assertThrows(PastDatesException.class,()->toTest.addReservation(reservation));
+        assertThrows(NoListingFoundException.class,()->toTest.addReservation(reservation,null));
     }
+    
     @Test
     public void addReservationCheckOutDateLowerBound(){
         Reservation reservation=new Reservation();
@@ -161,7 +166,7 @@ public class ReservationServiceImpTests {
         reservation.setChildren(0);
         reservation.setInfants(0);
 
-        assertThrows(PastDatesException.class,()->toTest.addReservation(reservation));
+        assertThrows(PastDatesException.class,()->toTest.addReservation(reservation,1));
     }
     @Test
     public void updateReservationGoldenPathTest() {
@@ -198,7 +203,7 @@ public class ReservationServiceImpTests {
 
             assertEquals(1, reservation.getReservationId());
             assertEquals(2, reservation.getAdults());
-            assertEquals(0, reservation.getChildren());
+            assertEquals(2, reservation.getChildren());
             assertEquals(400.00,reservation.getPrice());
             assertEquals(0,reservation.getInfants());
             assertEquals(LocalDate.now(),reservation.getCheckInDate());

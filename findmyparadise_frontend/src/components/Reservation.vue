@@ -21,6 +21,7 @@
         @iIQty="increaseIQty($event)" @dIQty="decreaseAQty($event)"/>
  <span style="display:none;"> Start Date: {{updateDate(dateStart)}}</span>
         <br/>
+        <p> {{maxGuests}} guests maximum, infants don't count towards number of guests</p>
         <span style="display:none;"> {{updateDate(dateEnd)}}</span>
 
        <span>{{updateDays(days)}}</span>
@@ -118,7 +119,6 @@ export default {
         start: new Date(),
         end: new Date(),
       },
-
       startDateStr: "",
       endDateStr: "",
     };
@@ -151,20 +151,16 @@ export default {
     },
     submitForm() {
       axios
-        .post("http://localhost:8080/api/reservation", this.form)
+        .post(`http://localhost:8080/api/reservation/${listingID}`, this.form)
         .then((res) => {
           console.log(res.data);
         });
          
     },
-
    
   increaseAQty(num){
-    if(this.maxGuests==this.form.adults){
-      this.form.adults==this.form.adults;
-      console.log('Error')
-    }
-    this.form.adults=num +1;
+   
+    this.form.adults=num;
    
   
   },
@@ -175,25 +171,20 @@ export default {
   
   },
   increaseCQty(num){
-
-     if(this.maxGuests==this.form.children){
-      console.log('Error')
-    }
+  
     this.form.children=num+1;
    
   
   },
   decreaseCQty(num){
     
-    this.form.children-=num;
+    this.form.children=num;
    
   
   },
   increaseIQty(num){
-     if(this.maxGuests==this.form.infants){
-      console.log('Error')
-    }
-    this.form.infants=num;
+    
+    this.form.infants=num-1;
    
   
   },
