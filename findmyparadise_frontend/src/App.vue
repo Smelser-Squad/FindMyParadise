@@ -12,6 +12,7 @@
           title="Reservation"
           :dateStart="range.start"
           :dateEnd="range.end"
+          :days="days"
         />
       </div>
       <hr class="light" />
@@ -22,7 +23,7 @@
       <hr class="light" />
       <div class="calenderContainer">
         <h4 id="dateHeader">Select Date Range</h4>
-        <DateRangePicker @datePick="transferDates($event)" />
+        <DateRangePicker @datePick="transferDates($event)" @diffDays="transferDays($event)" />
       </div>
       <hr class="light" />
       <div class="mapContainer">
@@ -344,15 +345,7 @@ h5 {
 }
 .descContainer {
   max-width: 500px;
-  margin: 30px auto;
-  overflow: auto;
-  min-height: 300px;
-  border: 1px solid gray;
-  padding: 30px;
-  border-radius: 5px;
-  box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
-  float: right;
-} */
+}
 .imgContainer {
   max-width: 100%;
   margin: 30px auto;
@@ -371,15 +364,6 @@ h5 {
   /* border: 1px solid gray;
   border-radius: 5px;
   box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px; */
-}
-
-.reviewContainer{
-  max-width: 80%;
-  margin: 30px auto;
-  overflow: auto;
-  min-height: 300px;
-  padding: 30px;
-}
 #dateHeader {
   margin: auto;
   text-align: center;
