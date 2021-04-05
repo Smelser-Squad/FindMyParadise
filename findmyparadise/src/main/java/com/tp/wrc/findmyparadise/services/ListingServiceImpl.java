@@ -77,10 +77,11 @@ public class ListingServiceImpl implements ListingService {
 //        {
 //            throw new InvalidListingNameException("Invalid monetary amount! Must be more than 0!");
 //        }
-//        Host listHost = service.show(hostID);
+//        Host listHost = hostService.show(hostID);
 //        listing.setHost(listHost);
 //        return repo.saveAndFlush(listing);
 //    }
+
 
     @Override
     public Listing create(AddListingRequest listing) throws InvalidHostIDException, NullHostIDException, NullListingNameException, InvalidListingNameException, NullAddressException, InvalidAddressException, NullListingPriceException {
