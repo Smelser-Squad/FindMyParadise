@@ -1,20 +1,20 @@
 <template>
   <div class="dateBox">
     <DatePicker
+      :column="2"
+      :row="1"
       is-expanded
       class="datePicker"
       v-model="range"
       is-range
       :min-date="new Date()"
-      :column="2"
-      :row="1"
       color="pink"
       :disabled-dates='
       {
-        start: new Date(2021, 3, 12),
-        end: new Date(2021, 3, 18)
+        start: new Date(startYear, startMonth, startDay),
+        end: new Date(endYear, endMonth, endDay)
       }'
-
+      
     />
     <br />
 
@@ -28,6 +28,7 @@
     <span>{{ numOfDays() }}</span>
     <br />
     <button class="btn" @click="sendDate">Submit</button>
+
   </div>
 </template>
 
@@ -37,7 +38,7 @@ import moment from "moment";
 import axios from "axios";
 
 
-let listingID = 1;
+let listingID = 2;
 
 export default {
   components: {
@@ -45,14 +46,18 @@ export default {
   },
   mounted() {
     axios.get(`http://localhost:8080/api/reservations/${listingID}`).then((res) => {
-      this.reservationID = res.data.reservationID
-      this.adults = res.data.adults
-      this.checkInDate = res.data.checkInDate
-      this.checkOutDate = res.data.checkOutDate
-      this.children = res.data.children
-      this.infants = res.data.infants
-      this.price = res.data.price
-
+      for (let i = 0; i < res.data.length; i++) {
+      
+      this.reservations = res.data[i]
+      this.checkInDate = res.data[i].checkInDate
+      this.checkOutDate = res.data[i].checkOutDate
+      this.startYear = new Date(this.checkInDate).getFullYear()
+      this.startDay = new Date(this.checkInDate).getDate()
+      this.startMonth = new Date(this.checkInDate).getMonth()
+      this.endYear = new Date(this.checkOutDate).getFullYear()
+      this.endDay = new Date(this.checkOutDate).getDate()
+      this.endMonth = new Date(this.checkOutDate).getMonth()
+      }
     });
 
   },
@@ -62,7 +67,16 @@ export default {
         start: new Date(),
         end: new Date(),
       },
-      showDates: false
+      showDates: true,
+      reservations: [],
+      startDay: 0,
+      startMonth: 0,
+      startYear: 0,
+      endDay: 0,
+      endMonth: 0,
+      endYear: 0,
+      checkInDate: new Date(),
+      checkOutDate: new Date()
     };
   },
   methods: {
@@ -74,6 +88,8 @@ export default {
         new Date(this.range.end).getTime() -
         new Date(this.range.start).getTime();
       let days = Math.ceil(difference / (1000 * 3600 * 24));
+      console.log(this.range.end)
+      console.log(this.reservations)
       return days;
     },
 
