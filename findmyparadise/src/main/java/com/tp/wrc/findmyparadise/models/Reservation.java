@@ -39,7 +39,7 @@ public class Reservation implements Serializable {
     private Integer infants;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "listing_id")
+    @JoinColumn(name = "listing_id", nullable = false)
     @JsonBackReference
     private Listing listing;
 

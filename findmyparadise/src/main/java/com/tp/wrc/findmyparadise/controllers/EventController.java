@@ -65,12 +65,12 @@ public class EventController {
     }
 
     //Retrieves a list of all Events in the database within a given distance (in miles) from a Listing.
-    @GetMapping("/events-dist/{distance}")
-    public ResponseEntity getEventsWithinFiveMiles(@RequestBody Listing listing, @PathVariable int distance) {
+    @GetMapping("/events/{listingId}/{distance}")
+    public ResponseEntity getEventsWithinDistance(@PathVariable Integer listingId, @PathVariable int distance) {
 
         List<Event> toReturn;
         try {
-            toReturn = service.indexWithinDistance(listing, distance);
+            toReturn = service.indexWithinDistance(listingId, distance);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }

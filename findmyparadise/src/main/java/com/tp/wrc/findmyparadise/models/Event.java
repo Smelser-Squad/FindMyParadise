@@ -35,9 +35,13 @@ public class Event implements Serializable {
     @Column(name = "longitude")
     private double longitude;
 
+    @Column(name = "distance")
+    //Measured in miles
+    private double distance;
+
     public Event() {}
 
-    public Event(String title, String summary, String category, String imageSrc, double cost, double latitude, double longitude) {
+    public Event(String title, String summary, String category, String imageSrc, double cost, double latitude, double longitude, double distance) {
         this.title = title;
         this.summary = summary;
         this.category = category;
@@ -111,16 +115,24 @@ public class Event implements Serializable {
         this.cost = cost;
     }
 
+    public double getDistance() {
+        return distance;
+    }
+
+    public void setDistance(double distance) {
+        this.distance = distance;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Event event = (Event) o;
-        return Double.compare(event.cost, cost) == 0 && Double.compare(event.latitude, latitude) == 0 && Double.compare(event.longitude, longitude) == 0 && id.equals(event.id) && Objects.equals(title, event.title) && Objects.equals(summary, event.summary) && Objects.equals(category, event.category);
+        return Double.compare(event.cost, cost) == 0 && Double.compare(event.latitude, latitude) == 0 && Double.compare(event.longitude, longitude) == 0 && Double.compare(event.distance, distance) == 0 && Objects.equals(id, event.id) && Objects.equals(title, event.title) && Objects.equals(summary, event.summary) && Objects.equals(category, event.category) && Objects.equals(imageSrc, event.imageSrc);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, summary, category, cost, latitude, longitude);
+        return Objects.hash(id, title, summary, category, imageSrc, cost, latitude, longitude, distance);
     }
 }

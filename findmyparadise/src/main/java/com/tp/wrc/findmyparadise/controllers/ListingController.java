@@ -1,5 +1,6 @@
 package com.tp.wrc.findmyparadise.controllers;
 
+import com.tp.wrc.findmyparadise.controllers.requests.AddListingRequest;
 import com.tp.wrc.findmyparadise.exceptions.*;
 import com.tp.wrc.findmyparadise.models.Listing;
 import com.tp.wrc.findmyparadise.services.ListingService;
@@ -22,11 +23,11 @@ public class ListingController {
     @Autowired
     ListingService service;
 
-    @PostMapping("/listing/host/{hostID}")
-    public ResponseEntity createListing(@RequestBody Listing newListing, @PathVariable Integer hostID) {
+    @PostMapping("/create/listing")
+    public ResponseEntity createListing(@RequestBody AddListingRequest newListing) {
         Listing listing = null;
         try {
-            listing =  service.create(newListing, hostID);
+            listing =  service.create(newListing);
         }
         catch (InvalidHostIDException | NullHostIDException | NullListingNameException | InvalidListingNameException | NullAddressException | InvalidAddressException | NullListingPriceException e)
         {

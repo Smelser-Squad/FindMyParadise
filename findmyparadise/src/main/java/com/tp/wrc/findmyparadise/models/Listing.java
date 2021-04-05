@@ -1,9 +1,15 @@
 package com.tp.wrc.findmyparadise.models;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -62,12 +68,39 @@ public class Listing implements Serializable {
     private Integer bathrooms;
     @Column (name ="listing_type")
     private String type;
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+
+
+    @Column (name ="check_in")
+    private String checkIn;
+
+    @Column (name ="check_out")
+    private String checkOut;
+
+
+    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @JoinTable(
             name = "listing_amenities",
             joinColumns = @JoinColumn(name = "listing_id"),
             inverseJoinColumns = @JoinColumn(name = "amenity_id"))
     private Set<Amenity> amenities = new HashSet<>();
+
+
+
+    @ManyToMany(cascade = CascadeType.MERGE)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @JoinTable(
+            name="listing_rules",
+            joinColumns = @JoinColumn(name = "listing_id"),
+            inverseJoinColumns = @JoinColumn(name = "rule_id"))
+    private List<Rules> rules = new ArrayList<>();
+
+    @ManyToMany(cascade = CascadeType.MERGE)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @JoinTable(
+            name="listing_health",
+            joinColumns = @JoinColumn(name = "listing_id"),
+            inverseJoinColumns = @JoinColumn(name = "health_id"))
+    private List<Health> healthRules = new ArrayList<>();
 
     public Listing() {
     }
@@ -179,6 +212,23 @@ public class Listing implements Serializable {
     public void setType(String type) {
         this.type = type;
     }
+
+    public String getCheckIn() {
+        return checkIn;
+    }
+
+    public void setCheckIn(String checkIn) {
+        this.checkIn = checkIn;
+    }
+
+    public String getCheckOut() {
+        return checkOut;
+    }
+
+    public void setCheckOut(String checkOut) {
+        this.checkOut = checkOut;
+    }
+
     public Set<Amenity> getAmenities() {
         return amenities;
     }
@@ -190,6 +240,22 @@ public class Listing implements Serializable {
     }
     public void setPhotos(Set<Photo> photos) {
         this.photos = photos;
+    }
+
+    public List<Rules> getRules() {
+        return rules;
+    }
+
+    public void setRules(List<Rules> rules) {
+        this.rules = rules;
+    }
+
+    public List<Health> getHealthRules() {
+        return healthRules;
+    }
+
+    public void setHealthRules(List<Health> healthRules) {
+        this.healthRules = healthRules;
     }
 }
 
