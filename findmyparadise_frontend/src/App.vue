@@ -272,7 +272,7 @@ h5 {
   max-width: 95%;
   margin: 30px auto;
   overflow: hidden;
-  max-height: 725px;
+  max-height: 775px;
   min-height: 200px;
   /* border: 1px solid gray; */
   padding: 30px;
@@ -362,7 +362,7 @@ h5 {
 }
 .parentContainer {
   display: inline-block;
-  position: absolute;
+  position: relative;
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
@@ -373,7 +373,6 @@ h5 {
   overflow: auto;
   min-height: 300px;
   padding: 30px;
-  margin-top: 350px;
 }
 .descContainer {
   max-width: 80%;

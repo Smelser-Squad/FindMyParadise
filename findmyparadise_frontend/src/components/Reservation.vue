@@ -10,28 +10,26 @@
     </header>
     <body id="ReservationBody">
       <form v-on:submit.prevent="submitForm" method="post">
+
+      <h4>CheckIn:</h4><input disabled v-model="form.checkInDate"/>
+       <h4>CheckOut:</h4><input disabled v-model="form.checkOutDate" />
+
+     
         <h5>Guests:</h5>
-        <Guests
-          @iAQty="increaseAQty($event)"
-          @dAQty="decreaseAQty($event)"
-          @iCQty="increaseCQty($event)"
-          @dCQty="decreaseCQty($event)"
-          @iIQty="increaseIQty($event)"
-          @dIQty="decreaseAQty($event)"
-        />
-        <br>
-        <span> Start Date: {{ updateDate(dateStart) }}</span>
-        <br />
-        <span> End Date: {{ updateDate(dateEnd) }}</span>
-        <br>
-        <span>{{ updateDays(days) }}</span>
-        <br>
-        <h4>CheckIn:</h4>
-        <input disabled v-model="form.CheckIn" />
-        <h4>CheckOut:</h4>
-        <input disabled v-model="form.CheckOut" />
-        <br>
-        <br />
+        <Guests @iAQty="increaseAQty($event)" @dAQty="decreaseAQty($event)" 
+        @iCQty="increaseCQty($event)" @dCQty="decreaseCQty($event)" 
+        @iIQty="increaseIQty($event)" @dIQty="decreaseAQty($event)"/>
+ <span style="display:none;"> Start Date: {{updateDate(dateStart)}}</span>
+        <br/>
+        <p> {{maxGuests}} guests maximum, infants don't count towards number of guests</p>
+        <span style="display:none;"> {{updateDate(dateEnd)}}</span>
+
+       <span>{{updateDays(days)}}</span>
+      
+      
+      
+
+
         <span
           class="_19di23v"
           style="
@@ -50,11 +48,12 @@
         </button>
       </form>
       <p style="color: gray; text-align: center">You won't be charged yet</p>
-      <u @click="showDetails()"><b> Show price details</b></u>
-      <div v-if="details">
+      
         <div>
-          <u>${{ dailyPrice }} x {{ form.NumOfDays }} nights</u>
-          <span>${{ dailyPrice * form.NumOfDays }}</span>
+
+          <u>${{ dailyPrice }} x {{ NumOfDays }} nights</u>
+          <span>${{ dailyPrice * NumOfDays }}</span>
+
         </div>
 
         <div class="popup" @click="CleaningFeepopup()">
@@ -78,8 +77,9 @@
           <u>Occupancy taxes and fees</u>
           <span> ${{ occupancyFee }} </span>
         </div>
-      </div>
+
       <br>
+
       <p id = "totalPrice">
         <b> Total: ${{ form.TotalPrice }}</b>
       </p>
@@ -96,45 +96,43 @@ export default {
   props: ["dateStart", "dateEnd", "days"],
   data() {
     return {
-      showCalendar: true,
-      details: false,
-      date: new Date(),
-      dataObject: {},
-      dailyPrice: "",
-      cleaningFee: "",
-      occupancyFee: "",
-      serviceFee: "",
-      reviewsNum: "",
-      form: {
-        CheckIn: "",
-        CheckOut: "",
-        NumAdults: 1,
-        NumChildren: 0,
-        NumInfants: 0,
-        NumOfDays: 1,
-        TotalPrice: "",
+   
+     
+      dailyPrice:'',
+      cleaningFee:'',
+      occupancyFee:'',
+      serviceFee:'',
+      reviewsNum:'',
+      maxGuests:'',
+       NumOfDays:1,
+      form:{
+        checkInDate:'',
+        checkOutDate:'',
+        adults:1,
+        children:0,
+        infants:0,
+        price:''
       },
       range: {
         start: new Date(),
         end: new Date(),
       },
-
       startDateStr: "",
       endDateStr: "",
     };
   },
   mounted() {
     axios.get(`http://localhost:8080/api/listing/${listingID}`).then((res) => {
+      this.maxGuests=res.data.maxGuests;
       this.dailyPrice = res.data.price;
-      this.cleaningFee = res.data.cleaningFee;
-      this.occupancyFee = res.data.occupancyFee;
-      this.serviceFee = res.data.serviceFee;
-      this.reviewsNum = res.data.reviews.length;
-      this.form.TotalPrice =
-        this.dailyPrice * this.form.NumOfDays +
-        this.serviceFee +
-        this.cleaningFee +
-        this.occupancyFee;
+      this.cleaningFee=res.data.cleaningFee;
+      this.occupancyFee=res.data.occupancyFee;
+      this.serviceFee=res.data.serviceFee;
+      this.reviewsNum=res.data.reviews.length;
+      this.form.price=(this.dailyPrice*this.NumOfDays) +this.serviceFee + this.cleaningFee + this.occupancyFee;
+      
+      
+   
     });
   },
   components: {
@@ -151,52 +149,65 @@ export default {
     },
     submitForm() {
       axios
-        .post("http://localhost:8080/api/reservation", this.form)
+        .post(`http://localhost:8080/api/reservation/${listingID}`, this.form)
         .then((res) => {
           console.log(res.data);
         });
-      console.log(this.form);
+         
     },
-    ShowDetals() {
-      this.show = true;
-    },
-    increaseAQty(num) {
-      this.form.NumAdults = num + 1;
-    },
-    decreaseAQty(num) {
-      this.form.NumAdults -= num;
-    },
-    increaseCQty(num) {
-      this.form.NumChildren = num + 1;
-    },
-    decreaseCQty(num) {
-      this.form.NumChildren -= num;
-    },
-    increaseIQty(num) {
-      this.form.NumInfants = num;
-    },
-    decreaseIQty(num) {
-      this.form.NumInfants -= num;
-    },
-    updateDate(date) {
-      let dateSub = date;
-      this.form.CheckIn = moment(this.dateStart).format("MM-DD-YYYY");
-      this.form.CheckOut = moment(this.dateEnd).format("MM-DD-YYYY");
-      return dateSub;
-    },
-    updateDays(num) {
-      if (num == 0) {
-        this.form.NumOfDays = 1;
-      } else {
-        this.form.NumOfDays = num;
-      }
-      this.form.TotalPrice =
-        this.dailyPrice * this.form.NumOfDays +
-        this.serviceFee +
-        this.cleaningFee +
-        this.occupancyFee;
-    },
+   
+  increaseAQty(num){
+   
+    this.form.adults=num +1;
+   
+  
   },
+  decreaseAQty(num){
+    
+    this.form.adults-=num;
+   
+  
+  },
+  increaseCQty(num){
+  
+    this.form.children=num +1;
+   
+  
+  },
+  decreaseCQty(num){
+    
+    this.form.children=num;
+   
+  
+  },
+  increaseIQty(num){
+    
+    this.form.infants=num +1;
+   
+  
+  },
+  decreaseIQty(num){
+    
+    this.form.infants-=num;
+   
+  
+  },
+   updateDate(date) {
+       let dateSub = date
+       this.form.checkInDate=moment(this.dateStart).format('MM-DD-YYYY');
+       this.form.checkOutDate=moment(this.dateEnd).format('MM-DD-YYYY');
+      return dateSub;
+      
+    },
+    updateDays(num){
+      if(num==0){
+        this.NumOfDays=1
+      }else{
+     this.NumOfDays=num;
+      }
+       this.form.price=(this.dailyPrice*this.NumOfDays) +this.serviceFee + this.cleaningFee + this.occupancyFee;
+  }
+  }
 };
 </script>
 <style scoped>

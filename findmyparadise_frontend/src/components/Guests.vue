@@ -75,12 +75,19 @@
 </template>
 
 <script>
+import axios from 'axios';
+let listingID=1;
 export default {
   name: "Guests",
   props: {},
   methods: {
     increaseAdults() {
+      if(this.AdultsNum + this.ChildNum==this.maxGuests){
+        console.log("Error")
+        this.AdultsNum==this.maxGuests;
+      }else{
       this.AdultsNum += 1;
+      }
     },
     decreaseAdults() {
       if (this.AdultsNum == 1) {
@@ -134,7 +141,15 @@ export default {
       ChildNum: 0,
       InfantNum: 0,
     };
+    
   },
+  mounted(){
+     axios.get(`http://localhost:8080/api/listing/${listingID}`).then((res) => {
+      this.maxGuests=res.data.maxGuests;
+      
+   
+    });
+  }
 };
 </script>
 

@@ -15,5 +15,7 @@ import java.util.List;
 public interface ReservationRepository extends JpaRepository<Reservation, Integer> {
     @Query("select r from Reservation r where r.listing=:listing")
     List<Reservation> getReservationsByListing(@Param("listing") Listing listing) throws InvalidListingIDException;
+
+
 }
 
