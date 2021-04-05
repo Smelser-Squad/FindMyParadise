@@ -1,6 +1,9 @@
 package com.tp.wrc.findmyparadise.models;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -51,12 +54,14 @@ public class Listing implements Serializable {
             orphanRemoval = true)
     @JsonManagedReference
     private Set<Reservation> reservations = new HashSet<>();
+
     @OneToMany(fetch = FetchType.EAGER,
             cascade = CascadeType.ALL,
             mappedBy = "listing",
             orphanRemoval = true)
     @JsonManagedReference
     private Set<Photo> photos = new HashSet<>();
+
     @Column(name= "bedroom_quantity")
     private Integer bedrooms;
     @Column(name= "beds_quantity")
@@ -80,14 +85,16 @@ public class Listing implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "amenity_id"))
     private Set<Amenity> amenities = new HashSet<>();
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.MERGE)
+    @LazyCollection(LazyCollectionOption.FALSE)
     @JoinTable(
             name="listing_rules",
             joinColumns = @JoinColumn(name = "listing_id"),
             inverseJoinColumns = @JoinColumn(name = "rule_id"))
     private List<Rules> rules = new ArrayList<>();
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.MERGE)
+    @LazyCollection(LazyCollectionOption.FALSE)
     @JoinTable(
             name="listing_health",
             joinColumns = @JoinColumn(name = "listing_id"),

@@ -14,10 +14,11 @@
 
     <Modal v-if="popupTriggers.buttonTrigger" class="modal" 
                :TogglePopup="() => TogglePopup('buttonTrigger')">
+               <div class="insider">
             <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" >
                 <div class="carousel-inner" >
-                    <div class="carousel-item active" v-for="image in images" :key="image" :class="{ active: idx==0 }">>
-                        <img :src="image.imageSrc"  class="d-block w-100" alt="">
+                    <div class="carousel-item active" v-for="(image,idx) in images" :key="image" :class="{ active: idx==0 }">
+                        <img :src="image.imageSrc"  class="d-block w-100" alt="" :class="{ active: idx==0 }">
                     </div>
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
@@ -28,6 +29,7 @@
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Next</span>
                 </button>
+            </div>
             </div>
     </Modal>
 </div>
@@ -92,17 +94,18 @@ export default {
         width: 50%;
         height: 100%;
     }
+
     .left{
         width: 50%;
         height: 100%;
-        overflow: hidden;
     }
+
     .leftImage{
-        border-right: 4px solid #FFFFFF;
-        object-fit: cover;
-        transform: translateX(-20%);
-        transform: translateY(-20%);
-        }
+        object-fit: fill;
+        height: 100%;
+        width: 100%;
+    }
+
     .rightTop{
         width: 50%;
         height: 50%;
@@ -120,6 +123,7 @@ export default {
         object-fit: fill;
         overflow: hidden;
     }
+
     .rightBot{
         width: 50%;
         height: 50%;
@@ -129,6 +133,7 @@ export default {
         object-fit: fill;
         overflow: hidden;
     }
+
     .rightBotR{
         width: 50%;
         height: 50%;
@@ -137,6 +142,7 @@ export default {
         object-fit: cover;
         overflow: hidden;
     }
+
     .row{
         border-radius: 5px;
         object-fit: fill;
@@ -147,6 +153,8 @@ export default {
     }
     .carousel{
         margin: 15px;
+        overflow: hidden;
+        object-fit: cover;
         
     }
     .modal{
@@ -157,6 +165,11 @@ export default {
 
     .contained{
         overflow: hidden;
+    }
+
+    .insider{
+        height: 100%;
+        width: 100%;
     }
     
     
