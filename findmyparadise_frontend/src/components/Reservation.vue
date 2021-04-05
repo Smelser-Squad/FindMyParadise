@@ -10,10 +10,8 @@
     </header>
     <body id="ReservationBody">
       <form v-on:submit.prevent="submitForm" method="post">
-
       <h4>CheckIn:</h4><input disabled v-model="form.checkInDate"/>
        <h4>CheckOut:</h4><input disabled v-model="form.checkOutDate" />
-
      
         <h5>Guests:</h5>
         <Guests @iAQty="increaseAQty($event)" @dAQty="decreaseAQty($event)" 
@@ -23,12 +21,10 @@
         <br/>
         <p> {{maxGuests}} guests maximum, infants don't count towards number of guests</p>
         <span style="display:none;"> {{updateDate(dateEnd)}}</span>
-
        <span>{{updateDays(days)}}</span>
       
       
       
-
 
         <span
           class="_19di23v"
@@ -50,12 +46,9 @@
       <p style="color: gray; text-align: center">You won't be charged yet</p>
       
         <div>
-
           <u>${{ dailyPrice }} x {{ NumOfDays }} nights</u>
           <span>${{ dailyPrice * NumOfDays }}</span>
-
         </div>
-
         <div class="popup" @click="CleaningFeepopup()">
           <u>Cleaning Fee</u> <span> ${{ cleaningFee }}</span>
           <span class="popuptext" id="CleaningFeepopup"
@@ -92,7 +85,7 @@
 import Guests from "./Guests";
 import axios from "axios";
 import moment from "moment";
-let listingID = 1;
+let listingID = 2;
 export default {
   name: "Reservation",
   props: ["dateStart", "dateEnd", "days"],
@@ -150,8 +143,7 @@ export default {
       popup.classList.toggle("show");
     },
     submitForm() {
-      axios
-        .post(`http://localhost:8080/api/reservation/${listingID}`, this.form)
+      axios.post(`http://localhost:8080/api/reservation/${listingID}`, this.form)
         .then((res) => {
           console.log(res.data);
         });
