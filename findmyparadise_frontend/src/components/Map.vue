@@ -2,8 +2,10 @@
   <h4 id="listingHeader">{{ listingData + " Location" }}</h4>
   <br />
   <div id="map" ref="mapRef"></div>
-  <br>
-  <p id="mapLine"><b><u>Nearby Places</u></b></p>
+  <br />
+  <p id="mapLine">
+    <b><u>Nearby Places</u></b>
+  </p>
   <p id="mapLine">{{ dataName1 + " : " + dataDist1 }}</p>
   <p id="mapLine">{{ dataName2 + " : " + dataDist2 }}</p>
   <p id="mapLine">{{ dataName3 + " : " + dataDist3 }}</p>
@@ -15,7 +17,6 @@ import { onMounted, ref } from "vue";
 import axios from "axios";
 
 let listingID = 1;
-
 export default {
   name: "Map",
   props: {
@@ -40,7 +41,7 @@ export default {
     const dataDist3 = ref(props.locationDist);
     const dataDist4 = ref(props.locationDist);
     const mapRef = ref(null);
-    
+
     onMounted(() => {
       axios
         .get(`http://localhost:8080/api/listing/${listingID}`)

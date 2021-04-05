@@ -30,26 +30,30 @@
       </div>
       <hr class="light" />
       <br />
-      <div class="grid-container">
-        <div class="container">
+      <div class="parentContainer">
+        <div class="descContainer">
           <description title="Description" @email="toggleEmail"> </description>
-        </div>
-        <div class="container">
-          <review></review>
         </div>
         <div class="hostContainer">
           <host></host>
         </div>
       </div>
-      <br>
-      <hr class="light">
-      <br>
+      <br />
+      <div class="reviewContainer">
+        <review></review>
+      </div>
+      <hr class="light2" />
+      <br />
       <div class="scrollContainer">
         <more-places></more-places>
       </div>
       <div class="scrollContainer">
         <events title="Events"></events>
       </div>
+      <div class="scrollContainer">
+        <information> </information>
+      </div>
+
       <email
         v-if="emailTrigger && host != undefined"
         :toggleEmail="() => toggleEmail()"
@@ -72,6 +76,7 @@ import DateRangePicker from "./components/DateRangePicker.vue";
 import Email from "./components/Email";
 import GalleryMini from "./components/GalleryMini.vue";
 import Host from "./components/Host.vue";
+import Information from "./components/Information.vue";
 export default {
   name: "App",
   components: {
@@ -86,6 +91,7 @@ export default {
     GalleryMini,
     Events,
     Email,
+    Information,
   },
   methods: {
     Change(event) {
@@ -313,11 +319,6 @@ h5 {
 .datePicker {
   display: inline;
 }
-.grid-container {
-  display: grid;
-  grid-column-start: 1;
-  grid-column-end: 3;
-}
 /* .reviewContainer {
   max-width: 500px;
   margin: 30px auto;
@@ -347,10 +348,10 @@ h5 {
   max-height: 400px;
   border-radius: 10px;
   box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
-  overflow: auto;
+  overflow: hidden;
 }
 .amenitiesContainer {
-  max-width: 80%;
+  max-width: 40%;
   margin: 30px auto;
   overflow: auto;
   min-height: 300px;
@@ -359,24 +360,51 @@ h5 {
   border-radius: 5px;
   box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px; */
 }
+.parentContainer {
+  display: inline-block;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+}
+.reviewContainer {
+  max-width: 80%;
+  margin: 30px auto;
+  overflow: auto;
+  min-height: 300px;
+  padding: 30px;
+  margin-top: 350px;
+}
+.descContainer {
+  max-width: 80%;
+  margin: 30px auto;
+  overflow: auto;
+  min-height: 300px;
+  padding: 30px;
+  float: left;
+}
 #dateHeader {
   margin: auto;
   text-align: center;
 }
 .hostContainer {
-  max-width: 500px;
+  max-width: 80%;
   margin: 30px auto;
   overflow: auto;
   min-height: 300px;
-  border: 1px solid gray;
   padding: 30px;
-  border-radius: 5px;
-  box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
   position: relative;
+  float: right;
 }
 .light {
   margin: auto;
   text-align: center;
   width: 80%;
+}
+.light2 {
+  margin: auto;
+  text-align: center;
+  width: 80%;
+  margin-bottom: 10px;
 }
 </style>

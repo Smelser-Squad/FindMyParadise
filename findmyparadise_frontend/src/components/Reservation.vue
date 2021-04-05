@@ -202,7 +202,7 @@ export default {
 <style scoped>
 #totalPrice {
   margin-top: 20px;
-  border: 5px solid black;
+  border: 5px solid rgb(209, 60, 110);;
   border-radius: 50%;
   padding-top: 20px;
   padding-bottom: 20px;
