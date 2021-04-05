@@ -326,6 +326,13 @@ h5 {
 }
 .datePicker {
   display: inline;
+  
+}
+
+.vc-pane-container {
+  border: 2px solid #bcc0c4;
+  background-color: white;
+  border-radius: 10px;
 }
 .grid-container {
   display: grid;
