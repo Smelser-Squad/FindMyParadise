@@ -44,7 +44,7 @@
       <hr class="light" />
 
         <div class="hostContainer">
-          <host></host>
+          <host @email="toggleEmail" ></host>
         </div>
       </div>
       <br>
