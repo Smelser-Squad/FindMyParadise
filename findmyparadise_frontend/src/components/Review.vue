@@ -397,7 +397,7 @@
 <br><br>
 <div> 
       <ul>
-        <lu v-for="reviewer in filteredReviews" :key="reviewer">
+        <ul v-for="reviewer in filteredReviews" :key="reviewer">
           <div> 
               <div class="rightImageDialog">
               <img :src="reviewer.reviewer.imageSrc" />
@@ -417,7 +417,7 @@
 
           <hr />
          
-        </lu>
+        </ul>
       </ul>
       </div> 
     </Modal>
