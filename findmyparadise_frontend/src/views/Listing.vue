@@ -56,7 +56,7 @@
       <div class="scrollContainer">
         <events title="Events"></events>
       </div>
-      <div class="scrollContaine"> 
+      <div class="scrollContainer"> 
         <information></information>
          </div>
       <email
