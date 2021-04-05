@@ -61,7 +61,7 @@ export default {
   },
   mounted() {
     axios
-      .get("http://localhost:8080/api/events")
+      .get("http://54.91.69.145:80/api/events")
       .then((res) => {
         console.log(res.data);
         this.items = res.data;

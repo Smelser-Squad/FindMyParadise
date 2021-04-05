@@ -37,14 +37,14 @@ import moment from "moment";
 import axios from "axios";
 
 
-let listingID = 1;
+let listingID = 2;
 
 export default {
   components: {
     DatePicker,
   },
   mounted() {
-    axios.get(`http://localhost:8080/api/reservations/${listingID}`).then((res) => {
+    axios.get(`http://54.91.69.145:80/api/reservations/${listingID}`).then((res) => {
       this.reservationID = res.data.reservationID
       this.adults = res.data.adults
       this.checkInDate = res.data.checkInDate
