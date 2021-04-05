@@ -56,6 +56,9 @@
       <div class="scrollContainer">
         <events title="Events"></events>
       </div>
+      <div class="scrollContainer"> 
+        <information></information>
+         </div>
       <email
         v-if="emailTrigger && host != undefined"
         :toggleEmail="() => toggleEmail()"
@@ -78,6 +81,7 @@ import DateRangePicker from "../components/DateRangePicker.vue";
 import Email from "../components/Email";
 import GalleryMini from "../components/GalleryMini.vue";
 import Host from "../components/Host.vue";
+import Information from "../components/Information.vue";
 import axios from "axios";
 export default {
   name: "App",
@@ -94,6 +98,7 @@ export default {
     GalleryMini,
     Events,
     Email,
+    Information,
   },
   methods: {
     Change(event) {
@@ -370,7 +375,7 @@ h5 {
   max-height: 400px;
   border-radius: 10px;
   box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
-  overflow: auto;
+  overflow: hidden;
 }
 .amenitiesContainer {
   max-width: 80%;
