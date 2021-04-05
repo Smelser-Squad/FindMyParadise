@@ -336,12 +336,6 @@ h5 {
   box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
   float: left;
 }
-<<<<<<< HEAD
-
-.reviewerContainer {
-  max-width: 500px;
-}
-=======
 .descContainer {
   max-width: 500px;
   margin: 30px auto;
@@ -353,7 +347,6 @@ h5 {
   box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
   float: right;
 } */
->>>>>>> 5eb80882062d9c567e999cad26144562f1f364a2
 .imgContainer {
   max-width: 100%;
   margin: 30px auto;

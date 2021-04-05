@@ -6,22 +6,22 @@
       v-model="range"
       is-range
       :min-date="new Date()"
-<<<<<<< HEAD
       :column="2"
       :row="1"
-      
+      color="pink"
+      :disabled-dates='
+      {
+        start: new Date(2021, 3, 12),
+        end: new Date(2021, 3, 18)
+      }'
 
-=======
-      :columns="2"
-      :rows="1"
->>>>>>> 5eb80882062d9c567e999cad26144562f1f364a2
     />
     <br />
 
-    <span>Start Date: {{ updateDate(range.start) }}</span>
+    <span v-if='showDates'>Start Date: {{ updateDate(range.start) }}</span>
 
     <br />
-    <span>End Date: {{ updateDate(range.end) }}</span>
+    <span v-if='showDates'>End Date: {{ updateDate(range.end) }}</span>
     <br />
 
     <span>Number Of Days: </span>
@@ -34,11 +34,27 @@
 <script>
 import { DatePicker } from "v-calendar";
 import moment from "moment";
-// import Calendar from './Calendar.vue';
+import axios from "axios";
+
+
+let listingID = 1;
 
 export default {
   components: {
     DatePicker,
+  },
+  mounted() {
+    axios.get(`http://localhost:8080/api/reservations/${listingID}`).then((res) => {
+      this.reservationID = res.data.reservationID
+      this.adults = res.data.adults
+      this.checkInDate = res.data.checkInDate
+      this.checkOutDate = res.data.checkOutDate
+      this.children = res.data.children
+      this.infants = res.data.infants
+      this.price = res.data.price
+
+    });
+
   },
   data() {
     return {
@@ -46,6 +62,7 @@ export default {
         start: new Date(),
         end: new Date(),
       },
+      showDates: false
     };
   },
   methods: {
