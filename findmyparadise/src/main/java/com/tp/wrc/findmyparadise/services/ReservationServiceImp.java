@@ -52,6 +52,7 @@ public class ReservationServiceImp implements ReservationService{
 
     @Override
     public Reservation addReservation(Reservation newReservation,Integer listingId) throws NullReservationObjectException, NullGuestsException, InvalidGuestsException, NullDatesException, PastDatesException, NoListingFoundException {
+
         if(newReservation==null){
             throw new NullReservationObjectException("Cannot add null reservation");
 
@@ -66,9 +67,10 @@ public class ReservationServiceImp implements ReservationService{
             throw new NullDatesException("Cannot add a reservation with null date");
         }
 
-        if(newReservation.getCheckOutDate().isBefore(newReservation.getCheckInDate())){
+        if(newReservation.getCheckOutDate().isBefore(newReservation.getCheckInDate()) || newReservation.getCheckInDate().isAfter(newReservation.getCheckOutDate())) {
             throw new PastDatesException("Cannot add reservation with past date");
         }
+
         if(listingId==null){
             throw new NoListingFoundException("Cannot add a reservation without a null listing");
         }
@@ -80,7 +82,7 @@ public class ReservationServiceImp implements ReservationService{
     }
 
     @Override
-    public Reservation updateReservation(Reservation newReservation) throws InvalidReservationIdException, NullReservationIdException, NullDatesException,InvalidGuestsException, NullGuestsException {
+    public Reservation updateReservation(Reservation newReservation,Integer listingId) throws InvalidReservationIdException, NullReservationIdException, NullDatesException, InvalidGuestsException, NullGuestsException, NoListingFoundException {
         Reservation edited = repo.findById(newReservation.getReservationId()).get();
 
         if(edited.getAdults() ==null|| edited.getChildren()==null || edited.getInfants()==null){
@@ -92,7 +94,9 @@ public class ReservationServiceImp implements ReservationService{
         if(edited.getCheckInDate()==null || edited.getCheckOutDate()==null){
             throw new NullDatesException("Cannot update a reservation with null date");
         }
-
+        if(listingId==null){
+            throw new NoListingFoundException("Cannot update reservation without a listing");
+        }
         if (edited != null) {
 
             edited.setListing(newReservation.getListing());
@@ -102,6 +106,7 @@ public class ReservationServiceImp implements ReservationService{
             edited.setAdults(newReservation.getAdults());
             edited.setChildren(newReservation.getChildren());
             edited.setInfants(newReservation.getInfants());
+            edited.setListing(lrepo.show(listingId));
 
             return repo.saveAndFlush(edited);
         } else {

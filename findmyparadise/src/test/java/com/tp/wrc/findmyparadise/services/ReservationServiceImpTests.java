@@ -175,18 +175,39 @@ public class ReservationServiceImpTests {
 
             reservation.setAdults(2);
             reservation.setChildren(2);
-            toTest.updateReservation(reservation);
+            toTest.updateReservation(reservation,1);
 
             assertEquals(1, reservation.getReservationId());
             assertEquals(2, reservation.getAdults());
             assertEquals(2, reservation.getChildren());
 
-        } catch (NullReservationIdException | InvalidReservationIdException | NullDatesException | InvalidGuestsException | NullGuestsException ex) {
+        } catch (NullReservationIdException | InvalidReservationIdException | NullDatesException | InvalidGuestsException | NullGuestsException | NoListingFoundException ex) {
             fail();
         }
     }
-
     @Test
+    public void updateReservationNullListingTest() {
+        try {
+            Reservation reservation = toTest.getReservationById(1);
+            reservation.setCheckInDate(LocalDate.now());
+            reservation.setCheckOutDate(LocalDate.now());
+            reservation.setAdults(1);
+            reservation.setChildren(2);
+            reservation.setInfants(0);
+            toTest.updateReservation(reservation, null);
+
+
+
+        } catch (InvalidReservationIdException | NullReservationIdException | NullDatesException | InvalidGuestsException | NullGuestsException ex) {
+            fail();
+
+        }catch (NoListingFoundException ex){
+
+        }
+    }
+
+
+        @Test
     public void deleteReservationGoldenPathTest() {
         try {
             Reservation test = toTest.getReservationById(1);

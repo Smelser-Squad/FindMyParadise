@@ -59,12 +59,12 @@ public class ReservationController {
         }
     }
 
-    @PutMapping("/update/reservation")
-    public ResponseEntity updateReservation(@RequestBody Reservation newReservation) {
+    @PutMapping("/update/reservation/{listingId}")
+    public ResponseEntity updateReservation(@RequestBody Reservation newReservation, @PathVariable Integer listingId) {
         try {
-            return ResponseEntity.ok(service.updateReservation(newReservation));
+            return ResponseEntity.ok(service.updateReservation(newReservation, listingId));
 
-        } catch (NullReservationIdException | InvalidReservationIdException | NullDatesException | InvalidGuestsException | NullGuestsException ex) {
+        } catch (NullReservationIdException | InvalidReservationIdException | NullDatesException | InvalidGuestsException | NullGuestsException | NoListingFoundException ex) {
             return ResponseEntity.badRequest().body(ex.getMessage());
         }
     }

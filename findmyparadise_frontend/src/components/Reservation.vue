@@ -160,7 +160,7 @@ export default {
    
   increaseAQty(num){
    
-    this.form.adults=num;
+    this.form.adults=num +1;
    
   
   },
@@ -172,7 +172,7 @@ export default {
   },
   increaseCQty(num){
   
-    this.form.children=num+1;
+    this.form.children=num +1;
    
   
   },
@@ -184,7 +184,7 @@ export default {
   },
   increaseIQty(num){
     
-    this.form.infants=num-1;
+    this.form.infants=num +1;
    
   
   },

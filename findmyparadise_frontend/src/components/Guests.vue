@@ -17,7 +17,7 @@
     <h5>
 
       Children:<button type="button" class="btn" @click="sendDecreaseChildQty();decreaseChild()">-</button>{{ ChildNum
-      }}<button type="button" class="btn" @click="sendIncreaseAdultQty();increaseChild()">+</button>
+      }}<button type="button" class="btn" @click="sendIncreaseChildQty();increaseChild()">+</button>
     </h5>
     <h5>
       Infants: <button type="button" class="btn" @click="sendDecreaseInfantQty();decreaseInfants()">-</button> {{ InfantNum }}
@@ -87,18 +87,18 @@ export default {
      this.$emit('dAQty',this.AdultsNum);
   },
   sendIncreaseChildQty(){
-    this.$emit('iCQty',this.AdultsNum);
+    this.$emit('iCQty',this.ChildNum);
   
   },
    sendDecreaseChildQty(){
-     this.$emit('dCQty',this.AdultsNum);
+     this.$emit('dCQty',this.ChildNum);
   },
    sendIncreaseInfantQty(){
-    this.$emit('iIQty',this.AdultsNum);
+    this.$emit('iIQty',this.InfantNum);
   
   },
    sendDecreaseInfantQty(){
-    this.$emit('dIQty',this.AdultsNum);
+    this.$emit('dIQty',this.InfantNum);
   
   },
   },
