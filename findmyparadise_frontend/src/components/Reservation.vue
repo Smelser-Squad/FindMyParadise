@@ -117,7 +117,7 @@ export default {
     };
   },
   mounted() {
-    axios.get(`http://localhost:8080/api/listing/${listingID}`).then((res) => {
+    axios.get(`http://54.91.69.145:80/api/listing/${listingID}`).then((res) => {
       this.maxGuests=res.data.maxGuests;
       this.dailyPrice = res.data.price;
       this.cleaningFee=res.data.cleaningFee;
@@ -143,7 +143,8 @@ export default {
       popup.classList.toggle("show");
     },
     submitForm() {
-      axios.post(`http://localhost:8080/api/reservation/${listingID}`, this.form)
+      axios
+        .post(`http://54.91.69.145:80/api/reservation/${listingID}`, this.form)
         .then((res) => {
           console.log(res.data);
         });

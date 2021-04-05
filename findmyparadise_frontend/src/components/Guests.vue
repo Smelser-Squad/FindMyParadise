@@ -59,7 +59,7 @@
 
 <script>
 import axios from 'axios';
-let listingID=1;
+let listingID=2;
 export default {
   name: "Guests",
   props: {},
@@ -141,7 +141,7 @@ export default {
     
   },
   mounted(){
-     axios.get(`http://localhost:8080/api/listing/${listingID}`).then((res) => {
+     axios.get(`http://54.91.69.145:80/api/listing/${listingID}`).then((res) => {
       this.maxGuests=res.data.maxGuests;
       
    
