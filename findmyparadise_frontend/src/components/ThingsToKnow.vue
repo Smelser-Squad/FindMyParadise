@@ -1,5 +1,6 @@
 <template>
     Things to Know
+    <br />
     <div id="thingsToKnow">
         <div id="houseRules">
             House rules

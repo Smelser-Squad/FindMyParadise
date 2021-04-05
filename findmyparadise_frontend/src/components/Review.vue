@@ -44,7 +44,7 @@
   </div> -->
 
 
-  <div style="margin-bottom:20px;">
+  <div class="header" style="margin-bottom:20px;">
     <svg
       viewBox="0 0 1000 1000"
       role="presentation"
@@ -597,6 +597,10 @@ export default {
 </script>
 
 <style scoped>
+.header {
+  margin: auto;
+  text-align: center;
+}
 img {
   height: 60px;
   width: 60px;
@@ -642,6 +646,8 @@ width: 10%;
   font-weight: bold;
   font-size: 25px;
   margin-left: 0.5em;
+  margin: auto;
+  text-align: center;
 }
 
 .avRatingViewDialog{
