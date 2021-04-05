@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="contained">
     <div class="row">
         <div class="left">
             <img class="leftImage" :src="firstImage" @click="() => TogglePopup('buttonTrigger')">
@@ -14,10 +14,10 @@
 
     <Modal v-if="popupTriggers.buttonTrigger" class="modal" 
                :TogglePopup="() => TogglePopup('buttonTrigger')">
-            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-inner" v-for="image in images" :key="image">
-                    <div class="carousel-item active">
-                        <img :src="image.imageSrc" class="d-block w-100" alt="">
+            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" >
+                <div class="carousel-inner" >
+                    <div class="carousel-item active" v-for="image in images" :key="image" :class="{ active: idx==0 }">>
+                        <img :src="image.imageSrc"  class="d-block w-100" alt="">
                     </div>
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
@@ -140,6 +140,7 @@ export default {
     .row{
         border-radius: 5px;
         object-fit: fill;
+        overflow: hidden;
     }
     .carousel-item{
         object-fit: fill;
@@ -151,6 +152,11 @@ export default {
     .modal{
         overflow: hidden;
 
+
+    }
+
+    .contained{
+        overflow: hidden;
     }
     
     
