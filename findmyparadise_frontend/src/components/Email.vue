@@ -61,7 +61,7 @@ export default {
       this.validMessage = this.guestMessage != "";
     },
     sendEmail() {
-      console.log("SENT");
+      // console.log("SENT");
     },
   },
 };
