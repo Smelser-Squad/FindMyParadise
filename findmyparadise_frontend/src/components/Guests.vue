@@ -4,22 +4,25 @@
       Adults:
       <button
         type="button"
-        id="DecresaeAdults"
+        id="decresaeAdults"
         class="btn"
-        @click="DecreaseAdults()"
+        @click="decreaseAdults();sendDecreaseAdultQty()"
+      
       >
         -
       </button>
       {{ AdultsNum }}
-      <button type="button" class="btn" @click="IncreaseAdults()">+</button>
+      <button type="button" class="btn" @click="sendIncreaseAdultQty();increaseAdults()">+</button>
     </h5>
     <h5>
-      Children:<button type="button" class="btn" @click="decreaseChild()">-</button>{{ ChildNum
-      }}<button type="button" class="btn" @click="increaseChild()">+</button>
+
+      Children:<button type="button" class="btn" @click="sendDecreaseChildQty();decreaseChild()">-</button>{{ ChildNum
+      }}<button type="button" class="btn" @click="sendIncreaseAdultQty();increaseChild()">+</button>
     </h5>
     <h5>
-      Infants: <button type="button" class="btn" @click="decreaseInfants()">-</button> {{ InfantNum }}
-      <button type="button" class="btn" @click="increaseInfants()">+</button>
+      Infants: <button type="button" class="btn" @click="sendDecreaseInfantQty();decreaseInfants()">-</button> {{ InfantNum }}
+      <button type="button" class="btn" @click="sendIncreaseInfantQty();increaseInfants()">+</button>
+
     </h5>
   </div>
 </template>
@@ -29,10 +32,10 @@ export default {
   name: "Guests",
   props: {},
   methods: {
-    IncreaseAdults() {
+    increaseAdults() {
       this.AdultsNum += 1;
     },
-    DecreaseAdults() {
+    decreaseAdults() {
       if (this.AdultsNum == 1) {
         console.log("Error");
       } else {
@@ -58,9 +61,30 @@ export default {
   },
   increaseInfants() {
     this.InfantNum += 1
-  }
   },
+  sendIncreaseAdultQty(){
+    this.$emit('iAQty',this.AdultsNum);
   
+  },
+  sendDecreaseAdultQty(){
+     this.$emit('dAQty',this.AdultsNum);
+  },
+  sendIncreaseChildQty(){
+    this.$emit('iCQty',this.AdultsNum);
+  
+  },
+   sendDecreaseChildQty(){
+     this.$emit('dCQty',this.AdultsNum);
+  },
+   sendIncreaseInfantQty(){
+    this.$emit('iIQty',this.AdultsNum);
+  
+  },
+   sendDecreaseInfantQty(){
+    this.$emit('dIQty',this.AdultsNum);
+  
+  },
+  },
   data() {
     return {
       AdultsNum: 1,

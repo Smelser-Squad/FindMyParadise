@@ -1,5 +1,6 @@
 package com.tp.wrc.findmyparadise.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
@@ -27,11 +28,15 @@ public class Reviewer implements Serializable {
     private String description;
 
     @Column(name = "joined_date")
+    @JsonFormat(pattern = "MMMM yyyy")
     @CreationTimestamp
     private LocalDate joinedDate;
 
+
     @OneToMany(mappedBy = "reviewer", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Review> reviews = new HashSet<>();
+
+    
 
     public Reviewer() {
 

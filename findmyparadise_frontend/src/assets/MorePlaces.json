@@ -14,17 +14,40 @@
         "serviceFee": 32.32,
         "occupancyFee": 24.3,
         "cleaningFee": 23.2,
-        "host": {
-            "hostName": "Zack",
-            "totalReviews": "10",
-            "superhost": true,
-            "verified": true,
-            "responseTime": "2 hours",
-            "responseRate": 90,
-            "joinDate": "2015-01-03",
-            "email": "fake@email.com",
-            "imageSrc": ""
-        },
+        "amenities": [
+            {
+                "amenityName": "Hot water",
+                "amenityCategory": "Bathroom"
+            },
+            {
+                "amenityName": "Shampoo",
+                "amenityCategory": "Bathroom"
+            },
+            {
+                "amenityName": "Wifi",
+                "amenityCategory": "Internet and office"
+            },
+            {
+                "amenityName": "Ethernet connection",
+                "amenityCategory": "Internet and office"
+            },
+            {
+                "amenityName": "Oven",
+                "amenityCategory": "Kitchen and dining"
+            },
+            {
+                "amenityName": "Microwave",
+                "amenityCategory": "Kitchen and dining"
+            },
+            {
+                "amenityName": "Coffee maker",
+                "amenityCategory": "Kitchen and dining"
+            },
+            {
+                "amenityName": "Stove",
+                "amenityCategory": "Kitchen and dining"
+            }
+            ],
         "reviews": [
             {
                 "rating": 2.86,
@@ -63,6 +86,373 @@
             {
                 "imageSrc": "https://a0.muscache.com/im/pictures/3daab479-290a-4e4e-9224-c8cf18aac23e.jpg?im_w=960",
                 "category": "what is this"
+            }
+        ]
+    },
+    {
+        "name": "Private Suite, new construction",
+        "beds": 1,
+        "bedrooms": 2,
+        "bathrooms": 2,
+        "type": "guest suite",
+        "latitude": -76.6,
+        "longitude": 45.3,
+        "address": "address",
+        "description": "Beach house",
+        "price": 131,
+        "maxGuests": 3,
+        "serviceFee": 32.32,
+        "occupancyFee": 24.3,
+        "cleaningFee": 23.2,
+        "amenities": [
+            {
+                "amenityName": "Hot water",
+                "amenityCategory": "Bathroom"
+            },
+            {
+                "amenityName": "Shampoo",
+                "amenityCategory": "Bathroom"
+            },
+            {
+                "amenityName": "Wifi",
+                "amenityCategory": "Internet and office"
+            },
+            {
+                "amenityName": "Ethernet connection",
+                "amenityCategory": "Internet and office"
+            },
+            {
+                "amenityName": "Oven",
+                "amenityCategory": "Kitchen and dining"
+            },
+            {
+                "amenityName": "Microwave",
+                "amenityCategory": "Kitchen and dining"
+            },
+            {
+                "amenityName": "Coffee maker",
+                "amenityCategory": "Kitchen and dining"
+            },
+            {
+                "amenityName": "Stove",
+                "amenityCategory": "Kitchen and dining"
+            }
+            ],
+        "reviews": [
+            {
+                "rating": 2.86,
+                "cleanlinessRating": 4.00,
+                "locationRating": 4.00,
+                "accuracyRating": 5.00,
+                "valueRating": 5.00,
+                "checkInRating": 5.00,
+                "communicationRating": 5.00,
+                "reviewText": "this place sucks",
+                "joinedDate": "2021-02-03",
+                "reviewer": {
+                    "name": "Zack",
+                    "imageSrc": "",
+                    "description": ""
+                }
+            },
+            {
+                "rating": 4.35,
+                "cleanlinessRating": 4.00,
+                "locationRating": 4.00,
+                "accuracyRating": 5.00,
+                "valueRating": 5.00,
+                "checkInRating": 5.00,
+                "communicationRating": 5.00,
+                "reviewText": "not bad",
+                "joinedDate": "2021-02-03",
+                "reviewer": {
+                    "name": "Zack",
+                    "imageSrc": "",
+                    "description": ""
+                }
+            }
+        ],
+        "photos": [
+            {
+                "imageSrc": "https://a0.muscache.com/im/pictures/2166f386-11b3-4d79-bb30-c65ef458cf16.jpg?im_w=720",
+                "category": "what is this"
+            }
+        ]
+    },
+    {
+        "name": "Best of Both World's ( Nature & Beaches)",
+        "beds": 4,
+        "bedrooms": 1,
+        "bathrooms": 1,
+        "type": "apartment",
+        "latitude": 43.3222,
+        "longitude": -70.5805,
+        "address": "sample address",
+        "description": "sample description",
+        "price": 54,
+        "maxGuests": 5,
+        "serviceFee": 13,
+        "occupancyFee": 9,
+        "cleaningFee": 35,
+        "photos": [
+            {
+                "imageSrc": "https://a0.muscache.com/im/pictures/a5fbb07d-3909-44da-8825-137ce275901c.jpg?im_w=960",
+                "category": "sample category"
+            }
+        ],
+        "amenities": [
+{
+    "amenityName": "Hot water",
+    "amenityCategory": "Bathroom"
+},
+{
+    "amenityName": "Shampoo",
+    "amenityCategory": "Bathroom"
+},
+{
+    "amenityName": "Wifi",
+    "amenityCategory": "Internet and office"
+},
+{
+    "amenityName": "Ethernet connection",
+    "amenityCategory": "Internet and office"
+},
+{
+    "amenityName": "Oven",
+    "amenityCategory": "Kitchen and dining"
+},
+{
+    "amenityName": "Microwave",
+    "amenityCategory": "Kitchen and dining"
+},
+{
+    "amenityName": "Coffee maker",
+    "amenityCategory": "Kitchen and dining"
+},
+{
+    "amenityName": "Stove",
+    "amenityCategory": "Kitchen and dining"
+}
+],
+        "reviews": [
+            {
+                "rating": 4, 
+                "cleanlinessRating": 3,
+                "locationRating": 2,
+                "accuracyRating": 2, 
+                "valueRating": 2,
+                "checkInRating": 3, 
+                "communicationRating" : 4, 
+                "reviewer":
+                {
+                "name": "Caterina",
+                "imageSrc": "https://www.publicdomainpictures.net/pictures/320000/velka/background-image.png",
+                "description" : "This location is beautiful and the unit has a great view! It may not be comfortable for 3+ people just because it is a small apartment, not an entire house. Otherwise, it was an amazing trip!"
+                }            
+            },
+            {
+                "rating": 4.5, 
+                "cleanlinessRating": 2,
+                "locationRating": 1,
+                "accuracyRating": 4, 
+                "valueRating": 2,
+                "checkInRating": 1, 
+                "communicationRating" : 1, 
+                "reviewer":
+                {
+                "name": "Jacqueline",
+                "imageSrc": "https://image.shutterstock.com/image-photo/beautiful-water-drop-on-dandelion-260nw-789676552.jpg",
+                "description" : "Cute little spot in Wells! Super easy to get to and check in was super easy too. Such an amazing view, it doesn’t get any better"
+                }            
+            },
+            {
+                "rating": 3, 
+                "cleanlinessRating": 4,
+                "locationRating": 4.5,
+                "accuracyRating": 4, 
+                "valueRating": 2,
+                "checkInRating": 1, 
+                "communicationRating" : 2, 
+                "reviewer":
+                {
+                "name": "Bethany",
+                "imageSrc": "https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg",
+                "description" : "The views from the rooms are incredible! Watching the sunrise and sunset here are breathtaking. The space had everything I needed for a relaxing getaway!"
+                }            
+            },
+            {
+                "rating": 2, 
+                "cleanlinessRating": 4,
+                "locationRating": 3,
+                "accuracyRating": 5, 
+                "valueRating": 3,
+                "checkInRating": 4, 
+                "communicationRating" : 3, 
+                "reviewer":
+                {
+                "name": "Tom",
+                "imageSrc": "https://static.remove.bg/remove-bg-web/71dbdf11b48cb655eefe2f609ad67295258ae141/assets/start-0e837dcc57769db2306d8d659f53555feb500b3c5d456879b9c843d1872e7baa.jpg",
+                "description" : "A great beachfront view, great communication, and all of the info on the local spots! A definite return for another much needed break :)"
+                }            
+            },
+            {
+                "rating": 4, 
+                "cleanlinessRating": 4,
+                "locationRating": 3,
+                "accuracyRating": 5, 
+                "valueRating": 4,
+                "checkInRating": 4, 
+                "communicationRating" : 3, 
+                "reviewer":
+                {
+                "name": "Casey",
+                "imageSrc": "https://www.slazzer.com/static/images/demo/photographer-image-upload.jpg",
+                "description" : "This place was incredible! The morning sunrise over the ocean could not have been better...and you could see it all from the comfort of the bed! Two great rooms for ocean views."
+                }            
+            }
+        ]
+    },
+    {
+        "name": "Wells Oceanfront 2 Bedroom with Panoramic Views",
+        "beds": 2,
+        "bedrooms": 2,
+        "bathrooms": 1,
+        "type": "house",
+        "latitude": 43.3222,
+        "longitude": -70.5805,
+        "address": "sample address",
+        "description": "sample description",
+        "price": 73,
+        "maxGuests": 4,
+        "serviceFee": 11,
+        "occupancyFee": 8,
+        "cleaningFee": 0,
+        "photos": [
+            {
+                "imageSrc": "https://a0.muscache.com/im/pictures/3daab479-290a-4e4e-9224-c8cf18aac23e.jpg?im_w=720",
+                "category": "sample category"
+            },
+            {
+                "imageSrc": "https://a0.muscache.com/im/pictures/9eeafe8d-56c1-474f-8142-3265ecad69a2.jpg?im_w=720",
+                "category": "sample category"
+            },
+            {
+                "imageSrc": "https://a0.muscache.com/im/pictures/d8c1c434-6b71-4e69-8013-ebf6ba71da77.jpg?im_w=720",
+                "category": "sample category"
+            },
+            {
+                "imageSrc": "https://a0.muscache.com/im/pictures/085eba3e-bf98-4ba3-8d05-9504592c2419.jpg?im_w=720",
+                "category": "sample category"
+            },
+            {
+                "imageSrc": "https://a0.muscache.com/im/pictures/f0aa0056-a064-4382-82b2-aa3c512c1e0a.jpg?im_w=720",
+                "category": "sample category"
+            }
+        ],
+        "amenities": [
+            {
+                "amenityName": "Hot water",
+                "amenityCategory": "Bathroom"
+            },
+            {
+                "amenityName": "Shampoo",
+                "amenityCategory": "Bathroom"
+            },
+            {
+                "amenityName": "Wifi",
+                "amenityCategory": "Internet and office"
+            },
+            {
+                "amenityName": "Ethernet connection",
+                "amenityCategory": "Internet and office"
+            },
+            {
+                "amenityName": "Oven",
+                "amenityCategory": "Kitchen and dining"
+            },
+            {
+                "amenityName": "Microwave",
+                "amenityCategory": "Kitchen and dining"
+            },
+            {
+                "amenityName": "Coffee maker",
+                "amenityCategory": "Kitchen and dining"
+            },
+            {
+                "amenityName": "Stove",
+                "amenityCategory": "Kitchen and dining"
+            }
+        ],
+        "reviews": [
+            {
+                "rating": 4,
+                "cleanlinessRating": 3,
+                "locationRating": 2,
+                "accuracyRating": 2,
+                "valueRating": 2,
+                "checkInRating": 3,
+                "communicationRating": 4,
+                "reviewer": {
+                    "name": "Caterina",
+                    "imageSrc": "https://www.publicdomainpictures.net/pictures/320000/velka/background-image.png",
+                    "description": "This location is beautiful and the unit has a great view! It may not be comfortable for 3+ people just because it is a small apartment, not an entire house. Otherwise, it was an amazing trip!"
+                }
+            },
+            {
+                "rating": 4.5,
+                "cleanlinessRating": 2,
+                "locationRating": 1,
+                "accuracyRating": 4,
+                "valueRating": 2,
+                "checkInRating": 1,
+                "communicationRating": 1,
+                "reviewer": {
+                    "name": "Jacqueline",
+                    "imageSrc": "https://image.shutterstock.com/image-photo/beautiful-water-drop-on-dandelion-260nw-789676552.jpg",
+                    "description": "Cute little spot in Wells! Super easy to get to and check in was super easy too. Such an amazing view, it doesn’t get any better"
+                }
+            },
+            {
+                "rating": 3,
+                "cleanlinessRating": 4,
+                "locationRating": 4.5,
+                "accuracyRating": 4,
+                "valueRating": 2,
+                "checkInRating": 1,
+                "communicationRating": 2,
+                "reviewer": {
+                    "name": "Bethany",
+                    "imageSrc": "https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg",
+                    "description": "The views from the rooms are incredible! Watching the sunrise and sunset here are breathtaking. The space had everything I needed for a relaxing getaway!"
+                }
+            },
+            {
+                "rating": 2,
+                "cleanlinessRating": 4,
+                "locationRating": 3,
+                "accuracyRating": 5,
+                "valueRating": 3,
+                "checkInRating": 4,
+                "communicationRating": 3,
+                "reviewer": {
+                    "name": "Tom",
+                    "imageSrc": "https://static.remove.bg/remove-bg-web/71dbdf11b48cb655eefe2f609ad67295258ae141/assets/start-0e837dcc57769db2306d8d659f53555feb500b3c5d456879b9c843d1872e7baa.jpg",
+                    "description": "A great beachfront view, great communication, and all of the info on the local spots! A definite return for another much needed break :)"
+                }
+            },
+            {
+                "rating": 4,
+                "cleanlinessRating": 4,
+                "locationRating": 3,
+                "accuracyRating": 5,
+                "valueRating": 4,
+                "checkInRating": 4,
+                "communicationRating": 3,
+                "reviewer": {
+                    "name": "Casey",
+                    "imageSrc": "https://www.slazzer.com/static/images/demo/photographer-image-upload.jpg",
+                    "description": "This place was incredible! The morning sunrise over the ocean could not have been better...and you could see it all from the comfort of the bed! Two great rooms for ocean views."
+                }
             }
         ]
     }

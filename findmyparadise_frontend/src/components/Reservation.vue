@@ -1,40 +1,37 @@
 <template>
-  <div id="Resrevation body">
+  <div>
     <header>
       <h2>
-        <b>${{ dataObject.price }}</b> / night
+        <b>${{ dailyPrice }}</b> / night
       </h2>
       <div>
-        <svg
-          viewBox="0 0 1000 1000"
-          role="presentation"
-          aria-hidden="true"
-          focusable="false"
-          style="height: 14px; width: 14px; fill: red"
-        >
-          <path
-            d="M972 380c9 28 2 50-20 67L725 619l87 280c11 39-18 75-54 75-12 0-23-4-33-12L499 790 273 962a58 58 0 0 1-78-12 50 50 0 0 1-8-51l86-278L46 447c-21-17-28-39-19-67 8-24 29-40 52-40h280l87-279c7-23 28-39 52-39 25 0 47 17 54 41l87 277h280c24 0 45 16 53 40z"
-          ></path>
-        </svg>
-        <span v-if="dataObject.reviews != undefined"
-          >{{ dataObject.reviews[0].rating }} ({{
-            dataObject.reviews.length
-          }})</span
-        >
+        <span style="color: gray"> ({{ reviewsNum }}) reviews</span>
       </div>
     </header>
-    <body>
-      <form v-on:submit.prevent="submitForm">
+    <body id="ReservationBody">
+      <form v-on:submit.prevent="submitForm" method="post">
         <h5>Guests:</h5>
-        <Guests />
-        <h5>Dates</h5>
-
-        <div v-if="showCalendar">
-          <DateRangePicker v-on:datePick="updateDates($event)" />
-        </div>
-        <span> Start Date: {{ range.start }} </span>
-
-       
+        <Guests
+          @iAQty="increaseAQty($event)"
+          @dAQty="decreaseAQty($event)"
+          @iCQty="increaseCQty($event)"
+          @dCQty="decreaseCQty($event)"
+          @iIQty="increaseIQty($event)"
+          @dIQty="decreaseAQty($event)"
+        />
+        <br>
+        <span> Start Date: {{ updateDate(dateStart) }}</span>
+        <br />
+        <span> End Date: {{ updateDate(dateEnd) }}</span>
+        <br>
+        <span>{{ updateDays(days) }}</span>
+        <br>
+        <h4>CheckIn:</h4>
+        <input disabled v-model="form.CheckIn" />
+        <h4>CheckOut:</h4>
+        <input disabled v-model="form.CheckOut" />
+        <br>
+        <br />
         <span
           class="_19di23v"
           style="
@@ -48,51 +45,43 @@
           class="btn"
           type="submit"
           style="width: 420px; text-align: center"
-          @click="OnClick()"
         >
           Reserve
         </button>
       </form>
       <p style="color: gray; text-align: center">You won't be charged yet</p>
-      <u @click="ShowDetals()"><b> Show price details</b></u>
-      <div v-if="show">
+      <u @click="showDetails()"><b> Show price details</b></u>
+      <div v-if="details">
         <div>
-          <u>${{ dataObject.price }} x {{ form.NumOfDays }} nights</u>
-          <span>${{ dataObject.price * form.NumOfDays }}</span>
+          <u>${{ dailyPrice }} x {{ form.NumOfDays }} nights</u>
+          <span>${{ dailyPrice * form.NumOfDays }}</span>
         </div>
 
         <div class="popup" @click="CleaningFeepopup()">
-          <u>Cleaning Fee</u> <span> ${{ dataObject.cleaningFee }}</span>
+          <u>Cleaning Fee</u> <span> ${{ cleaningFee }}</span>
           <span class="popuptext" id="CleaningFeepopup"
+            >One-time fee charged by host to cover the cost of cleaning their
+            space.</span
+          >
+        </div>
+        <br />
+        <div class="popup" @click="ServiceFeepopup()">
+          <u>Service Fee</u><span> ${{ serviceFee }}</span>
+          <span class="popuptext" id="ServiceFeepopup"
             >The service fee, which the host has decided to pay, helps us run
             our platform and offer services like 24/7 support on your
             trip.</span
           >
         </div>
         <br />
-        <div class="popup" @click="ServiceFeepopup()">
-          <u>Service Fee</u><span> ${{ dataObject.serviceFee }}</span>
-          <span class="popuptext" id="ServiceFeepopup"
-            >One-time fee charged by host to cover the cost of cleaning their
-            space.</span
-          >
-        </div>
-        <br />
         <div>
           <u>Occupancy taxes and fees</u>
-          <span> ${{ dataObject.occupancyFee }} </span>
+          <span> ${{ occupancyFee }} </span>
         </div>
       </div>
-      <hr />
-      <p>
-        <b>
-          Total: ${{
-            dataObject.price +
-            dataObject.cleaningFee +
-            dataObject.serviceFee +
-            dataObject.occupancyFee
-          }}</b
-        >
+      <br>
+      <p id = "totalPrice">
+        <b> Total: ${{ form.TotalPrice }}</b>
       </p>
     </body>
   </div>
@@ -100,25 +89,28 @@
 <script>
 import Guests from "./Guests";
 import axios from "axios";
-import DateRangePicker from "./DateRangePicker";
-
+import moment from "moment";
 let listingID = 1;
-
 export default {
   name: "Reservation",
-
+  props: ["dateStart", "dateEnd", "days"],
   data() {
     return {
       showCalendar: true,
-      show: false,
+      details: false,
       date: new Date(),
       dataObject: {},
+      dailyPrice: "",
+      cleaningFee: "",
+      occupancyFee: "",
+      serviceFee: "",
+      reviewsNum: "",
       form: {
-        CheckIn: "2",
+        CheckIn: "",
         CheckOut: "",
-        NumAdults: "",
-        NumChildren: "",
-        NumInfants: "",
+        NumAdults: 1,
+        NumChildren: 0,
+        NumInfants: 0,
         NumOfDays: 1,
         TotalPrice: "",
       },
@@ -133,20 +125,22 @@ export default {
   },
   mounted() {
     axios.get(`http://localhost:8080/api/listing/${listingID}`).then((res) => {
-      this.dataObject = res.data;
-      console.log(res.data);
-      console.log(this.date1);
+      this.dailyPrice = res.data.price;
+      this.cleaningFee = res.data.cleaningFee;
+      this.occupancyFee = res.data.occupancyFee;
+      this.serviceFee = res.data.serviceFee;
+      this.reviewsNum = res.data.reviews.length;
+      this.form.TotalPrice =
+        this.dailyPrice * this.form.NumOfDays +
+        this.serviceFee +
+        this.cleaningFee +
+        this.occupancyFee;
     });
   },
-
   components: {
     Guests,
-    DateRangePicker,
   },
   methods: {
-    OnClick() {
-      console.log("Reserve");
-    },
     CleaningFeepopup() {
       let popup = document.getElementById("CleaningFeepopup");
       popup.classList.toggle("show");
@@ -159,28 +153,84 @@ export default {
       axios
         .post("http://localhost:8080/api/reservation", this.form)
         .then((res) => {
-          console.log(res);
+          console.log(res.data);
         });
+      console.log(this.form);
     },
     ShowDetals() {
       this.show = true;
     },
-    updateDates(start) {
-      this.range.start = start;
-
-      console.log(this.range.start);
-      console.log("we made it");
+    increaseAQty(num) {
+      this.form.NumAdults = num + 1;
+    },
+    decreaseAQty(num) {
+      this.form.NumAdults -= num;
+    },
+    increaseCQty(num) {
+      this.form.NumChildren = num + 1;
+    },
+    decreaseCQty(num) {
+      this.form.NumChildren -= num;
+    },
+    increaseIQty(num) {
+      this.form.NumInfants = num;
+    },
+    decreaseIQty(num) {
+      this.form.NumInfants -= num;
+    },
+    updateDate(date) {
+      let dateSub = date;
+      this.form.CheckIn = moment(this.dateStart).format("MM-DD-YYYY");
+      this.form.CheckOut = moment(this.dateEnd).format("MM-DD-YYYY");
+      return dateSub;
+    },
+    updateDays(num) {
+      if (num == 0) {
+        this.form.NumOfDays = 1;
+      } else {
+        this.form.NumOfDays = num;
+      }
+      this.form.TotalPrice =
+        this.dailyPrice * this.form.NumOfDays +
+        this.serviceFee +
+        this.cleaningFee +
+        this.occupancyFee;
     },
   },
 };
 </script>
 <style scoped>
+#totalPrice {
+  margin-top: 20px;
+  border: 5px solid black;
+  border-radius: 50%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-left: 40%;
+  margin-right: 40%;
+}
+#ReservationBody {
+  background: whitesmoke !important;
+}
+#ReservationBody {
+  margin: auto;
+  text-align: center;
+}
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
 }
+/* .split {
+  display: flex;
+}
+.split .split-left {
+  flex: 1;
+}
+.split .split-right {
+  flex: 1;
+} */
 .popup {
   position: relative;
   display: inline-block;

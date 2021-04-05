@@ -37,10 +37,11 @@ public class Event implements Serializable {
 
     public Event() {}
 
-    public Event(String title, String summary, String category, double cost, double latitude, double longitude) {
+    public Event(String title, String summary, String category, String imageSrc, double cost, double latitude, double longitude) {
         this.title = title;
         this.summary = summary;
         this.category = category;
+        this.imageSrc = imageSrc;
         this.cost = cost;
         this.latitude = latitude;
         this.longitude = longitude;
@@ -92,6 +93,14 @@ public class Event implements Serializable {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public String getImageSrc() {
+        return imageSrc;
+    }
+
+    public void setImageSrc(String imageSrc) {
+        this.imageSrc = imageSrc;
     }
 
     public double getCost() {

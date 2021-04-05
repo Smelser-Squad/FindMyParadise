@@ -2,12 +2,15 @@ package com.tp.wrc.findmyparadise.services;
 
 
 import com.tp.wrc.findmyparadise.models.Event;
+import com.tp.wrc.findmyparadise.models.Listing;
 
 import java.util.List;
 
 public interface EventService {
 
     public List<Event> index();
+
+    public List<Event> indexWithinDistance(Listing listing, int distance);
 
     public Event show(int id);
 

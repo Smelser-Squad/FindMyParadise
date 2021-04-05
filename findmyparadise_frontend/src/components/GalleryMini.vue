@@ -1,4 +1,5 @@
 <template>
+<div>
     <div class="row">
         <div class="left">
             <img class="leftImage" :src="firstImage" @click="() => TogglePopup('buttonTrigger')">
@@ -18,7 +19,6 @@
                     <div class="carousel-item active">
                         <img :src="image.imageSrc" class="d-block w-100" alt="">
                     </div>
-                    ``
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -30,6 +30,7 @@
                 </button>
             </div>
     </Modal>
+</div>
 </template>
 
 
