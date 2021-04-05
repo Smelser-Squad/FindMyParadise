@@ -13,11 +13,11 @@ const routes = [
   //   name: "Home",
   //   component: Listing
   // },
-  {
-    path: "/:pathMatch(.*)*",
-    name: "wildcard",
-    redirect: "/",
-  },
+  // {
+  //   path: "/:pathMatch(.*)*",
+  //   name: "wildcard",
+  //   redirect: "/",
+  // },
 ];
 
 const router = createRouter({
