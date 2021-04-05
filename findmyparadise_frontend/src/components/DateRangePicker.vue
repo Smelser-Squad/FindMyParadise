@@ -74,7 +74,7 @@ export default {
         new Date(this.range.end).getTime() -
         new Date(this.range.start).getTime();
       let days = Math.ceil(difference / (1000 * 3600 * 24));
-      console.log(days);
+      // console.log(days);
       return days;
     },
 
