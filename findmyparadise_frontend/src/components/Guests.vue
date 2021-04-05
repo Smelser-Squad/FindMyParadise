@@ -17,7 +17,7 @@
     <h5>
 
       Children:<button type="button" class="btn" @click="sendDecreaseChildQty();decreaseChild()">-</button>{{ ChildNum
-      }}<button type="button" class="btn" @click="sendIncreaseAdultQty();increaseChild()">+</button>
+      }}<button type="button" class="btn" @click="sendIncreaseChildQty();increaseChild()">+</button>
     </h5>
     <h5>
       Infants: <button type="button" class="btn" @click="sendDecreaseInfantQty();decreaseInfants()">-</button> {{ InfantNum }}
@@ -28,12 +28,19 @@
 </template>
 
 <script>
+import axios from 'axios';
+let listingID=1;
 export default {
   name: "Guests",
   props: {},
   methods: {
     increaseAdults() {
+      if(this.AdultsNum + this.ChildNum==this.maxGuests){
+        console.log("Error")
+        this.AdultsNum==this.maxGuests;
+      }else{
       this.AdultsNum += 1;
+      }
     },
     decreaseAdults() {
       if (this.AdultsNum == 1) {
@@ -50,7 +57,12 @@ export default {
     }
   },
   increaseChild() {
+    if(this.ChildNum+this.AdultsNum ==this.maxGuests){
+        console.log("Error")
+        
+      }else{
     this.ChildNum += 1
+      }
   },
   decreaseInfants() {
     if (this.InfantNum == 0) {
@@ -60,7 +72,12 @@ export default {
     }
   },
   increaseInfants() {
+    if(this.InfantNum==5){
+      console.log("Error")
+      this.InfantNum=5;
+    }else{
     this.InfantNum += 1
+    }
   },
   sendIncreaseAdultQty(){
     this.$emit('iAQty',this.AdultsNum);
@@ -70,18 +87,18 @@ export default {
      this.$emit('dAQty',this.AdultsNum);
   },
   sendIncreaseChildQty(){
-    this.$emit('iCQty',this.AdultsNum);
+    this.$emit('iCQty',this.ChildNum);
   
   },
    sendDecreaseChildQty(){
-     this.$emit('dCQty',this.AdultsNum);
+     this.$emit('dCQty',this.ChildNum);
   },
    sendIncreaseInfantQty(){
-    this.$emit('iIQty',this.AdultsNum);
+    this.$emit('iIQty',this.InfantNum);
   
   },
    sendDecreaseInfantQty(){
-    this.$emit('dIQty',this.AdultsNum);
+    this.$emit('dIQty',this.InfantNum);
   
   },
   },
@@ -91,6 +108,14 @@ export default {
       ChildNum: 0,
       InfantNum: 0,
     };
+    
   },
+  mounted(){
+     axios.get(`http://localhost:8080/api/listing/${listingID}`).then((res) => {
+      this.maxGuests=res.data.maxGuests;
+      
+   
+    });
+  }
 };
 </script>
