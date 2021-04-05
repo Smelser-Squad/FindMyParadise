@@ -50,21 +50,21 @@ public class ReservationController {
         }
     }
 
-    @PostMapping("/reservation")
-    public ResponseEntity addReservation(@RequestBody Reservation newReservation) {
+    @PostMapping("/reservation/{listingId}")
+    public ResponseEntity addReservation(@RequestBody Reservation newReservation,@PathVariable Integer listingId ) {
         try {
-            return ResponseEntity.ok(service.addReservation(newReservation));
-        } catch (NullReservationObjectException | NullGuestsException | InvalidGuestsException | NullDatesException | PastDatesException ex) {
+            return ResponseEntity.ok(service.addReservation(newReservation, listingId));
+        } catch (NullReservationObjectException | NullGuestsException | InvalidGuestsException | NullDatesException | PastDatesException | NoListingFoundException ex) {
             return ResponseEntity.badRequest().body(ex.getMessage());
         }
     }
 
-    @PutMapping("/update/reservation")
-    public ResponseEntity updateReservation(@RequestBody Reservation newReservation) {
+    @PutMapping("/update/reservation/{listingId}")
+    public ResponseEntity updateReservation(@RequestBody Reservation newReservation, @PathVariable Integer listingId) {
         try {
-            return ResponseEntity.ok(service.updateReservation(newReservation));
+            return ResponseEntity.ok(service.updateReservation(newReservation, listingId));
 
-        } catch (NullReservationIdException | InvalidReservationIdException | NullDatesException | InvalidGuestsException | NullGuestsException ex) {
+        } catch (NullReservationIdException | InvalidReservationIdException | NullDatesException | InvalidGuestsException | NullGuestsException | NoListingFoundException ex) {
             return ResponseEntity.badRequest().body(ex.getMessage());
         }
     }
