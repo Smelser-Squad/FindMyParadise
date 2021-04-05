@@ -25,7 +25,7 @@ public class Photo implements Serializable {
     @JsonBackReference
     private Listing listing;
 
-    public Photo() {}
+    public Photo(){ }
 
     public Photo(Integer photoId, String imageSrc, String category, Listing listing) {
         this.photoId = photoId;
@@ -65,4 +65,5 @@ public class Photo implements Serializable {
     public void setListing(Listing listing) {
         this.listing = listing;
     }
+
 }
