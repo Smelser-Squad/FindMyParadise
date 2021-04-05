@@ -34,9 +34,15 @@
         <div class="container">
           <description title="Description" @email="toggleEmail"> </description>
         </div>
-        <div class="container">
+
+     <hr class="light" />
+      <br />
+
+        <div class="reviewContainer">
           <review></review>
         </div>
+      <hr class="light" />
+
         <div class="hostContainer">
           <host></host>
         </div>
@@ -358,6 +364,14 @@ h5 {
   /* border: 1px solid gray;
   border-radius: 5px;
   box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px; */
+}
+
+.reviewContainer{
+  max-width: 80%;
+  margin: 30px auto;
+  overflow: auto;
+  min-height: 300px;
+  padding: 30px;
 }
 #dateHeader {
   margin: auto;
