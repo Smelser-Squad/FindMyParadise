@@ -55,6 +55,9 @@
       the find my paradise website</span
     >
   </div>
+  <div class="contactHost">
+       <button @click="toggleEmail">Contact Host</button>
+     </div>
 </template>
 
 <script>
@@ -97,7 +100,11 @@ export default {
       // console.log(res.data);
     });
   },
-  methods: {},
+  methods: {
+     toggleEmail() {
+       this.$emit("email", this.dataObject);
+     },
+   },
 };
 </script>
 

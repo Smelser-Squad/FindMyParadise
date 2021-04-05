@@ -1,84 +1,165 @@
 <template>
-  <div class="row">
-    <div class="left">
-      <img
-        class="leftImage"
-        src="https://a0.muscache.com/im/pictures/36283cf5-95c8-4c70-800f-b1c5a9a6f5a0.jpg?im_w=1200"
-      />
+<div class="contained">
+    <div class="row">
+        <div class="left">
+            <img class="leftImage" :src="firstImage" @click="() => TogglePopup('buttonTrigger')">
+        </div>
+        <div class="rightSide">
+            <img class="rightTop" :src="secondImage" @click="() => TogglePopup('buttonTrigger')">
+            <img class="rightTopR" :src="thirdImage" @click="() => TogglePopup('buttonTrigger')">
+            <img class="rightBot" :src="fourthImage" @click="() => TogglePopup('buttonTrigger')">
+            <img class="rightBotR" :src="fifthImage" @click="() => TogglePopup('buttonTrigger')">
+        </div>
     </div>
-    <div class="rightSide">
-      <img
-        class="rightTop"
-        src="https://a0.muscache.com/im/pictures/73b354de-ca65-45a4-a492-a6f8c922edc2.jpg?im_w=720"
-      />
-      <img
-        class="rightTopR"
-        src="https://a0.muscache.com/im/pictures/d4a660ca-31ea-41d0-94bd-d277657d170a.jpg?im_w=720"
-      />
-      <img
-        class="rightBot"
-        src="https://a0.muscache.com/im/pictures/15d1a761-3e20-4631-83ca-32594fa88975.jpg?im_w=1440"
-      />
-      <img
-        class="rightBotR"
-        src="https://a0.muscache.com/im/pictures/939d189e-560e-49fd-aa01-b0f26740b786.jpg?im_w=720"
-      />
-    </div>
-  </div>
+
+    <Modal v-if="popupTriggers.buttonTrigger" class="modal" 
+               :TogglePopup="() => TogglePopup('buttonTrigger')">
+            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" >
+                <div class="carousel-inner" >
+                    <div class="carousel-item active" v-for="image in images" :key="image" :class="{ active: idx==0 }">>
+                        <img :src="image.imageSrc"  class="d-block w-100" alt="">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+    </Modal>
+</div>
 </template>
 
+
+<script>
+import { ref } from "vue";
+import axios from "axios";
+import Modal from "./Modal";
+
+let listingId = 1;
+export default {
+    components: { Modal },
+    name: "carousel",
+    setup() {
+        const popupTriggers = ref({
+        buttonTrigger: false,
+        });
+
+        const TogglePopup = (trigger) => {
+            popupTriggers.value[trigger] = !popupTriggers.value[trigger];
+        };
+
+        return {
+            Modal,
+            popupTriggers,
+            TogglePopup,
+        };
+    },
+    data(){
+        return {
+            images: {},
+            firstImage : String,
+            secondImage: String,
+            thirdImage: String,
+            fourthImage: String,
+            fifthImage: String
+        };
+    },
+    mounted(){
+        axios.get(`http://localhost:8080/api/gallery/listing/${listingId}`).then((res) => {
+            this.images = res.data;
+            console.log(this.images);
+            this.firstImage = res.data[0].imageSrc;
+            this.secondImage = res.data[1].imageSrc;
+            this.thirdImage = res.data[2].imageSrc;
+            this.fourthImage = res.data[3].imageSrc;
+            this.fifthImage = res.data[4].imageSrc;
+
+        })
+    },
+    methods(){
+
+    }
+};
+</script>
+
+
 <style scoped>
-.rightSide {
-  width: 50%;
-  height: 100%;
-}
-.left {
-  width: 50%;
-  height: 100%;
-  overflow: hidden;
-}
-.leftImage {
-  border-right: 4px solid #ffffff;
-  object-fit: cover;
-  transform: translateX(-20%);
-  transform: translateY(-20%);
-}
-.rightTop {
-  width: 50%;
-  height: 50%;
-  border-left: 4px solid #ffffff;
-  border-bottom: 4px solid #ffffff;
-  border-right: 4px solid #ffffff;
-  object-fit: fill;
-  overflow: hidden;
-}
-.rightTopR {
-  width: 50%;
-  height: 50%;
-  border-left: 4px solid #ffffff;
-  border-bottom: 4px solid #ffffff;
-  object-fit: fill;
-  overflow: hidden;
-}
-.rightBot {
-  width: 50%;
-  height: 50%;
-  border-left: 4px solid #ffffff;
-  border-top: 4px solid #ffffff;
-  border-right: 4px solid #ffffff;
-  object-fit: fill;
-  overflow: hidden;
-}
-.rightBotR {
-  width: 50%;
-  height: 50%;
-  border-left: 4px solid #ffffff;
-  border-top: 4px solid #ffffff;
-  object-fit: cover;
-  overflow: hidden;
-}
-.row {
-  border-radius: 5px;
-  object-fit: fill;
-}
+    .rightSide{
+        width: 50%;
+        height: 100%;
+    }
+    .left{
+        width: 50%;
+        height: 100%;
+        overflow: hidden;
+    }
+    .leftImage{
+        border-right: 4px solid #FFFFFF;
+        object-fit: cover;
+        transform: translateX(-20%);
+        transform: translateY(-20%);
+        }
+    .rightTop{
+        width: 50%;
+        height: 50%;
+        border-left: 4px solid #FFFFFF;
+        border-bottom: 4px solid #FFFFFF;  
+        border-right: 4px solid #FFFFFF;
+        object-fit: fill;
+        overflow:hidden;
+    }
+    .rightTopR{
+        width: 50%;
+        height: 50%;
+        border-left: 4px solid #FFFFFF;
+        border-bottom: 4px solid #FFFFFF;
+        object-fit: fill;
+        overflow: hidden;
+    }
+    .rightBot{
+        width: 50%;
+        height: 50%;
+        border-left: 4px solid #FFFFFF;
+        border-top: 4px solid #FFFFFF;
+        border-right: 4px solid #FFFFFF;
+        object-fit: fill;
+        overflow: hidden;
+    }
+    .rightBotR{
+        width: 50%;
+        height: 50%;
+        border-left: 4px solid #FFFFFF;
+        border-top: 4px solid #FFFFFF;
+        object-fit: cover;
+        overflow: hidden;
+    }
+    .row{
+        border-radius: 5px;
+        object-fit: fill;
+        overflow: hidden;
+    }
+    .carousel-item{
+        object-fit: fill;
+    }
+    .carousel{
+        margin: 15px;
+        
+    }
+    .modal{
+        overflow: hidden;
+
+
+    }
+
+    .contained{
+        overflow: hidden;
+    }
+    
+    
+
+    
 </style>

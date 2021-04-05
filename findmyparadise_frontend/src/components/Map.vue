@@ -16,8 +16,8 @@
 import { onMounted, ref } from "vue";
 import axios from "axios";
 
-let listingID = 3;
 
+let listingID = 1;
 export default {
   name: "Map",
   props: {
