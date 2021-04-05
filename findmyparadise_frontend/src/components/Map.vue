@@ -45,7 +45,7 @@ export default {
 
     onMounted(() => {
       axios
-        .get(`http://localhost:8080/api/listing/${listingID}`)
+        .get(`http://54.91.69.145:80/api/listing/${listingID}`)
         .then((res) => {
           listingData.value = res.data.name;
           let POI = [res.data.longitude, res.data.latitude];
@@ -97,7 +97,7 @@ export default {
     function addMarker(map) {
       const tt = window.tt;
       axios
-        .get(`http://localhost:8080/api/listing/${listingID}`)
+        .get(`http://54.91.69.145:80/api/listing/${listingID}`)
         .then((res) => {
           var location = [res.data.longitude, res.data.latitude];
           // console.log(res.data.latitude);

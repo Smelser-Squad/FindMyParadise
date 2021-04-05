@@ -19,14 +19,14 @@
 import axios from "axios";
 import moment from "moment";
 
-let listingID = 1;
+let listingID = 2;
 export default {
     props : ["dateStart"],
     data() {
         
     },
     mounted(){
-        axios.get(`http://localhost:8080/api/listing/${listingID}`).then((res) => {
+        axios.get(`http://54.91.69.145:80/api/listing/${listingID}`).then((res) => {
             this.dataObject = res.data;
         })
     },
