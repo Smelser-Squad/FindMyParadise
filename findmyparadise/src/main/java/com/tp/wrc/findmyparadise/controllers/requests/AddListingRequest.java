@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.tp.wrc.findmyparadise.models.*;
 
 import javax.persistence.*;
+
 //import java.time.LocalDate;
 import java.util.List;
 
@@ -36,6 +37,7 @@ public class AddListingRequest {
     private String type;
     private String checkIn;
     private String checkOut;
+
 
 
     public Integer getListingID() {
@@ -222,4 +224,5 @@ public class AddListingRequest {
     public void setCheckOut(String checkOut) {
         this.checkOut = checkOut;
     }
+
 }

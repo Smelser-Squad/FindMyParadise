@@ -69,7 +69,6 @@ public class Listing implements Serializable {
     @Column (name ="listing_type")
     private String type;
 
-
     @Column (name ="check_in")
     private String checkIn;
 
@@ -78,12 +77,12 @@ public class Listing implements Serializable {
 
 
     @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+
     @JoinTable(
             name = "listing_amenities",
             joinColumns = @JoinColumn(name = "listing_id"),
             inverseJoinColumns = @JoinColumn(name = "amenity_id"))
     private Set<Amenity> amenities = new HashSet<>();
-
 
 
     @ManyToMany(cascade = CascadeType.MERGE)
@@ -93,6 +92,7 @@ public class Listing implements Serializable {
             joinColumns = @JoinColumn(name = "listing_id"),
             inverseJoinColumns = @JoinColumn(name = "rule_id"))
     private List<Rules> rules = new ArrayList<>();
+
 
     @ManyToMany(cascade = CascadeType.MERGE)
     @LazyCollection(LazyCollectionOption.FALSE)
@@ -226,6 +226,7 @@ public class Listing implements Serializable {
     }
 
     public void setCheckOut(String checkOut) {
+
         this.checkOut = checkOut;
     }
 

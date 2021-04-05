@@ -35,8 +35,8 @@ export default {
   mounted() {
     axios.get(`http://54.91.69.145:80/api/listing/${listingID}`).then((res) => {
       this.dataObject = res.data;
-      console.log("Description data");
-      console.log(res.data);
+      // console.log("Description data");
+      // console.log(res.data);
     });
   },
   methods: {
