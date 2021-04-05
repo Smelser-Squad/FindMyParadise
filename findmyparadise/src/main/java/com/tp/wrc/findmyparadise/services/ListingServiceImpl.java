@@ -81,7 +81,7 @@ public class ListingServiceImpl implements ListingService {
 //        listing.setHost(listHost);
 //        return repo.saveAndFlush(listing);
 //    }
-    
+
     @Override
     public Listing create(AddListingRequest listing) throws InvalidHostIDException, NullHostIDException, NullListingNameException, InvalidListingNameException, NullAddressException, InvalidAddressException, NullListingPriceException {
         if(listing.getHostID() == null)
