@@ -3,6 +3,7 @@ package com.tp.wrc.findmyparadise.services;
 import com.tp.wrc.findmyparadise.models.Event;
 import com.tp.wrc.findmyparadise.models.Listing;
 import com.tp.wrc.findmyparadise.repositories.EventRepository;
+import com.tp.wrc.findmyparadise.repositories.ListingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,7 @@ public class EventServiceImpl implements EventService {
 
     @Autowired
     private EventRepository eRepo;
+    private ListingRepository lRepo;
 
 
     @Override
@@ -23,9 +25,10 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public List<Event> indexWithinDistance(Listing listing, int distance) {
+    public List<Event> indexWithinDistance(Integer listingId, int distance) {
         List<Event> events = eRepo.findAll();
         List<Event> toReturn = new ArrayList();
+        Listing listing = lRepo.getOne(listingId);
         for(Event event : events) {
             double theta = listing.getLongitude() - event.getLongitude();
             double dist = Math.sin(deg2rad(listing.getLatitude())) * Math.sin(deg2rad(event.getLatitude())) + Math.cos(deg2rad(listing.getLatitude())) * Math.cos(deg2rad(event.getLatitude())) * Math.cos(deg2rad(theta));

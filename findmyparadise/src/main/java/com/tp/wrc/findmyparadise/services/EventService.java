@@ -10,7 +10,7 @@ public interface EventService {
 
     public List<Event> index();
 
-    public List<Event> indexWithinDistance(Listing listing, int distance);
+    public List<Event> indexWithinDistance(Integer listingId, int distance);
 
     public Event show(int id);
 
