@@ -73,6 +73,7 @@ public class Listing implements Serializable {
     @Column (name ="check_out")
     private LocalDate checkOut;
 
+
     @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @JoinTable(
             name = "listing_amenities",
@@ -80,12 +81,14 @@ public class Listing implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "amenity_id"))
     private Set<Amenity> amenities = new HashSet<>();
 
+
     @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(
             name="listing_rules",
             joinColumns = @JoinColumn(name = "listing_id"),
             inverseJoinColumns = @JoinColumn(name = "rule_id"))
     private List<Rules> rules = new ArrayList<>();
+
 
     @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(

@@ -1,5 +1,7 @@
 package com.tp.wrc.findmyparadise.services;
 
+import com.tp.wrc.findmyparadise.exceptions.NoListingFoundException;
+import com.tp.wrc.findmyparadise.models.Listing;
 import com.tp.wrc.findmyparadise.models.Photo;
 import com.tp.wrc.findmyparadise.repositories.PhotoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,9 @@ public class PhotoGalleryServiceImpl implements PhotoGalleryService {
     @Autowired
     PhotoRepository PRepo;
 
+    @Autowired
+    ListingServiceImpl service;
+
 
     public Photo getById(Integer id) {
         Photo photo = null;
@@ -25,8 +30,9 @@ public class PhotoGalleryServiceImpl implements PhotoGalleryService {
         return null;
     }
 
-    public List<Photo> getByListing(Integer listingId) {
-        return PRepo.findByListing(listingId);
+    public List<Photo> getByListing(Integer listingId) throws NoListingFoundException {
+        Listing listing = service.show(listingId);
+        return PRepo.findByListing(listing);
     }
 
     //This method may not be necessary
@@ -35,7 +41,9 @@ public class PhotoGalleryServiceImpl implements PhotoGalleryService {
 //        return null;
 //    }
 
-    public Photo addImage(Photo toAdd) {
+    public Photo addImage(Photo toAdd, Integer listingId) throws NoListingFoundException {
+        Listing listing = service.show(listingId);
+        toAdd.setListing(listing);
         return PRepo.saveAndFlush(toAdd);
     }
 

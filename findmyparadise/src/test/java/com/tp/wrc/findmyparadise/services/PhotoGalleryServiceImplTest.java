@@ -1,5 +1,7 @@
 package com.tp.wrc.findmyparadise.services;
 
+import com.tp.wrc.findmyparadise.exceptions.NoListingFoundException;
+import com.tp.wrc.findmyparadise.models.Listing;
 import com.tp.wrc.findmyparadise.models.Photo;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,18 +15,21 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @SpringBootTest
 class PhotoGalleryServiceImplTest {
 
+    //TODO: REDO TESTS MADE CHANGES TO SERVICE FOR ADDIMAGE
+
     @Autowired
     PhotoGalleryServiceImpl toTest;
 
     @BeforeEach
-    public void setUp(){
+    public void setUp() throws NoListingFoundException {
         Photo photo = new Photo();
-//        Listing listing = new Listing();
-//        listing.setListingID(1);
+
+//      Listing listing = new Listing();
+        Integer listingId = 1;
         photo.setCategory("Bathroom");
         photo.setImageSrc("someLink");
-//        photo.setListing(listing);
-        toTest.addImage(photo);
+//      photo.setListing(listing);
+        toTest.addImage(photo, listingId);
     }
 
     @AfterEach
@@ -53,15 +58,16 @@ class PhotoGalleryServiceImplTest {
 
 
     @Test
-    public void addImageTest(){
+    public void addImageTest() throws NoListingFoundException {
         Photo newPhoto = new Photo();
-//        Listing listing = new Listing();
+        Listing listing = new Listing();
 //        listing.setListingID(2);
+        Integer listingId = 2;
 //        newPhoto.setListing(listing);
         newPhoto.setImageSrc("someOtherLink");
         newPhoto.setCategory("Kitchen");
 
-        newPhoto = toTest.addImage(newPhoto);
+        newPhoto = toTest.addImage(newPhoto , 2);
         Photo tester = toTest.getById(newPhoto.getPhotoId());
 
         assertEquals("someOtherLink", tester.getImageSrc());
