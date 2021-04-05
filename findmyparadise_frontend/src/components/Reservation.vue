@@ -19,18 +19,18 @@
           @iIQty="increaseIQty($event)"
           @dIQty="decreaseAQty($event)"
         />
-        <br>
+        <br />
         <span> Start Date: {{ updateDate(dateStart) }}</span>
         <br />
         <span> End Date: {{ updateDate(dateEnd) }}</span>
-        <br>
+        <br />
         <span>{{ updateDays(days) }}</span>
-        <br>
+        <br />
         <h4>CheckIn:</h4>
         <input disabled v-model="form.CheckIn" />
         <h4>CheckOut:</h4>
         <input disabled v-model="form.CheckOut" />
-        <br>
+        <br />
         <br />
         <span
           class="_19di23v"
@@ -79,8 +79,8 @@
           <span> ${{ occupancyFee }} </span>
         </div>
       </div>
-      <br>
-      <p id = "totalPrice">
+      <br />
+      <p id="totalPrice">
         <b> Total: ${{ form.TotalPrice }}</b>
       </p>
     </body>
@@ -152,10 +152,10 @@ export default {
     submitForm() {
       axios
         .post("http://localhost:8080/api/reservation", this.form)
-        .then((res) => {
-          console.log(res.data);
+        .then(() => {
+          // console.log(res.data);
         });
-      console.log(this.form);
+      // console.log(this.form);
     },
     ShowDetals() {
       this.show = true;

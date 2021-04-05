@@ -91,10 +91,10 @@ export default {
       this.email = res.data.host.email;
       this.imageSource = res.data.host.imageSrc;
 
-      console.log(this.joinDate);
-      console.log(this.imageSource);
-      console.log(this.dataObject);
-      console.log(res.data);
+      // console.log(this.joinDate);
+      // console.log(this.imageSource);
+      // console.log(this.dataObject);
+      // console.log(res.data);
     });
   },
   methods: {},
