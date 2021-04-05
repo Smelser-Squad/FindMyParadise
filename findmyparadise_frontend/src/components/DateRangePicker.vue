@@ -88,8 +88,12 @@ export default {
         new Date(this.range.end).getTime() -
         new Date(this.range.start).getTime();
       let days = Math.ceil(difference / (1000 * 3600 * 24));
+<<<<<<< HEAD
       console.log(this.range.end)
       console.log(this.reservations)
+=======
+      // console.log(days);
+>>>>>>> bcdb64d8c615640f2a5057f4e5c4df768aec6efd
       return days;
     },
 

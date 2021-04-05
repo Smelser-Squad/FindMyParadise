@@ -1,23 +1,87 @@
 <template>
-  <router-view />
+  <div id="AppBody">
+    <div class="masterContainer">
+      <div class="header">
+        <img src="../assets/fyplogo.png" />
+      </div>
+      <div class="imgContainer">
+        <GalleryMini />
+      </div>
+      <div class="reservationContainer">
+        <Reservation
+          title="Reservation"
+          :dateStart="range.start"
+          :dateEnd="range.end"
+        />
+      </div>
+      <hr class="light" />
+      <br />
+      <div class="amenitiesContainer">
+        <amenities title="Amenities"></amenities>
+      </div>
+      <hr class="light" />
+      <div class="calenderContainer">
+        <h4 id="dateHeader">Select Date Range</h4>
+        <DateRangePicker @datePick="transferDates($event)" />
+      </div>
+      <hr class="light" />
+      <div class="mapContainer">
+        <Map />
+      </div>
+      <hr class="light" />
+      <br />
+      <div class="grid-container">
+        <div class="container">
+          <description title="Description" @email="toggleEmail"> </description>
+        </div>
+
+        <hr class="light" />
+        <br />
+
+        <div class="reviewContainer">
+          <review></review>
+        </div>
+        <hr class="light" />
+
+        <div class="hostContainer">
+          <host></host>
+        </div>
+      </div>
+      <br />
+      <hr class="light" />
+      <br />
+      <div class="scrollContainer">
+        <more-places></more-places>
+      </div>
+      <div class="scrollContainer">
+        <events title="Events"></events>
+      </div>
+      <email
+        v-if="emailTrigger && host != undefined"
+        :toggleEmail="() => toggleEmail()"
+        :host="host"
+      >
+      </email>
+    </div>
+  </div>
 </template>
 
-<<<<<<< HEAD
 <script>
-import MorePlaces from "./components/MorePlaces.vue";
-import Reservation from "./components/Reservation.vue";
-import Map from "./components/Map.vue";
-import Description from "./components/Description";
-import Amenities from "./components/Amenities.vue";
-import Review from "./components/Review";
-import Events from "./components/Events";
-import DateRangePicker from "./components/DateRangePicker.vue";
-import Email from "./components/Email";
-import GalleryMini from "./components/GalleryMini.vue";
-import Host from "./components/Host.vue";
-import Information from "./components/Information.vue";
+import MorePlaces from "../components/MorePlaces.vue";
+import Reservation from "../components/Reservation.vue";
+import Map from "../components/Map.vue";
+import Description from "../components/Description";
+import Amenities from "../components/Amenities.vue";
+import Review from "../components/Review";
+import Events from "../components/Events";
+import DateRangePicker from "../components/DateRangePicker.vue";
+import Email from "../components/Email";
+import GalleryMini from "../components/GalleryMini.vue";
+import Host from "../components/Host.vue";
+import axios from "axios";
 export default {
   name: "App",
+  props: ["listingId"],
   components: {
     Reservation,
     Map,
@@ -30,7 +94,6 @@ export default {
     GalleryMini,
     Events,
     Email,
-    Information,
   },
   methods: {
     Change(event) {
@@ -49,6 +112,13 @@ export default {
       this.days = num;
       console.log(this.days);
     },
+    getListing(listingId) {
+      axios
+        .get(`http://localhost:8080/api/listing/${listingId}`)
+        .then((res) => {
+          this.listing = res.data;
+        });
+    },
   },
   data() {
     return {
@@ -58,9 +128,17 @@ export default {
         start: new Date(),
         end: new Date(),
       },
-
       days: "",
+      listing: null,
     };
+  },
+  watch: {
+    $route(to) {
+      this.getListing(to.params.listingId);
+    },
+  },
+  mounted() {
+    this.getListing(this.$props.listingId);
   },
 };
 </script>
@@ -142,9 +220,9 @@ body {
   font-family: Avenir, Helvetica, Arial, sans-serif;
 }
 .vc-pane-container {
-  border: 2px solid #bcc0c4;
+  border: 2px solid black;
+  border-color: black;
   background-color: white;
-  border-radius: 10px;
 }
 .container {
   max-width: 500px;
@@ -257,13 +335,6 @@ h5 {
 }
 .datePicker {
   display: inline;
-  
-}
-
-.vc-pane-container {
-  border: 2px solid #bcc0c4;
-  background-color: white;
-  border-radius: 10px;
 }
 .grid-container {
   display: grid;
@@ -283,7 +354,15 @@ h5 {
 }
 .descContainer {
   max-width: 500px;
-}
+  margin: 30px auto;
+  overflow: auto;
+  min-height: 300px;
+  border: 1px solid gray;
+  padding: 30px;
+  border-radius: 5px;
+  box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
+  float: right;
+} */
 .imgContainer {
   max-width: 100%;
   margin: 30px auto;
@@ -291,7 +370,7 @@ h5 {
   max-height: 400px;
   border-radius: 10px;
   box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
-  overflow: hidden;
+  overflow: auto;
 }
 .amenitiesContainer {
   max-width: 80%;
@@ -302,6 +381,14 @@ h5 {
   /* border: 1px solid gray;
   border-radius: 5px;
   box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px; */
+}
+.reviewContainer {
+  max-width: 80%;
+  margin: 30px auto;
+  overflow: auto;
+  min-height: 300px;
+  padding: 30px;
+}
 #dateHeader {
   margin: auto;
   text-align: center;
@@ -323,6 +410,3 @@ h5 {
   width: 80%;
 }
 </style>
-=======
-<style lang="scss"></style>
->>>>>>> bcdb64d8c615640f2a5057f4e5c4df768aec6efd

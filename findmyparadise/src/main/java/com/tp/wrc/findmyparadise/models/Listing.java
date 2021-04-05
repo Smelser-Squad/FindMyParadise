@@ -71,10 +71,10 @@ public class Listing implements Serializable {
 
 
     @Column (name ="check_in")
-    private LocalDate checkIn;
+    private String checkIn;
 
     @Column (name ="check_out")
-    private LocalDate checkOut;
+    private String checkOut;
 
 
     @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
@@ -213,19 +213,19 @@ public class Listing implements Serializable {
         this.type = type;
     }
 
-    public LocalDate getCheckIn() {
+    public String getCheckIn() {
         return checkIn;
     }
 
-    public void setCheckIn(LocalDate checkIn) {
+    public void setCheckIn(String checkIn) {
         this.checkIn = checkIn;
     }
 
-    public LocalDate getCheckOut() {
+    public String getCheckOut() {
         return checkOut;
     }
 
-    public void setCheckOut(LocalDate checkOut) {
+    public void setCheckOut(String checkOut) {
         this.checkOut = checkOut;
     }
 
