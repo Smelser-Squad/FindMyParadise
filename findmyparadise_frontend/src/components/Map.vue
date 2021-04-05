@@ -17,7 +17,7 @@ import { onMounted, ref } from "vue";
 import axios from "axios";
 
 
-let listingID = 3;
+let listingID = 2;
 export default {
   name: "Map",
   props: {
@@ -47,7 +47,6 @@ export default {
       axios
         .get(`http://localhost:8080/api/listing/${listingID}`)
         .then((res) => {
-          console.log(res);
           listingData.value = res.data.name;
           let POI = [res.data.longitude, res.data.latitude];
           let lat = res.data.latitude.toString();

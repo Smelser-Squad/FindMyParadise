@@ -30,6 +30,9 @@
       </div>
       <hr class="light" />
       <br />
+      <div class="infoContainer">
+        <information> </information>
+      </div>
       <div class="parentContainer">
         <div class="descContainer">
           <description title="Description" @email="toggleEmail"> </description>
@@ -42,6 +45,7 @@
       <div class="reviewContainer">
         <review></review>
       </div>
+      <br />
       <hr class="light2" />
       <br />
       <div class="scrollContainer">
@@ -49,9 +53,6 @@
       </div>
       <div class="scrollContainer">
         <events title="Events"></events>
-      </div>
-      <div class="scrollContainer">
-        <information> </information>
       </div>
 
       <email
@@ -217,6 +218,13 @@ body {
   border-radius: 5px;
   box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
 }
+.infoContainer {
+  max-width: 500px;
+  margin: 30px auto;
+  overflow: auto;
+  min-height: 300px;
+  padding: 30px;
+}
 .masterContainer {
   max-width: 90%;
   margin: 30px auto;
@@ -272,7 +280,7 @@ h5 {
   max-width: 95%;
   margin: 30px auto;
   overflow: hidden;
-  max-height: 775px;
+  max-height: 800px;
   min-height: 200px;
   /* border: 1px solid gray; */
   padding: 30px;

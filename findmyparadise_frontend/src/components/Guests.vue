@@ -155,10 +155,8 @@ export default {
 
 <style scoped>
 #parentDiv {
+  display: flex;
   margin: auto;
   text-align: center;
-}
-#parentDiv h5 {
-  margin: 0;
 }
 </style>
