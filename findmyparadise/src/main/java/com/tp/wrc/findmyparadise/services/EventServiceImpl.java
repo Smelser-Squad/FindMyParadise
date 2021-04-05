@@ -35,6 +35,7 @@ public class EventServiceImpl implements EventService {
             dist = Math.acos(dist);
             dist = rad2deg(dist);
             dist = dist * 60 * 1.1515;
+            event.setDistance(dist);
             if(dist <= distance){
                 toReturn.add(event);
             }
