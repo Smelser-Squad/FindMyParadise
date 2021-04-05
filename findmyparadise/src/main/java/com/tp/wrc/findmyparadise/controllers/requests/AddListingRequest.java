@@ -4,9 +4,10 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.tp.wrc.findmyparadise.models.*;
 
 import javax.persistence.*;
-import java.util.HashSet;
+
+//import java.time.LocalDate;
 import java.util.List;
-import java.util.Set;
+
 
 public class AddListingRequest {
 
@@ -34,6 +35,9 @@ public class AddListingRequest {
     private Integer beds;
     private Integer bathrooms;
     private String type;
+    private String checkIn;
+    private String checkOut;
+
 
 
     public Integer getListingID() {
@@ -204,4 +208,21 @@ public class AddListingRequest {
     public void setType(String type) {
         this.type = type;
     }
+    
+    public String getCheckIn() {
+        return checkIn;
+    }
+
+    public void setCheckIn(String checkIn) {
+        this.checkIn = checkIn;
+    }
+
+    public String getCheckOut() {
+        return checkOut;
+    }
+
+    public void setCheckOut(String checkOut) {
+        this.checkOut = checkOut;
+    }
+
 }

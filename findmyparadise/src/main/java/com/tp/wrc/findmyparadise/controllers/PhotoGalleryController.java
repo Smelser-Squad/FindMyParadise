@@ -51,11 +51,11 @@ public class PhotoGalleryController {
 //        }
 //    }
 
-    @PostMapping("/gallery/addImage")
-    public ResponseEntity AddImage(@RequestBody Photo toAdd)
+    @PostMapping("/gallery/addImage/{listingId}")
+    public ResponseEntity AddImage(@RequestBody Photo toAdd, @PathVariable Integer listingId)
     {
         try{
-            return ResponseEntity.ok(service.addImage(toAdd));
+            return ResponseEntity.ok(service.addImage(toAdd,listingId));
         }
         catch(Exception ex){
             return ResponseEntity.badRequest().body(ex.getMessage());
@@ -69,9 +69,9 @@ public class PhotoGalleryController {
 
         try {
             if (service.delete(imageId)) {
-                toReturn = "Event " + imageId + " deleted";
+                toReturn = "Image " + imageId + " deleted";
             } else {
-                toReturn = "Event " + imageId + " not found";
+                toReturn = "Image " + imageId + " not found";
             }
         }
         catch (Exception ex)
