@@ -208,7 +208,7 @@ public class AddListingRequest {
     public void setType(String type) {
         this.type = type;
     }
-    
+
     public String getCheckIn() {
         return checkIn;
     }
