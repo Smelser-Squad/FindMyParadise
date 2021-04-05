@@ -100,8 +100,8 @@ export default {
         .get(`http://localhost:8080/api/listing/${listingID}`)
         .then((res) => {
           var location = [res.data.longitude, res.data.latitude];
-          console.log(res.data.latitude);
-          console.log(res.data.longitude);
+          // console.log(res.data.latitude);
+          // console.log(res.data.longitude);
           var popupOffsets = {
             top: [0, 0],
             bottom: [0, -30],

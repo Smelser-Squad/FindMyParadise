@@ -36,8 +36,8 @@
         <br />
         <p>
           <b>
-          {{ maxGuests }} Guests maximum, infants don't count towards number of
-          guests.
+            {{ maxGuests }} Guests maximum, infants don't count towards number
+            of guests.
           </b>
         </p>
         <span style="display: none"> {{ updateDate(dateEnd) }}</span>
@@ -64,12 +64,12 @@
       <p style="color: gray; text-align: center">You won't be charged yet</p>
 
       <div>
-        <u>${{ dailyPrice }} x {{ NumOfDays }} nights</u>
+        <u>${{ dailyPrice }} x {{ NumOfDays }} Nights : </u>
         <span>${{ dailyPrice * NumOfDays }}</span>
       </div>
 
       <div class="popup" @click="CleaningFeepopup()">
-        <u>Cleaning Fee</u> <span> ${{ cleaningFee }}</span>
+        <u>Cleaning Fee :</u> <span> ${{ cleaningFee }}</span>
         <span class="popuptext" id="CleaningFeepopup"
           >One-time fee charged by host to cover the cost of cleaning their
           space.</span
@@ -77,7 +77,7 @@
       </div>
       <br />
       <div class="popup" @click="ServiceFeepopup()">
-        <u>Service Fee</u><span> ${{ serviceFee }}</span>
+        <u>Service Fee :</u><span> ${{ serviceFee }}</span>
         <span class="popuptext" id="ServiceFeepopup"
           >The service fee, which the host has decided to pay, helps us run our
           platform and offer services like 24/7 support on your trip.</span
@@ -85,7 +85,7 @@
       </div>
       <br />
       <div>
-        <u>Occupancy taxes and fees</u>
+        <u>Occupancy Taxes & Fees :</u>
         <span> ${{ occupancyFee }} </span>
       </div>
 

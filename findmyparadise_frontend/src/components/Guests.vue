@@ -91,7 +91,7 @@ export default {
     },
     decreaseAdults() {
       if (this.AdultsNum == 1) {
-        console.log("Error");
+        // console.log("Error");
       } else {
         this.AdultsNum -= 1;
       }
