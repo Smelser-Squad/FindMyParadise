@@ -16,7 +16,7 @@
                 </div>
                 <div
                   class="button-container"
-                  v-on:click.stop="liked(item.listingId)"
+                  v-on:click.stop="saved(item.listingId)"
                 >
                   <button>
                     <svg
@@ -84,7 +84,7 @@ import axios from "axios";
 export default {
   name: "more-places",
   components: {
-    HorizontalList
+    HorizontalList,
   },
   props: ["listing"],
   data() {
@@ -109,11 +109,11 @@ export default {
       .catch((err) => Promise.reject(err));
   },
   methods: {
-    liked(listingId) {
-      alert(`You liked listing with id: ${listingId}!`);
+    saved(listingId) {
+      alert(`You saved listing with id: ${listingId}!`);
     },
     listingClicked(listingId) {
-      alert(listingId);
+      window.open(`http://localhost:8081/#/listing/${listingId}`, "_blank");
     },
     calculateAverageRating(reviews) {
       return (
