@@ -199,6 +199,7 @@ export default {
        this.form.checkInDate=moment(this.dateStart).format('MM-DD-YYYY');
        this.form.checkOutDate=moment(this.dateEnd).format('MM-DD-YYYY');
       return dateSub;
+      
     },
     updateDays(num){
       if(num==0){
