@@ -2,8 +2,10 @@
   <h4 id="listingHeader">{{ listingData + " Location" }}</h4>
   <br />
   <div id="map" ref="mapRef"></div>
-  <br>
-  <p id="mapLine"><b><u>Nearby Places</u></b></p>
+  <br />
+  <p id="mapLine">
+    <b><u>Nearby Places</u></b>
+  </p>
   <p id="mapLine">{{ dataName1 + " : " + dataDist1 }}</p>
   <p id="mapLine">{{ dataName2 + " : " + dataDist2 }}</p>
   <p id="mapLine">{{ dataName3 + " : " + dataDist3 }}</p>
@@ -13,7 +15,6 @@
 <script>
 import { onMounted, ref } from "vue";
 import axios from "axios";
-
 
 let listingID = 1;
 export default {
@@ -40,12 +41,12 @@ export default {
     const dataDist3 = ref(props.locationDist);
     const dataDist4 = ref(props.locationDist);
     const mapRef = ref(null);
-    
+
     onMounted(() => {
       axios
         .get(`http://localhost:8080/api/listing/${listingID}`)
         .then((res) => {
-          console.log(res);
+          // console.log(res);
           listingData.value = res.data.name;
           let POI = [res.data.longitude, res.data.latitude];
           let lat = res.data.latitude.toString();
@@ -99,8 +100,8 @@ export default {
         .get(`http://localhost:8080/api/listing/${listingID}`)
         .then((res) => {
           var location = [res.data.longitude, res.data.latitude];
-          console.log(res.data.latitude);
-          console.log(res.data.longitude);
+          // console.log(res.data.latitude);
+          // console.log(res.data.longitude);
           var popupOffsets = {
             top: [0, 0],
             bottom: [0, -30],

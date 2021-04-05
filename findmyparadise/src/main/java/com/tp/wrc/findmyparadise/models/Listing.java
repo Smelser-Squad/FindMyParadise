@@ -69,21 +69,20 @@ public class Listing implements Serializable {
     @Column (name ="listing_type")
     private String type;
 
-
     @Column (name ="check_in")
-    private LocalDate checkIn;
+    private String checkIn;
 
     @Column (name ="check_out")
-    private LocalDate checkOut;
+    private String checkOut;
 
 
     @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+
     @JoinTable(
             name = "listing_amenities",
             joinColumns = @JoinColumn(name = "listing_id"),
             inverseJoinColumns = @JoinColumn(name = "amenity_id"))
     private Set<Amenity> amenities = new HashSet<>();
-
 
 
     @ManyToMany(cascade = CascadeType.MERGE)
@@ -93,6 +92,7 @@ public class Listing implements Serializable {
             joinColumns = @JoinColumn(name = "listing_id"),
             inverseJoinColumns = @JoinColumn(name = "rule_id"))
     private List<Rules> rules = new ArrayList<>();
+
 
     @ManyToMany(cascade = CascadeType.MERGE)
     @LazyCollection(LazyCollectionOption.FALSE)
@@ -213,19 +213,20 @@ public class Listing implements Serializable {
         this.type = type;
     }
 
-    public LocalDate getCheckIn() {
+    public String getCheckIn() {
         return checkIn;
     }
 
-    public void setCheckIn(LocalDate checkIn) {
+    public void setCheckIn(String checkIn) {
         this.checkIn = checkIn;
     }
 
-    public LocalDate getCheckOut() {
+    public String getCheckOut() {
         return checkOut;
     }
 
-    public void setCheckOut(LocalDate checkOut) {
+    public void setCheckOut(String checkOut) {
+
         this.checkOut = checkOut;
     }
 
