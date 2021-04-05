@@ -20,14 +20,15 @@
           @dIQty="decreaseAQty($event)"
         />
         <br>
-        <span> Start Date: {{ updateDate(dateStart) }}</span>
+        <span style="display:none;"> Start Date: {{ updateDate(dateStart) }}</span>
         <br />
-        <span> End Date: {{ updateDate(dateEnd) }}</span>
+
         <br>
         <span>{{ updateDays(days) }}</span>
         <br>
         <h4>CheckIn:</h4>
         <input disabled v-model="form.CheckIn" />
+        <span style="display:none;"> End Date: {{ updateDate(dateEnd) }}</span>
         <h4>CheckOut:</h4>
         <input disabled v-model="form.CheckOut" />
         <br>

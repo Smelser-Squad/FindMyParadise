@@ -34,9 +34,15 @@
         <div class="container">
           <description title="Description" @email="toggleEmail"> </description>
         </div>
-        <div class="container">
+
+     <hr class="light" />
+      <br />
+
+        <div class="reviewContainer">
           <review></review>
         </div>
+      <hr class="light" />
+
         <div class="hostContainer">
           <host></host>
         </div>
@@ -50,6 +56,11 @@
       <div class="scrollContainer">
         <events title="Events"></events>
       </div>
+      <div class="scrollContainer">
+        <information> </information>
+      </div>
+
+
       <email
         v-if="emailTrigger && host != undefined"
         :toggleEmail="() => toggleEmail()"
@@ -72,6 +83,7 @@ import DateRangePicker from "./components/DateRangePicker.vue";
 import Email from "./components/Email";
 import GalleryMini from "./components/GalleryMini.vue";
 import Host from "./components/Host.vue";
+import Information from "./components/Information.vue";
 export default {
   name: "App",
   components: {
@@ -86,6 +98,7 @@ export default {
     GalleryMini,
     Events,
     Email,
+    Information,
   },
   methods: {
     Change(event) {
@@ -197,9 +210,9 @@ body {
   font-family: Avenir, Helvetica, Arial, sans-serif;
 }
 .vc-pane-container {
-  border: 2px solid black;
-  border-color: black;
+  border: 2px solid #bcc0c4;
   background-color: white;
+  border-radius: 10px;
 }
 .container {
   max-width: 500px;
@@ -354,7 +367,7 @@ h5 {
   max-height: 400px;
   border-radius: 10px;
   box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
-  overflow: auto;
+  overflow: hidden;
 }
 .amenitiesContainer {
   max-width: 80%;
@@ -365,6 +378,14 @@ h5 {
   /* border: 1px solid gray;
   border-radius: 5px;
   box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px; */
+}
+
+.reviewContainer{
+  max-width: 80%;
+  margin: 30px auto;
+  overflow: auto;
+  min-height: 300px;
+  padding: 30px;
 }
 #dateHeader {
   margin: auto;
