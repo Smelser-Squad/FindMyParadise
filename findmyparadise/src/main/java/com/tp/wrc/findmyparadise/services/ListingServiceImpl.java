@@ -172,10 +172,15 @@ public class ListingServiceImpl implements ListingService {
         newListing.setBeds(listing.getBeds());
         newListing.setType(listing.getType());
 
+        newListing.setCheckIn(listing.getCheckIn());
+        newListing.setCheckOut(listing.getCheckOut());
+
+
+
+
         return repo.saveAndFlush(newListing);
     }
-
-
+    
 
     @Override
     public boolean destroy(Integer id) throws NullListingIDException {
