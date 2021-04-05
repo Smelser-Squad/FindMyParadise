@@ -24,7 +24,7 @@
 <script>
 import axios from "axios";
 
-let listingID = 1;
+let listingID = 2;
 export default {
   name: "Description",
   data() {
@@ -33,7 +33,7 @@ export default {
     };
   },
   mounted() {
-    axios.get(`http://localhost:8080/api/listing/${listingID}`).then((res) => {
+    axios.get(`http://54.91.69.145:80/api/listing/${listingID}`).then((res) => {
       this.dataObject = res.data;
       // console.log("Description data");
       // console.log(res.data);

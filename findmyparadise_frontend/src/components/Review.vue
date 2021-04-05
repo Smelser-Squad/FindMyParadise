@@ -428,7 +428,7 @@
 import axios from "axios";
 import { ref } from "vue";
 import Modal from "./Modal";
-let listingID = 1;
+let listingID = 2;
 
 export default {
   name: "Reviewer",
@@ -479,7 +479,7 @@ export default {
   methods: {
     postData(e) {
       axios
-        .post("http://localhost:8080/api/addReviewer", this.posts)
+        .post("http://54.91.69.145:80/api/addReviewer", this.posts)
         .then((result) => {
           console.warn(result);
           
@@ -496,7 +496,7 @@ export default {
 
     startUpload() {
       axios({
-        url: "http://localhost:8080/api/upload",
+        url: "http://54.91.69.145:80/api/upload",
         method: "POST",
         data: this.formData,
         headers: {
@@ -511,14 +511,14 @@ export default {
 
   mounted() {
     axios
-      .get(`http://localhost:8080/api/listing/${listingID}`)
+      .get(`http://54.91.69.145:80/api/listing/${listingID}`)
       .then((res) => {
         this.list = res.data.reviews;
       })
       .catch((err) => Promise.reject(err));
 
     axios
-      .get(`http://localhost:8080/api/listing/${listingID}`)
+      .get(`http://54.91.69.145:80/api/listing/${listingID}`)
       .then((res) => {
         this.reviewList = res.data.reviews;
 
