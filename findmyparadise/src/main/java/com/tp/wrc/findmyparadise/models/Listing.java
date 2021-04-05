@@ -1,6 +1,9 @@
 package com.tp.wrc.findmyparadise.models;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -82,15 +85,17 @@ public class Listing implements Serializable {
     private Set<Amenity> amenities = new HashSet<>();
 
 
+
     @ManyToMany(cascade = CascadeType.MERGE)
+    @LazyCollection(LazyCollectionOption.FALSE)
     @JoinTable(
             name="listing_rules",
             joinColumns = @JoinColumn(name = "listing_id"),
             inverseJoinColumns = @JoinColumn(name = "rule_id"))
     private List<Rules> rules = new ArrayList<>();
 
-
     @ManyToMany(cascade = CascadeType.MERGE)
+    @LazyCollection(LazyCollectionOption.FALSE)
     @JoinTable(
             name="listing_health",
             joinColumns = @JoinColumn(name = "listing_id"),
