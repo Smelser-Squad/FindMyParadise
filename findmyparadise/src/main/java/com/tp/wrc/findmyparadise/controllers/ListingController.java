@@ -23,19 +23,6 @@ public class ListingController {
     @Autowired
     ListingService service;
 
-//    @PostMapping("/listing/host/{hostID}")
-//    public ResponseEntity createListing(@RequestBody Listing newListing, @PathVariable Integer hostID) {
-//        Listing listing = null;
-//        try {
-//            listing =  service.create(newListing, hostID);
-//        }
-//        catch (InvalidHostIDException | NullHostIDException | NullListingNameException | InvalidListingNameException | NullAddressException | InvalidAddressException | NullListingPriceException e)
-//        {
-//            ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
-//        }
-//        return ResponseEntity.ok(listing);
-//    }
-
     @PostMapping("/create/listing")
     public ResponseEntity createListing(@RequestBody AddListingRequest newListing) {
         Listing listing = null;

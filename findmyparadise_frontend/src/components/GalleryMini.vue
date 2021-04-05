@@ -123,7 +123,6 @@ export default {
         object-fit: fill;
         overflow: hidden;
     }
-
     .rightBot{
         width: 50%;
         height: 50%;
@@ -133,7 +132,6 @@ export default {
         object-fit: fill;
         overflow: hidden;
     }
-
     .rightBotR{
         width: 50%;
         height: 50%;
@@ -142,7 +140,6 @@ export default {
         object-fit: cover;
         overflow: hidden;
     }
-
     .row{
         border-radius: 5px;
         object-fit: fill;
