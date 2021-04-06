@@ -1,8 +1,6 @@
 package com.tp.wrc.findmyparadise.services;
 
-import com.tp.wrc.findmyparadise.exceptions.InvalidReviewIdException;
-import com.tp.wrc.findmyparadise.exceptions.NullAmenityIdException;
-import com.tp.wrc.findmyparadise.exceptions.NullReviewIdException;
+import com.tp.wrc.findmyparadise.exceptions.*;
 import com.tp.wrc.findmyparadise.models.Review;
 import com.tp.wrc.findmyparadise.repositories.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +15,9 @@ public class ReviewServiceImpl implements ReviewService {
 
     @Autowired
     ReviewRepository reviewRepo;
+
+    @Autowired
+    ListingServiceImpl listingService;
 
     @Override
     public List<Review> getAllReviews()  {
@@ -40,7 +41,8 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     @Override
-    public Review create(Review newReview) throws InvalidReviewIdException, NullReviewIdException {
+    public Review create(Review newReview, Integer listingId) throws InvalidReviewIdException, NullReviewIdException, InvalidListingIDException, NoListingFoundException {
+        newReview.setListing(this.listingService.show(listingId));
         return reviewRepo.saveAndFlush(newReview);
     }
 

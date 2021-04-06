@@ -105,7 +105,7 @@
 import { ref } from "vue";
 import axios from "axios";
 import Modal from "./Modal";
-let listingID = 1;
+let listingID = 2;
 export default {
   components: { Modal },
   name: "Amenities",
@@ -146,7 +146,7 @@ export default {
   },
   mounted() {
     axios
-      .get(`http://localhost:8080/api/listing/${listingID}`)
+      .get(`http://54.91.69.145:80/api/listing/${listingID}`)
       .then((res) => {
         this.amenities = res.data.amenities;
         this.arrSetup();

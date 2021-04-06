@@ -7,6 +7,7 @@ import com.tp.wrc.findmyparadise.models.Amenity;
 import com.tp.wrc.findmyparadise.models.Event;
 import com.tp.wrc.findmyparadise.models.Listing;
 import com.tp.wrc.findmyparadise.services.EventService;
+import com.tp.wrc.findmyparadise.services.ListingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +21,7 @@ import java.util.List;
 public class EventController {
     @Autowired
     EventService service;
+    ListingService lService;
 
     //Adds a new event to the database by the given event model.
 
@@ -72,6 +74,7 @@ public class EventController {
         try {
             toReturn = service.indexWithinDistance(listingId, distance);
         } catch (Exception e) {
+            System.out.println(e);
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
 
@@ -79,17 +82,17 @@ public class EventController {
     }
 
     //Retrieves a list of events by the given category
-    @GetMapping("/events/{category}")
-    public ResponseEntity findEventsByCategory(@PathVariable String category) {
-        List<Event> toReturn;
-        try {
-            toReturn = service.findByCategory(category);
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
-        }
-
-        return ResponseEntity.ok(toReturn);
-    }
+//    @GetMapping("/events/{category}")
+//    public ResponseEntity findEventsByCategory(@PathVariable String category) {
+//        List<Event> toReturn;
+//        try {
+//            toReturn = service.findByCategory(category);
+//        } catch (Exception e) {
+//            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+//        }
+//
+//        return ResponseEntity.ok(toReturn);
+//    }
 
     //Edits an existing Event in the database by replacing its attributes with the
     //attributes of the given Event model.

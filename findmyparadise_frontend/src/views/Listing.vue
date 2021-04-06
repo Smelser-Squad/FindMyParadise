@@ -29,25 +29,21 @@
         <Map />
       </div>
       <hr class="light" />
-      <br />
-      <div class="grid-container">
-        <div class="container">
+      <div class="container">
+        <information></information>
+      </div>
+      <div class="parentDiv">
+        <div class="descContainer">
           <description title="Description" @email="toggleEmail"> </description>
         </div>
-
-        <hr class="light" />
-        <br />
-
-        <div class="reviewContainer">
-          <review></review>
-        </div>
-        <hr class="light" />
-
         <div class="hostContainer">
-          <host></host>
+          <host @email="toggleEmail"></host>
         </div>
       </div>
-      <br />
+      <div class="reviewContainer">
+        <review></review>
+      </div>
+
       <hr class="light" />
       <br />
       <div class="scrollContainer">
@@ -78,6 +74,7 @@ import DateRangePicker from "../components/DateRangePicker.vue";
 import Email from "../components/Email";
 import GalleryMini from "../components/GalleryMini.vue";
 import Host from "../components/Host.vue";
+import Information from "../components/Information.vue";
 import axios from "axios";
 export default {
   name: "App",
@@ -94,6 +91,7 @@ export default {
     GalleryMini,
     Events,
     Email,
+    Information,
   },
   methods: {
     Change(event) {
@@ -289,7 +287,7 @@ h5 {
   max-width: 95%;
   margin: 30px auto;
   overflow: hidden;
-  max-height: 725px;
+  max-height: 775px;
   min-height: 200px;
   /* border: 1px solid gray; */
   padding: 30px;
@@ -370,7 +368,7 @@ h5 {
   max-height: 400px;
   border-radius: 10px;
   box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
-  overflow: auto;
+  overflow: hidden;
 }
 .amenitiesContainer {
   max-width: 80%;
@@ -393,16 +391,29 @@ h5 {
   margin: auto;
   text-align: center;
 }
+.parentDiv {
+  display: inline-block;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
 .hostContainer {
   max-width: 500px;
   margin: 30px auto;
   overflow: auto;
   min-height: 300px;
-  border: 1px solid gray;
   padding: 30px;
-  border-radius: 5px;
-  box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
   position: relative;
+  float: left;
+}
+.descContainer {
+  max-width: 500px;
+  margin: 30px auto;
+  overflow: auto;
+  min-height: 300px;
+  padding: 30px;
+  position: relative;
+  float: right;
 }
 .light {
   margin: auto;
