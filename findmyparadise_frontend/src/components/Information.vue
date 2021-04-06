@@ -44,13 +44,9 @@
 <script>
 import axios from "axios";
 
-
 export default{
      name: "Information",
      props: ["listingId"],
-  created() {
-    // listingID = this.$route.params.listingId;
-  },
     data(){
         return {
             listing: [],

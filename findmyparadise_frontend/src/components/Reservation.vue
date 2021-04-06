@@ -10,25 +10,39 @@
     </header>
     <body id="ReservationBody">
       <form v-on:submit.prevent="submitForm" method="post">
+        <h4>Check-in Date:</h4>
+        <input disabled v-model="form.checkInDate" />
+        <br />
+        <br />
+        <h4>Check-out Date:</h4>
+        <input disabled v-model="form.checkOutDate" />
 
-      <h4>CheckIn:</h4><input disabled v-model="form.checkInDate"/>
-       <h4>CheckOut:</h4><input disabled v-model="form.checkOutDate" />
+        <br />
+        <br />
 
-     
-        <h5>Guests:</h5>
-        <Guests @iAQty="increaseAQty($event)" @dAQty="decreaseAQty($event)" 
-        @iCQty="increaseCQty($event)" @dCQty="decreaseCQty($event)" 
-        @iIQty="increaseIQty($event)" @dIQty="decreaseAQty($event)"/>
- <span style="display:none;"> Start Date: {{updateDate(dateStart)}}</span>
-        <br/>
-        <p> {{maxGuests}} guests maximum, infants don't count towards number of guests</p>
-        <span style="display:none;"> {{updateDate(dateEnd)}}</span>
+        <h4>Guests:</h4>
+        <br />
+        <Guests
+          @iAQty="increaseAQty($event)"
+          @dAQty="decreaseAQty($event)"
+          @iCQty="increaseCQty($event)"
+          @dCQty="decreaseCQty($event)"
+          @iIQty="increaseIQty($event)"
+          @dIQty="decreaseAQty($event)"
+        />
+        <span style="display: none">
+          Start Date: {{ updateDate(dateStart) }}</span
+        >
+        <br />
+        <p>
+          <b>
+            {{ maxGuests }} Guests maximum, infants don't count towards number
+            of guests.
+          </b>
+        </p>
+        <span style="display: none"> {{ updateDate(dateEnd) }}</span>
 
-       <span>{{updateDays(days)}}</span>
-      
-      
-      
-
+        <span>{{ updateDays(days) }}</span>
 
         <span
           class="_19di23v"
@@ -48,42 +62,37 @@
         </button>
       </form>
       <p style="color: gray; text-align: center">You won't be charged yet</p>
-      
-        <div>
 
-          <u>${{ dailyPrice }} x {{ NumOfDays }} nights</u>
-          <span>${{ dailyPrice * NumOfDays }}</span>
+      <div>
+        <u>${{ dailyPrice }} x {{ NumOfDays }} Nights : </u>
+        <span>${{ dailyPrice * NumOfDays }}</span>
+      </div>
 
-        </div>
-
-        <div class="popup" @click="CleaningFeepopup()">
-          <u>Cleaning Fee</u> <span> ${{ cleaningFee }}</span>
-          <span class="popuptext" id="CleaningFeepopup"
-            >One-time fee charged by host to cover the cost of cleaning their
-            space.</span
-          >
-        </div>
-        <br />
-        <div class="popup" @click="ServiceFeepopup()">
-          <u>Service Fee</u><span> ${{ serviceFee }}</span>
-          <span class="popuptext" id="ServiceFeepopup"
-            >The service fee, which the host has decided to pay, helps us run
-            our platform and offer services like 24/7 support on your
-            trip.</span
-          >
-        </div>
-        <br />
-        <div>
-          <u>Occupancy taxes and fees</u>
-          <span> ${{ occupancyFee }} </span>
-        </div>
-      
-      <hr />
-      <p>
-        <b>
-          Total: ${{ form.price
-          }}</b
+      <div class="popup" @click="CleaningFeepopup()">
+        <u>Cleaning Fee :</u> <span> ${{ cleaningFee }}</span>
+        <span class="popuptext" id="CleaningFeepopup"
+          >One-time fee charged by host to cover the cost of cleaning their
+          space.</span
         >
+      </div>
+      <br />
+      <div class="popup" @click="ServiceFeepopup()">
+        <u>Service Fee :</u><span> ${{ serviceFee }}</span>
+        <span class="popuptext" id="ServiceFeepopup"
+          >The service fee, which the host has decided to pay, helps us run our
+          platform and offer services like 24/7 support on your trip.</span
+        >
+      </div>
+      <br />
+      <div>
+        <u>Occupancy Taxes & Fees :</u>
+        <span> ${{ occupancyFee }} </span>
+      </div>
+
+      <br />
+
+      <p id="totalPrice">
+        <b> Total: ${{ form.TotalPrice }}</b>
       </p>
     </body>
   </div>
@@ -92,28 +101,26 @@
 import Guests from "./Guests";
 import axios from "axios";
 import moment from "moment";
-let listingID = 1;
+let listingID = 2;
 export default {
   name: "Reservation",
   props: ["dateStart", "dateEnd", "days"],
   data() {
     return {
-   
-     
-      dailyPrice:'',
-      cleaningFee:'',
-      occupancyFee:'',
-      serviceFee:'',
-      reviewsNum:'',
-      maxGuests:'',
-       NumOfDays:1,
-      form:{
-        checkInDate:'',
-        checkOutDate:'',
-        adults:1,
-        children:0,
-        infants:0,
-        price:''
+      dailyPrice: "",
+      cleaningFee: "",
+      occupancyFee: "",
+      serviceFee: "",
+      reviewsNum: "",
+      maxGuests: "",
+      NumOfDays: 1,
+      form: {
+        checkInDate: "",
+        checkOutDate: "",
+        adults: 1,
+        children: 0,
+        infants: 0,
+        price: "",
       },
       range: {
         start: new Date(),
@@ -124,17 +131,19 @@ export default {
     };
   },
   mounted() {
-    axios.get(`http://localhost:8080/api/listing/${listingID}`).then((res) => {
+    axios.get(`http://54.91.69.145:80/api/listing/${listingID}`).then((res) => {
       this.maxGuests=res.data.maxGuests;
+
       this.dailyPrice = res.data.price;
-      this.cleaningFee=res.data.cleaningFee;
-      this.occupancyFee=res.data.occupancyFee;
-      this.serviceFee=res.data.serviceFee;
-      this.reviewsNum=res.data.reviews.length;
-      this.form.price=(this.dailyPrice*this.NumOfDays) +this.serviceFee + this.cleaningFee + this.occupancyFee;
-      
-      
-   
+      this.cleaningFee = res.data.cleaningFee;
+      this.occupancyFee = res.data.occupancyFee;
+      this.serviceFee = res.data.serviceFee;
+      this.reviewsNum = res.data.reviews.length;
+      this.form.price =
+        this.dailyPrice * this.NumOfDays +
+        this.serviceFee +
+        this.cleaningFee +
+        this.occupancyFee;
     });
   },
   components: {
@@ -151,71 +160,55 @@ export default {
     },
     submitForm() {
       axios
-        .post(`http://localhost:8080/api/reservation/${listingID}`, this.form)
+        .post(`http://54.91.69.145:80/api/reservation/${listingID}`, this.form)
         .then((res) => {
           console.log(res.data);
         });
-         
     },
-   
-  increaseAQty(num){
-   
-    this.form.adults=num +1;
-   
-  
-  },
-  decreaseAQty(num){
-    
-    this.form.adults-=num;
-   
-  
-  },
-  increaseCQty(num){
-  
-    this.form.children=num +1;
-   
-  
-  },
-  decreaseCQty(num){
-    
-    this.form.children=num;
-   
-  
-  },
-  increaseIQty(num){
-    
-    this.form.infants=num +1;
-   
-  
-  },
-  decreaseIQty(num){
-    
-    this.form.infants-=num;
-   
-  
-  },
-   updateDate(date) {
-       let dateSub = date
-       this.form.checkInDate=moment(this.dateStart).format('MM-DD-YYYY');
-       this.form.checkOutDate=moment(this.dateEnd).format('MM-DD-YYYY');
+
+    increaseAQty(num) {
+      this.form.adults = num + 1;
+    },
+    decreaseAQty(num) {
+      this.form.adults -= num;
+    },
+    increaseCQty(num) {
+      this.form.children = num + 1;
+    },
+    decreaseCQty(num) {
+      this.form.children = num;
+    },
+    increaseIQty(num) {
+      this.form.infants = num + 1;
+    },
+    decreaseIQty(num) {
+      this.form.infants -= num;
+    },
+    updateDate(date) {
+      let dateSub = date;
+      this.form.checkInDate = moment(this.dateStart).format("MM-DD-YYYY");
+      this.form.checkOutDate = moment(this.dateEnd).format("MM-DD-YYYY");
       return dateSub;
-      
     },
-    updateDays(num){
-      if(num==0){
-        this.NumOfDays=1
-      }else{
-     this.NumOfDays=num;
+    updateDays(num) {
+      if (num == 0) {
+        this.NumOfDays = 1;
+      } else {
+        this.NumOfDays = num;
       }
-       this.form.price=(this.dailyPrice*this.NumOfDays) +this.serviceFee + this.cleaningFee + this.occupancyFee;
-  }
-  }
+      this.form.price =
+        this.dailyPrice * this.NumOfDays +
+        this.serviceFee +
+        this.cleaningFee +
+        this.occupancyFee;
+    },
+  },
 };
 </script>
 <style scoped>
 #totalPrice {
   margin-top: 20px;
-  border: 5px solid black;
+  border: 5px solid rgb(209, 60, 110);
   border-radius: 50%;
   padding-top: 20px;
   padding-bottom: 20px;
