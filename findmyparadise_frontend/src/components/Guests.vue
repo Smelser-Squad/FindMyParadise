@@ -1,10 +1,10 @@
 <template>
-  <div>
+  <div id="parentDiv">
     <h5>
       Adults:
       <button
         type="button"
-        id="decresaeAdults"
+        id="decreaseAdults"
         class="btn"
         @click="
           decreaseAdults();
@@ -26,9 +26,26 @@
       </button>
     </h5>
     <h5>
-
-      Children:<button type="button" class="btn" @click="sendDecreaseChildQty();decreaseChild()">-</button>{{ ChildNum
-      }}<button type="button" class="btn" @click="sendIncreaseChildQty();increaseChild()">+</button>
+      Children:<button
+        type="button"
+        class="btn"
+        @click="
+          sendDecreaseChildQty();
+          decreaseChild();
+        "
+      >
+        -</button
+      >{{ ChildNum
+      }}<button
+        type="button"
+        class="btn"
+        @click="
+          sendIncreaseAdultQty();
+          increaseChild();
+        "
+      >
+        +
+      </button>
     </h5>
     <h5>
       Infants:
@@ -64,7 +81,8 @@ export default {
   name: "Guests",
   props: {},
   methods: {
-    increaseAdults() {
+   
+       increaseAdults() {
       if(this.AdultsNum + this.ChildNum==this.maxGuests){
         console.log("Error")
         this.AdultsNum==this.maxGuests;
@@ -109,28 +127,24 @@ export default {
     this.InfantNum += 1
     }
   },
-  sendIncreaseAdultQty(){
-    this.$emit('iAQty',this.AdultsNum);
-  
-  },
-  sendDecreaseAdultQty(){
-     this.$emit('dAQty',this.AdultsNum);
-  },
-  sendIncreaseChildQty(){
-    this.$emit('iCQty',this.ChildNum);
-  
-  },
-   sendDecreaseChildQty(){
-     this.$emit('dCQty',this.ChildNum);
-  },
-   sendIncreaseInfantQty(){
-    this.$emit('iIQty',this.InfantNum);
-  
-  },
-   sendDecreaseInfantQty(){
-    this.$emit('dIQty',this.InfantNum);
-  
-  },
+    sendIncreaseAdultQty() {
+      this.$emit("iAQty", this.AdultsNum);
+    },
+    sendDecreaseAdultQty() {
+      this.$emit("dAQty", this.AdultsNum);
+    },
+    sendIncreaseChildQty() {
+      this.$emit("iCQty", this.ChildNum);
+    },
+    sendDecreaseChildQty() {
+      this.$emit("dCQty", this.ChildNum);
+    },
+    sendIncreaseInfantQty() {
+      this.$emit("iIQty", this.InfantNum);
+    },
+    sendDecreaseInfantQty() {
+      this.$emit("dIQty", this.InfantNum);
+    },
   },
   data() {
     return {
@@ -149,3 +163,11 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+#parentDiv {
+  display: flex;
+  margin: auto;
+  text-align: center;
+}
+</style>

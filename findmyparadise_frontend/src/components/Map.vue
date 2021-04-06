@@ -47,7 +47,6 @@ export default {
       axios
         .get(`http://54.91.69.145:80/api/listing/${listingID}`)
         .then((res) => {
-          // console.log(res);
           listingData.value = res.data.name;
           let POI = [res.data.longitude, res.data.latitude];
           let lat = res.data.latitude.toString();
