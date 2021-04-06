@@ -137,14 +137,6 @@ export default {
         object-fit: fill;
         overflow: hidden;
     }
-    .carousel-item{
-        object-fit: fill;
-    }
-    .carousel{
-        margin: 15px;
-        object-fit: cover;
-        
-    }
 
     .sectioned{
         width: 95%;
