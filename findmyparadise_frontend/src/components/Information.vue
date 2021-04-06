@@ -59,7 +59,7 @@ export default{
     },
     mounted(){
         axios
-        .get(`http://localhost:8080/api/listing/${this.$route.params.listingId}`)
+        .get(`http://54.91.69.145:80/api/listing/${this.$route.params.listingId}`)
         .then((res) => 
         {
             this.listing = res.data.listing;
