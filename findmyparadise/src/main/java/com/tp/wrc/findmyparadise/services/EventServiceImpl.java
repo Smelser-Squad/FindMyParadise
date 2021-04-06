@@ -1,5 +1,6 @@
 package com.tp.wrc.findmyparadise.services;
 
+import com.tp.wrc.findmyparadise.exceptions.NoListingFoundException;
 import com.tp.wrc.findmyparadise.models.Event;
 import com.tp.wrc.findmyparadise.models.Listing;
 import com.tp.wrc.findmyparadise.repositories.EventRepository;
@@ -25,21 +26,25 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public List<Event> indexWithinDistance(Integer listingId, int distance) {
+    public List<Event> indexWithinDistance(Integer listingId, int distance) throws NoListingFoundException {
         List<Event> events = eRepo.findAll();
         List<Event> toReturn = new ArrayList();
-        Listing listing = lRepo.getOne(listingId);
-        for(Event event : events) {
+        Listing listing = new Listing();
+        listing.setLatitude(39.16469);
+        listing.setLongitude(-77.1572);
+
+        for (Event event : events) {
             double theta = listing.getLongitude() - event.getLongitude();
             double dist = Math.sin(deg2rad(listing.getLatitude())) * Math.sin(deg2rad(event.getLatitude())) + Math.cos(deg2rad(listing.getLatitude())) * Math.cos(deg2rad(event.getLatitude())) * Math.cos(deg2rad(theta));
             dist = Math.acos(dist);
             dist = rad2deg(dist);
             dist = dist * 60 * 1.1515;
             event.setDistance(dist);
-            if(dist <= distance){
+            if (dist <= distance) {
                 toReturn.add(event);
             }
         }
+
 
         return toReturn;
 
