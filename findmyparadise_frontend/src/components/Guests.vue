@@ -1,10 +1,10 @@
 <template>
-  <div>
+  <div id="parentDiv">
     <h5>
       Adults:
       <button
         type="button"
-        id="decresaeAdults"
+        id="decreaseAdults"
         class="btn"
         @click="
           decreaseAdults();
@@ -26,9 +26,26 @@
       </button>
     </h5>
     <h5>
-
-      Children:<button type="button" class="btn" @click="sendDecreaseChildQty();decreaseChild()">-</button>{{ ChildNum
-      }}<button type="button" class="btn" @click="sendIncreaseChildQty();increaseChild()">+</button>
+      Children:<button
+        type="button"
+        class="btn"
+        @click="
+          sendDecreaseChildQty();
+          decreaseChild();
+        "
+      >
+        -</button
+      >{{ ChildNum
+      }}<button
+        type="button"
+        class="btn"
+        @click="
+          sendIncreaseAdultQty();
+          increaseChild();
+        "
+      >
+        +
+      </button>
     </h5>
     <h5>
       Infants:
@@ -59,7 +76,7 @@
 
 <script>
 import axios from 'axios';
-let listingID=1;
+let listingID=2;
 export default {
   name: "Guests",
   props: {},
@@ -80,57 +97,43 @@ export default {
       }
     },
     decreaseChild() {
-    if (this.ChildNum == 0) {
-      console.log("Error");
-    } else {
-      this.ChildNum -= 1;
-    }
-  },
-  increaseChild() {
-    if(this.ChildNum+this.AdultsNum ==this.maxGuests){
-        console.log("Error")
-        
-      }else{
-    this.ChildNum += 1
+      if (this.ChildNum == 0) {
+        console.log("Error");
+      } else {
+        this.ChildNum -= 1;
       }
-  },
-  decreaseInfants() {
-    if (this.InfantNum == 0) {
-      console.log("Error");
-    } else {
-      this.InfantNum -= 1;
-    }
-  },
-  increaseInfants() {
-    if(this.InfantNum==5){
-      console.log("Error")
-      this.InfantNum=5;
-    }else{
-    this.InfantNum += 1
-    }
-  },
-  sendIncreaseAdultQty(){
-    this.$emit('iAQty',this.AdultsNum);
-  
-  },
-  sendDecreaseAdultQty(){
-     this.$emit('dAQty',this.AdultsNum);
-  },
-  sendIncreaseChildQty(){
-    this.$emit('iCQty',this.ChildNum);
-  
-  },
-   sendDecreaseChildQty(){
-     this.$emit('dCQty',this.ChildNum);
-  },
-   sendIncreaseInfantQty(){
-    this.$emit('iIQty',this.InfantNum);
-  
-  },
-   sendDecreaseInfantQty(){
-    this.$emit('dIQty',this.InfantNum);
-  
-  },
+    },
+    increaseChild() {
+      this.ChildNum += 1;
+    },
+    decreaseInfants() {
+      if (this.InfantNum == 0) {
+        console.log("Error");
+      } else {
+        this.InfantNum -= 1;
+      }
+    },
+    increaseInfants() {
+      this.InfantNum += 1;
+    },
+    sendIncreaseAdultQty() {
+      this.$emit("iAQty", this.AdultsNum);
+    },
+    sendDecreaseAdultQty() {
+      this.$emit("dAQty", this.AdultsNum);
+    },
+    sendIncreaseChildQty() {
+      this.$emit("iCQty", this.AdultsNum);
+    },
+    sendDecreaseChildQty() {
+      this.$emit("dCQty", this.AdultsNum);
+    },
+    sendIncreaseInfantQty() {
+      this.$emit("iIQty", this.AdultsNum);
+    },
+    sendDecreaseInfantQty() {
+      this.$emit("dIQty", this.AdultsNum);
+    },
   },
   data() {
     return {
@@ -141,7 +144,7 @@ export default {
     
   },
   mounted(){
-     axios.get(`http://localhost:8080/api/listing/${listingID}`).then((res) => {
+     axios.get(`http://54.91.69.145:80/api/listing/${listingID}`).then((res) => {
       this.maxGuests=res.data.maxGuests;
       
    
@@ -149,3 +152,11 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+#parentDiv {
+  display: flex;
+  margin: auto;
+  text-align: center;
+}
+</style>

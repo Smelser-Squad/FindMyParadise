@@ -44,7 +44,7 @@
   </div> -->
 
 
-  <div style="margin-bottom:20px;">
+  <div class="header" style="margin-bottom:20px;">
     <svg
       viewBox="0 0 1000 1000"
       role="presentation"
@@ -247,8 +247,7 @@
   
       <div class="row">
                     <div class="row">
-                    <div class="search-wrapper panel-heading col-sm-12">
-                      <label> 
+                    <div class="search-wrapper panel-heading col-sm-12">                      <label> 
                        <input class="form-control" type="text" v-model="search" placeholder="Review Search" />
                       </label>
                     </div>                        
@@ -397,7 +396,7 @@
 <br><br>
 <div> 
       <ul>
-        <lu v-for="reviewer in filteredReviews" :key="reviewer">
+        <ul v-for="reviewer in filteredReviews" :key="reviewer">
           <div> 
               <div class="rightImageDialog">
               <img :src="reviewer.reviewer.imageSrc" />
@@ -417,7 +416,7 @@
 
           <hr />
          
-        </lu>
+        </ul>
       </ul>
       </div> 
     </Modal>
@@ -428,7 +427,7 @@
 import axios from "axios";
 import { ref } from "vue";
 import Modal from "./Modal";
-let listingID = 1;
+let listingID = 2;
 
 export default {
   name: "Reviewer",
@@ -479,7 +478,7 @@ export default {
   methods: {
     postData(e) {
       axios
-        .post("http://localhost:8080/api/addReviewer", this.posts)
+        .post("http://54.91.69.145:80/api/addReviewer", this.posts)
         .then((result) => {
           console.warn(result);
           
@@ -496,29 +495,29 @@ export default {
 
     startUpload() {
       axios({
-        url: "http://localhost:8080/api/upload",
+        url: "http://54.91.69.145:80/api/upload",
         method: "POST",
         data: this.formData,
         headers: {
           Accept: "application/json",
           "Content-Type": "multipart/form-data",
         },
-      }).then(() => {
-        // console.log(response);
+      }).then((response) => {
+        console.log(response);
       });
     },
   },
 
   mounted() {
     axios
-      .get(`http://localhost:8080/api/listing/${listingID}`)
+      .get(`http://54.91.69.145:80/api/listing/${listingID}`)
       .then((res) => {
         this.list = res.data.reviews;
       })
       .catch((err) => Promise.reject(err));
 
     axios
-      .get(`http://localhost:8080/api/listing/${listingID}`)
+      .get(`http://54.91.69.145:80/api/listing/${listingID}`)
       .then((res) => {
         this.reviewList = res.data.reviews;
 
@@ -581,6 +580,7 @@ export default {
       })
       .catch((err) => Promise.reject(err));
   },
+  
 
   computed: {
     filteredReviews (){
@@ -591,12 +591,16 @@ export default {
       }else{
         return this.list;
       }
-    },
-  },
+    }
+  }
 };
 </script>
 
 <style scoped>
+.header {
+  margin: auto;
+  text-align: center;
+}
 img {
   height: 60px;
   width: 60px;
@@ -638,10 +642,14 @@ float: left;
 width: 10%;
   float: left;
 }
-.avRatingView {
+.avRatingView{
   font-weight: bold;
   font-size: 25px;
-  margin-left: 0.5em;
+  margin-left:0.5em;
+  
+  margin: auto;
+  text-align: center;
+  
 }
 
 .avRatingViewDialog{
@@ -661,8 +669,7 @@ label:before {
   top: 0;
   bottom: 0;
   width: 20px;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='25' height='25' viewBox='0 0 25 25' fill-rule='evenodd'%3E%3Cpath d='M16.036 18.455l2.404-2.405 5.586 5.587-2.404 2.404zM8.5 2C12.1 2 15 4.9 15 8.5S12.1 15 8.5 15 2 12.1 2 8.5 4.9 2 8.5 2zm0-2C3.8 0 0 3.8 0 8.5S3.8 17 8.5 17 17 13.2 17 8.5 13.2 0 8.5 0zM15 16a1 1 0 1 1 2 0 1 1 0 1 1-2 0'%3E%3C/path%3E%3C/svg%3E")
-    center / contain no-repeat;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='25' height='25' viewBox='0 0 25 25' fill-rule='evenodd'%3E%3Cpath d='M16.036 18.455l2.404-2.405 5.586 5.587-2.404 2.404zM8.5 2C12.1 2 15 4.9 15 8.5S12.1 15 8.5 15 2 12.1 2 8.5 4.9 2 8.5 2zm0-2C3.8 0 0 3.8 0 8.5S3.8 17 8.5 17 17 13.2 17 8.5 13.2 0 8.5 0zM15 16a1 1 0 1 1 2 0 1 1 0 1 1-2 0'%3E%3C/path%3E%3C/svg%3E") center / contain no-repeat;
 }
 
 input {

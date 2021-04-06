@@ -2,6 +2,7 @@
   <div class="email">
     <div class="email-inner">
       <h2>Contact {{ host.hostName }}</h2>
+      <br />
       <div class="input-row">
         <label class="input-label" for="guestName"> Name </label>
         <input v-model="guestName" v-on:input="validateName" id="guestName" />
@@ -23,13 +24,16 @@
         >
         </textarea>
       </div>
+      <br />
       <button
         :disabled="!(validName && validEmail && validMessage)"
         @click="sendEmail()"
+        style = "width: 100px;"
       >
         Send Email
       </button>
-      <button @click="toggleEmail()">Close email</button>
+      <br />
+      <button style="width: 100px;" @click="toggleEmail()">Close email</button>
     </div>
   </div>
 </template>
@@ -76,7 +80,6 @@ export default {
   bottom: 0;
   z-index: 99;
   background-color: rgba(0, 0, 0, 0.2);
-
   display: flex;
   align-items: center;
   justify-content: center;
@@ -85,11 +88,13 @@ export default {
   padding: 10px;
   background: #fff;
   text-align: center;
+  width: 50%;
+  border: 5px solid rgb(209, 60, 110);
 }
 .input-label {
   padding-right: 10px;
 }
 .input-row {
-  text-align: right;
+  text-align: center;
 }
 </style>
