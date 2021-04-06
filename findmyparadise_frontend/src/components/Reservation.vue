@@ -10,15 +10,25 @@
     </header>
     <body id="ReservationBody">
       <form v-on:submit.prevent="submitForm" method="post">
-        <h4>Check-in Date:</h4>
-        <input disabled v-model="form.checkInDate" />
-        <br />
-        <br />
-        <h4>Check-out Date:</h4>
-        <input disabled v-model="form.checkOutDate" />
 
-        <br />
-        <br />
+      <h4>CheckIn:</h4><input disabled v-model="form.checkInDate"/>
+       <h4>CheckOut:</h4><input disabled v-model="form.checkOutDate" />
+     
+        <h5>Guests:</h5>
+        <Guests @iAQty="increaseAQty($event)" @dAQty="decreaseAQty($event)" 
+        @iCQty="increaseCQty($event)" @dCQty="decreaseCQty($event)" 
+        @iIQty="increaseIQty($event)" @dIQty="decreaseIQty($event)"/>
+ <span style="display:none;"> Start Date: {{updateDate(dateStart)}}</span>
+        <br/>
+        <p> {{maxGuests}} guests maximum, infants don't count towards number of guests</p>
+        <span style="display:none;"> {{updateDate(dateEnd)}}</span>
+       <span>{{updateDays(days)}}</span>
+      
+      
+      
+
+
+  
 
         <h4>Guests:</h4>
         <br />
@@ -44,6 +54,7 @@
 
         <span>{{ updateDays(days) }}</span>
 
+
         <span
           class="_19di23v"
           style="
@@ -63,6 +74,39 @@
       </form>
       <p style="color: gray; text-align: center">You won't be charged yet</p>
 
+      
+        <div>
+          <u>${{ dailyPrice }} x {{ NumOfDays }} nights</u>
+          <span>${{ dailyPrice * NumOfDays }}</span>
+        </div>
+        <div class="popup" @click="CleaningFeepopup()">
+          <u>Cleaning Fee</u> <span> ${{ cleaningFee }}</span>
+          <span class="popuptext" id="CleaningFeepopup"
+            >One-time fee charged by host to cover the cost of cleaning their
+            space.</span
+          >
+        </div>
+        <br />
+        <div class="popup" @click="ServiceFeepopup()">
+          <u>Service Fee</u><span> ${{ serviceFee }}</span>
+          <span class="popuptext" id="ServiceFeepopup"
+            >The service fee, which the host has decided to pay, helps us run
+            our platform and offer services like 24/7 support on your
+            trip.</span
+          >
+        </div>
+        <br />
+        <div>
+          <u>Occupancy taxes and fees</u>
+          <span> ${{ occupancyFee }} </span>
+        </div>
+      
+      <hr />
+      <p>
+        <b>
+          Total: ${{ form.price
+
+
       <div>
         <u>${{ dailyPrice }} x {{ NumOfDays }} Nights : </u>
         <span>${{ dailyPrice * NumOfDays }}</span>
@@ -81,6 +125,7 @@
         <span class="popuptext" id="ServiceFeepopup"
           >The service fee, which the host has decided to pay, helps us run our
           platform and offer services like 24/7 support on your trip.</span
+
         >
       </div>
       <br />
@@ -159,8 +204,10 @@ export default {
       popup.classList.toggle("show");
     },
     submitForm() {
+
       axios
         .post(`http://54.91.69.145:80/api/reservation/${listingID}`, this.form)
+
         .then((res) => {
           console.log(res.data);
         });
