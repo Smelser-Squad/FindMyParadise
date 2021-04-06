@@ -66,6 +66,7 @@ export default {
   mounted() {
     axios
       .get("http://localhost:8080/api/events/15/25")
+
       .then((res) => {
         this.items = res.data;
       })

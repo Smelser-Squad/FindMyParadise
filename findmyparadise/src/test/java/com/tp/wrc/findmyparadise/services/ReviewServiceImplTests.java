@@ -32,6 +32,7 @@ public class ReviewServiceImplTests {
         review.setAccuracyRating(1);
         Reviewer reviewer = new Reviewer();
 
+
        reviewer.setImageSrc("Test Image Source");
        reviewer.setDescription("Test Description data");
        reviewer.setName("Rahman");
@@ -39,9 +40,9 @@ public class ReviewServiceImplTests {
         review.setReviewer(reviewer);
 
        try{
-           toTest.create(review);
+           toTest.create(review, 1);
        }
-       catch (InvalidReviewIdException | NullReviewIdException e ){
+       catch (InvalidReviewIdException | NullReviewIdException  | InvalidListingIDException | NoListingFoundException e ){
            fail();
        }
 
@@ -76,9 +77,9 @@ public class ReviewServiceImplTests {
         reviewer.setName("Rahman");
         review.setReviewer(reviewer);
         try{
-            toTest.create(review);
+            toTest.create(review, 1 );
         }
-        catch (InvalidReviewIdException | NullReviewIdException e ){
+        catch (InvalidReviewIdException | NullReviewIdException | InvalidListingIDException | NoListingFoundException e ){
             fail();
         }
 
@@ -100,9 +101,9 @@ public class ReviewServiceImplTests {
         review1.setReviewer(reviewer2);
 
         try{
-            toTest.create(review1);
+            toTest.create(review, 1);
         }
-        catch (InvalidReviewIdException | NullReviewIdException e ){
+        catch (InvalidReviewIdException | NullReviewIdException | InvalidListingIDException | NoListingFoundException e ){
             fail();
         }
 
@@ -199,9 +200,9 @@ public class ReviewServiceImplTests {
         review.setReviewer(reviewer);
 
         try {
-           review = toTest.create(review);
+           review = toTest.create(review , 1);
         }
-    catch (InvalidReviewIdException | NullReviewIdException e){
+    catch (InvalidReviewIdException | NullReviewIdException | InvalidListingIDException | NoListingFoundException e){
         fail();
 
     }
