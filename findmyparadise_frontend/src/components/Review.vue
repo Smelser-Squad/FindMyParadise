@@ -427,11 +427,11 @@
 import axios from "axios";
 import { ref } from "vue";
 import Modal from "./Modal";
-let listingID = 2;
 
 export default {
   name: "Reviewer",
   components: { Modal },
+  props: ["listingId"],
 
   setup() {
     const popupTriggers = ref({
@@ -510,14 +510,14 @@ export default {
 
   mounted() {
     axios
-      .get(`http://54.91.69.145:80/api/listing/${listingID}`)
+      .get(`http://54.91.69.145:80/api/listing/${this.$route.params.listingId}`)
       .then((res) => {
         this.list = res.data.reviews;
       })
       .catch((err) => Promise.reject(err));
 
     axios
-      .get(`http://54.91.69.145:80/api/listing/${listingID}`)
+      .get(`http://54.91.69.145:80/api/listing/${this.$route.params.listingId}`)
       .then((res) => {
         this.reviewList = res.data.reviews;
 
@@ -525,13 +525,13 @@ export default {
           (acc, { rating }) => (acc += Number(rating)),
           0
         );
-        this.overallRating = totalRatings / this.reviewList.length;
+        this.overallRating = Math.round(totalRatings / this.reviewList.length).toFixed(2);
 
         const totalCleanlinessRt = this.reviewList.reduce(
           (acc, { cleanlinessRating }) => (acc += Number(cleanlinessRating)),
           0
         );
-        this.averageCleanliness = totalCleanlinessRt / this.reviewList.length;
+        this.averageCleanliness = Math.round(totalCleanlinessRt / this.reviewList.length).toFixed(2);
         this.averageCleanlinessBar = (this.averageCleanliness / 5 )* 100; 
 
 
@@ -542,7 +542,7 @@ export default {
           0
         );
         this.averageCommunication =
-          totalCommunicationRt / this.reviewList.length;
+          Math.round(totalCommunicationRt / this.reviewList.length).toFixed(2);
 
           this.averageCommunicationBar = (this.averageCommunication / 5) * 100; 
 
@@ -550,14 +550,14 @@ export default {
           (acc, { checkInRating }) => (acc += Number(checkInRating)),
           0
         );
-        this.averageCheckIn = totalCheckInRt / this.reviewList.length;
+        this.averageCheckIn = Math.round(totalCheckInRt / this.reviewList.length).toFixed(2);
         this.averageCheckInBar = (this.averageCheckIn / 5 )* 100; 
 
         const totalAccuracyRt = this.reviewList.reduce(
           (acc, { accuracyRating }) => (acc += Number(accuracyRating)),
           0
         );
-        this.averageAccuracy = totalAccuracyRt / this.reviewList.length;
+        this.averageAccuracy = Math.round(totalAccuracyRt / this.reviewList.length).toFixed(2);
         this.averageAccuracyBar = (this.averageAccuracy / 5 )* 100; 
 
 
@@ -566,7 +566,7 @@ export default {
           (acc, { locationRating }) => (acc += Number(locationRating)),
           0
         );
-        this.averageLocation = totalLocationRt / this.reviewList.length;
+        this.averageLocation = Math.round(totalLocationRt / this.reviewList.length).toFixed(2);
         this.averageLocationBar = (this.averageLocation / 5 )* 100; 
 
 
@@ -574,7 +574,7 @@ export default {
           (acc, { valueRating }) => (acc += Number(valueRating)),
           0
         );
-        this.averageValue = totalValueRt / this.reviewList.length;
+        this.averageValue = Math.round(totalValueRt / this.reviewList.length).toFixed(2);
         this.averageValueBar = (this.averageValue / 5 )* 100; 
 
       })
@@ -704,7 +704,7 @@ margin-bottom: 2rem;
 
 .progress{
   height: 8px;
-  width: 200px;
+  width: 190px;
   margin-top: 10px;
   margin-left: 100px
 }
