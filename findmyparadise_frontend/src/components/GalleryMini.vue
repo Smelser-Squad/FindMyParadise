@@ -14,21 +14,15 @@
 
     <Modal v-if="popupTriggers.buttonTrigger" class="modal" 
                :TogglePopup="() => TogglePopup('buttonTrigger')">
-            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" >
-                <div class="carousel-inner" >
-                    <div class="carousel-item active" v-for="image in images" :key="image" :class="{ active: idx==0 }">>
-                        <img :src="image.imageSrc"  class="d-block w-100" alt="">
-                    </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-            </div>
+             <div >
+                 <ul>
+                     <li><img :src="firstImage" class="sectioned"></li>
+                     <li><img :src="secondImage" class="sectioned"></li>
+                     <li><img :src="thirdImage" class="sectioned"></li>
+                     <li><img :src="fourthImage" class="sectioned"></li>
+                     <li><img :src="fifthImage" class="sectioned"></li>
+                 </ul>
+             </div>
     </Modal>
 </div>
 </template>
@@ -39,7 +33,7 @@ import { ref } from "vue";
 import axios from "axios";
 import Modal from "./Modal";
 
-let listingId = 1;
+
 export default {
     components: { Modal },
     name: "carousel",
@@ -69,7 +63,7 @@ export default {
         };
     },
     mounted(){
-        axios.get(`http://localhost:8080/api/gallery/listing/${listingId}`).then((res) => {
+        axios.get(`http://54.91.69.145:80/api/gallery/listing/${this.$route.params.listingId}`).then((res) => {
             this.images = res.data;
             console.log(this.images);
             this.firstImage = res.data[0].imageSrc;
@@ -80,7 +74,7 @@ export default {
 
         })
     },
-    methods(){
+    methods: {
 
     }
 };
@@ -92,17 +86,18 @@ export default {
         width: 50%;
         height: 100%;
     }
+
     .left{
         width: 50%;
         height: 100%;
-        overflow: hidden;
     }
+
     .leftImage{
-        border-right: 4px solid #FFFFFF;
-        object-fit: cover;
-        transform: translateX(-20%);
-        transform: translateY(-20%);
-        }
+        object-fit: fill;
+        height: 100%;
+        width: 100%;
+    }
+
     .rightTop{
         width: 50%;
         height: 50%;
@@ -142,22 +137,13 @@ export default {
         object-fit: fill;
         overflow: hidden;
     }
-    .carousel-item{
-        object-fit: fill;
-    }
-    .carousel{
-        margin: 15px;
-        
-    }
-    .modal{
-        overflow: hidden;
 
-
+    .sectioned{
+        width: 95%;
+        margin: 10px;
+        margin-left: 4%;
     }
 
-    .contained{
-        overflow: hidden;
-    }
     
     
 

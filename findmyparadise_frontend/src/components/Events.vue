@@ -28,6 +28,7 @@
               {{ item.title }}
             </p>
             <p>{{ item.summary }}</p>
+            <p>Distance from this listing: {{ item.distance }} miles </p>
           </a>
           <p>
             <b>${{ item.cost }}</b> / person
@@ -61,7 +62,7 @@ export default {
   },
   mounted() {
     axios
-      .get("http://localhost:8080/api/events")
+      .get("http://54.91.69.145:80/api/events")
       .then((res) => {
         this.items = res.data;
       })

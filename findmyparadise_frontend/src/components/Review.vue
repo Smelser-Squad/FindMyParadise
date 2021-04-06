@@ -17,7 +17,6 @@
       />
       <br />
       <br />
-
       <form ref="uploadForm" @submit.prevent="submit">
         <input
           type="file"
@@ -35,7 +34,6 @@
       </form>
       <br />
       <br />
-
       <br />
       <button type="submit">Add Review</button>
       <br />
@@ -43,8 +41,7 @@
     </form>
   </div> -->
 
-
-  <div style="margin-bottom:20px;">
+  <div class="header" style="margin-bottom:20px;">
     <svg
       viewBox="0 0 1000 1000"
       role="presentation"
@@ -59,7 +56,6 @@
     <span class="avRatingView"> {{ overallRating }} ({{ reviewList.length }} Reviews)</span>
   </div>
 <br>
-
 <div class="left">
   <div class="leftRat"> 
     Cleanliness
@@ -79,10 +75,8 @@
     <div class="moreRight"> 
     {{ averageCleanliness }}
     </div> 
-
 <br> 
 <br> 
-
 <div class="leftRat"> 
     Communication
   </div>
@@ -101,10 +95,8 @@
     <div class="moreRight"> 
     {{ averageCommunication }}
     </div> 
-
        <br> 
 <br> 
-
 <div class="leftRat"> 
     Check-in
   </div>
@@ -127,9 +119,7 @@
     
   </div>
 
-
 <div class="right">
-
 <div class="leftRat"> 
     Accuracy
   </div>
@@ -148,10 +138,8 @@
     <div class="moreRight"> 
     {{ averageAccuracy }}
     </div> 
-
 <br> 
 <br> 
-
 <div class="leftRat"> 
     Location
   </div>
@@ -170,10 +158,8 @@
     <div class="moreRight"> 
     {{ averageLocation }}
     </div> 
-
        <br> 
 <br> 
-
 <div class="leftRat"> 
     Value
   </div>
@@ -193,16 +179,13 @@
     {{ averageValue }}
     </div> 
   </div> 
-
   <br> 
   <br>
-
   <div
     v-for="reviewer in list.slice(0, 1)"
     v-bind:key="reviewer.reviewId"
     class="revierInfo"
   >
-
   <div> 
         <div class="rightImage">
           <img :src="reviewer.reviewer.imageSrc" />
@@ -215,11 +198,9 @@
     <br>
    
     <p style="float:left; margin-bottom: 80px">{{ reviewer.reviewer.description }}</p>
-
     <button class="showBtn" @click="() => TogglePopup('buttonTrigger')">
       Show all {{ reviewList.length }} reviews
     </button>
-
 
     <Modal
       v-if="popupTriggers.buttonTrigger"
@@ -241,14 +222,12 @@
     </svg> 
     <span class="avRatingViewDialog"> {{ overallRating }} ({{ reviewList.length }} Reviews)</span>
   </div>
-
   <div class="rightSearch">
     
   
       <div class="row">
                     <div class="row">
-                    <div class="search-wrapper panel-heading col-sm-12">
-                      <label> 
+                    <div class="search-wrapper panel-heading col-sm-12">                      <label> 
                        <input class="form-control" type="text" v-model="search" placeholder="Review Search" />
                       </label>
                     </div>                        
@@ -260,7 +239,6 @@
 <br>
 <br>
 <br>
-
 <div class="ratingDialog"> 
 <div class="left">
   <div class="leftRat"> 
@@ -281,10 +259,8 @@
     <div class="moreRight"> 
     {{ averageCleanliness }}
     </div> 
-
 <br> 
 <br> 
-
 <div class="leftRat"> 
     Communication
   </div>
@@ -303,10 +279,8 @@
     <div class="moreRight"> 
     {{ averageCommunication }}
     </div> 
-
        <br> 
 <br> 
-
 <div class="leftRat"> 
     Check-in
   </div>
@@ -326,7 +300,6 @@
     {{ averageCheckIn }}
     </div> 
   </div>
-
 <div class="right">
 <div class="leftRat"> 
     Accuracy
@@ -346,10 +319,8 @@
     <div class="moreRight"> 
     {{ averageAccuracy }}
     </div> 
-
 <br> 
 <br> 
-
 <div class="leftRat"> 
     Location
   </div>
@@ -368,10 +339,8 @@
     <div class="moreRight"> 
     {{ averageLocation }}
     </div> 
-
        <br> 
 <br> 
-
 <div class="leftRat"> 
     Value
   </div>
@@ -390,14 +359,13 @@
     <div class="moreRight"> 
     {{ averageValue }}
     </div> 
-
   </div> 
 </div>
 <br><br>
 <br><br>
 <div> 
       <ul>
-        <lu v-for="reviewer in filteredReviews" :key="reviewer">
+        <ul v-for="reviewer in filteredReviews" :key="reviewer">
           <div> 
               <div class="rightImageDialog">
               <img :src="reviewer.reviewer.imageSrc" />
@@ -414,35 +382,29 @@
 <br><br>
 <br><br>
 <br><br>
-
           <hr />
          
-        </lu>
+        </ul>
       </ul>
       </div> 
     </Modal>
   </div>
 </template>
-
 <script>
 import axios from "axios";
 import { ref } from "vue";
 import Modal from "./Modal";
-let listingID = 1;
-
 export default {
   name: "Reviewer",
   components: { Modal },
-
+  props: ["listingId"],
   setup() {
     const popupTriggers = ref({
       buttonTrigger: false,
     });
-
     const TogglePopup = (trigger) => {
       popupTriggers.value[trigger] = !popupTriggers.value[trigger];
     };
-
     return {
       Modal,
       popupTriggers,
@@ -475,11 +437,10 @@ export default {
       averageValueBar: 0
     };
   },
-
   methods: {
     postData(e) {
       axios
-        .post("http://localhost:8080/api/addReviewer", this.posts)
+        .post("http://54.91.69.145:80/api/addReviewer", this.posts)
         .then((result) => {
           console.warn(result);
           
@@ -487,55 +448,47 @@ export default {
         
       e.preventDefault();
     },
-
     onImageUpload() {
       let file = this.$refs.uploadImage.files[0];
       this.formData = new FormData();
       this.formData.append("file", file);
     },
-
     startUpload() {
       axios({
-        url: "http://localhost:8080/api/upload",
+        url: "http://54.91.69.145:80/api/upload",
         method: "POST",
         data: this.formData,
         headers: {
           Accept: "application/json",
           "Content-Type": "multipart/form-data",
         },
-      }).then(() => {
-        // console.log(response);
+      }).then((response) => {
+        console.log(response);
       });
     },
   },
-
   mounted() {
     axios
-      .get(`http://localhost:8080/api/listing/${listingID}`)
+      .get(`http://54.91.69.145:80/api/listing/${this.$route.params.listingId}`)
       .then((res) => {
         this.list = res.data.reviews;
       })
       .catch((err) => Promise.reject(err));
-
     axios
-      .get(`http://localhost:8080/api/listing/${listingID}`)
+      .get(`http://54.91.69.145:80/api/listing/${this.$route.params.listingId}`)
       .then((res) => {
         this.reviewList = res.data.reviews;
-
         const totalRatings = this.reviewList.reduce(
           (acc, { rating }) => (acc += Number(rating)),
           0
         );
-        this.overallRating = totalRatings / this.reviewList.length;
-
+        this.overallRating = Math.round(totalRatings / this.reviewList.length).toFixed(2);
         const totalCleanlinessRt = this.reviewList.reduce(
           (acc, { cleanlinessRating }) => (acc += Number(cleanlinessRating)),
           0
         );
-        this.averageCleanliness = totalCleanlinessRt / this.reviewList.length;
+        this.averageCleanliness = Math.round(totalCleanlinessRt / this.reviewList.length).toFixed(2);
         this.averageCleanlinessBar = (this.averageCleanliness / 5 )* 100; 
-
-
 
         const totalCommunicationRt = this.reviewList.reduce(
           (acc, { communicationRating }) =>
@@ -543,45 +496,38 @@ export default {
           0
         );
         this.averageCommunication =
-          totalCommunicationRt / this.reviewList.length;
-
+          Math.round(totalCommunicationRt / this.reviewList.length).toFixed(2);
           this.averageCommunicationBar = (this.averageCommunication / 5) * 100; 
-
         const totalCheckInRt = this.reviewList.reduce(
           (acc, { checkInRating }) => (acc += Number(checkInRating)),
           0
         );
-        this.averageCheckIn = totalCheckInRt / this.reviewList.length;
+        this.averageCheckIn = Math.round(totalCheckInRt / this.reviewList.length).toFixed(2);
         this.averageCheckInBar = (this.averageCheckIn / 5 )* 100; 
-
         const totalAccuracyRt = this.reviewList.reduce(
           (acc, { accuracyRating }) => (acc += Number(accuracyRating)),
           0
         );
-        this.averageAccuracy = totalAccuracyRt / this.reviewList.length;
+        this.averageAccuracy = Math.round(totalAccuracyRt / this.reviewList.length).toFixed(2);
         this.averageAccuracyBar = (this.averageAccuracy / 5 )* 100; 
-
-
 
         const totalLocationRt = this.reviewList.reduce(
           (acc, { locationRating }) => (acc += Number(locationRating)),
           0
         );
-        this.averageLocation = totalLocationRt / this.reviewList.length;
+        this.averageLocation = Math.round(totalLocationRt / this.reviewList.length).toFixed(2);
         this.averageLocationBar = (this.averageLocation / 5 )* 100; 
-
 
         const totalValueRt = this.reviewList.reduce(
           (acc, { valueRating }) => (acc += Number(valueRating)),
           0
         );
-        this.averageValue = totalValueRt / this.reviewList.length;
+        this.averageValue = Math.round(totalValueRt / this.reviewList.length).toFixed(2);
         this.averageValueBar = (this.averageValue / 5 )* 100; 
-
       })
       .catch((err) => Promise.reject(err));
   },
-
+  
   computed: {
     filteredReviews (){
     if(this.search){
@@ -591,12 +537,15 @@ export default {
       }else{
         return this.list;
       }
-    },
-  },
+    }
+  }
 };
 </script>
-
 <style scoped>
+.header {
+  margin: auto;
+  text-align: center;
+}
 img {
   height: 60px;
   width: 60px;
@@ -605,55 +554,49 @@ img {
   display: inline;
   vertical-align: top;
 }
-
 .reviewerInfo {
   display: inline-block;
 }
-
 .left,
 .right {
   width: 50%;
   float: left;
   margin-bottom: 45px;
 }
-
 .rightImage,
 .leftInfo{
   width: 10%;
   float: left;
 }
-
 .leftRating{
 float: left;
     margin-right: 17px;
 }
-
 .rightSearch{
     float: right;
-
 }
-
 .rightImageDialog,
 .leftInfoDialog{
 width: 10%;
   float: left;
 }
-.avRatingView {
+.avRatingView{
   font-weight: bold;
   font-size: 25px;
-  margin-left: 0.5em;
+  margin-left:0.5em;
+  
+  margin: auto;
+  text-align: center;
+  
 }
-
 .avRatingViewDialog{
   font-weight: bold;
   font-size: 30px;
   margin-left:0.5em;
 }
-
 label {
   position: relative;
 }
-
 label:before {
   content: "";
   position: absolute;
@@ -661,22 +604,17 @@ label:before {
   top: 0;
   bottom: 0;
   width: 20px;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='25' height='25' viewBox='0 0 25 25' fill-rule='evenodd'%3E%3Cpath d='M16.036 18.455l2.404-2.405 5.586 5.587-2.404 2.404zM8.5 2C12.1 2 15 4.9 15 8.5S12.1 15 8.5 15 2 12.1 2 8.5 4.9 2 8.5 2zm0-2C3.8 0 0 3.8 0 8.5S3.8 17 8.5 17 17 13.2 17 8.5 13.2 0 8.5 0zM15 16a1 1 0 1 1 2 0 1 1 0 1 1-2 0'%3E%3C/path%3E%3C/svg%3E")
-    center / contain no-repeat;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='25' height='25' viewBox='0 0 25 25' fill-rule='evenodd'%3E%3Cpath d='M16.036 18.455l2.404-2.405 5.586 5.587-2.404 2.404zM8.5 2C12.1 2 15 4.9 15 8.5S12.1 15 8.5 15 2 12.1 2 8.5 4.9 2 8.5 2zm0-2C3.8 0 0 3.8 0 8.5S3.8 17 8.5 17 17 13.2 17 8.5 13.2 0 8.5 0zM15 16a1 1 0 1 1 2 0 1 1 0 1 1-2 0'%3E%3C/path%3E%3C/svg%3E") center / contain no-repeat;
 }
-
 input {
   padding: 10px 150px;
 }
 .name{
   font-size: 1.3rem;
-
 }
 hr{
 margin-bottom: 2rem; 
-
 }
-
 .showBtn {
   border-radius: 12px;
   background-color: white;
@@ -694,19 +632,15 @@ margin-bottom: 2rem;
     box-sizing: border-box;
     text-align: center;
 }
-
 .progress{
   height: 8px;
-  width: 200px;
+  width: 190px;
   margin-top: 10px;
   margin-left: 100px
 }
-
 .bg-success {
     background-color: black!important;
 }
-
-
 
 .leftRat,
 .rightBar{
@@ -715,12 +649,9 @@ margin-bottom: 2rem;
   font-size: 18px;
 }
 
-
 .moreRight{
   float: right;
   margin-right: 40px;
   font-weight: bold;
-
 }
-
 </style>

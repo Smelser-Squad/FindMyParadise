@@ -1,5 +1,6 @@
 <template>
     Things to Know
+    <br />
     <div id="thingsToKnow">
         <div id="houseRules">
             House rules
@@ -18,14 +19,14 @@
 import axios from "axios";
 import moment from "moment";
 
-let listingID = 1;
+
 export default {
     props : ["dateStart"],
     data() {
         
     },
     mounted(){
-        axios.get(`http://localhost:8080/api/listing/${listingID}`).then((res) => {
+        axios.get(`http://54.91.69.145:80/api/listing/${this.$route.params.listingId}`).then((res) => {
             this.dataObject = res.data;
         })
     },

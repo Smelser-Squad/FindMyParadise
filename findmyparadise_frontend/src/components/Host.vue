@@ -63,7 +63,7 @@
 <script>
 import axios from "axios";
 
-let listingID = 1;
+
 export default {
   name: "Host",
   data() {
@@ -82,7 +82,7 @@ export default {
     };
   },
   mounted() {
-    axios.get(`http://localhost:8080/api/listing/${listingID}`).then((res) => {
+    axios.get(`http://54.91.69.145:80/api/listing/${this.$route.params.listingId}`).then((res) => {
       this.dataObject = res.data;
       this.hostName = res.data.host.hostName;
       this.totalReviews = res.data.host.totalReviews;
