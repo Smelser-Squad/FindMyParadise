@@ -44,7 +44,7 @@
   </div> -->
 
 
-  <div style="margin-bottom:20px;">
+  <div class="header" style="margin-bottom:20px;">
     <svg
       viewBox="0 0 1000 1000"
       role="presentation"
@@ -247,8 +247,7 @@
   
       <div class="row">
                     <div class="row">
-                    <div class="search-wrapper panel-heading col-sm-12">
-                      <label> 
+                    <div class="search-wrapper panel-heading col-sm-12">                      <label> 
                        <input class="form-control" type="text" v-model="search" placeholder="Review Search" />
                       </label>
                     </div>                        
@@ -428,7 +427,7 @@
 import axios from "axios";
 import { ref } from "vue";
 import Modal from "./Modal";
-let listingID = 1;
+let listingID = 2;
 
 export default {
   name: "Reviewer",
@@ -479,7 +478,7 @@ export default {
   methods: {
     postData(e) {
       axios
-        .post("http://localhost:8080/api/addReviewer", this.posts)
+        .post("http://54.91.69.145:80/api/addReviewer", this.posts)
         .then((result) => {
           console.warn(result);
           
@@ -496,7 +495,7 @@ export default {
 
     startUpload() {
       axios({
-        url: "http://localhost:8080/api/upload",
+        url: "http://54.91.69.145:80/api/upload",
         method: "POST",
         data: this.formData,
         headers: {
@@ -511,14 +510,14 @@ export default {
 
   mounted() {
     axios
-      .get(`http://localhost:8080/api/listing/${listingID}`)
+      .get(`http://54.91.69.145:80/api/listing/${listingID}`)
       .then((res) => {
         this.list = res.data.reviews;
       })
       .catch((err) => Promise.reject(err));
 
     axios
-      .get(`http://localhost:8080/api/listing/${listingID}`)
+      .get(`http://54.91.69.145:80/api/listing/${listingID}`)
       .then((res) => {
         this.reviewList = res.data.reviews;
 
@@ -598,6 +597,10 @@ export default {
 </script>
 
 <style scoped>
+.header {
+  margin: auto;
+  text-align: center;
+}
 img {
   height: 60px;
   width: 60px;
@@ -643,6 +646,9 @@ width: 10%;
   font-weight: bold;
   font-size: 25px;
   margin-left:0.5em;
+  
+  margin: auto;
+  text-align: center;
   
 }
 

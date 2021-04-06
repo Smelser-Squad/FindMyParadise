@@ -62,7 +62,7 @@ export default {
   },
   mounted() {
     axios
-      .get("http://localhost:8080/api/events/1/25")
+      .get("http://54.91.69.145:80/api/events")
       .then((res) => {
         this.items = res.data;
       })
