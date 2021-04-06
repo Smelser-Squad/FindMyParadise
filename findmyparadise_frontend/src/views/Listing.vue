@@ -52,9 +52,6 @@
       <div class="scrollContainer">
         <events title="Events"></events>
       </div>
-      <div class="scrollContainer"> 
-        <information></information>
-         </div>
       <email
         v-if="emailTrigger && host != undefined"
         :toggleEmail="() => toggleEmail()"
