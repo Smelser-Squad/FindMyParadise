@@ -63,7 +63,7 @@ export default {
         };
     },
     mounted(){
-        axios.get(`http://localhost:8080/api/gallery/listing/${listingId}`).then((res) => {
+        axios.get(`http://54.91.69.145:80/api/gallery/listing/${listingId}`).then((res) => {
             this.images = res.data;
             console.log(this.images);
             this.firstImage = res.data[0].imageSrc;
