@@ -46,7 +46,6 @@ import axios from "axios";
 
 export default{
      name: "Information",
-     props: ["listingId"],
     data(){
         return {
             listing: [],
