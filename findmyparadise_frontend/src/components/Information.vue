@@ -43,10 +43,14 @@
 
 <script>
 import axios from "axios";
-let listingID = 1;
+
 
 export default{
-    name: "Information",
+     name: "Information",
+     props: ["listingId"],
+  created() {
+    // listingID = this.$route.params.listingId;
+  },
     data(){
         return {
             listing: [],
@@ -59,7 +63,7 @@ export default{
     },
     mounted(){
         axios
-        .get(`http://localhost:8080/api/listing/${listingID}`)
+        .get(`http://localhost:8080/api/listing/${this.$route.params.listingId}`)
         .then((res) => 
         {
             this.listing = res.data.listing;
@@ -67,9 +71,11 @@ export default{
             this.healthRules = res.data.healthRules;
             this.checkIn = res.data.checkIn;
             this.checkOut = res.data.checkOut;
-            console.log("Getting data...");
-            console.log(res.data);
-            console.log(res.data.rules);
+            console.log(this.$props.listingId);
+
+            // console.log("Getting data...");
+            // console.log(res.data);
+            // console.log(res.data.rules);
         })
         .catch((err) => Promise.reject(err));
     },
