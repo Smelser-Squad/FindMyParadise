@@ -45,6 +45,7 @@ export default {
   },
   mounted() {
     axios.get(`http://54.91.69.145:80/api/reservations/${this.$route.params.listingId}`).then((res) => {
+
       for (let i = 0; i < res.data.length; i++) {
       
       this.reservations = res.data[i]

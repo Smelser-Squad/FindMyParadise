@@ -17,6 +17,8 @@ public class EventServiceImpl implements EventService {
 
     @Autowired
     private EventRepository eRepo;
+
+    @Autowired
     private ListingRepository lRepo;
 
 
@@ -29,9 +31,7 @@ public class EventServiceImpl implements EventService {
     public List<Event> indexWithinDistance(Integer listingId, int distance) throws NoListingFoundException {
         List<Event> events = eRepo.findAll();
         List<Event> toReturn = new ArrayList();
-        Listing listing = new Listing();
-        listing.setLatitude(39.16469);
-        listing.setLongitude(-77.1572);
+        Listing listing = lRepo.findById(listingId).get();
 
         for (Event event : events) {
             double theta = listing.getLongitude() - event.getLongitude();
@@ -39,6 +39,7 @@ public class EventServiceImpl implements EventService {
             dist = Math.acos(dist);
             dist = rad2deg(dist);
             dist = dist * 60 * 1.1515;
+            dist = ((int)(dist * 100))/100;
             event.setDistance(dist);
             if (dist <= distance) {
                 toReturn.add(event);

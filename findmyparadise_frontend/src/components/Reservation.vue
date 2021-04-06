@@ -52,6 +52,7 @@
         </p>
         <span style="display: none"> {{ updateDate(dateEnd) }}</span>
         <span>{{ updateDays(days) }}</span>
+
         <span
           class="_19di23v"
           style="
@@ -70,6 +71,41 @@
         </button>
       </form>
       <p style="color: gray; text-align: center">You won't be charged yet</p>
+
+      
+        <div>
+          <u>${{ dailyPrice }} x {{ NumOfDays }} nights</u>
+          <span>${{ dailyPrice * NumOfDays }}</span>
+        </div>
+        <div class="popup" @click="CleaningFeepopup()">
+          <u>Cleaning Fee</u> <span> ${{ cleaningFee }}</span>
+          <span class="popuptext" id="CleaningFeepopup"
+            >One-time fee charged by host to cover the cost of cleaning their
+            space.</span
+          >
+        </div>
+        <br />
+        <div class="popup" @click="ServiceFeepopup()">
+          <u>Service Fee</u><span> ${{ serviceFee }}</span>
+          <span class="popuptext" id="ServiceFeepopup"
+            >The service fee, which the host has decided to pay, helps us run
+            our platform and offer services like 24/7 support on your
+            trip.</span
+          >
+        </div>
+        <br />
+        <div>
+          <u>Occupancy taxes and fees</u>
+          <span> ${{ occupancyFee }} </span>
+        </div>
+      
+      <hr />
+      <p>
+        <b>
+          Total: ${{ form.price
+
+
+
       <div>
         <u>${{ dailyPrice }} x {{ NumOfDays }} Nights : </u>
         <span>${{ dailyPrice * NumOfDays }}</span>
@@ -87,6 +123,7 @@
         <span class="popuptext" id="ServiceFeepopup"
           >The service fee, which the host has decided to pay, helps us run our
           platform and offer services like 24/7 support on your trip.</span
+
         >
       </div>
       <br />
@@ -163,8 +200,11 @@ export default {
       popup.classList.toggle("show");
     },
     submitForm() {
+
       axios
+
         .post(`http://54.91.69.145:80/api/reservation/${this.$route.params.listingId}`, this.form)
+
         .then((res) => {
           console.log(res.data);
         });
