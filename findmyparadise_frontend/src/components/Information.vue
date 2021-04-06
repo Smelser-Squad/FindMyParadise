@@ -44,9 +44,9 @@
 <script>
 import axios from "axios";
 
-
 export default{
-    name: "Information",
+     name: "Information",
+     props: ["listingId"],
     data(){
         return {
             listing: [],
@@ -67,9 +67,7 @@ export default{
             this.healthRules = res.data.healthRules;
             this.checkIn = res.data.checkIn;
             this.checkOut = res.data.checkOut;
-            console.log("Getting data...");
-            console.log(res.data);
-            console.log(res.data.rules);
+
         })
         .catch((err) => Promise.reject(err));
     },

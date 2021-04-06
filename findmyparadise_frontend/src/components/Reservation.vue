@@ -10,14 +10,26 @@
     </header>
     <body id="ReservationBody">
       <form v-on:submit.prevent="submitForm" method="post">
-        <h4>Check-in Date:</h4>
-        <input disabled v-model="form.checkInDate" />
-        <br />
-        <br />
-        <h4>Check-out Date:</h4>
-        <input disabled v-model="form.checkOutDate" />
-        <br />
-        <br />
+
+      <h4>CheckIn:</h4><input disabled v-model="form.checkInDate"/>
+       <h4>CheckOut:</h4><input disabled v-model="form.checkOutDate" />
+     
+        <h5>Guests:</h5>
+        <Guests @iAQty="increaseAQty($event)" @dAQty="decreaseAQty($event)" 
+        @iCQty="increaseCQty($event)" @dCQty="decreaseCQty($event)" 
+        @iIQty="increaseIQty($event)" @dIQty="decreaseIQty($event)"/>
+ <span style="display:none;"> Start Date: {{updateDate(dateStart)}}</span>
+        <br/>
+        <p> {{maxGuests}} guests maximum, infants don't count towards number of guests</p>
+        <span style="display:none;"> {{updateDate(dateEnd)}}</span>
+       <span>{{updateDays(days)}}</span>
+      
+      
+      
+
+
+  
+
         <h4>Guests:</h4>
         <br />
         <Guests
@@ -125,6 +137,7 @@ export default {
   mounted() {
     axios.get(`http://54.91.69.145:80/api/listing/${this.$route.params.listingId}`).then((res) => {
       this.maxGuests=res.data.maxGuests;
+
       this.dailyPrice = res.data.price;
       this.cleaningFee = res.data.cleaningFee;
       this.occupancyFee = res.data.occupancyFee;

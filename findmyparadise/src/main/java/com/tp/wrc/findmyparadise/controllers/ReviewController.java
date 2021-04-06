@@ -1,5 +1,7 @@
 package com.tp.wrc.findmyparadise.controllers;
+import com.tp.wrc.findmyparadise.exceptions.InvalidListingIDException;
 import com.tp.wrc.findmyparadise.exceptions.InvalidReviewIdException;
+import com.tp.wrc.findmyparadise.exceptions.NoListingFoundException;
 import com.tp.wrc.findmyparadise.exceptions.NullReviewIdException;
 import com.tp.wrc.findmyparadise.models.Review;
 import com.tp.wrc.findmyparadise.services.ReviewService;
@@ -18,13 +20,13 @@ public class ReviewController {
     ReviewService service;
 
 
-    @PostMapping("/addReview")
-    public ResponseEntity createReview(@RequestBody Review newReview)
+    @PostMapping("/addReview/{listingId}")
+    public ResponseEntity createReview(@RequestBody Review newReview, @PathVariable Integer listingId)
     {
         try {
-            return ResponseEntity.ok(service.create(newReview));
+            return ResponseEntity.ok(service.create(newReview, listingId));
         }
-        catch (NullReviewIdException | InvalidReviewIdException ex)
+        catch (NullReviewIdException | InvalidReviewIdException | InvalidListingIDException | NoListingFoundException ex)
         {
             return ResponseEntity.badRequest().body(ex.getMessage());
         }
