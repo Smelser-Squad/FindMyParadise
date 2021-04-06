@@ -91,7 +91,10 @@ export default {
   },
   mounted() {
     axios
+
+
       .get(`http://54.91.69.145:80/api/events/${this.$route.props.listingId}/25`)
+
       .then((res) => {
         this.items = res.data;
       })

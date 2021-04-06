@@ -12,21 +12,24 @@
           title="Reservation"
           :dateStart="range.start"
           :dateEnd="range.end"
+          :days="days"
         />
       </div>
       <hr class="light" />
       <br />
+      <div class="calenderContainer">
+        <h4 id="dateHeader">Select Date Range</h4>
+        <DateRangePicker @datePick="transferDates($event)" @diffDays="transferDays($event)"/>
+      </div>
+      <hr class="light" />
       <div class="amenitiesContainer">
         <amenities title="Amenities"></amenities>
       </div>
-      <hr class="light" />
-      <div class="calenderContainer">
-        <h4 id="dateHeader">Select Date Range</h4>
-        <DateRangePicker @datePick="transferDates($event)" />
-      </div>
+      
+      
       <hr class="light" />
       <div class="mapContainer">
-        <Map />
+        <Map :listingId="listingId"/>
       </div>
       <hr class="light" />
       <div class="container">
@@ -221,6 +224,7 @@ body {
   border: 2px solid black;
   border-color: black;
   background-color: white;
+  border-radius: 10px;
 }
 .container {
   max-width: 500px;

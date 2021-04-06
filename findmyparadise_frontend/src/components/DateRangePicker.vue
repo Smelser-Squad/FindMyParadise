@@ -38,15 +38,13 @@ import moment from "moment";
 import axios from "axios";
 
 
-let listingID = 2;
-
 export default {
+  props: ["listingId"],
   components: {
     DatePicker,
   },
   mounted() {
-
-    axios.get(`http://54.91.69.145:80/api/reservations/${listingID}`).then((res) => {
+    axios.get(`http://54.91.69.145:80/api/reservations/${this.$route.params.listingId}`).then((res) => {
 
       for (let i = 0; i < res.data.length; i++) {
       
@@ -69,7 +67,7 @@ export default {
         start: new Date(),
         end: new Date(),
       },
-      showDates: true,
+      showDates: false,
       reservations: [],
       startDay: 0,
       startMonth: 0,

@@ -17,7 +17,6 @@ import { onMounted, ref } from "vue";
 import axios from "axios";
 
 
-let listingID = 2;
 export default {
   name: "Map",
   props: {
@@ -30,6 +29,7 @@ export default {
     listingName: {
       type: String,
     },
+    listingId: String
   },
   setup(props) {
     const listingData = ref(props.listingName);
@@ -42,10 +42,14 @@ export default {
     const dataDist3 = ref(props.locationDist);
     const dataDist4 = ref(props.locationDist);
     const mapRef = ref(null);
+    console.log(props)
+    const id = ref(props.listingId)
+    
 
     onMounted(() => {
+
       axios
-        .get(`http://54.91.69.145:80/api/listing/${listingID}`)
+        .get(`http://54.91.69.145:80/api/listing/${id.value}`)
         .then((res) => {
           listingData.value = res.data.name;
           let POI = [res.data.longitude, res.data.latitude];
@@ -92,12 +96,14 @@ export default {
           map.addControl(new tt.FullscreenControl());
           map.addControl(new tt.NavigationControl());
           addMarker(map);
+          
         });
     });
     function addMarker(map) {
       const tt = window.tt;
+    
       axios
-        .get(`http://54.91.69.145:80/api/listing/${listingID}`)
+        .get(`http://54.91.69.145:80/api/listing/${id.value}`)
         .then((res) => {
           var location = [res.data.longitude, res.data.latitude];
           // console.log(res.data.latitude);

@@ -40,7 +40,7 @@
         type="button"
         class="btn"
         @click="
-          sendIncreaseAdultQty();
+          sendIncreaseChildQty();
           increaseChild();
         "
       >
@@ -73,7 +73,6 @@
     </h5>
   </div>
 </template>
-
 <script>
 import axios from 'axios';
 let listingID=2;
@@ -81,10 +80,11 @@ export default {
   name: "Guests",
   props: {},
   methods: {
-    increaseAdults() {
+   
+       increaseAdults() {
       if(this.AdultsNum + this.ChildNum==this.maxGuests){
-        console.log("Error")
-        this.AdultsNum==this.maxGuests;
+        // console.log("Error")
+        this.AdultsNum=this.maxGuests;
       }else{
       this.AdultsNum += 1;
       }
@@ -97,25 +97,35 @@ export default {
       }
     },
     decreaseChild() {
-      if (this.ChildNum == 0) {
-        console.log("Error");
-      } else {
-        this.ChildNum -= 1;
+    if (this.ChildNum == 0) {
+      // console.log("Error");
+    } else {
+      this.ChildNum -= 1;
+    }
+  },
+  increaseChild() {
+    if(this.ChildNum+this.AdultsNum ==this.maxGuests){
+        // console.log("Error")
+        
+      }else{
+    this.ChildNum += 1
       }
-    },
-    increaseChild() {
-      this.ChildNum += 1;
-    },
-    decreaseInfants() {
-      if (this.InfantNum == 0) {
-        console.log("Error");
-      } else {
-        this.InfantNum -= 1;
-      }
-    },
-    increaseInfants() {
-      this.InfantNum += 1;
-    },
+  },
+  decreaseInfants() {
+    if (this.InfantNum == 0) {
+      console.log("Error");
+    } else {
+      this.InfantNum -= 1;
+    }
+  },
+  increaseInfants() {
+    if(this.InfantNum==5){
+      // console.log("Error")
+      this.InfantNum=5;
+    }else{
+    this.InfantNum += 1
+    }
+  },
     sendIncreaseAdultQty() {
       this.$emit("iAQty", this.AdultsNum);
     },
@@ -123,16 +133,16 @@ export default {
       this.$emit("dAQty", this.AdultsNum);
     },
     sendIncreaseChildQty() {
-      this.$emit("iCQty", this.AdultsNum);
+      this.$emit("iCQty", this.ChildNum);
     },
     sendDecreaseChildQty() {
-      this.$emit("dCQty", this.AdultsNum);
+      this.$emit("dCQty", this.ChildNum);
     },
     sendIncreaseInfantQty() {
-      this.$emit("iIQty", this.AdultsNum);
+      this.$emit("iIQty", this.InfantNum);
     },
     sendDecreaseInfantQty() {
-      this.$emit("dIQty", this.AdultsNum);
+      this.$emit("dIQty", this.InfantNum);
     },
   },
   data() {
@@ -152,7 +162,6 @@ export default {
   }
 };
 </script>
-
 <style scoped>
 #parentDiv {
   display: flex;

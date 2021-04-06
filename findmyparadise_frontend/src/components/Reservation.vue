@@ -38,7 +38,7 @@
           @iCQty="increaseCQty($event)"
           @dCQty="decreaseCQty($event)"
           @iIQty="increaseIQty($event)"
-          @dIQty="decreaseAQty($event)"
+          @dIQty="decreaseIQty($event)"
         />
         <span style="display: none">
           Start Date: {{ updateDate(dateStart) }}</span
@@ -51,9 +51,7 @@
           </b>
         </p>
         <span style="display: none"> {{ updateDate(dateEnd) }}</span>
-
         <span>{{ updateDays(days) }}</span>
-
 
         <span
           class="_19di23v"
@@ -107,11 +105,11 @@
           Total: ${{ form.price
 
 
+
       <div>
         <u>${{ dailyPrice }} x {{ NumOfDays }} Nights : </u>
         <span>${{ dailyPrice * NumOfDays }}</span>
       </div>
-
       <div class="popup" @click="CleaningFeepopup()">
         <u>Cleaning Fee :</u> <span> ${{ cleaningFee }}</span>
         <span class="popuptext" id="CleaningFeepopup"
@@ -133,11 +131,9 @@
         <u>Occupancy Taxes & Fees :</u>
         <span> ${{ occupancyFee }} </span>
       </div>
-
       <br />
-
       <p id="totalPrice">
-        <b> Total: ${{ form.TotalPrice }}</b>
+        <b> Total: ${{ form.price }}</b>
       </p>
     </body>
   </div>
@@ -146,7 +142,7 @@
 import Guests from "./Guests";
 import axios from "axios";
 import moment from "moment";
-let listingID = 2;
+
 export default {
   name: "Reservation",
   props: ["dateStart", "dateEnd", "days"],
@@ -176,7 +172,7 @@ export default {
     };
   },
   mounted() {
-    axios.get(`http://54.91.69.145:80/api/listing/${listingID}`).then((res) => {
+    axios.get(`http://54.91.69.145:80/api/listing/${this.$route.params.listingId}`).then((res) => {
       this.maxGuests=res.data.maxGuests;
 
       this.dailyPrice = res.data.price;
@@ -185,10 +181,10 @@ export default {
       this.serviceFee = res.data.serviceFee;
       this.reviewsNum = res.data.reviews.length;
       this.form.price =
-        this.dailyPrice * this.NumOfDays +
+        (this.dailyPrice * this.NumOfDays) +
         this.serviceFee +
         this.cleaningFee +
-        this.occupancyFee;
+        this.occupancyFee
     });
   },
   components: {
@@ -206,13 +202,13 @@ export default {
     submitForm() {
 
       axios
-        .post(`http://54.91.69.145:80/api/reservation/${listingID}`, this.form)
+
+        .post(`http://54.91.69.145:80/api/reservation/${this.$route.params.listingId}`, this.form)
 
         .then((res) => {
           console.log(res.data);
         });
     },
-
     increaseAQty(num) {
       this.form.adults = num + 1;
     },
@@ -244,7 +240,7 @@ export default {
         this.NumOfDays = num;
       }
       this.form.price =
-        this.dailyPrice * this.NumOfDays +
+        (this.dailyPrice * this.NumOfDays) +
         this.serviceFee +
         this.cleaningFee +
         this.occupancyFee;
